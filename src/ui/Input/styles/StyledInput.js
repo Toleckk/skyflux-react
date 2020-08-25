@@ -4,6 +4,9 @@ export const StyledInput = styled.input`
   margin: 0;
   padding: 0;
   border: 0;
+
+  background: 0;
+
   width: 100%;
 
   color: rgb(${props => props.theme.primaryText});
