@@ -7,5 +7,6 @@
   "jsxBracketSameLine": false,
   "semi": false,
   "bracketSpacing": false,
-  "parser": "flow"
+  "parser": "flow",
+  "arrowParens": "avoid"
 }
