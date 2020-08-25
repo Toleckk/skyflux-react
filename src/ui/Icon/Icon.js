@@ -481,6 +481,7 @@ Icon.propTypes = {
   width: Type.string,
   height: Type.string,
   icon: Type.oneOf([
+    'eye',
     'check',
     'message',
     'more',
