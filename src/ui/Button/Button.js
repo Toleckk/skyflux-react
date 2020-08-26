@@ -4,8 +4,6 @@ export const Button = styled.button`
   padding: 10px 12px;
   min-height: 33px;
 
-  background: 0;
-
   flex-shrink: 0;
 
   border-radius: 10px;
