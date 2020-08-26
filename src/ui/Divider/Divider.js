@@ -12,6 +12,7 @@ const appear = keyframes`
 `
 
 export const Divider = styled.hr`
+  border: 0;
   width: 100%;
   height: 1px;
   flex-shrink: 0;
