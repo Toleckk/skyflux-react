@@ -1,6 +1,8 @@
-import React, {forwardRef, memo, useState} from 'react'
+import React, {forwardRef, memo, useMemo, useState} from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import PropTypes from 'prop-types'
+import {v4} from 'uuid'
+import {Icon, Loader} from '..'
 import {
   StyledAside,
   StyledError,
@@ -8,11 +10,11 @@ import {
   StyledInput,
   StyledLegend,
 } from './styles'
-import {Icon} from '../Icon'
-import {Loader} from '../Loader/Loader'
 
 export const Input = memo(
   forwardRef(({id, label, error, isLoading, type, ...props}, ref) => {
+    const realId = useMemo(() => id || v4(), [id])
+
     const [isEyeActive, setEyeActive] = useState(false)
 
     const onEyeClick = () => setEyeActive(isActive => !isActive)
@@ -21,11 +23,11 @@ export const Input = memo(
       <StyledFieldset error={!!error}>
         {error && <StyledError>{error}</StyledError>}
         <StyledLegend>
-          <label htmlFor={id}>{label}</label>
+          <label htmlFor={realId}>{label}</label>
         </StyledLegend>
         <Flex>
           <StyledInput
-            id={id}
+            id={realId}
             ref={ref}
             hasPadding={isLoading && type === 'password'}
             type={type === 'password' && isEyeActive ? 'text' : type}
@@ -52,10 +54,11 @@ Input.defaultProps = {
   error: null,
   isLoading: false,
   type: 'text',
+  id: null,
 }
 
 Input.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
   isLoading: PropTypes.bool,
