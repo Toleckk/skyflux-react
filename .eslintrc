@@ -11,6 +11,12 @@
       1,
       "prefer-double"
     ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["reflexbox/*", "!reflexbox/styled-components"]
+      }
+    ],
     "import/no-internal-modules": [
       "error",
       {
