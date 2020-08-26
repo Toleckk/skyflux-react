@@ -53,7 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pretty-quick && yarn lint --fix --max-warnings=0"
+      "pre-commit": "yarn pretty-quick && yarn lint --max-warnings=0"
     }
   }
 }
