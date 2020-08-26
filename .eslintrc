@@ -3,15 +3,32 @@
     "react-app",
     "prettier",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import-order/recommended"
   ],
   "rules": {
     "jsx-quotes": [
       1,
       "prefer-double"
-    ]
+    ],
+    "import/no-internal-modules": [
+      "error",
+      {
+        "allow": [
+          "reflexbox/styled-components",
+          "@testing-library/jest-dom/extend-expect"
+        ]
+      }
+    ],
+    "import/no-useless-path-segments": "error",
+    "import/no-commonjs": "error",
+    "import/no-duplicates": "error",
+    "import/newline-after-import": "error",
+    "import/no-default-export": "error"
   },
   "plugins": [
+    "import",
+    "import-order",
     "prettier",
     "react"
   ]

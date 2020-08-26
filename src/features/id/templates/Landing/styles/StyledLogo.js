@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Logo} from '../../../../../ui/Logo'
+import {Logo} from '../../../../../ui'
 
 export const StyledLogo = styled(Logo)`
   width: 80%;

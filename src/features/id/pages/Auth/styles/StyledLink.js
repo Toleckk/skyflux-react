@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Link} from '../../../../../ui/Link'
+import {Link} from '../../../../../ui'
 
 export const StyledLink = styled(Link)`
   color: rgb(${props => props.theme.primaryText});

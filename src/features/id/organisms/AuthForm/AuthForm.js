@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Input} from '../../../../ui'
-import {SubmitButton} from '../../atoms/SubmitButton'
+import {SubmitButton} from '../../atoms'
 
 export const AuthForm = ({className}) => (
   <form className={className}>

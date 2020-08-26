@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {Auth, Message, Register, Reset, Restore} from './pages'
-import {Landing} from './templates/Landing'
+import {Landing} from './templates'
 
 export const IdRouter = () => (
   <BrowserRouter basename="/id">
