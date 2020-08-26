@@ -1,39 +1,32 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {Avatar, Link} from '../../../../ui'
-import {StyledContainer, StyledIcon, StyledItem} from './styles'
+import {Avatar} from '../../../../ui'
+import {NavigationButton} from '../../molecules'
+import {StyledContainer, StyledItem} from './styles'
 
 export const DesktopNav = () => (
   <Flex as="nav">
     <StyledContainer>
       <ul>
         <StyledItem>
-          <Avatar />
+          <NavigationButton>
+            <Avatar src="https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg" />
+          </NavigationButton>
         </StyledItem>
         <StyledItem>
-          <Link to="/feed">
-            <StyledIcon icon="feed" />
-          </Link>
+          <NavigationButton to="/feed" icon="feed" />
         </StyledItem>
         <StyledItem>
-          <button>
-            <StyledIcon icon="notifications" />
-          </button>
+          <NavigationButton icon="notifications" />
         </StyledItem>
         <StyledItem>
-          <Link to="/settings">
-            <StyledIcon icon="settings" />
-          </Link>
+          <NavigationButton icon="settings" to="/settings" />
         </StyledItem>
         <StyledItem>
-          <Link to="/search">
-            <StyledIcon icon="search" />
-          </Link>
+          <NavigationButton icon="search" to="/search" />
         </StyledItem>
         <StyledItem>
-          <button>
-            <StyledIcon icon="logout" />
-          </button>
+          <NavigationButton icon="logout" />
         </StyledItem>
       </ul>
     </StyledContainer>
