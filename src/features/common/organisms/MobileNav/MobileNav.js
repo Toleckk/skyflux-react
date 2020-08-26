@@ -2,10 +2,10 @@ import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {Avatar} from '../../../../ui'
 import {NavigationButton} from '../../molecules'
-import {StyledContainer, StyledItem} from './styles'
+import {StyledItem} from './styles'
 
 export const MobileNav = () => (
-  <StyledContainer>
+  <nav>
     <Flex as="ul" justifyContent="space-evenly">
       <StyledItem>
         <NavigationButton icon="search" to="/search" />
@@ -22,5 +22,5 @@ export const MobileNav = () => (
         </NavigationButton>
       </StyledItem>
     </Flex>
-  </StyledContainer>
+  </nav>
 )
