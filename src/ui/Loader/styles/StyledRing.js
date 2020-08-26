@@ -7,7 +7,7 @@ export const StyledRing = styled.div`
   ${props =>
     props.hasShadow &&
     `box-shadow: inset rgba(${props.theme.secondary}, 0.7) 0 0 2rem 0.5rem, 
-             rgba(${props.theme.secondary}, 0.7) 0 0 2rem 0.5rem;`}
+             rgba(${props.theme.secondary}, 0.7) 0 0 2rem 0.5rem;`};
 
   ${({animation, borderWidth, size, theme}) => css`
     width: ${size};
