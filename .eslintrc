@@ -22,7 +22,8 @@
       {
         "allow": [
           "reflexbox/styled-components",
-          "@testing-library/jest-dom/extend-expect"
+          "@testing-library/jest-dom/extend-expect",
+          "**/common/*"
         ]
       }
     ],
