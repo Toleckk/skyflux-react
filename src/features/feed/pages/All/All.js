@@ -1,9 +1,8 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {Link} from 'react-router-dom'
 import {PostForm} from '../../../common/organisms'
 import {PostCard, UserCard} from '../../../common/molecules'
-import {Divider, H1, Text} from '../../../../ui'
+import {Divider, H1, Link, Text} from '../../../../ui'
 import {StyledContainer} from './styles'
 
 const postsMock = [

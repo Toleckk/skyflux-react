@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import {Link as RouterLink} from 'react-router-dom'
 
-export const StyledLink = styled(Link)`
+export const Link = styled(RouterLink)`
   color: rgb(${props => props.theme.primaryText});
   min-width: 120px;
   position: relative;

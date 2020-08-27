@@ -1,10 +1,9 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Link} from 'react-router-dom'
+import {Link as RouterLink} from 'react-router-dom'
 import {AuthForm} from '../../organisms'
 import {FieldDescription, PageDescription, SubmitButton} from '../../atoms'
-import {Divider, H1} from '../../../../ui'
-import {StyledLink} from './styles'
+import {Divider, H1, Link} from '../../../../ui'
 
 export const Auth = () => (
   <Flex alignItems="center" flexDirection="column">
@@ -15,13 +14,13 @@ export const Auth = () => (
       <AuthForm />
     </Box>
     <Box marginTop="15px" alignSelf="center">
-      <StyledLink to="/restore">Забыли пароль?</StyledLink>
+      <Link to="/restore">Забыли пароль?</Link>
     </Box>
     <Divider />
     <FieldDescription>
       Нет аккаунта? Присоединяйтесь! Нас уже 100000
     </FieldDescription>
-    <SubmitButton as={Link} to="/register">
+    <SubmitButton as={RouterLink} to="/register">
       Регистрация
     </SubmitButton>
   </Flex>
