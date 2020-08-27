@@ -1,8 +1,9 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {Link} from 'react-router-dom'
 import {AuthForm} from '../../organisms'
 import {FieldDescription, PageDescription, SubmitButton} from '../../atoms'
-import {Divider, H1, Link} from '../../../../ui'
+import {Divider, H1} from '../../../../ui'
 import {StyledLink} from './styles'
 
 export const Auth = () => (
