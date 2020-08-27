@@ -9,8 +9,10 @@ export const Navigable = ({children}) => {
   const isDesktop = useMedia('(min-width: 768px)')
 
   return (
-    <Flex justifyContent="center" minHeight="100vh">
-      {children}
+    <Flex justifyContent="center">
+      <Flex width="55vw" minHeight="100vh" flexDirection="column">
+        {children}
+      </Flex>
       {isDesktop ? (
         <SideBar minHeight="6rem">
           <DesktopNav />
