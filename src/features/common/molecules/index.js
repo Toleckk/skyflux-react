@@ -1,4 +1,5 @@
 export * from './NavigationButton'
 export * from './PostCard'
 export * from './PostInput'
+export * from './PostList'
 export * from './UserCard'
