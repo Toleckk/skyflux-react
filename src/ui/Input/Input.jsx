@@ -12,43 +12,46 @@ import {
 } from './styles'
 
 export const Input = memo(
-  forwardRef(({id, label, error, isLoading, type, multi, ...props}, ref) => {
-    const realId = useMemo(() => id || v4(), [id])
+  forwardRef(
+    ({id, label, error, isLoading, type, multi, children, ...props}, ref) => {
+      const realId = useMemo(() => id || v4(), [id])
 
-    const [isEyeActive, setEyeActive] = useState(false)
+      const [isEyeActive, setEyeActive] = useState(false)
 
-    const onEyeClick = () => setEyeActive(isActive => !isActive)
+      const onEyeClick = () => setEyeActive(isActive => !isActive)
 
-    return (
-      <StyledFieldset error={!!error} hasLabel={!!label}>
-        {error && <StyledError>{error}</StyledError>}
-        {label && (
-          <StyledLegend>
-            <label htmlFor={realId}>{label}</label>
-          </StyledLegend>
-        )}
-        <Flex>
-          <StyledInput
-            as={multi ? 'textarea' : 'input'}
-            id={realId}
-            ref={ref}
-            hasPadding={isLoading && type === 'password'}
-            type={type === 'password' && isEyeActive ? 'text' : type}
-            {...props}
-          />
-          <StyledAside>
-            {isLoading ? (
-              <Loader />
-            ) : type === 'password' ? (
-              <Icon icon="eye" onClick={onEyeClick} />
-            ) : (
-              <></>
-            )}
-          </StyledAside>
-        </Flex>
-      </StyledFieldset>
-    )
-  }),
+      return (
+        <StyledFieldset error={!!error} hasLabel={!!label}>
+          {error && <StyledError>{error}</StyledError>}
+          {label && (
+            <StyledLegend>
+              <label htmlFor={realId}>{label}</label>
+            </StyledLegend>
+          )}
+          <Flex>
+            <StyledInput
+              as={multi ? 'textarea' : 'input'}
+              id={realId}
+              ref={ref}
+              hasPadding={isLoading && type === 'password'}
+              type={type === 'password' && isEyeActive ? 'text' : type}
+              {...props}
+            />
+            <StyledAside>
+              {isLoading ? (
+                <Loader />
+              ) : type === 'password' ? (
+                <Icon icon="eye" onClick={onEyeClick} />
+              ) : (
+                <></>
+              )}
+            </StyledAside>
+            {children}
+          </Flex>
+        </StyledFieldset>
+      )
+    },
+  ),
 )
 
 Input.displayName = 'Input'
@@ -69,4 +72,5 @@ Input.propTypes = {
   isLoading: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'password']),
   multi: PropTypes.bool,
+  children: PropTypes.node,
 }
