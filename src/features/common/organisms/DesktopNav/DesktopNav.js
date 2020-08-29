@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import {Route} from 'react-router-dom'
-import {useLocation} from 'react-use'
+import {useClickAway} from 'react-use'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, H2} from '../../../../ui'
 import {EventList, NavigationButton} from '../../molecules'
+import {useNotificationsDisplay} from '../../hooks'
 import {StyledItem} from './styles'
 
 const events = [
@@ -143,9 +144,13 @@ const events = [
 ].map((event, _id) => ({...event, _id}))
 
 export const DesktopNav = () => {
-  const {pathname} = useLocation()
+  const {close, toggle, isOpened} = useNotificationsDisplay()
+
+  const ref = useRef()
+  useClickAway(ref, close)
+
   return (
-    <Flex as="nav">
+    <Flex as="nav" ref={ref}>
       <ul>
         <StyledItem>
           <NavigationButton>
@@ -158,11 +163,8 @@ export const DesktopNav = () => {
         <StyledItem>
           <NavigationButton
             icon="notifications"
-            to={
-              pathname.match('notifications')
-                ? pathname.replace('/notifications', '')
-                : pathname + '/notifications'
-            }
+            onClick={toggle}
+            isActive={isOpened}
           />
         </StyledItem>
         <StyledItem>
