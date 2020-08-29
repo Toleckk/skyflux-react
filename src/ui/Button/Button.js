@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  padding: 10px 12px;
   min-height: 2rem;
 
   flex-shrink: 0;
 
-  border-radius: 10px;
+  padding: 0.5em 1.5em;
+
+  border-radius: 1.5em;
   border: 1.5px solid rgb(${props => props.theme.primary});
 
   color: rgb(${props => props.theme.secondaryText});

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar} from '../../../../ui'
-import {BigNickname, RoundButton} from '../../atoms'
+import {Avatar, Button} from '../../../../ui'
+import {BigNickname} from '../../atoms'
 
 export const UserRow = ({user}) => (
   <Flex padding="0.5rem" alignItems="center">
@@ -12,7 +12,7 @@ export const UserRow = ({user}) => (
     <Box flex={1}>
       <BigNickname>{user.nickname}</BigNickname>
     </Box>
-    <RoundButton>Читать</RoundButton>
+    <Button>Читать</Button>
   </Flex>
 )
 
