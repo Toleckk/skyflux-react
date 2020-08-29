@@ -1,15 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {PostCard} from '../PostCard'
+import {PublicationList} from '../PublicationList'
 
 export const PostList = ({posts}) => (
-  <ul>
-    {posts.map(post => (
-      <li key={post._id}>
-        <PostCard post={post} />
-      </li>
-    ))}
-  </ul>
+  <PublicationList publications={posts} Card={PostCard} />
 )
 
 PostList.propTypes = {
