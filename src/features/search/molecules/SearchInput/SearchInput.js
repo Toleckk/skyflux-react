@@ -10,7 +10,7 @@ import {
 export const SearchInput = ({id, ...props}) => (
   <StyledRelativeContainer>
     <StyledInput id={id} {...props} />
-    <StyledIconContainer for={id}>
+    <StyledIconContainer htmlFor={id}>
       <Icon icon="find" width="3rem" height="3rem" color="currentColor" />
     </StyledIconContainer>
   </StyledRelativeContainer>
