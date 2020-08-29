@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledInput = styled.input`
+  resize: none;
+
   margin: 0;
   padding: 0;
   border: 0;

@@ -12,7 +12,7 @@ import {
 } from './styles'
 
 export const Input = memo(
-  forwardRef(({id, label, error, isLoading, type, ...props}, ref) => {
+  forwardRef(({id, label, error, isLoading, type, multi, ...props}, ref) => {
     const realId = useMemo(() => id || v4(), [id])
 
     const [isEyeActive, setEyeActive] = useState(false)
@@ -20,13 +20,16 @@ export const Input = memo(
     const onEyeClick = () => setEyeActive(isActive => !isActive)
 
     return (
-      <StyledFieldset error={!!error}>
+      <StyledFieldset error={!!error} hasLabel={!!label}>
         {error && <StyledError>{error}</StyledError>}
-        <StyledLegend>
-          <label htmlFor={realId}>{label}</label>
-        </StyledLegend>
+        {label && (
+          <StyledLegend>
+            <label htmlFor={realId}>{label}</label>
+          </StyledLegend>
+        )}
         <Flex>
           <StyledInput
+            as={multi ? 'textarea' : 'input'}
             id={realId}
             ref={ref}
             hasPadding={isLoading && type === 'password'}
@@ -55,12 +58,15 @@ Input.defaultProps = {
   isLoading: false,
   type: 'text',
   id: null,
+  label: '',
+  multi: false,
 }
 
 Input.propTypes = {
   id: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   error: PropTypes.string,
   isLoading: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'password']),
+  multi: PropTypes.bool,
 }

@@ -10,7 +10,7 @@ export const StyledFieldset = styled.fieldset`
   width: 100%;
   min-width: 215px;
 
-  padding: 0 8px 7px 11px;
+  padding: ${props => (!props.hasLabel ? '8px' : 0)} 8px 8px 11px;
 
   border-radius: 4px;
   border: 2px solid
@@ -33,8 +33,10 @@ export const StyledFieldset = styled.fieldset`
 
 StyledFieldset.defaultProps = {
   error: false,
+  hasLabel: false,
 }
 
 StyledFieldset.propTypes = {
-  error: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  hasLabel: PropTypes.bool,
 }
