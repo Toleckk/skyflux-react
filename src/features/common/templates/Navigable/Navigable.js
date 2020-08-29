@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
-import {useLocation, useMedia} from 'react-use'
+import {useMedia} from 'react-use'
 import {DesktopNav, MobileNav} from '../../organisms'
 import {BottomBar, SideBar} from '../../../../ui'
+import {useNotificationsDisplay} from '../../hooks'
 
 export const Navigable = ({children}) => {
   const isDesktop = useMedia('(min-width: 768px)')
-  const {pathname} = useLocation()
-  const isNotificationsOpened = !!pathname.match('notifications')
+  const {isOpened} = useNotificationsDisplay()
 
   return (
     <Flex justifyContent="center">
@@ -16,10 +16,7 @@ export const Navigable = ({children}) => {
         {children}
       </Flex>
       {isDesktop ? (
-        <SideBar
-          minHeight={isNotificationsOpened || '6rem'}
-          border={isNotificationsOpened || 'hover'}
-        >
+        <SideBar minHeight={isOpened || '6rem'} border={isOpened || 'hover'}>
           <DesktopNav />
         </SideBar>
       ) : (
