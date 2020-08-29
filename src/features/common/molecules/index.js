@@ -1,4 +1,5 @@
 export * from './CommentCard'
+export * from './CommentList'
 export * from './NavigationButton'
 export * from './PostCard'
 export * from './PostInput'
