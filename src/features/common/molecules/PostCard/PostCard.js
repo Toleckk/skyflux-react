@@ -1,44 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, Icon, SecondaryText, Text} from '../../../../ui'
-import {StyledDivider, StyledNickname, StyledContainer} from './styles'
+import {Icon, Text} from '../../../../ui'
+import {PublicationCard} from '../PublicationCard'
 
-export const PostCard = ({post}) => {
-  return (
-    <StyledContainer>
-      <Flex padding="10px" flexDirection="column">
-        <Flex alignItems="center">
-          <Avatar
-            src={post.user.avatar}
-            style={{width: '2rem', height: '2rem'}}
-          />
-          <Box flex={1} marginLeft="1rem">
-            <StyledNickname>{post.user.nickname}</StyledNickname>
-          </Box>
-          <Text>{post.date}</Text>
-        </Flex>
-        <Box margin="5px 0 10px">
-          <SecondaryText>{post.text}</SecondaryText>
+export const PostCard = ({publication}) => (
+  <PublicationCard publication={publication}>
+    <Flex justifyContent="space-between">
+      <Flex alignItems="center">
+        <Icon icon="comment" size="1.5rem" />
+        <Box marginLeft="1ex">
+          <Text>{publication.commentsCount}</Text>
         </Box>
-        <Flex justifyContent="space-between">
-          <Flex alignItems="center">
-            <Icon icon="comment" size="1.5rem" />
-            <Text style={{marginLeft: '1ex'}}>{post.commentsCount}</Text>
-          </Flex>
-          <Flex alignItems="center">
-            <Icon icon="love" size="1.5rem" />
-            <Text style={{marginLeft: '1ex'}}>{post.commentsCount}</Text>
-          </Flex>
-        </Flex>
       </Flex>
-      <StyledDivider />
-    </StyledContainer>
-  )
-}
+      <Flex alignItems="center">
+        <Icon icon="love" size="1.5rem" />
+        <Box marginLeft="1ex">
+          <Text>{publication.commentsCount}</Text>
+        </Box>
+      </Flex>
+    </Flex>
+  </PublicationCard>
+)
 
 PostCard.propTypes = {
-  post: PropTypes.shape({
+  publication: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
