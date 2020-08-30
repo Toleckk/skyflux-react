@@ -4,11 +4,11 @@ import {Flex} from 'reflexbox/styled-components'
 import {useMedia} from 'react-use'
 import {DesktopNav, MobileNav} from '../../organisms'
 import {BottomBar, SideBar} from '../../../../ui'
-import {useNotificationsDisplay} from '../../hooks'
+import {useModal} from '../../hooks'
 
 export const Navigable = ({children}) => {
   const isDesktop = useMedia('(min-width: 768px)')
-  const {isOpened} = useNotificationsDisplay()
+  const {isOpened} = useModal('notifications')
 
   return (
     <Flex justifyContent="center">

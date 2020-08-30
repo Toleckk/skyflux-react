@@ -3,7 +3,7 @@ import {useClickAway} from 'react-use'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, H2} from '../../../../ui'
 import {EventList, NavigationButton} from '../../molecules'
-import {useNotificationsDisplay} from '../../hooks'
+import {useModal} from '../../hooks'
 import {StyledItem} from './styles'
 
 const events = [
@@ -143,7 +143,7 @@ const events = [
 ].map((event, _id) => ({...event, _id}))
 
 export const DesktopNav = () => {
-  const {close, toggle, isOpened} = useNotificationsDisplay()
+  const {close, toggle, isOpened} = useModal('notifications')
 
   const ref = useRef()
   useClickAway(ref, close)

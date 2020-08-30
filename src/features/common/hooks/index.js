@@ -1,1 +1,1 @@
-export * from './useNotificationsDisplay'
+export * from './useModal'

@@ -2,7 +2,7 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {Avatar, H2, Icon} from '../../../../ui'
-import {useNotificationsDisplay} from '../../hooks'
+import {useModal} from '../../hooks'
 import {StyledBigNickname} from './styles'
 
 const user = {
@@ -20,7 +20,7 @@ const user = {
 }
 
 export const MobileMenu = () => {
-  const {open} = useNotificationsDisplay()
+  const {open} = useModal('notifications')
 
   return (
     <Flex paddingTop="2rem" flexDirection="column" alignItems="center">

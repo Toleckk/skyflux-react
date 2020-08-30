@@ -4,7 +4,7 @@ import {Drawer} from 'react-pretty-drawer'
 import useBooleanState from 'use-boolean-state'
 import {Avatar, H2} from '../../../../ui'
 import {EventList, NavigationButton} from '../../molecules'
-import {useNotificationsDisplay} from '../../hooks'
+import {useModal} from '../../hooks'
 import {MobileMenu} from '../MobileMenu'
 import {StyledItem} from './styles'
 
@@ -145,7 +145,7 @@ const events = [
 ].map((event, _id) => ({...event, _id}))
 
 export const MobileNav = () => {
-  const {close, toggle, isOpened} = useNotificationsDisplay()
+  const {close, toggle, isOpened} = useModal('notifications')
   const [menuOpened, openMenu, closeMenu] = useBooleanState(false)
 
   return (
