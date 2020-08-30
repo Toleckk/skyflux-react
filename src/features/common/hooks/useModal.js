@@ -7,7 +7,7 @@ export const useModal = name => {
   const history = useHistory()
   const params = parse(search)
 
-  const isOpened = params[name] === '1'
+  const isOpened = !!params[name]
 
   const open = useCallback(
     (data = 1) =>
