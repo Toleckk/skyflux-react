@@ -1,5 +1,4 @@
 import React, {useRef} from 'react'
-import {Route} from 'react-router-dom'
 import {useClickAway} from 'react-use'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, H2} from '../../../../ui'
@@ -177,7 +176,7 @@ export const DesktopNav = () => {
           <NavigationButton icon="logout" />
         </StyledItem>
       </ul>
-      <Route path="**/notifications**">
+      {isOpened && (
         <Flex flexDirection="column" paddingRight="1rem">
           <Flex
             flexBasis="0px"
@@ -191,7 +190,7 @@ export const DesktopNav = () => {
             <EventList events={events} />
           </Flex>
         </Flex>
-      </Route>
+      )}
     </Flex>
   )
 }
