@@ -11626,6 +11626,11 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
+use-boolean-state@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/use-boolean-state/-/use-boolean-state-1.0.1.tgz#2e04792f2a25ca6bd2e31298e1708d0e0fc204c5"
+  integrity sha512-2hfTDbwY1gCNZKL9lzFxWo9MkcW4CLGMecja3b9YMhyVQY+N/RjAVzjE/X/x5ntiSklSVEswkU2xQZQvhzaXwA==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
