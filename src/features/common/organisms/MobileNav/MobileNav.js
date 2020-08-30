@@ -1,9 +1,11 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Drawer} from 'react-pretty-drawer'
+import useBooleanState from 'use-boolean-state'
 import {Avatar, H2} from '../../../../ui'
 import {EventList, NavigationButton} from '../../molecules'
 import {useNotificationsDisplay} from '../../hooks'
+import {MobileMenu} from '../MobileMenu'
 import {StyledItem} from './styles'
 
 const events = [
@@ -144,6 +146,7 @@ const events = [
 
 export const MobileNav = () => {
   const {close, toggle, isOpened} = useNotificationsDisplay()
+  const [menuOpened, openMenu, closeMenu] = useBooleanState(false)
 
   return (
     <nav>
@@ -158,7 +161,7 @@ export const MobileNav = () => {
           <NavigationButton icon="feed" to="/feed" />
         </StyledItem>
         <StyledItem>
-          <NavigationButton>
+          <NavigationButton onClick={openMenu}>
             <Avatar src="https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg" />
           </NavigationButton>
         </StyledItem>
@@ -170,6 +173,9 @@ export const MobileNav = () => {
             <EventList events={events} />
           </Box>
         </Flex>
+      </Drawer>
+      <Drawer visible={menuOpened} onClose={closeMenu} placement="right">
+        <MobileMenu />
       </Drawer>
     </nav>
   )
