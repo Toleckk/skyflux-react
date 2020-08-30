@@ -14,13 +14,13 @@ export const Auth = () => (
       <AuthForm />
     </Box>
     <Box marginTop="15px" alignSelf="center">
-      <Link to="/restore">Забыли пароль?</Link>
+      <Link to="/id/restore">Забыли пароль?</Link>
     </Box>
     <Divider />
     <FieldDescription>
       Нет аккаунта? Присоединяйтесь! Нас уже 100000
     </FieldDescription>
-    <SubmitButton as={RouterLink} to="/register">
+    <SubmitButton as={RouterLink} to="/id/register">
       Регистрация
     </SubmitButton>
   </Flex>
