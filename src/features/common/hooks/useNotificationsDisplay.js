@@ -5,10 +5,10 @@ export const useNotificationsDisplay = () => {
   const {pathname} = useLocation()
   const history = useHistory()
 
-  const open = useCallback(() => history.push(pathname + '/notifications'), [
-    pathname,
-    history,
-  ])
+  const open = useCallback(
+    () => history.push(pathname.replace(/^\/$/, '') + '/notifications'),
+    [pathname, history],
+  )
 
   const close = useCallback(
     () => history.push(pathname.replace('/notifications', '')),
