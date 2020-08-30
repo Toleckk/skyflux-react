@@ -10,10 +10,10 @@ export const useModal = name => {
   const isOpened = params[name] === '1'
 
   const open = useCallback(
-    () =>
+    (data = 1) =>
       history.push({
         pathname,
-        search: stringify({...params, [name]: 1}),
+        search: stringify({...params, [name]: data}),
       }),
     [history, pathname, params, name],
   )
