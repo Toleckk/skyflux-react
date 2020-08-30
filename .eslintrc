@@ -24,6 +24,7 @@
           "reflexbox/styled-components",
           "@testing-library/jest-dom/extend-expect",
           "react-datepicker/dist/react-datepicker.css",
+          "**/features/*",
           "**/common/*"
         ]
       }
