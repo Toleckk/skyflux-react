@@ -1,5 +1,6 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
+import {Trans, withTranslation} from 'react-i18next'
 import {PostForm} from '../../../common/organisms'
 import {PostList, UserList} from '../../../common/molecules'
 import {Divider, H1, Link, Text} from '../../../../ui'
@@ -87,26 +88,25 @@ const users = [
   },
 ]
 
-export const All = () => (
+export const All = withTranslation('feed')(({t}) => (
   <StyledContainer>
-    <PostForm />
+    <PostForm placeholder={t('Write a news')} />
     <Divider />
     {postsMock.length ? (
       <PostList posts={postsMock} />
     ) : (
       <div>
-        <H1>
-          Ваша лента пуста! Осмотритесь, чтобы найти интересных пользователей
-        </H1>
+        <H1>{t('Your feed is empty')}</H1>
         <Box margin="1rem 0">
           <UserList users={users} />
         </Box>
         <Text>
-          Если ищете что-то, Вы можете воспользоваться нашим{' '}
-          <Link to="/search">поиском</Link>
+          <Trans t={t}>
+            If look smth, you can use our <Link to={'/search'}>search</Link>
+          </Trans>
         </Text>
         <Divider />
       </div>
     )}
   </StyledContainer>
-)
+))

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {ThemeProvider} from 'styled-components'
 import {Route, Switch} from 'react-router'
@@ -10,22 +10,25 @@ import {FeedRouter} from './features/feed'
 import {PostRouter} from './features/post'
 import {SearchRouter} from './features/search'
 import {SettingsRouter} from './features/settings'
+import {PageLoader} from './ui'
 
 export const App = () => (
   <ThemeProvider theme={dark}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/id">
-          <IdRouter />
-        </Route>
-        <Navigable>
-          <FeedRouter />
-          <PostRouter />
-          <SearchRouter />
-          <SettingsRouter />
-          <UserRouter />
-        </Navigable>
-      </Switch>
-    </BrowserRouter>
+    <Suspense fallback={<PageLoader />}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/id">
+            <IdRouter />
+          </Route>
+          <Navigable>
+            <FeedRouter />
+            <PostRouter />
+            <SearchRouter />
+            <SettingsRouter />
+            <UserRouter />
+          </Navigable>
+        </Switch>
+      </BrowserRouter>
+    </Suspense>
   </ThemeProvider>
 )

@@ -1,11 +1,13 @@
 import React, {useCallback, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Flex, Box} from 'reflexbox/styled-components'
+import {useTranslation} from 'react-i18next'
 import {SearchInput} from '../../molecules'
 import {H1} from '../../../../ui'
 import {SearchLoader} from '../../atoms'
 
 export const Search = ({onInputChange, isLoading, children}) => {
+  const {t} = useTranslation('search')
   const [text, setText] = useState('')
 
   const onChange = useCallback(
@@ -24,7 +26,7 @@ export const Search = ({onInputChange, isLoading, children}) => {
       {isLoading && !!text && <SearchLoader />}
       {!isLoading && !children && !!text && (
         <Box margin="auto">
-          <H1>Ничего не найдено!</H1>
+          <H1>{t('Nothing found!')}</H1>
         </Box>
       )}
       {!isLoading && !!text && children}

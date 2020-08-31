@@ -2,6 +2,7 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Drawer} from 'react-pretty-drawer'
 import useBooleanState from 'use-boolean-state'
+import {useTranslation} from 'react-i18next'
 import {Avatar, H2} from '../../../../ui'
 import {EventList, NavigationButton} from '../../molecules'
 import {useModal} from '../../hooks'
@@ -145,6 +146,7 @@ const events = [
 ].map((event, _id) => ({...event, _id}))
 
 export const MobileNav = () => {
+  const {t} = useTranslation('nav')
   const {close, toggle, isOpened} = useModal('notifications')
   const [menuOpened, openMenu, closeMenu] = useBooleanState(false)
 
@@ -168,7 +170,7 @@ export const MobileNav = () => {
       </Flex>
       <Drawer visible={isOpened} onClose={close} placement="right">
         <Flex flexDirection="column" overflow="hidden" height="100%">
-          <H2>Запросы на подписку</H2>
+          <H2>{t('Subscriptions requests')}</H2>
           <Box flexGrow={1} flexBasis={0} overflow="auto">
             <EventList events={events} />
           </Box>

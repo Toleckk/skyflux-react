@@ -1,22 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {withTranslation} from 'react-i18next'
 import {Input} from '../../../../ui'
 import {SubmitButton} from '../../atoms'
 
-export const AuthForm = ({className}) => (
+export const AuthForm = withTranslation('id')(({className, t}) => (
   <form className={className}>
     <Flex flexDirection="column">
-      <Input label="Логин" name="login" id="login" />
+      <Input label={t('Login')} name="login" id="login" />
       <Box marginTop="15px">
-        <Input label="Пароль" name="password" type="password" id="password" />
+        <Input
+          label={t('password')}
+          name="password"
+          type="password"
+          id="password"
+        />
       </Box>
       <Box marginTop="30px" alignSelf="center">
-        <SubmitButton>Войти</SubmitButton>
+        <SubmitButton>{t('Sign in')}</SubmitButton>
       </Box>
     </Flex>
   </form>
-)
+))
 
 AuthForm.defaultProps = {
   className: null,

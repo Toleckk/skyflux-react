@@ -1,21 +1,19 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {withTranslation} from 'react-i18next'
 import {Input} from '../../../../ui'
 import {FieldDescription, SubmitButton} from '../../atoms'
 
-export const RestoreForm = () => (
+export const RestoreForm = withTranslation('id')(({t}) => (
   <Flex flexDirection="column" alignItems="center">
-    <FieldDescription>
-      Введите Ваш никнейм или адрес электронной почты, к которому привязан Ваш
-      аккаунт
-    </FieldDescription>
+    <FieldDescription>{t('Enter nickname or email')}</FieldDescription>
     <Box marginTop="1em">
       <form>
-        <Input label={'Логин'} id={'login'} name={'login'} />
+        <Input label={t('Login')} id={'login'} name={'login'} />
         <Flex marginTop="1.5em" justifyContent="center">
-          <SubmitButton>Далее</SubmitButton>
+          <SubmitButton>{t('Next')}</SubmitButton>
         </Flex>
       </form>
     </Box>
   </Flex>
-)
+))

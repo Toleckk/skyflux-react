@@ -1,6 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
 import {Avatar, H2, Icon} from '../../../../ui'
 import {useModal} from '../../hooks'
 import {StyledBigNickname} from './styles'
@@ -20,6 +21,7 @@ const user = {
 }
 
 export const MobileMenu = () => {
+  const {t} = useTranslation('nav')
   const {open} = useModal('notifications')
 
   return (
@@ -37,7 +39,7 @@ export const MobileMenu = () => {
               <Box width="2rem" height="2rem" marginRight="2rem">
                 <Icon icon="feed" />
               </Box>
-              <H2>Новости</H2>
+              <H2>{t('News')}</H2>
             </Flex>
           </Link>
         </li>
@@ -46,7 +48,7 @@ export const MobileMenu = () => {
             <Box width="2rem" height="2rem" marginRight="2rem">
               <Icon icon="notifications" />
             </Box>
-            <H2>Оповещения</H2>
+            <H2>{t('Notifications')}</H2>
           </Flex>
         </li>
         <li>
@@ -55,7 +57,7 @@ export const MobileMenu = () => {
               <Box width="2rem" height="2rem" marginRight="2rem">
                 <Icon icon="settings" />
               </Box>
-              <H2>Настройки</H2>
+              <H2>{t('Settings')}</H2>
             </Flex>
           </Link>
         </li>
@@ -65,7 +67,7 @@ export const MobileMenu = () => {
               <Box width="2rem" height="2rem" marginRight="2rem">
                 <Icon icon="search" />
               </Box>
-              <H2>Поиск</H2>
+              <H2>{t('Search')}</H2>
             </Flex>
           </Link>
         </li>
@@ -74,7 +76,7 @@ export const MobileMenu = () => {
             <Box width="2rem" height="2rem" marginRight="2rem">
               <Icon icon="logout" />
             </Box>
-            <H2>Выйти</H2>
+            <H2>{t('Log out')}</H2>
           </Flex>
         </li>
       </ul>

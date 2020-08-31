@@ -1,6 +1,7 @@
 import React, {useRef} from 'react'
 import {useClickAway} from 'react-use'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {withTranslation} from 'react-i18next'
 import {Avatar, H2} from '../../../../ui'
 import {EventList, NavigationButton} from '../../molecules'
 import {useModal} from '../../hooks'
@@ -142,7 +143,7 @@ const events = [
   },
 ].map((event, _id) => ({...event, _id}))
 
-export const DesktopNav = () => {
+export const DesktopNav = withTranslation('nav')(({t}) => {
   const {close, toggle, isOpened} = useModal('notifications')
 
   const ref = useRef()
@@ -185,7 +186,7 @@ export const DesktopNav = () => {
             flexDirection="column"
           >
             <Box margin="0 2rem">
-              <H2>Запросы на подписку</H2>
+              <H2>{t('Subscriptions requests')}</H2>
             </Box>
             <EventList events={events} />
           </Flex>
@@ -193,4 +194,4 @@ export const DesktopNav = () => {
       )}
     </Flex>
   )
-}
+})
