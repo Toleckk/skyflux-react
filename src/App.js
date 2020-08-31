@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {ThemeProvider} from 'styled-components'
 import {Route, Switch} from 'react-router'
@@ -13,19 +13,21 @@ import {SettingsRouter} from './features/settings'
 
 export const App = () => (
   <ThemeProvider theme={dark}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/id">
-          <IdRouter />
-        </Route>
-        <Navigable>
-          <FeedRouter />
-          <PostRouter />
-          <SearchRouter />
-          <SettingsRouter />
-          <UserRouter />
-        </Navigable>
-      </Switch>
-    </BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/id">
+            <IdRouter />
+          </Route>
+          <Navigable>
+            <FeedRouter />
+            <PostRouter />
+            <SearchRouter />
+            <SettingsRouter />
+            <UserRouter />
+          </Navigable>
+        </Switch>
+      </BrowserRouter>
+    </Suspense>
   </ThemeProvider>
 )
