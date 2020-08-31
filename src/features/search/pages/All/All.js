@@ -86,25 +86,23 @@ const data = {
   ],
 }
 
-export const All = () => {
-  return (
-    <Search>
-      {data &&
-        ((data.users && !!data.users.length) ||
-          (data.posts && !!data.posts.length)) && (
-          <>
-            {data.users && !!data.users.length && (
-              <Box marginTop="2rem">
-                <UsersDisplay users={data.users} />
-              </Box>
-            )}
-            {data.posts && !!data.posts.length && (
-              <Box marginTop="2rem">
-                <PostsDisplay posts={data.posts} />
-              </Box>
-            )}
-          </>
-        )}
-    </Search>
-  )
-}
+export const All = () => (
+  <Search>
+    {data &&
+      ((data.users && !!data.users.length) ||
+        (data.posts && !!data.posts.length)) && (
+        <>
+          {data.users && !!data.users.length && (
+            <Box marginTop="2rem">
+              <UsersDisplay users={data.users} />
+            </Box>
+          )}
+          {data.posts && !!data.posts.length && (
+            <Box marginTop="2rem">
+              <PostsDisplay posts={data.posts} />
+            </Box>
+          )}
+        </>
+      )}
+  </Search>
+)
