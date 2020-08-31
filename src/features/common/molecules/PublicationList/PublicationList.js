@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {PostCard} from '../PostCard'
 import {PublicationCard} from '../PublicationCard'
 
 export const PublicationList = ({publications, Card, ...props}) => (
@@ -18,6 +17,7 @@ PublicationList.defaultProps = {
 }
 
 PublicationList.propTypes = {
-  publications: PropTypes.arrayOf(PostCard.propTypes.post).isRequired,
+  publications: PropTypes.arrayOf(PublicationCard.propTypes.publication)
+    .isRequired,
   Card: PropTypes.elementType,
 }

@@ -8,5 +8,5 @@ export const PostList = ({posts}) => (
 )
 
 PostList.propTypes = {
-  posts: PropTypes.arrayOf(PostCard.propTypes.post).isRequired,
+  posts: PropTypes.arrayOf(PostCard.propTypes.publication).isRequired,
 }
