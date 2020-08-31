@@ -5,4 +5,5 @@ export const H2 = styled.h2`
   text-align: center;
   font-size: large;
   font-weight: normal;
+  margin: 0;
 `
