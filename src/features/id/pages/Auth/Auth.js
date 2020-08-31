@@ -20,8 +20,10 @@ export const Auth = () => (
     <FieldDescription>
       Нет аккаунта? Присоединяйтесь! Нас уже 100000
     </FieldDescription>
-    <SubmitButton as={RouterLink} to="/id/register">
-      Регистрация
-    </SubmitButton>
+    <Box marginTop="1rem">
+      <SubmitButton as={RouterLink} to="/id/register">
+        Регистрация
+      </SubmitButton>
+    </Box>
   </Flex>
 )
