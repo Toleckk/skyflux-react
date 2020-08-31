@@ -7,25 +7,23 @@ export const useModal = name => {
   const history = useHistory()
   const params = parse(search)
 
+  const updateState = useCallback(
+    data =>
+      history.push({
+        pathname,
+        search: stringify({
+          ...params,
+          [name]: data !== undefined && typeof data !== 'string' ? '1' : data,
+        }),
+      }),
+    [history, name, params, pathname],
+  )
+
   const isOpened = !!params[name]
 
-  const open = useCallback(
-    (data = 1) =>
-      history.push({
-        pathname,
-        search: stringify({...params, [name]: data}),
-      }),
-    [history, pathname, params, name],
-  )
+  const open = useCallback((data = '1') => updateState(data), [updateState])
 
-  const close = useCallback(
-    () =>
-      history.push({
-        pathname,
-        search: stringify({...params, [name]: undefined}),
-      }),
-    [history, pathname, params, name],
-  )
+  const close = useCallback(() => updateState(), [updateState])
 
   const toggle = useCallback(isOpened ? close : open, [isOpened, close, open])
 
