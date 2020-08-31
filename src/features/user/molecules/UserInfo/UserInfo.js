@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {useTranslation} from 'react-i18next'
 import {Avatar, Icon, Text} from '../../../../ui'
 import {About, BigNickname, Stat} from '../../atoms'
 
 export const UserInfo = ({user}) => {
+  const {t} = useTranslation('user')
+
   return (
     <div>
       <Flex>
@@ -12,9 +15,9 @@ export const UserInfo = ({user}) => {
           <Avatar src={user.avatar} />
         </Box>
         <Flex flex={1} justifyContent="space-evenly" alignItems="center">
-          <Stat count={user.postsCount} name="Постов" icon="post" />
-          <Stat count={user.subscriptionsCount} name="Читает" icon="user" />
-          <Stat count={user.subscribersCount} name="Читают" icon="user" />
+          <Stat count={user.postsCount} name={t('Users')} icon="post" />
+          <Stat count={user.subscriptionsCount} name={t('Read')} icon="user" />
+          <Stat count={user.subscribersCount} name={t('Read by')} icon="user" />
         </Flex>
       </Flex>
       <Box marginTop="1rem" marginBottom="0.5rem">

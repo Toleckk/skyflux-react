@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import {Box} from 'reflexbox/styled-components'
+import {withTranslation} from 'react-i18next'
 import {Divider} from '../../../../ui'
 import {PostForm} from '../../../common/organisms'
 import {PostList} from '../../../common/molecules'
@@ -8,6 +9,7 @@ import {UserInfo, UserRow} from '../../molecules'
 import {StyledHeader, StyledStaticDivider} from './styles'
 
 const user = {
+  _id: '123',
   avatar:
     'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
   nickname: 'toleckk',
@@ -141,7 +143,7 @@ const posts = [
   },
 ]
 
-export const Wall = () => {
+export const Wall = withTranslation('user')(({t}) => {
   const [isInfoVisible, setIsInfoVisible] = useState(false)
 
   return (
@@ -152,7 +154,7 @@ export const Wall = () => {
         </Box>
       </ReactVisibilitySensor>
       <Divider />
-      <PostForm />
+      <PostForm placeholder={t('Write a text')} />
       <Divider />
       <PostList posts={posts} />
       {!isInfoVisible && (
@@ -163,4 +165,4 @@ export const Wall = () => {
       )}
     </div>
   )
-}
+})
