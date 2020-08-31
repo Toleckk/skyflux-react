@@ -1,9 +1,10 @@
 import React, {useCallback, useState} from 'react'
+import PropTypes from 'prop-types'
 import {Icon} from '../../../../ui'
 import {PostInput} from '../../molecules'
 import {StyledButton, StyledContainer} from './styles'
 
-export const PostForm = () => {
+export const PostForm = ({placeholder}) => {
   const [isFocused, setFocused] = useState(false)
 
   const onFocus = useCallback(() => setFocused(true), [setFocused])
@@ -15,7 +16,7 @@ export const PostForm = () => {
         <PostInput
           onBlur={onBlur}
           onFocus={onFocus}
-          placeholder="Напишите текст..."
+          placeholder={placeholder}
         />
         {isFocused && (
           <StyledButton>
@@ -25,4 +26,8 @@ export const PostForm = () => {
       </StyledContainer>
     </div>
   )
+}
+
+PostForm.propTypes = {
+  placeholder: PropTypes.string,
 }
