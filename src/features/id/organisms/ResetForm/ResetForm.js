@@ -1,10 +1,12 @@
 import React from 'react'
 import {useParams} from 'react-router'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {useTranslation} from 'react-i18next'
 import {SubmitButton} from '../../atoms'
 import {Input} from '../../../../ui'
 
 export const ResetForm = () => {
+  const {t} = useTranslation('id')
   const {token} = useParams()
 
   return (
@@ -12,13 +14,13 @@ export const ResetForm = () => {
       <input name="token" hidden readOnly value={token} />
       <Flex flexDirection="column">
         <Box marginTop="1em">
-          <Input label="Пароль" id="password" type="password" />
+          <Input label={t('Password')} id="password" type="password" />
         </Box>
         <Box marginTop="1em">
-          <Input label="Подтвердите пароль" id="confirm" type="password" />
+          <Input label={t('Confirm password')} id="confirm" type="password" />
         </Box>
         <Box marginTop="1.5em" alignSelf="center">
-          <SubmitButton>Далее</SubmitButton>
+          <SubmitButton>{t('Next')}</SubmitButton>
         </Box>
       </Flex>
     </form>
