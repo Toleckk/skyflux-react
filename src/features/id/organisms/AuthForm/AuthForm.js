@@ -11,7 +11,7 @@ export const AuthForm = withTranslation('id')(({className, t}) => (
       <Input label={t('Login')} name="login" id="login" />
       <Box marginTop="15px">
         <Input
-          label={t('password')}
+          label={t('Password')}
           name="password"
           type="password"
           id="password"
