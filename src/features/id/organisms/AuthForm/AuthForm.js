@@ -8,14 +8,9 @@ import {SubmitButton} from '../../atoms'
 export const AuthForm = withTranslation('id')(({className, t}) => (
   <form className={className}>
     <Flex flexDirection="column">
-      <Input label={t('Login')} name="login" id="login" />
+      <Input label={t('Login')} name="login" />
       <Box marginTop="15px">
-        <Input
-          label={t('Password')}
-          name="password"
-          type="password"
-          id="password"
-        />
+        <Input label={t('Password')} name="password" type="password" />
       </Box>
       <Box marginTop="30px" alignSelf="center">
         <SubmitButton>{t('Sign in')}</SubmitButton>
