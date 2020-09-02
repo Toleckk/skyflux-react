@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {PublicationList} from 'features/common/molecules'
+import {PublicationList} from '../../PublicationList'
 
 export const StyledPublicationList = styled(PublicationList)`
   display: flex;
