@@ -33,7 +33,7 @@ export const RegisterForm = withTranslation('id')(({t}) => {
       <Divider />
       <Flex width="90%" justifyContent="space-between" alignItems="center">
         <Box flex={1} marginRight="2rem">
-          <Text as="label" for="email">
+          <Text as="label" htmlFor="email">
             {t('Enter your email')}
           </Text>
         </Box>
@@ -50,7 +50,7 @@ export const RegisterForm = withTranslation('id')(({t}) => {
       <Divider />
       <Flex width="90%" justifyContent="space-between" alignItems="center">
         <Box flex={1} marginRight="2rem">
-          <Text as="label" for="password">
+          <Text as="label" htmlFor="password">
             {t('Password should be')}
           </Text>
         </Box>
