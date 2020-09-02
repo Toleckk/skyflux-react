@@ -9,7 +9,7 @@ export const RestoreForm = withTranslation('id')(({t}) => (
     <FieldDescription>{t('Enter nickname or email')}</FieldDescription>
     <Box marginTop="1em">
       <form>
-        <Input label={t('Login')} id={'login'} name={'login'} />
+        <Input label={t('Login')} name="login" />
         <Flex marginTop="1.5em" justifyContent="center">
           <SubmitButton>{t('Next')}</SubmitButton>
         </Flex>
