@@ -1,7 +1,7 @@
 import React, {forwardRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
-import {Input} from '../../../../ui'
+import {Input} from 'ui'
 import {StyledContainer} from './styles'
 
 export const DateInput = forwardRef(({value, label, ...props}, ref) => {

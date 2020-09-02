@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {useMedia} from 'react-use'
+import {BottomBar, SideBar} from 'ui'
 import {DesktopNav, MobileNav} from '../../organisms'
-import {BottomBar, SideBar} from '../../../../ui'
 import {useModal} from '../../hooks'
 
 export const Navigable = ({children}) => {

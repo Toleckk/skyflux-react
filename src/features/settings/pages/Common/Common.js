@@ -2,7 +2,7 @@ import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
-import {Divider, H1, H2, Toggle} from '../../../../ui'
+import {Divider, H1, H2, Toggle} from 'ui'
 import {ChangePasswordForm, ProfileDataForm} from '../../organisms'
 
 const user = {

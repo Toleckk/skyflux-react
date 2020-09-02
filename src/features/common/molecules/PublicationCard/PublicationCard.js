@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, SecondaryText, Text} from '../../../../ui'
+import {Avatar, SecondaryText, Text} from 'ui'
 import {StyledContainer, StyledDivider, StyledNickname} from './styles'
 
 export const PublicationCard = ({publication, children}) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {H1, Icon, Text} from '../../../../ui'
+import {H1, Icon, Text} from 'ui'
 import {StyledFilter, StyledUnderline} from './styles'
 
 export const Stat = ({name, count, icon}) => (

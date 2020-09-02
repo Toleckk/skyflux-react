@@ -1,8 +1,8 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
+import {Divider, H1, Text} from 'ui'
 import {PageDescription} from '../../atoms'
-import {Divider, H1, Text} from '../../../../ui'
 
 export const Message = withTranslation('id')(({t}) => (
   <Flex flexDirection="column" alignItems="center">

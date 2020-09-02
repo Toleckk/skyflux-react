@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {CommentList, PostCard} from '../../../common/molecules'
-import {Icon, Input} from '../../../../ui'
+import {CommentList, PostCard} from 'features/common/molecules'
+import {Icon, Input} from 'ui'
 
 const post = {
   _id: '1',

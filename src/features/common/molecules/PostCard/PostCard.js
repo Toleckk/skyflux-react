@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Icon, Text} from '../../../../ui'
+import {Icon, Text} from 'ui'
 import {PublicationCard} from '../PublicationCard'
 
 export const PostCard = ({publication}) => (

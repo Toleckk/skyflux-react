@@ -1,6 +1,6 @@
 import React, {forwardRef, useCallback, useState} from 'react'
 import PropTypes from 'prop-types'
-import {TextArea} from '../../../../ui'
+import {TextArea} from 'ui'
 
 export const PostInput = forwardRef(
   ({onFocus, onBlur, value, ...props}, ref) => {

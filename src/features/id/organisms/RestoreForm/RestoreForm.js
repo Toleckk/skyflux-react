@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next'
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
-import {Input} from '../../../../ui'
+import {Input} from 'ui'
 import {FieldDescription, SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
-import {Icon} from '../../../../ui'
+import {Icon} from 'ui'
 import {PostInput} from '../../molecules'
 import {StyledButton, StyledContainer} from './styles'
 

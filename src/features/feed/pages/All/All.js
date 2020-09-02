@@ -1,9 +1,9 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Trans, withTranslation} from 'react-i18next'
-import {PostForm} from '../../../common/organisms'
-import {PostList, UserList} from '../../../common/molecules'
-import {Divider, H1, Link, Text} from '../../../../ui'
+import {PostForm} from 'features/common/organisms'
+import {PostList, UserList} from 'features/common/molecules'
+import {Divider, H1, Link, Text} from 'ui'
 import {StyledContainer} from './styles'
 
 const postsMock = [

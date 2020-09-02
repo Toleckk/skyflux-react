@@ -2,8 +2,8 @@ import React, {useCallback, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Flex, Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
+import {H1} from 'ui'
 import {SearchInput} from '../../molecules'
-import {H1} from '../../../../ui'
 import {SearchLoader} from '../../atoms'
 
 export const Search = ({onInputChange, isLoading, children}) => {

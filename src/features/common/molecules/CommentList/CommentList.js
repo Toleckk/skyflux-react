@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {CommentCard} from '../CommentCard'
+import {CommentCard} from '..'
 import {StyledPublicationList} from './styles'
 
 export const CommentList = ({comments}) => (

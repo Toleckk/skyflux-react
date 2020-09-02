@@ -1,7 +1,7 @@
 import React, {forwardRef, useCallback, useState} from 'react'
 import PropTypes from 'prop-types'
 import {useDropzone} from 'react-dropzone'
-import {Avatar, Icon} from '../../../../ui'
+import {Avatar, Icon} from 'ui'
 import {StyledButton, StyledIconContainer} from './styles'
 
 export const AvatarUploader = forwardRef(

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
+import {Divider, H1} from 'ui'
 import {PageDescription} from '../../atoms'
-import {Divider, H1} from '../../../../ui'
 import {RestoreForm} from '../../organisms'
 
 export const Restore = withTranslation('id')(({t}) => (

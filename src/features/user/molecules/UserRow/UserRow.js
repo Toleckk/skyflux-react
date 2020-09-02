@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, Button} from '../../../../ui'
+import {Avatar, Button} from 'ui'
 import {BigNickname} from '../../atoms'
 
 export const UserRow = ({user}) => (

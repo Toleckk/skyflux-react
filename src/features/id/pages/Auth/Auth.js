@@ -2,9 +2,9 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 import {withTranslation} from 'react-i18next'
+import {Divider, H1, Link} from 'ui'
 import {AuthForm} from '../../organisms'
 import {FieldDescription, PageDescription, SubmitButton} from '../../atoms'
-import {Divider, H1, Link} from '../../../../ui'
 
 export const Auth = withTranslation('id')(({t}) => (
   <Flex alignItems="center" flexDirection="column">

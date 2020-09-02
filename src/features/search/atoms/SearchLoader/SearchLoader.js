@@ -1,5 +1,5 @@
 import styled, {keyframes} from 'styled-components'
-import {Icon} from '../../../../ui'
+import {Icon} from 'ui'
 
 const animation = keyframes`
   50% {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
-import {H1} from '../../../../ui'
+import {H1} from 'ui'
 import {PageDescription} from '../../atoms'
 import {RegisterForm} from '../../organisms'
 

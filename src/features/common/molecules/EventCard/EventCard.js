@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, Icon, Nickname} from '../../../../ui'
+import {Avatar, Icon, Nickname} from 'ui'
 
 export const EventCard = ({event: {user}}) => (
   <Flex justifyContent="space-between">

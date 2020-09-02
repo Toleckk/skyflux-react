@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {PublicationCard} from '../index'
+import {PublicationCard} from '..'
 
 export const CommentCard = ({publication}) => (
   <PublicationCard publication={publication} />

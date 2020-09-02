@@ -2,7 +2,7 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {Avatar, H2, Icon} from '../../../../ui'
+import {Avatar, H2, Icon} from 'ui'
 import {useModal} from '../../hooks'
 import {StyledBigNickname} from './styles'
 

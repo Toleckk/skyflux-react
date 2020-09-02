@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Avatar, Icon, Text} from '../../../../ui'
+import {Avatar, Icon, Text} from 'ui'
 import {About, BigNickname, Stat} from '../../atoms'
 
 export const UserInfo = ({user}) => {

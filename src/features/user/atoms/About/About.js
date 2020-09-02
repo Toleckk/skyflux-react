@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {SecondaryText} from '../../../../ui'
+import {SecondaryText} from 'ui'
 import {StyledFirstLetter, StyledText} from './styles'
 
 export const About = ({children}) => (

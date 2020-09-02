@@ -1,8 +1,8 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {H1, Link} from '../../../../ui'
-import {PostList} from '../../../common/molecules'
+import {H1, Link} from 'ui'
+import {PostList} from 'features/common/molecules'
 
 export const PostsDisplay = ({posts}) => {
   const {t} = useTranslation('search')

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route} from 'react-router'
-import {useModal} from '../common/hooks'
+import {useModal} from 'features/common/hooks'
 import {Display} from './pages'
 
 export const PostRouter = () => {

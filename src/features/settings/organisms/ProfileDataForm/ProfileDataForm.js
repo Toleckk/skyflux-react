@@ -5,8 +5,8 @@ import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
+import {Input} from 'ui'
 import {AvatarUploader, DateInput} from '../../molecules'
-import {Input} from '../../../../ui'
 
 const schema = yup.object().shape({
   avatar: yup.string().url().required(),
