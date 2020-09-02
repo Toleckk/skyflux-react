@@ -14,7 +14,18 @@
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["reflexbox/*", "!reflexbox/styled-components"]
+        "patterns": [
+          "reflexbox/*",
+          "!reflexbox/styled-components",
+          "**/../user/**",
+          "**/../common/**",
+          "**/../feed/**",
+          "**/../id/**",
+          "**/../post/**",
+          "**/../search/**",
+          "**/../settings/**",
+          "**/../ui"
+        ]
       }
     ],
     "import/no-internal-modules": [
@@ -34,6 +45,16 @@
     "import/no-duplicates": "error",
     "import/newline-after-import": "error",
     "import/no-default-export": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "src/"
+        ]
+      }
+    }
   },
   "plugins": [
     "import",
