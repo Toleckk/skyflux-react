@@ -2,8 +2,8 @@ import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
-import {Button, Divider, H1, H2, Input, Toggle} from '../../../../ui'
-import {AvatarUploader, DateInput} from '../../molecules'
+import {Divider, H1, H2, Toggle} from '../../../../ui'
+import {ChangePasswordForm, ProfileDataForm} from '../../organisms'
 
 const user = {
   _id: '1',
@@ -16,18 +16,7 @@ const user = {
 export const Common = withTranslation('settings')(({t}) => (
   <div>
     <H1>{t('Profile information')}</H1>
-    <Box>
-      <Flex justifyContent="space-between" marginBottom="1rem">
-        <Box width="9rem" height="9rem">
-          <AvatarUploader value={user.avatar} />
-        </Box>
-        <Box width="50%">
-          <DateInput label={t('Birthdate')} placeholderText="" />
-          <Input label={t('From')} />
-        </Box>
-      </Flex>
-      <Input multi />
-    </Box>
+    <ProfileDataForm user={user} />
     <Divider />
     <H1>{t('Privacy settings')}</H1>
     <Flex alignItems="center">
@@ -38,15 +27,7 @@ export const Common = withTranslation('settings')(({t}) => (
     </Flex>
     <Divider />
     <H1>{t('Login data')}</H1>
-    <Box width="40%">
-      <Input type="password" label={t('Old password')} />
-      <Box marginTop="1rem">
-        <Input type="password" label={t('New password')} />
-      </Box>
-      <Box marginTop="1rem">
-        <Button>{t('Change')}</Button>
-      </Box>
-    </Box>
+    <ChangePasswordForm />
     <Divider />
   </div>
 ))
