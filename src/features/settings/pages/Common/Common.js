@@ -22,7 +22,7 @@ export const Common = withTranslation('settings')(({t}) => (
           <AvatarUploader value={user.avatar} />
         </Box>
         <Box width="50%">
-          <DateInput label={t('Birthdate')} placeholderText="" />
+          <DateInput label={t('Birthdate')} />
           <Input label={t('From')} />
         </Box>
       </Flex>
