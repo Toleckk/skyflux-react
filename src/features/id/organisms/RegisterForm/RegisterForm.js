@@ -41,7 +41,7 @@ export const RegisterForm = withTranslation('id')(({t}) => {
           <Input
             id="email"
             name="email"
-            label={t('Электронная почта')}
+            label={t('Email')}
             error={errors.email?.message}
             ref={register}
           />
