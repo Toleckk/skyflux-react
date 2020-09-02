@@ -6,10 +6,11 @@ import {Button, Divider, H1, H2, Input, Toggle} from '../../../../ui'
 import {AvatarUploader, DateInput} from '../../molecules'
 
 const user = {
-  _id: 1,
+  _id: '1',
   nickname: 'toleckk',
   avatar:
     'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
+  description: {},
 }
 
 export const Common = withTranslation('settings')(({t}) => (
