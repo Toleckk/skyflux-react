@@ -4,7 +4,7 @@ import 'normalize.css'
 import 'focus-within-polyfill'
 import './index.css'
 import './configs'
-import {App} from './App'
+import {App} from 'App'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
