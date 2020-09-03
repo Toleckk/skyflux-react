@@ -40,6 +40,7 @@ export const ProfileDataForm = ({user}) => {
           <DateInput
             label={t('Birthdate')}
             name="description.birthday"
+            value={user.description.birthday}
             ref={register}
           />
           <Input label={t('From')} name="description.from" ref={register} />
