@@ -5,8 +5,8 @@ import {PublicationCard} from '../PublicationCard'
 export const PublicationList = ({publications, Card, ...props}) => (
   <ul {...props}>
     {publications.map(publication => (
-      <li key={publication._id}>
-        <Card publication={publication} />
+      <li key={publication.cursor}>
+        <Card publication={publication.node} />
       </li>
     ))}
   </ul>
@@ -17,7 +17,11 @@ PublicationList.defaultProps = {
 }
 
 PublicationList.propTypes = {
-  publications: PropTypes.arrayOf(PublicationCard.propTypes.publication)
-    .isRequired,
+  publications: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PublicationCard.propTypes.publication,
+      cursor: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   Card: PropTypes.elementType,
 }
