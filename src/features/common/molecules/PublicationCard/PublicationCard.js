@@ -32,7 +32,7 @@ PublicationCard.propTypes = {
   publication: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
     user: MiniUser.isRequired,
   }).isRequired,
   children: PropTypes.node,
