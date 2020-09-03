@@ -12,8 +12,9 @@ export const Search = ({onInputChange, isLoading, children}) => {
 
   const onChange = useCallback(
     e => {
-      setText(e.target.value)
-      return onInputChange?.(e)
+      const {value} = e.target
+      setText(value)
+      return onInputChange?.(value)
     },
     [setText, onInputChange],
   )
