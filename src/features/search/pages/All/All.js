@@ -94,12 +94,12 @@ export const All = () => (
         <>
           {data.users && !!data.users.length && (
             <Box marginTop="2rem">
-              <UsersDisplay users={data.users} />
+              <UsersDisplay users={data.users} mini withAllLink />
             </Box>
           )}
           {data.posts && !!data.posts.length && (
             <Box marginTop="2rem">
-              <PostsDisplay posts={data.posts} />
+              <PostsDisplay posts={data.posts} withAllLink />
             </Box>
           )}
         </>
