@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Flex} from 'reflexbox/styled-components'
+import {MiniUserConnectionList} from 'models/user'
 import {UserCard} from '../UserCard'
 
 export const UserList = ({users}) => (
@@ -14,5 +14,5 @@ export const UserList = ({users}) => (
 )
 
 UserList.propTypes = {
-  users: PropTypes.arrayOf(UserCard.propTypes.user).isRequired,
+  users: MiniUserConnectionList.isRequired,
 }

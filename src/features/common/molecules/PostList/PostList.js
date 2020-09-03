@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import {PostConnectionList} from 'models/post'
 import {PostCard} from '../PostCard'
 import {PublicationList} from '../PublicationList'
 
@@ -8,5 +8,5 @@ export const PostList = ({posts}) => (
 )
 
 PostList.propTypes = {
-  posts: PropTypes.arrayOf(PostCard.propTypes.publication).isRequired,
+  posts: PostConnectionList.isRequired,
 }

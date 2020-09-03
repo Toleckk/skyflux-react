@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, Button} from 'ui'
+import {MiniUser} from 'models/user'
 import {BigNickname} from '../../atoms'
 
 export const UserRow = ({user}) => (
@@ -17,8 +17,5 @@ export const UserRow = ({user}) => (
 )
 
 UserRow.propTypes = {
-  user: PropTypes.shape({
-    avatar: PropTypes.string,
-    nickname: PropTypes.string.isRequired,
-  }).isRequired,
+  user: MiniUser.isRequired,
 }

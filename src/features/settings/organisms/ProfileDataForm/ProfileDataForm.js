@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react'
-import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Input} from 'ui'
+import {User} from 'models/user'
 import {AvatarUploader, DateInput} from '../../molecules'
 
 const schema = yup.object().shape({
@@ -51,14 +51,5 @@ export const ProfileDataForm = ({user}) => {
 }
 
 ProfileDataForm.propTypes = {
-  user: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    nickname: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
-    description: PropTypes.shape({
-      about: PropTypes.string,
-      birthday: PropTypes.string,
-      from: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  user: User.isRequired,
 }

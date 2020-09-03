@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Avatar, Icon, Text} from 'ui'
+import {User} from 'models/user'
 import {About, BigNickname, Stat} from '../../atoms'
 
 export const UserInfo = ({user}) => {
@@ -50,17 +50,5 @@ export const UserInfo = ({user}) => {
 }
 
 UserInfo.propTypes = {
-  user: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    nickname: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
-    postsCount: PropTypes.number.isRequired,
-    subscriptionsCount: PropTypes.number.isRequired,
-    subscribersCount: PropTypes.number.isRequired,
-    description: PropTypes.shape({
-      about: PropTypes.string,
-      birthday: PropTypes.string,
-      from: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  user: User.isRequired,
 }

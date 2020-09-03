@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, SecondaryText, Text} from 'ui'
+import {MiniUser} from 'models/user'
 import {StyledContainer, StyledDivider, StyledNickname} from './styles'
 
 export const PublicationCard = ({publication, children}) => {
@@ -15,7 +16,7 @@ export const PublicationCard = ({publication, children}) => {
           <Box flex={1} marginLeft="1rem">
             <StyledNickname>{publication.user.nickname}</StyledNickname>
           </Box>
-          <Text>{publication.date}</Text>
+          <Text>{publication.createdAt}</Text>
         </Flex>
         <Box margin="5px 0 10px">
           <SecondaryText>{publication.text}</SecondaryText>
@@ -32,10 +33,7 @@ PublicationCard.propTypes = {
     _id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      avatar: PropTypes.string,
-      nickname: PropTypes.string.isRequired,
-    }).isRequired,
+    user: MiniUser.isRequired,
   }).isRequired,
   children: PropTypes.node,
 }

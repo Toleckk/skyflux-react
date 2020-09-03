@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, Icon, Nickname} from 'ui'
+import {MiniUser} from 'models/user'
 
 export const EventCard = ({event: {user}}) => (
   <Flex justifyContent="space-between">
@@ -24,9 +25,6 @@ export const EventCard = ({event: {user}}) => (
 
 EventCard.propTypes = {
   event: PropTypes.shape({
-    user: PropTypes.shape({
-      avatar: PropTypes.string,
-      nickname: PropTypes.string.isRequired,
-    }).isRequired,
+    user: MiniUser.isRequired,
   }).isRequired,
 }

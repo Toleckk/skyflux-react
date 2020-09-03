@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import {Comment} from 'models/comment'
 import {PublicationCard} from '..'
 
 export const CommentCard = ({publication}) => (
@@ -7,13 +7,5 @@ export const CommentCard = ({publication}) => (
 )
 
 CommentCard.propTypes = {
-  publication: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      avatar: PropTypes.string,
-      nickname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  publication: Comment.isRequired,
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Box} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {Avatar} from 'ui'
+import {MiniUser} from 'models/user'
 import {StyledContainer, StyledNickname} from './styles'
 
 export const UserCard = ({user}) => (
@@ -19,8 +19,5 @@ export const UserCard = ({user}) => (
 )
 
 UserCard.propTypes = {
-  user: PropTypes.shape({
-    nickname: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
-  }).isRequired,
+  user: MiniUser.isRequired,
 }
