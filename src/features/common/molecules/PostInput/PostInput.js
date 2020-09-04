@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import {TextArea} from 'ui'
 
 export const PostInput = forwardRef(
-  ({onFocus, onBlur, value, ...props}, ref) => {
+  ({onFocus, onBlur, onChange, value, defaultValue, ...props}, ref) => {
     const [isFocused, setFocused] = useState(false)
+    const [text, setText] = useState(value || defaultValue)
 
     const onAreaFocus = useCallback(
       event => {
@@ -22,11 +23,22 @@ export const PostInput = forwardRef(
       [onBlur, setFocused],
     )
 
+    const onAreaChange = useCallback(
+      event => {
+        event.persist()
+        setText(event.target.value)
+        return onChange?.(event)
+      },
+      [onChange, setText],
+    )
+
     return (
       <TextArea
-        rows={isFocused || value ? 4 : 1}
+        rows={isFocused || value || text ? 4 : 1}
+        defaultValue={defaultValue}
         onFocus={onAreaFocus}
         onBlur={onAreaBlur}
+        onChange={onAreaChange}
         ref={ref}
         {...props}
       />
@@ -36,8 +48,15 @@ export const PostInput = forwardRef(
 
 PostInput.displayName = 'PostInput'
 
+PostInput.defaultProps = {
+  value: '',
+  defaultValue: '',
+}
+
 PostInput.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onChange: PropTypes.func,
   value: PropTypes.string,
+  defaultValue: PropTypes.string,
 }
