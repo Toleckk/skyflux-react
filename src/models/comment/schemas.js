@@ -31,3 +31,11 @@ export const GET_COMMENTS_BY_POST_ID = gql`
   }
   ${CommentFragment}
 `
+
+export const CREATE_COMMENT = gql`
+  mutation createComment($postId: ID!, $text: String!) {
+    createComment(text: $text, postId: $postId) {
+      _id
+    }
+  }
+`
