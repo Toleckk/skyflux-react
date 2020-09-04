@@ -6,7 +6,7 @@ export const ID = PropTypes.string
 export const Comment = PropTypes.shape({
   _id: ID.isRequired,
   text: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
   user: MiniUser.isRequired,
 })
 
