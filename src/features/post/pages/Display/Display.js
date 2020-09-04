@@ -29,7 +29,7 @@ export const Display = () => {
       <Box overflowY="hidden" paddingBottom="1rem">
         {commentsLoading ? <Loader /> : <CommentList comments={comments} />}
       </Box>
-      <CommentForm post={post} />
+      {postLoading ? <Loader /> : <CommentForm post={post} />}
     </Flex>
   )
 }
