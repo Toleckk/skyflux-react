@@ -1,4 +1,5 @@
 import {
+  CREATE_USER,
   GET_FOUND_USERS,
   GET_SUGGESTIONS,
   GET_USER_BY_NICKNAME,
@@ -21,4 +22,9 @@ export const getSuggestions = () => ({
 export const getFoundUsers = text => ({
   query: GET_FOUND_USERS,
   variables: {text},
+})
+
+export const createUser = (variables = {}) => ({
+  mutation: CREATE_USER,
+  variables,
 })
