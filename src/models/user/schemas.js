@@ -8,6 +8,7 @@ export const UserFragment = gql`
     postsCount
     subscriptionsCount
     subscribersCount
+    amISubscribed
     description {
       about
       birthday
@@ -39,7 +40,9 @@ export const GET_SUGGESTIONS = gql`
     getSuggestions {
       edges {
         node {
-          ...UserFragment
+          _id
+          nickname
+          avatar
         }
         cursor
       }
@@ -57,7 +60,9 @@ export const GET_FOUND_USERS = gql`
     getFoundUsers(text: $text) {
       edges {
         node {
-          ...UserFragment
+          _id
+          nickname
+          avatar
         }
         cursor
       }
