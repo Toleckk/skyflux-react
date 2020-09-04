@@ -6,9 +6,9 @@ import {
   GET_POSTS_BY_NICKNAME,
 } from './schemas'
 
-export const getPostById = id => ({
+export const getPostById = _id => ({
   query: GET_POST_BY_ID,
-  variables: {id},
+  variables: {_id},
 })
 
 export const getPostsByNickname = nickname => ({

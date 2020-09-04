@@ -16,8 +16,8 @@ const PostFragment = gql`
 `
 
 export const GET_POST_BY_ID = gql`
-  query getPostById($id: ID!) {
-    getPostById(id: $id) {
+  query getPostById($_id: ID!) {
+    getPostById(_id: $_id) {
       ...PostFragment
     }
   }
