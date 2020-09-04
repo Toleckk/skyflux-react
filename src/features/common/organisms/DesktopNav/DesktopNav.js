@@ -5,145 +5,10 @@ import {withTranslation} from 'react-i18next'
 import {Avatar, H2} from 'ui'
 import {me} from 'models/user'
 import {removeCurrentSession} from 'models/session'
-import {EventList, NavigationButton} from '../../molecules'
+import {NavigationButton} from '../../molecules'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
+import {EventsDisplay} from '../EventsDisplay'
 import {StyledItem} from './styles'
-
-const events = [
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-  {
-    user: {
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  },
-].map((event, _id) => ({...event, _id}))
 
 export const DesktopNav = withTranslation('nav')(({t}) => {
   const {data, loading} = useMyQuery(me())
@@ -195,7 +60,7 @@ export const DesktopNav = withTranslation('nav')(({t}) => {
             <Box margin="0 2rem">
               <H2>{t('Subscriptions requests')}</H2>
             </Box>
-            <EventList events={events} />
+            <EventsDisplay />
           </Flex>
         </Flex>
       )}
