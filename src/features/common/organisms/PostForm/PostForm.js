@@ -1,9 +1,12 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback} from 'react'
 import PropTypes from 'prop-types'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Icon} from 'ui'
+import {useBooleanState} from 'use-boolean-state'
+import {useMyMutation} from 'features/common/hooks'
+import {createPost} from 'models/post'
 import {PostInput} from '../../molecules'
 import {StyledButton, StyledContainer} from './styles'
 
@@ -12,34 +15,31 @@ const schema = yup.object().shape({
 })
 
 export const PostForm = ({placeholder}) => {
-  const {register, handleSubmit} = useForm({
+  const [create, {loading}] = useMyMutation(createPost())
+
+  const {register, handleSubmit, formState} = useForm({
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const onSubmit = useCallback(handleSubmit(create), [handleSubmit, create])
 
-  const [isFocused, setFocused] = useState(false)
-
-  const onFocus = useCallback(() => setFocused(true), [setFocused])
-  const onBlur = useCallback(() => setFocused(false), [setFocused])
+  const [isFocused, focus, blur] = useBooleanState(false)
 
   return (
-    <form onSubmit={onSubmit}>
-      <StyledContainer>
-        <PostInput
-          name="text"
-          onBlur={onBlur}
-          onFocus={onFocus}
-          placeholder={placeholder}
-          ref={register}
-        />
-        {isFocused && (
-          <StyledButton>
-            <Icon icon="message" />
-          </StyledButton>
-        )}
-      </StyledContainer>
-    </form>
+    <StyledContainer as="form" onSubmit={onSubmit}>
+      <PostInput
+        name="text"
+        onBlur={blur}
+        onFocus={focus}
+        placeholder={placeholder}
+        ref={register}
+      />
+      {(isFocused || formState.isDirty) && (
+        <StyledButton type="submit" disabled={loading}>
+          <Icon icon="message" />
+        </StyledButton>
+      )}
+    </StyledContainer>
   )
 }
 

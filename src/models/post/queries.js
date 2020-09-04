@@ -1,4 +1,5 @@
 import {
+  CREATE_POST,
   GET_FEED,
   GET_FOUND_POSTS,
   GET_POST_BY_ID,
@@ -23,4 +24,8 @@ export const getFoundPosts = text => ({
   query: GET_FOUND_POSTS,
   variables: {text},
   skip: !text,
+})
+
+export const createPost = () => ({
+  mutation: CREATE_POST,
 })
