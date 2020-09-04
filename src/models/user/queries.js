@@ -4,6 +4,7 @@ import {
   GET_SUGGESTIONS,
   GET_USER_BY_NICKNAME,
   ME,
+  RESET_PASSWORD,
   UPDATE_PASSWORD,
   UPDATE_PROFILE_INFO,
 } from './schemas'
@@ -38,5 +39,10 @@ export const updateProfileInfo = (variables = {}) => ({
 
 export const updatePassword = (variables = {}) => ({
   mutation: UPDATE_PASSWORD,
+  variables,
+})
+
+export const resetPassword = (variables = {}) => ({
+  mutation: RESET_PASSWORD,
   variables,
 })
