@@ -5,3 +5,9 @@ export const CREATE_SESSION = gql`
     createSession(login: $login, password: $password)
   }
 `
+
+export const REMOVE_CURRENT_SESSION = gql`
+  mutation removeCurrentSession {
+    removeCurrentSession
+  }
+`

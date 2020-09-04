@@ -4,8 +4,9 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {Avatar, H2} from 'ui'
 import {me} from 'models/user'
+import {removeCurrentSession} from 'models/session'
 import {EventList, NavigationButton} from '../../molecules'
-import {useModal, useMyQuery} from '../../hooks'
+import {useModal, useMyMutation, useMyQuery} from '../../hooks'
 import {StyledItem} from './styles'
 
 const events = [
@@ -146,6 +147,7 @@ const events = [
 
 export const DesktopNav = withTranslation('nav')(({t}) => {
   const {data, loading} = useMyQuery(me())
+  const [logout] = useMyMutation(removeCurrentSession())
 
   const {close, toggle, isOpened} = useModal('notifications')
 
@@ -179,7 +181,7 @@ export const DesktopNav = withTranslation('nav')(({t}) => {
           <NavigationButton icon="search" to="/search" />
         </StyledItem>
         <StyledItem>
-          <NavigationButton icon="logout" />
+          <NavigationButton icon="logout" onClick={logout} />
         </StyledItem>
       </ul>
       {isOpened && (

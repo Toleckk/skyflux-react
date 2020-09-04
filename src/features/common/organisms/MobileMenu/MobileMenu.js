@@ -4,10 +4,12 @@ import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {Avatar, H2, Icon} from 'ui'
 import {me} from 'models/user'
-import {useModal, useMyQuery} from '../../hooks'
+import {removeCurrentSession} from 'models/session'
+import {useModal, useMyMutation, useMyQuery} from '../../hooks'
 import {StyledBigNickname} from './styles'
 
 export const MobileMenu = () => {
+  const [logout] = useMyMutation(removeCurrentSession())
   const {data, loading} = useMyQuery(me())
   const user = data?.me
 
@@ -64,7 +66,12 @@ export const MobileMenu = () => {
           </Link>
         </li>
         <li>
-          <Flex marginTop="2rem" alignItems="center">
+          <Flex
+            marginTop="2rem"
+            alignItems="center"
+            as="button"
+            onClick={logout}
+          >
             <Box width="2rem" height="2rem" marginRight="2rem">
               <Icon icon="logout" />
             </Box>
