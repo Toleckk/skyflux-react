@@ -4,6 +4,7 @@ import {
   GET_SUGGESTIONS,
   GET_USER_BY_NICKNAME,
   ME,
+  UPDATE_PROFILE_INFO,
 } from './schemas'
 
 export const me = () => ({
@@ -26,5 +27,10 @@ export const getFoundUsers = text => ({
 
 export const createUser = (variables = {}) => ({
   mutation: CREATE_USER,
+  variables,
+})
+
+export const updateProfileInfo = (variables = {}) => ({
+  mutation: UPDATE_PROFILE_INFO,
   variables,
 })
