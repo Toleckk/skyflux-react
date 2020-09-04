@@ -6,6 +6,8 @@ import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
 import {Input} from 'ui'
+import {useMyMutation} from 'features/common/hooks'
+import {createSession} from 'models/session'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
@@ -30,12 +32,14 @@ const schema = yup.object().shape({
 })
 
 export const AuthForm = withTranslation('id')(({className, t}) => {
+  const [login] = useMyMutation(createSession())
+
   const {handleSubmit, register, errors} = useForm({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const onSubmit = useCallback(handleSubmit(login), [handleSubmit, login])
 
   return (
     <form className={className} onSubmit={onSubmit}>
