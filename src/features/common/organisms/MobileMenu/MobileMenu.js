@@ -3,26 +3,18 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {Avatar, H2, Icon} from 'ui'
-import {useModal} from '../../hooks'
+import {me} from 'models/user'
+import {useModal, useMyQuery} from '../../hooks'
 import {StyledBigNickname} from './styles'
 
-const user = {
-  avatar:
-    'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-  nickname: 'toleckk',
-  postsCount: 61,
-  subscriptionsCount: 2,
-  subscribersCount: 3,
-  description: {
-    about: '123',
-    from: 'Armenia',
-    birthday: '03.08.1999',
-  },
-}
-
 export const MobileMenu = () => {
+  const {data, loading} = useMyQuery(me())
+  const user = data?.me
+
   const {t} = useTranslation('nav')
   const {open} = useModal('notifications')
+
+  if (loading && !data) return <></>
 
   return (
     <Flex paddingTop="2rem" flexDirection="column" alignItems="center">

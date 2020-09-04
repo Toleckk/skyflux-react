@@ -3,8 +3,9 @@ import {useClickAway} from 'react-use'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {Avatar, H2} from 'ui'
+import {me} from 'models/user'
 import {EventList, NavigationButton} from '../../molecules'
-import {useModal} from '../../hooks'
+import {useModal, useMyQuery} from '../../hooks'
 import {StyledItem} from './styles'
 
 const events = [
@@ -144,17 +145,21 @@ const events = [
 ].map((event, _id) => ({...event, _id}))
 
 export const DesktopNav = withTranslation('nav')(({t}) => {
+  const {data, loading} = useMyQuery(me())
+
   const {close, toggle, isOpened} = useModal('notifications')
 
   const ref = useRef()
   useClickAway(ref, close)
+
+  if (loading || !data) return <></>
 
   return (
     <Flex as="nav" ref={ref}>
       <ul>
         <StyledItem>
           <NavigationButton>
-            <Avatar src="https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg" />
+            <Avatar src={data?.me?.avatar} />
           </NavigationButton>
         </StyledItem>
         <StyledItem>
