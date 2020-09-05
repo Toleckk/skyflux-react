@@ -2,12 +2,13 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Icon, Text} from 'ui'
 import {Post} from 'models/post'
+import {Link} from 'react-router-dom'
 import {PublicationCard} from '../PublicationCard'
 
 export const PostCard = ({publication}) => (
   <PublicationCard publication={publication}>
     <Flex justifyContent="space-between">
-      <Flex alignItems="center">
+      <Flex alignItems="center" as={Link} to={'/post/' + publication._id}>
         <Icon icon="comment" size="1.5rem" />
         <Box marginLeft="1ex">
           <Text>{publication.commentsCount}</Text>
