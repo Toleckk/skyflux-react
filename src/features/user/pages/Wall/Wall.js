@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import ReactVisibilitySensor from 'react-visibility-sensor'
-import {Box} from 'reflexbox/styled-components'
+import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {Divider, Loader} from 'ui'
@@ -9,7 +9,7 @@ import {PostList} from 'features/common/molecules'
 import {useMyQuery} from 'features/common/hooks'
 import {getUserByNickname} from 'models/user'
 import {getPostsByNickname} from 'models/post'
-import {UserInfo, UserRow} from '../../molecules'
+import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
 import {StyledHeader, StyledStaticDivider} from './styles'
 
 export const Wall = withTranslation('user')(({t}) => {
@@ -27,7 +27,7 @@ export const Wall = withTranslation('user')(({t}) => {
   const [isInfoVisible, setIsInfoVisible] = useState(false)
 
   return (
-    <div>
+    <Flex flexDirection="column" minHeight="100%">
       <ReactVisibilitySensor onChange={setIsInfoVisible} partialVisibility>
         <Box padding="0.5rem 0.5rem 0 0.5rem">
           {userLoading ? <Loader /> : <UserInfo user={user} />}
@@ -36,13 +36,19 @@ export const Wall = withTranslation('user')(({t}) => {
       <Divider />
       <PostForm placeholder={t('Write a text')} />
       <Divider />
-      {postsLoading || !posts ? <Loader /> : <PostList posts={posts} />}
+      {userLoading || postsLoading ? (
+        <Loader />
+      ) : user.isPrivate ? (
+        <PrivateScreen />
+      ) : (
+        <PostList posts={posts} />
+      )}
       {!isInfoVisible && user && (
         <StyledHeader>
           <UserRow user={user} />
           <StyledStaticDivider />
         </StyledHeader>
       )}
-    </div>
+    </Flex>
   )
 })
