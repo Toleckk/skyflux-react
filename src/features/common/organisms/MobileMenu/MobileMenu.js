@@ -20,12 +20,14 @@ export const MobileMenu = () => {
 
   return (
     <Flex paddingTop="2rem" flexDirection="column" alignItems="center">
-      <Box width="6rem" height="6rem">
-        <Avatar src={user.avatar} />
-      </Box>
-      <Box marginTop="1rem">
-        <StyledBigNickname>@{user.nickname}</StyledBigNickname>
-      </Box>
+      <Link to={'/user/@' + user.nickname}>
+        <Box width="6rem" height="6rem">
+          <Avatar src={user.avatar} />
+        </Box>
+        <Box marginTop="1rem">
+          <StyledBigNickname>@{user.nickname}</StyledBigNickname>
+        </Box>
+      </Link>
       <ul>
         <li>
           <Link to="/feed">
