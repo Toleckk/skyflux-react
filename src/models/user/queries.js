@@ -4,11 +4,11 @@ import {
   GET_SUGGESTIONS,
   GET_USER_BY_NICKNAME,
   MAKE_ACCOUNT_PRIVATE,
+  MAKE_ACCOUNT_PUBLIC,
   ME,
   RESET_PASSWORD,
   UPDATE_PASSWORD,
   UPDATE_PROFILE_INFO,
-  MAKE_ACCOUNT_PUBLIC,
 } from './schemas'
 
 export const me = () => ({
@@ -32,11 +32,13 @@ export const getFoundUsers = text => ({
 export const createUser = (variables = {}) => ({
   mutation: CREATE_USER,
   variables,
+  refetchQueries: [me()],
 })
 
 export const updateProfileInfo = (variables = {}) => ({
   mutation: UPDATE_PROFILE_INFO,
   variables,
+  refetchQueries: [me()],
 })
 
 export const updatePassword = (variables = {}) => ({
@@ -47,12 +49,15 @@ export const updatePassword = (variables = {}) => ({
 export const resetPassword = (variables = {}) => ({
   mutation: RESET_PASSWORD,
   variables,
+  refetchQueries: [me()],
 })
 
 export const makeAccountPrivate = () => ({
   mutation: MAKE_ACCOUNT_PRIVATE,
+  refetchQueries: [me()],
 })
 
 export const makeAccountPublic = () => ({
   mutation: MAKE_ACCOUNT_PUBLIC,
+  refetchQueries: [me()],
 })

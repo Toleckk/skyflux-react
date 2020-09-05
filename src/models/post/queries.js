@@ -1,3 +1,4 @@
+import {me} from 'models/user'
 import {
   CREATE_POST,
   GET_FEED,
@@ -28,4 +29,5 @@ export const getFoundPosts = text => ({
 
 export const createPost = () => ({
   mutation: CREATE_POST,
+  refetchQueries: [me(), getFeed()],
 })
