@@ -8,8 +8,12 @@ import {createSubscription, removeSubscription} from 'models/subscription'
 export const SubscribeButton = ({user}) => {
   const {t} = useTranslation('user')
 
-  const [subscribe] = useMyMutation(createSubscription({userId: user._id}))
-  const [unsubscribe] = useMyMutation(removeSubscription({userId: user._id}))
+  const [subscribe] = useMyMutation(
+    createSubscription({nickname: user.nickname}),
+  )
+  const [unsubscribe] = useMyMutation(
+    removeSubscription({nickname: user.nickname}),
+  )
 
   return (
     <Button
