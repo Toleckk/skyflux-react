@@ -9,6 +9,7 @@ export const UserFragment = gql`
     subscriptionsCount
     subscribersCount
     amISubscribed
+    isPrivate
     description {
       about
       birthday
@@ -102,5 +103,17 @@ export const UPDATE_PASSWORD = gql`
 export const RESET_PASSWORD = gql`
   mutation resetPassword($token: String!, $password: String!) {
     resetPassword(token: $token, password: $password)
+  }
+`
+
+export const MAKE_ACCOUNT_PRIVATE = gql`
+  mutation makeAccountPrivate {
+    makeAccountPrivate
+  }
+`
+
+export const MAKE_ACCOUNT_PUBLIC = gql`
+  mutation makeAccountPublic {
+    makeAccountPublic
   }
 `
