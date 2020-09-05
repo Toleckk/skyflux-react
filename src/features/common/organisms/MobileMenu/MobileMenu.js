@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
@@ -8,19 +9,21 @@ import {removeCurrentSession} from 'models/session'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
 import {StyledBigNickname} from './styles'
 
-export const MobileMenu = () => {
-  const [logout] = useMyMutation(removeCurrentSession())
+export const MobileMenu = ({onItemClick}) => {
+  const {t} = useTranslation('nav')
+
+  const {open} = useModal('notifications')
+
   const {data, loading} = useMyQuery(me())
   const user = data?.me
 
-  const {t} = useTranslation('nav')
-  const {open} = useModal('notifications')
+  const [logout] = useMyMutation(removeCurrentSession())
 
   if (loading && !data) return <></>
 
   return (
     <Flex paddingTop="2rem" flexDirection="column" alignItems="center">
-      <Link to={'/user/@' + user.nickname}>
+      <Link to={'/user/@' + user.nickname} onClick={onItemClick}>
         <Box width="6rem" height="6rem">
           <Avatar src={user.avatar} />
         </Box>
@@ -30,7 +33,7 @@ export const MobileMenu = () => {
       </Link>
       <ul>
         <li>
-          <Link to="/feed">
+          <Link to="/feed" onClick={onItemClick}>
             <Flex marginTop="2rem" alignItems="center">
               <Box width="2rem" height="2rem" marginRight="2rem">
                 <Icon icon="feed" />
@@ -48,7 +51,7 @@ export const MobileMenu = () => {
           </Flex>
         </li>
         <li>
-          <Link to="/settings">
+          <Link to="/settings" onClick={onItemClick}>
             <Flex marginTop="2rem" alignItems="center">
               <Box width="2rem" height="2rem" marginRight="2rem">
                 <Icon icon="settings" />
@@ -58,7 +61,7 @@ export const MobileMenu = () => {
           </Link>
         </li>
         <li>
-          <Link to="/search">
+          <Link to="/search" onClick={onItemClick}>
             <Flex marginTop="2rem" alignItems="center">
               <Box width="2rem" height="2rem" marginRight="2rem">
                 <Icon icon="search" />
@@ -83,4 +86,8 @@ export const MobileMenu = () => {
       </ul>
     </Flex>
   )
+}
+
+MobileMenu.propTypes = {
+  onItemClick: PropTypes.func,
 }

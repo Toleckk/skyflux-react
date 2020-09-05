@@ -46,7 +46,7 @@ export const MobileNav = () => {
         </Flex>
       </Drawer>
       <Drawer visible={menuOpened} onClose={closeMenu} placement="right">
-        <MobileMenu />
+        <MobileMenu onItemClick={closeMenu} />
       </Drawer>
     </nav>
   )
