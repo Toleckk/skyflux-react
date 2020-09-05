@@ -15,6 +15,8 @@ export const User = PropTypes.shape({
   postsCount: PropTypes.number.isRequired,
   subscriptionsCount: PropTypes.number.isRequired,
   subscribersCount: PropTypes.number.isRequired,
+  amISubscribed: PropTypes.bool.isRequired,
+  isPrivate: PropTypes.bool.isRequired,
   description: Description.isRequired,
 })
 

@@ -5,6 +5,8 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Divider, Input, Text} from 'ui'
+import {useMyMutation} from 'features/common/hooks'
+import {createUser} from 'models/user'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
@@ -16,12 +18,17 @@ const schema = yup.object().shape({
 })
 
 export const RegisterForm = withTranslation('id')(({t}) => {
-  const {register, handleSubmit, errors} = useForm({
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
+  const [signUp] = useMyMutation({
+    ...createUser(),
+    asyncMode: true,
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const {register, handleSubmit, errors} = useForm({
+    resolver: yupResolver(schema),
+    mode: 'onBlur',
+  })
+
+  const onSubmit = useCallback(handleSubmit(signUp), [handleSubmit])
 
   return (
     <Flex

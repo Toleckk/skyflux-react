@@ -1,39 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
+import {useMyQuery} from 'features/common/hooks'
+import {getFoundUsers} from 'models/user'
 import {Search} from '../../templates'
 import {UsersDisplay} from '../../organisms'
 
-const users = [
-  {
-    _id: 1,
-    nickname: 'toleckk',
-    avatar:
-      'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-  },
-  {
-    _id: 2,
-    nickname: 'toleckk',
-    avatar:
-      'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-  },
-  {
-    _id: 3,
-    nickname: 'toleckk',
-    avatar:
-      'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-  },
-  {
-    _id: 4,
-    nickname: 'toleckk',
-    avatar:
-      'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-  },
-]
-
 export const Users = () => {
+  const [text, setText] = useState('')
+  const {data, loading} = useMyQuery(getFoundUsers(text))
+
+  const users = data?.getFoundUsers?.edges
+
   return (
-    <Search>
-      {users && !!users.length && (
+    <Search onInputChange={setText} isLoading={loading}>
+      {!!users?.length && (
         <Box marginTop="2rem">
           <UsersDisplay users={users} />
         </Box>

@@ -5,13 +5,15 @@ import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {useTranslation} from 'react-i18next'
 import {Button, Input} from 'ui'
+import {useMyMutation} from 'features/common/hooks'
+import {updatePassword} from 'models/user'
 
 const schema = yup.object().shape({
-  old: yup
+  oldPassword: yup
     .string()
     .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Invalid password')
     .required(),
-  new: yup
+  newPassword: yup
     .string()
     .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Invalid password')
     .notOneOf([yup.ref('old'), "Passwords can't be equal"])
@@ -19,12 +21,14 @@ const schema = yup.object().shape({
 })
 
 export const ChangePasswordForm = () => {
+  const [update] = useMyMutation(updatePassword())
+
   const {handleSubmit, register, errors} = useForm({
     resolver: yupResolver(schema),
     mode: 'onBlur',
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const onSubmit = useCallback(handleSubmit(update), [update])
 
   const {t} = useTranslation('settings')
 
@@ -34,16 +38,16 @@ export const ChangePasswordForm = () => {
         type="password"
         label={t('Old password')}
         ref={register}
-        name="old"
-        error={errors.old?.message}
+        name="oldPassword"
+        error={errors.oldPassword?.message}
       />
       <Box marginTop="1rem">
         <Input
           type="password"
           label={t('New password')}
           ref={register}
-          name="new"
-          error={errors.new?.message}
+          name="newPassword"
+          error={errors.newPassword?.message}
         />
       </Box>
       <Box marginTop="1rem">

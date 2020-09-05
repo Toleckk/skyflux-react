@@ -1,18 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import {EventConnectionList} from 'models/event'
 import {EventCard} from '../EventCard'
 import {StyledItem, StyledList} from './styles'
 
 export const EventList = ({events}) => (
   <StyledList>
     {events.map(event => (
-      <StyledItem key={event._id}>
-        <EventCard event={event} key={event._id} />
+      <StyledItem key={event.cursor}>
+        <EventCard event={event.node} key={event.cursor} />
       </StyledItem>
     ))}
   </StyledList>
 )
 
 EventList.propTypes = {
-  events: PropTypes.arrayOf(EventCard.propTypes.event).isRequired,
+  events: EventConnectionList.isRequired,
 }

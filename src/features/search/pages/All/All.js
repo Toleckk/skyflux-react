@@ -1,108 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
+import {useMyQuery} from 'features/common/hooks'
+import {getFoundUsers} from 'models/user'
+import {getFoundPosts} from 'models/post'
 import {Search} from '../../templates'
 import {PostsDisplay, UsersDisplay} from '../../organisms'
 
-const data = {
-  users: [
-    {
-      _id: 1,
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-    {
-      _id: 2,
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-    {
-      _id: 3,
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-    {
-      _id: 4,
-      nickname: 'toleckk',
-      avatar:
-        'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-    },
-  ],
-  posts: [
-    {
-      _id: '1',
-      text: '123456',
-      date: '123456',
-      commentsCount: 1,
-      likesCount: 2,
-      hasMyLike: true,
-      user: {
-        nickname: 'toleckk',
-        avatar:
-          'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-      },
-    },
-    {
-      _id: '2',
-      text: '123456',
-      date: '123456',
-      commentsCount: 1,
-      likesCount: 2,
-      hasMyLike: true,
-      user: {
-        nickname: 'toleckk',
-        avatar:
-          'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-      },
-    },
-    {
-      _id: '3',
-      text: '123456',
-      date: '123456',
-      commentsCount: 1,
-      likesCount: 2,
-      hasMyLike: true,
-      user: {
-        nickname: 'toleckk',
-        avatar:
-          'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-      },
-    },
-    {
-      _id: '4',
-      text: '123456',
-      date: '123456',
-      commentsCount: 1,
-      likesCount: 2,
-      hasMyLike: true,
-      user: {
-        nickname: 'toleckk',
-        avatar:
-          'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-      },
-    },
-  ],
-}
+export const All = () => {
+  const [text, setText] = useState('')
+  const usersQuery = useMyQuery(getFoundUsers(text))
+  const postsQuery = useMyQuery(getFoundPosts(text))
 
-export const All = () => (
-  <Search>
-    {data &&
-      ((data.users && !!data.users.length) ||
-        (data.posts && !!data.posts.length)) && (
-        <>
-          {data.users && !!data.users.length && (
-            <Box marginTop="2rem">
-              <UsersDisplay users={data.users} mini withAllLink />
-            </Box>
-          )}
-          {data.posts && !!data.posts.length && (
-            <Box marginTop="2rem">
-              <PostsDisplay posts={data.posts} withAllLink />
-            </Box>
-          )}
-        </>
+  const users = usersQuery.data?.getFoundUsers?.edges.slice(0, 4)
+  const posts = postsQuery.data?.getFoundPosts?.edges
+
+  return (
+    <Search
+      onInputChange={setText}
+      isLoading={usersQuery.loading || postsQuery.loading}
+    >
+      {!!users?.length && (
+        <Box marginTop="2rem">
+          <UsersDisplay users={users} withAllLink mini />
+        </Box>
       )}
-  </Search>
-)
+      {!!posts?.length && (
+        <Box marginTop="2rem">
+          <PostsDisplay posts={posts} withAllLink />
+        </Box>
+      )}
+    </Search>
+  )
+}

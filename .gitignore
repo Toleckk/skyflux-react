@@ -3,6 +3,9 @@
 # WebStorm
 .idea
 
+# Environment settings
+.env
+
 # dependencies
 /node_modules
 /.pnp

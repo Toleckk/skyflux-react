@@ -5,6 +5,8 @@ import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import {Input} from 'ui'
+import {useMyMutation} from 'features/common/hooks'
+import {createResetRequest} from 'models/reset'
 import {FieldDescription, SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
@@ -30,7 +32,12 @@ export const RestoreForm = withTranslation('id')(({t}) => {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const [createRequest] = useMyMutation(createResetRequest())
+
+  const onSubmit = useCallback(handleSubmit(createRequest), [
+    handleSubmit,
+    createRequest,
+  ])
 
   return (
     <Flex flexDirection="column" alignItems="center">

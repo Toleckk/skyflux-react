@@ -5,7 +5,8 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Input} from 'ui'
-import {User} from 'models/user'
+import {updateProfileInfo, User} from 'models/user'
+import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
 
 const schema = yup.object().shape({
@@ -23,12 +24,14 @@ const schema = yup.object().shape({
 export const ProfileDataForm = ({user}) => {
   const {t} = useTranslation('settings')
 
+  const [update] = useMyMutation(updateProfileInfo())
+
   const {handleSubmit, register} = useForm({
     defaultValues: user,
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const onSubmit = useCallback(handleSubmit(update), [handleSubmit])
 
   return (
     <Box as="form" onSubmit={onSubmit}>

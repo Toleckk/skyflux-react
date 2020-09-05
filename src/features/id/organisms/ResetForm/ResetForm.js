@@ -6,6 +6,8 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Input} from 'ui'
+import {useMyMutation} from 'features/common/hooks'
+import {resetPassword} from 'models/user'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
@@ -28,11 +30,13 @@ export const ResetForm = () => {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useCallback(handleSubmit(console.log), [handleSubmit])
+  const [reset] = useMyMutation(resetPassword())
+
+  const onSubmit = useCallback(handleSubmit(reset), [handleSubmit, reset])
 
   return (
     <form onSubmit={onSubmit}>
-      <input name="token" hidden readOnly value={token} />
+      <input name="token" hidden readOnly value={token} ref={register} />
       <Flex flexDirection="column">
         <Box marginTop="1em">
           <Input

@@ -3,26 +3,20 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {Avatar, H2, Icon} from 'ui'
-import {useModal} from '../../hooks'
+import {me} from 'models/user'
+import {removeCurrentSession} from 'models/session'
+import {useModal, useMyMutation, useMyQuery} from '../../hooks'
 import {StyledBigNickname} from './styles'
 
-const user = {
-  avatar:
-    'https://res.cloudinary.com/jumper/image/upload/v1591605952/images/cuv6hqfjc8dhh9igsclt.jpg',
-  nickname: 'toleckk',
-  postsCount: 61,
-  subscriptionsCount: 2,
-  subscribersCount: 3,
-  description: {
-    about: '123',
-    from: 'Armenia',
-    birthday: '03.08.1999',
-  },
-}
-
 export const MobileMenu = () => {
+  const [logout] = useMyMutation(removeCurrentSession())
+  const {data, loading} = useMyQuery(me())
+  const user = data?.me
+
   const {t} = useTranslation('nav')
   const {open} = useModal('notifications')
+
+  if (loading && !data) return <></>
 
   return (
     <Flex paddingTop="2rem" flexDirection="column" alignItems="center">
@@ -72,7 +66,12 @@ export const MobileMenu = () => {
           </Link>
         </li>
         <li>
-          <Flex marginTop="2rem" alignItems="center">
+          <Flex
+            marginTop="2rem"
+            alignItems="center"
+            as="button"
+            onClick={logout}
+          >
             <Box width="2rem" height="2rem" marginRight="2rem">
               <Icon icon="logout" />
             </Box>
