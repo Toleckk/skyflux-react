@@ -53,7 +53,6 @@ export const GET_SUGGESTIONS = gql`
       }
     }
   }
-  ${UserFragment}
 `
 
 export const GET_FOUND_USERS = gql`
@@ -73,7 +72,6 @@ export const GET_FOUND_USERS = gql`
       }
     }
   }
-  ${UserFragment}
 `
 
 export const CREATE_USER = gql`
