@@ -7,6 +7,11 @@
     "plugin:import-order/recommended"
   ],
   "rules": {
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "eol-last": "error",
     "jsx-quotes": [
       1,
       "prefer-double"

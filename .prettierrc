@@ -8,5 +8,6 @@
   "semi": false,
   "bracketSpacing": false,
   "parser": "flow",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "endOfLine": "lf"
 }
