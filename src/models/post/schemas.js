@@ -25,8 +25,8 @@ export const GET_POST_BY_ID = gql`
 `
 
 export const GET_POSTS_BY_NICKNAME = gql`
-  query getPostsByNickname($nickname: String!) {
-    getPostsByNickname(nickname: $nickname) {
+  query getPostsByNickname($nickname: String!, $first: Int, $after: String) {
+    getPostsByNickname(nickname: $nickname, after: $after, first: $first) {
       edges {
         node {
           ...PostFragment
