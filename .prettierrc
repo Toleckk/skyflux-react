@@ -9,5 +9,5 @@
   "bracketSpacing": false,
   "parser": "flow",
   "arrowParens": "avoid",
-  "endOfLine": "lf"
+  "endOfLine": "crlf"
 }

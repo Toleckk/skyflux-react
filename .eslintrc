@@ -9,7 +9,7 @@
   "rules": {
     "linebreak-style": [
       "error",
-      "unix"
+      "windows"
     ],
     "eol-last": "error",
     "jsx-quotes": [
