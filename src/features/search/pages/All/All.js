@@ -8,10 +8,10 @@ import {PostsDisplay, UsersDisplay} from '../../organisms'
 
 export const All = () => {
   const [text, setText] = useState('')
-  const usersQuery = useMyQuery(getFoundUsers(text))
-  const postsQuery = useMyQuery(getFoundPosts(text))
+  const usersQuery = useMyQuery(getFoundUsers(text, {first: 4}))
+  const postsQuery = useMyQuery(getFoundPosts(text, {first: 5}))
 
-  const users = usersQuery.data?.getFoundUsers?.edges.slice(0, 4)
+  const users = usersQuery.data?.getFoundUsers?.edges
   const posts = postsQuery.data?.getFoundPosts?.edges
 
   return (

@@ -25,8 +25,8 @@ export const GET_POST_BY_ID = gql`
 `
 
 export const GET_POSTS_BY_NICKNAME = gql`
-  query getPostsByNickname($nickname: String!) {
-    getPostsByNickname(nickname: $nickname) {
+  query getPostsByNickname($nickname: String!, $first: Int, $after: String) {
+    getPostsByNickname(nickname: $nickname, after: $after, first: $first) {
       edges {
         node {
           ...PostFragment
@@ -43,8 +43,8 @@ export const GET_POSTS_BY_NICKNAME = gql`
 `
 
 export const GET_FEED = gql`
-  query getFeed {
-    getFeed {
+  query getFeed($first: Int, $after: String) {
+    getFeed(first: $first, after: $after) {
       edges {
         node {
           ...PostFragment
@@ -61,8 +61,8 @@ export const GET_FEED = gql`
 `
 
 export const GET_FOUND_POSTS = gql`
-  query getFoundPosts($text: String!) {
-    getFoundPosts(text: $text) {
+  query getFoundPosts($text: String!, $first: Int, $after: String) {
+    getFoundPosts(text: $text, after: $after, first: $first) {
       edges {
         node {
           ...PostFragment

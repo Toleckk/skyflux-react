@@ -1,16 +1,20 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
 import {PublicationCard} from '../PublicationCard'
 
-export const PublicationList = ({publications, Card, ...props}) => (
-  <ul {...props}>
-    {publications.map(publication => (
-      <li key={publication.cursor}>
-        <Card publication={publication.node} />
-      </li>
-    ))}
-  </ul>
+export const PublicationList = forwardRef(
+  ({publications, Card, ...props}, ref) => (
+    <ul {...props} ref={ref}>
+      {publications.map(publication => (
+        <li key={publication.cursor}>
+          <Card publication={publication.node} />
+        </li>
+      ))}
+    </ul>
+  ),
 )
+
+PublicationList.displayName = 'PublicationList'
 
 PublicationList.defaultProps = {
   Card: PublicationCard,

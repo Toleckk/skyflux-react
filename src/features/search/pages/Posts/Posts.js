@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
+import {useInfiniteScroll} from 'useInfiniteScroll'
 import {useMyQuery} from 'features/common/hooks'
 import {getFoundPosts} from 'models/post'
 import {Search} from '../../templates'
@@ -7,7 +8,15 @@ import {PostsDisplay} from '../../organisms'
 
 export const Posts = () => {
   const [text, setText] = useState('')
-  const {data, loading} = useMyQuery(getFoundPosts(text))
+  const {data, loading, fetchMore} = useMyQuery(
+    getFoundPosts(text, {first: 25}),
+  )
+
+  const postsContainerRef = useInfiniteScroll({
+    fetchMore,
+    loading,
+    hasMore: data?.getFoundPosts?.pageInfo?.hasNextPage,
+  })
 
   const posts = data?.getFoundPosts?.edges
 
@@ -15,7 +24,7 @@ export const Posts = () => {
     <Search onInputChange={setText} isLoading={loading}>
       {!!posts?.length && (
         <Box marginTop="2rem">
-          <PostsDisplay posts={posts} />
+          <PostsDisplay posts={posts} ref={postsContainerRef} />
         </Box>
       )}
     </Search>

@@ -3,6 +3,7 @@ import ReactVisibilitySensor from 'react-visibility-sensor'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {useParams} from 'react-router'
+import {useInfiniteScroll} from 'useInfiniteScroll'
 import {Divider, Loader} from 'ui'
 import {PostForm} from 'features/common/organisms'
 import {PostList} from 'features/common/molecules'
@@ -17,9 +18,15 @@ export const Wall = withTranslation('user')(({t}) => {
   const {data: userData, loading: userLoading} = useMyQuery(
     getUserByNickname(nickname),
   )
-  const {data: postsData, loading: postsLoading} = useMyQuery(
-    getPostsByNickname(nickname),
+  const {data: postsData, loading: postsLoading, fetchMore} = useMyQuery(
+    getPostsByNickname(nickname, {first: 25}),
   )
+
+  const postsContainerRef = useInfiniteScroll({
+    fetchMore,
+    loading: postsLoading,
+    hasMore: postsData?.getPostsByNickname?.pageInfo?.hasNextPage,
+  })
 
   const user = userData?.getUserByNickname
   const posts = postsData?.getPostsByNickname?.edges
@@ -41,7 +48,7 @@ export const Wall = withTranslation('user')(({t}) => {
       ) : user.isPrivate ? (
         <PrivateScreen />
       ) : (
-        <PostList posts={posts} />
+        <PostList posts={posts} ref={postsContainerRef} />
       )}
       {!isInfoVisible && user && (
         <StyledHeader>
