@@ -1,6 +1,7 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Trans, withTranslation} from 'react-i18next'
+import {useInfiniteScroll} from 'useInfiniteScroll'
 import {PostForm} from 'features/common/organisms'
 import {PostList, UserList} from 'features/common/molecules'
 import {useMyQuery} from 'features/common/hooks'
@@ -10,12 +11,22 @@ import {Divider, H1, Link, Loader, Text} from 'ui'
 import {StyledContainer} from './styles'
 
 export const All = withTranslation('feed')(({t}) => {
-  const {data, loading} = useMyQuery(getFeed())
+  const {data, loading, fetchMore} = useMyQuery({
+    ...getFeed(),
+    variables: {first: 25},
+  })
+
   const {data: suggestionsData, loading: suggestionsLoading} = useMyQuery(
     getSuggestions(),
   )
   const posts = data?.getFeed?.edges
   const suggestions = suggestionsData?.getSuggestions?.edges
+
+  const scrollContainerRef = useInfiniteScroll({
+    fetchMore,
+    loading,
+    hasMore: data?.getFeed?.pageInfo?.hasNextPage,
+  })
 
   return (
     <StyledContainer>
@@ -24,7 +35,7 @@ export const All = withTranslation('feed')(({t}) => {
       {loading ? (
         <Loader />
       ) : posts?.length ? (
-        <PostList posts={posts} />
+        <PostList posts={posts} ref={scrollContainerRef} />
       ) : (
         <div>
           <H1>{t('Your feed is empty')}</H1>

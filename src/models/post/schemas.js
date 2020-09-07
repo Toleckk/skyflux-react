@@ -43,8 +43,8 @@ export const GET_POSTS_BY_NICKNAME = gql`
 `
 
 export const GET_FEED = gql`
-  query getFeed {
-    getFeed {
+  query getFeed($first: Int, $after: String) {
+    getFeed(first: $first, after: $after) {
       edges {
         node {
           ...PostFragment
