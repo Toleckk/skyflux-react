@@ -11,10 +11,7 @@ import {Divider, H1, Link, Loader, Text} from 'ui'
 import {StyledContainer} from './styles'
 
 export const All = withTranslation('feed')(({t}) => {
-  const {data, loading, fetchMore} = useMyQuery({
-    ...getFeed(),
-    variables: {first: 25},
-  })
+  const {data, loading, fetchMore} = useMyQuery(getFeed({first: 25}))
 
   const {data: suggestionsData, loading: suggestionsLoading} = useMyQuery(
     getSuggestions(),

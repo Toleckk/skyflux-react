@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import deepMerge from 'deepmerge'
 import {Box} from 'reflexbox/styled-components'
 import {useInfiniteScroll} from 'useInfiniteScroll'
 import {useMyQuery} from 'features/common/hooks'
@@ -10,7 +9,7 @@ import {UsersDisplay} from '../../organisms'
 export const Users = () => {
   const [text, setText] = useState('')
   const {data, loading, fetchMore} = useMyQuery(
-    deepMerge(getFoundUsers(text), {variables: {first: 24}}),
+    getFoundUsers(text, {first: 24}),
   )
 
   const usersContainerRef = useInfiniteScroll({

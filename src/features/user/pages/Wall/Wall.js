@@ -18,10 +18,9 @@ export const Wall = withTranslation('user')(({t}) => {
   const {data: userData, loading: userLoading} = useMyQuery(
     getUserByNickname(nickname),
   )
-  const {data: postsData, loading: postsLoading, fetchMore} = useMyQuery({
-    ...getPostsByNickname(nickname),
-    variables: {first: 25},
-  })
+  const {data: postsData, loading: postsLoading, fetchMore} = useMyQuery(
+    getPostsByNickname(nickname, {first: 25}),
+  )
 
   const postsContainerRef = useInfiniteScroll({
     fetchMore,

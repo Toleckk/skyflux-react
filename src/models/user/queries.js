@@ -1,3 +1,4 @@
+import deepmerge from 'deepmerge'
 import {
   CREATE_USER,
   GET_FOUND_USERS,
@@ -11,34 +12,36 @@ import {
   UPDATE_PROFILE_INFO,
 } from './schemas'
 
-export const me = () => ({
+export const me = (variables = {}) => ({
   query: ME,
+  variables,
 })
 
-export const getUserByNickname = nickname => ({
+export const getUserByNickname = (nickname, variables = {}) => ({
   query: GET_USER_BY_NICKNAME,
-  variables: {nickname},
+  variables: deepmerge({nickname}, variables),
 })
 
-export const getSuggestions = () => ({
+export const getSuggestions = (variables = {}) => ({
   query: GET_SUGGESTIONS,
+  variables,
 })
 
-export const getFoundUsers = text => ({
+export const getFoundUsers = (text, variables = {}) => ({
   query: GET_FOUND_USERS,
-  variables: {text},
+  variables: deepmerge({text}, variables),
 })
 
 export const createUser = (variables = {}) => ({
   mutation: CREATE_USER,
-  variables,
   refetchQueries: [me()],
+  variables,
 })
 
 export const updateProfileInfo = (variables = {}) => ({
   mutation: UPDATE_PROFILE_INFO,
-  variables,
   refetchQueries: [me()],
+  variables,
 })
 
 export const updatePassword = (variables = {}) => ({
@@ -48,16 +51,18 @@ export const updatePassword = (variables = {}) => ({
 
 export const resetPassword = (variables = {}) => ({
   mutation: RESET_PASSWORD,
-  variables,
   refetchQueries: [me()],
+  variables,
 })
 
-export const makeAccountPrivate = () => ({
+export const makeAccountPrivate = (variables = {}) => ({
   mutation: MAKE_ACCOUNT_PRIVATE,
   refetchQueries: [me()],
+  variables,
 })
 
-export const makeAccountPublic = () => ({
+export const makeAccountPublic = (variables = {}) => ({
   mutation: MAKE_ACCOUNT_PUBLIC,
   refetchQueries: [me()],
+  variables,
 })

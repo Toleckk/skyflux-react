@@ -6,10 +6,7 @@ import {useInfiniteScroll} from 'useInfiniteScroll'
 import {EventList} from '../../molecules'
 
 export const EventsDisplay = () => {
-  const {data, loading, fetchMore} = useMyQuery({
-    ...getEvents(),
-    variables: {first: 25},
-  })
+  const {data, loading, fetchMore} = useMyQuery(getEvents({first: 25}))
 
   const events = data?.getEvents?.edges
 

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
-import deepMerge from 'deepmerge'
 import {useMyQuery} from 'features/common/hooks'
 import {getFoundUsers} from 'models/user'
 import {getFoundPosts} from 'models/post'
@@ -9,12 +8,8 @@ import {PostsDisplay, UsersDisplay} from '../../organisms'
 
 export const All = () => {
   const [text, setText] = useState('')
-  const usersQuery = useMyQuery(
-    deepMerge(getFoundUsers(text), {variables: {first: 4}}),
-  )
-  const postsQuery = useMyQuery(
-    deepMerge(getFoundPosts(text), {variables: {first: 5}}),
-  )
+  const usersQuery = useMyQuery(getFoundUsers(text, {first: 4}))
+  const postsQuery = useMyQuery(getFoundPosts(text, {first: 5}))
 
   const users = usersQuery.data?.getFoundUsers?.edges
   const posts = postsQuery.data?.getFoundPosts?.edges

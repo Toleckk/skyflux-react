@@ -1,7 +1,6 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useParams} from 'react-router'
-import deepMerge from 'deepmerge'
 import {useInfiniteScroll} from 'useInfiniteScroll'
 import {Loader} from 'ui'
 import {CommentList, PostCard} from 'features/common/molecules'
@@ -14,7 +13,7 @@ export const Display = () => {
   const {id} = useParams()
   const {data: postData, loading: postLoading} = useMyQuery(getPostById(id))
   const {data: commentsData, loading: commentsLoading, fetchMore} = useMyQuery(
-    deepMerge(getCommentsByPostId(id), {variables: {first: 25}}),
+    getCommentsByPostId(id, {first: 25}),
   )
 
   const commentsContainerRef = useInfiniteScroll({

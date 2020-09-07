@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useInfiniteScroll} from 'useInfiniteScroll'
-import deepMerge from 'deepmerge'
 import {useMyQuery} from 'features/common/hooks'
 import {getFoundPosts} from 'models/post'
 import {Search} from '../../templates'
@@ -10,7 +9,7 @@ import {PostsDisplay} from '../../organisms'
 export const Posts = () => {
   const [text, setText] = useState('')
   const {data, loading, fetchMore} = useMyQuery(
-    deepMerge(getFoundPosts(text), {variables: {first: 25}}),
+    getFoundPosts(text, {first: 25}),
   )
 
   const postsContainerRef = useInfiniteScroll({
