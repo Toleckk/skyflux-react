@@ -61,8 +61,8 @@ export const GET_FEED = gql`
 `
 
 export const GET_FOUND_POSTS = gql`
-  query getFoundPosts($text: String!) {
-    getFoundPosts(text: $text) {
+  query getFoundPosts($text: String!, $first: Int, $after: String) {
+    getFoundPosts(text: $text, after: $after, first: $first) {
       edges {
         node {
           ...PostFragment

@@ -56,8 +56,8 @@ export const GET_SUGGESTIONS = gql`
 `
 
 export const GET_FOUND_USERS = gql`
-  query getFoundUsers($text: String!) {
-    getFoundUsers(text: $text) {
+  query getFoundUsers($text: String!, $after: String, $first: Int) {
+    getFoundUsers(text: $text, after: $after, first: $first) {
       edges {
         node {
           _id

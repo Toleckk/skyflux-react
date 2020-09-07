@@ -1,11 +1,11 @@
-import React, {useMemo} from 'react'
+import React, {forwardRef, useMemo} from 'react'
 import PropTypes from 'prop-types'
 import {useMediaScreens} from 'features/common/hooks'
 import {MiniUserConnectionList} from 'models/user'
 import {UserCard} from '../UserCard'
 import {StyledList} from './styles'
 
-export const UserList = ({users, mini}) => {
+export const UserList = forwardRef(({users, mini}, ref) => {
   const {isWide} = useMediaScreens()
 
   const wideness = isWide ? 4 : 3
@@ -16,7 +16,7 @@ export const UserList = ({users, mini}) => {
   )
 
   return (
-    <StyledList>
+    <StyledList ref={ref}>
       {displayedUsers.map(user => (
         <li key={user.cursor}>
           <UserCard user={user.node} />
@@ -24,7 +24,9 @@ export const UserList = ({users, mini}) => {
       ))}
     </StyledList>
   )
-}
+})
+
+UserList.displayName = 'UserList'
 
 UserList.defaultProps = {
   mini: false,
