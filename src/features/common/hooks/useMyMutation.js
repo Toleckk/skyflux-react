@@ -1,13 +1,28 @@
+import {useCallback, useRef} from 'react'
 import {useMutation} from '@apollo/client'
-import {useCallback} from 'react'
+import noop from 'noop6'
 
 export const useMyMutation = ({
   mutation,
   refetchQueries,
   variables,
+  onCompleted = noop,
   ...options
 }) => {
-  const [mutate, ...rest] = useMutation(mutation, options)
+  const onCompletedRef = useRef(noop)
+  const completeCallback = useCallback(
+    (...args) => onCompletedRef.current(...args),
+    [onCompletedRef],
+  )
+  const [mutate, ...rest] = useMutation(mutation, {
+    ...options,
+    onCompleted: completeCallback,
+  })
+
+  onCompletedRef.current = useCallback(
+    (...args) => onCompleted(...args, ...rest),
+    [onCompleted, rest],
+  )
 
   const refetch = useCallback(
     (mutateVariables = {}) => data => {
