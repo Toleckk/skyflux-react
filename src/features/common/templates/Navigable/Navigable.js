@@ -5,13 +5,14 @@ import {useMedia} from 'react-use'
 import {BottomBar, SideBar} from 'ui'
 import {DesktopNav, MobileNav} from '../../organisms'
 import {useModal} from '../../hooks'
+import {StyledContainer} from './styles'
 
 export const Navigable = ({children}) => {
   const isDesktop = useMedia('(min-width: 768px)')
   const {isOpened} = useModal('notifications')
 
   return (
-    <Flex justifyContent="center">
+    <StyledContainer>
       <Flex width="55vw" minHeight="100vh" flexDirection="column">
         {children}
       </Flex>
@@ -24,7 +25,7 @@ export const Navigable = ({children}) => {
           <MobileNav />
         </BottomBar>
       )}
-    </Flex>
+    </StyledContainer>
   )
 }
 

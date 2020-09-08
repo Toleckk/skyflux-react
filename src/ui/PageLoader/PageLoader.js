@@ -1,14 +1,9 @@
 import React from 'react'
-import {Flex} from 'reflexbox/styled-components'
 import {Loader} from '../Loader'
+import {StyledContainer} from './styles'
 
 export const PageLoader = () => (
-  <Flex
-    height="100vh"
-    width="100vw"
-    alignItems="center"
-    justifyContent="center"
-  >
+  <StyledContainer>
     <Loader />
-  </Flex>
+  </StyledContainer>
 )
