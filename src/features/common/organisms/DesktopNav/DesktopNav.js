@@ -46,7 +46,7 @@ export const DesktopNav = withTranslation('nav')(({t}) => {
           <NavigationButton icon="search" to="/search" />
         </StyledItem>
         <StyledItem>
-          <NavigationButton icon="logout" onClick={logout} />
+          <NavigationButton icon="logout" onClick={() => logout()} />
         </StyledItem>
       </ul>
       {isOpened && (
