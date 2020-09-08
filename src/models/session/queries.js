@@ -11,5 +11,5 @@ export const createSession = (variables = {}) => ({
 
 export const removeCurrentSession = () => ({
   mutation: REMOVE_CURRENT_SESSION,
-  refetchQueries: [me()],
+  onCompleted: (_, {client}) => client.resetStore(),
 })
