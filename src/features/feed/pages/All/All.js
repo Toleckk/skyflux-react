@@ -12,10 +12,11 @@ import {StyledContainer} from './styles'
 
 export const All = withTranslation('feed')(({t}) => {
   const {data, loading, fetchMore} = useMyQuery(getFeed({first: 25}))
+  const {data: suggestionsData, loading: suggestionsLoading} = useMyQuery({
+    ...getSuggestions(),
+    skip: loading || data.getFeed?.edges?.length,
+  })
 
-  const {data: suggestionsData, loading: suggestionsLoading} = useMyQuery(
-    getSuggestions(),
-  )
   const posts = data?.getFeed?.edges
   const suggestions = suggestionsData?.getSuggestions?.edges
 
