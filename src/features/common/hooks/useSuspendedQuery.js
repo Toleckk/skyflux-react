@@ -1,8 +1,7 @@
 import {useRef} from 'react'
 import {useLatest} from 'react-use'
+import noop from 'noop6'
 import {useMyQuery} from './useMyQuery'
-
-const noop = () => void 0
 
 export const useSuspendedQuery = ({onCompleted = noop, ...props}) => {
   const onCompletedRef = useLatest(onCompleted)

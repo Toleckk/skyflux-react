@@ -6,11 +6,12 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import noop from 'noop6'
 import ReactDOM from 'react-dom'
 import {Tracker} from './Tracker'
 
 export const useInfiniteScroll = ({
-  fetchMore = () => void 0,
+  fetchMore = noop,
   loading = false,
   hasMore = false,
   threshold = '100px',
