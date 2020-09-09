@@ -22,7 +22,7 @@ export const Input = memo(
 
       return (
         <StyledFieldset error={!!error} hasLabel={!!label}>
-          {error && <StyledError>{error}</StyledError>}
+          {!isLoading && error && <StyledError>{error}</StyledError>}
           {label && (
             <StyledLegend>
               <label htmlFor={realId}>{label}</label>
@@ -33,13 +33,13 @@ export const Input = memo(
               as={multi ? 'textarea' : 'input'}
               id={realId}
               ref={ref}
-              hasPadding={isLoading && type === 'password'}
+              hasPadding={isLoading || type === 'password'}
               type={type === 'password' && isEyeActive ? 'text' : type}
               {...props}
             />
             <StyledAside>
               {isLoading ? (
-                <Loader />
+                <Loader size="1.5rem" borderWidth="3px" hasShadow={false} />
               ) : type === 'password' ? (
                 <Icon icon="eye" onClick={onEyeClick} />
               ) : (
