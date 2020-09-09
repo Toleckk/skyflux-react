@@ -4,6 +4,7 @@ import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import {Box} from 'reflexbox/styled-components'
+import {useTranslation} from 'react-i18next'
 import {Button, Input} from 'ui'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
 import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
@@ -17,6 +18,8 @@ const schema = yup.object().shape({
 })
 
 export const ChangeNicknameForm = ({user}) => {
+  const {t} = useTranslation('settings')
+
   const [execExistsQuery, existing] = useMyLazyQuery(doesNicknameExist())
   const [update, {loading: updating}] = useMyMutation(updateNickname())
 
@@ -55,20 +58,20 @@ export const ChangeNicknameForm = ({user}) => {
       <Input
         ref={register}
         name="nickname"
-        label="Новый никнейм"
+        label={t('New nickname')}
         placeholder={user.nickname}
         error={
           errors.nickname?.message ||
-          (existing.data?.doesNicknameExist && 'Nickname already exists')
+          (existing.data?.doesNicknameExist && t('Nickname already exists'))
         }
         isLoading={isLoading}
       />
       <Box marginTop="1rem">
         <Button type="submit" disabled={updating}>
-          Изменить
+          {t('Change')}
         </Button>
       </Box>
-    </form>
+    </Box>
   )
 }
 
