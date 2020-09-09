@@ -1,14 +1,13 @@
 import {useCallback, useRef} from 'react'
 import {useMutation} from '@apollo/client'
 import noop from 'noop6'
+import {useDeepCompareMemo} from 'use-deep-compare'
 
-export const useMyMutation = ({
-  mutation,
-  refetchQueries,
-  variables,
-  onCompleted = noop,
-  ...options
-}) => {
+export const useMyMutation = ({mutation, ...props}) => {
+  const options = useDeepCompareMemo(() => props, [props])
+
+  const {refetchQueries, variables, onCompleted = noop} = options
+
   const onCompletedRef = useRef(noop)
   const completeCallback = useCallback(
     (...args) => onCompletedRef.current(...args),

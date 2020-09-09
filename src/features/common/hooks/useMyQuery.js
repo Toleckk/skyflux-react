@@ -1,8 +1,11 @@
 import {useQuery} from '@apollo/client'
 import {useCallback} from 'react'
+import {useDeepCompareMemo} from 'use-deep-compare'
 
-export const useMyQuery = ({query, variables = {}, ...options}) => {
-  const {data, fetchMore, ...rest} = useQuery(query, {variables, ...options})
+export const useMyQuery = ({query, ...props}) => {
+  const options = useDeepCompareMemo(() => props, [props])
+
+  const {data, fetchMore, ...rest} = useQuery(query, options)
 
   const name = query.definitions.find(
     ({kind}) => kind === 'OperationDefinition',
@@ -28,9 +31,9 @@ export const useMyQuery = ({query, variables = {}, ...options}) => {
               }
             : previousResult
         },
-        variables: {...variables, after: data[name].pageInfo.endCursor},
+        variables: {...options.variables, after: data[name].pageInfo.endCursor},
       }),
-    [data, fetchMore, name, variables],
+    [data, fetchMore, name, options.variables],
   )
 
   return {data, fetchMore: handledFetchMore, ...rest}
