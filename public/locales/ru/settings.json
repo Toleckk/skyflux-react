@@ -8,5 +8,8 @@
   "Login data": "Данные для входа",
   "Old password": "Старый пароль",
   "New password": "Новый пароль",
+  "New nickname": "Новый никнейм",
+  "Nickname already exists": "Никнейм существует",
+  "Change nickname": "Изменить никнейм",
   "Change": "Изменить"
 }

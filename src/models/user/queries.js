@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge'
 import {
   CREATE_USER,
+  DOES_NICKNAME_EXIST,
   GET_FOUND_USERS,
   GET_SUGGESTIONS,
   GET_USER_BY_NICKNAME,
@@ -8,6 +9,7 @@ import {
   MAKE_ACCOUNT_PUBLIC,
   ME,
   RESET_PASSWORD,
+  UPDATE_NICKNAME,
   UPDATE_PASSWORD,
   UPDATE_PROFILE_INFO,
 } from './schemas'
@@ -32,6 +34,11 @@ export const getFoundUsers = (text, variables = {}) => ({
   variables: deepmerge({text}, variables),
 })
 
+export const doesNicknameExist = (nickname = undefined, variables = {}) => ({
+  query: DOES_NICKNAME_EXIST,
+  variables: deepmerge({nickname}, variables),
+})
+
 export const createUser = (variables = {}) => ({
   mutation: CREATE_USER,
   refetchQueries: [me()],
@@ -41,6 +48,14 @@ export const createUser = (variables = {}) => ({
 export const updateProfileInfo = (variables = {}) => ({
   mutation: UPDATE_PROFILE_INFO,
   refetchQueries: [me()],
+  variables,
+})
+
+export const updateNickname = (variables = {}) => ({
+  mutation: UPDATE_NICKNAME,
+  refetchQueries: ({data}) => {
+    return [me(), getUserByNickname(data?.updateNickname?.nickname)]
+  },
   variables,
 })
 
