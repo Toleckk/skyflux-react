@@ -5,6 +5,7 @@ import {useMyQuery} from 'features/common/hooks'
 import {me} from 'models/user'
 import {Divider, H1, Loader} from 'ui'
 import {
+  ChangeNicknameForm,
   ChangePasswordForm,
   PrivateSwitcher,
   ProfileDataForm,
@@ -21,6 +22,9 @@ export const Common = withTranslation('settings')(({t}) => {
     <div>
       <H1>{t('Profile information')}</H1>
       <ProfileDataForm user={user} />
+      <Divider />
+      <H1>{t('Change nickname')}</H1>
+      <ChangeNicknameForm user={user} />
       <Divider />
       <H1>{t('Privacy settings')}</H1>
       <PrivateSwitcher user={user} />
