@@ -23,7 +23,7 @@ export const MobileMenu = ({onItemClick}) => {
 
   return (
     <Flex paddingTop="2rem" flexDirection="column" alignItems="center">
-      <Link to={'/user/@' + user.nickname} onClick={onItemClick}>
+      <Link to={'/@' + user.nickname} onClick={onItemClick}>
         <Box width="6rem" height="6rem">
           <Avatar src={user.avatar} />
         </Box>

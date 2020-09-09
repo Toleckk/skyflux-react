@@ -4,6 +4,6 @@ import {Wall} from './pages'
 
 export const UserRouter = () => (
   <Switch>
-    <Route path="/user/@:nickname" component={Wall} />
+    <Route path="/@:nickname" component={Wall} />
   </Switch>
 )

@@ -25,7 +25,7 @@ export const DesktopNav = withTranslation('nav')(({t}) => {
     <Flex as="nav" ref={ref}>
       <ul>
         <StyledItem>
-          <NavigationButton to={'/user/@' + data?.me?.nickname}>
+          <NavigationButton to={'/@' + data?.me?.nickname}>
             <Avatar src={data?.me?.avatar} />
           </NavigationButton>
         </StyledItem>
