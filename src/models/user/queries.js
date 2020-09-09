@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge'
 import {
   CREATE_USER,
+  DOES_NICKNAME_EXIST,
   GET_FOUND_USERS,
   GET_SUGGESTIONS,
   GET_USER_BY_NICKNAME,
@@ -30,6 +31,11 @@ export const getSuggestions = (variables = {}) => ({
 export const getFoundUsers = (text, variables = {}) => ({
   query: GET_FOUND_USERS,
   variables: deepmerge({text}, variables),
+})
+
+export const doesNicknameExist = (nickname = undefined, variables = {}) => ({
+  query: DOES_NICKNAME_EXIST,
+  variables: deepmerge({nickname}, variables),
 })
 
 export const createUser = (variables = {}) => ({

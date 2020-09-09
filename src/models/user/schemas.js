@@ -74,6 +74,12 @@ export const GET_FOUND_USERS = gql`
   }
 `
 
+export const DOES_NICKNAME_EXIST = gql`
+  query doesNicknameExist($nickname: String!) {
+    doesNicknameExist(nickname: $nickname)
+  }
+`
+
 export const CREATE_USER = gql`
   mutation createUser($email: String!, $password: String!) {
     createUser(email: $email, password: $password) {
