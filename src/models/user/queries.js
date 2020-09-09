@@ -9,6 +9,7 @@ import {
   MAKE_ACCOUNT_PUBLIC,
   ME,
   RESET_PASSWORD,
+  UPDATE_NICKNAME,
   UPDATE_PASSWORD,
   UPDATE_PROFILE_INFO,
 } from './schemas'
@@ -47,6 +48,14 @@ export const createUser = (variables = {}) => ({
 export const updateProfileInfo = (variables = {}) => ({
   mutation: UPDATE_PROFILE_INFO,
   refetchQueries: [me()],
+  variables,
+})
+
+export const updateNickname = (variables = {}) => ({
+  mutation: UPDATE_NICKNAME,
+  refetchQueries: ({data}) => {
+    return [me(), getUserByNickname(data?.updateNickname?.nickname)]
+  },
   variables,
 })
 
