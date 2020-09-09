@@ -1,36 +1,49 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback} from 'react'
 import PropTypes from 'prop-types'
-import {Flex, Box} from 'reflexbox/styled-components'
+import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
+import {useHistory, useLocation} from 'react-router'
+import {parse, stringify} from 'query-string'
 import {H1} from 'ui'
 import {SearchInput} from '../../molecules'
 import {SearchLoader} from '../../atoms'
 
 export const Search = ({onInputChange, isLoading, children}) => {
   const {t} = useTranslation('search')
-  const [text, setText] = useState('')
+
+  const history = useHistory()
+  const {pathname, search} = useLocation()
+  const params = parse(search)
 
   const onChange = useCallback(
     e => {
       const {value} = e.target
-      setText(value)
-      return onInputChange?.(value)
+      history.replace({
+        pathname,
+        search: stringify({
+          ...params,
+          q: value || null,
+        }),
+      })
+      return onInputChange(value)
     },
-    [setText, onInputChange],
+    [history, onInputChange, params, pathname],
   )
+
+  const {q} = params
 
   return (
     <Flex flexDirection="column" minHeight="100vh" paddingTop="2rem">
-      <Flex flex={text ? 0 : 1} alignItems="center">
-        <SearchInput value={text} onChange={onChange} />
+      <Flex flex={q ? 0 : 1} alignItems="center">
+        <SearchInput value={q} onChange={onChange} />
       </Flex>
-      {isLoading && !!text && <SearchLoader />}
-      {!isLoading && !children && !!text && (
+      {isLoading && !!q && <SearchLoader />}
+      {!isLoading && !children && !!q && (
         <Box margin="auto">
           <H1>{t('Nothing found!')}</H1>
         </Box>
       )}
-      {!isLoading && !!text && children}
+      {!isLoading && !!q && children}
     </Flex>
   )
 }
