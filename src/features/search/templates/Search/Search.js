@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next'
 import {useHistory, useLocation} from 'react-router'
 import {parse, stringify} from 'query-string'
 import {H1} from 'ui'
+import {useDebouncedFunc} from 'useDebouncedFunc'
 import {SearchInput} from '../../molecules'
 import {SearchLoader} from '../../atoms'
 
@@ -14,6 +15,11 @@ export const Search = ({onInputChange, isLoading, children}) => {
   const history = useHistory()
   const {pathname, search} = useLocation()
   const params = parse(search)
+
+  const [debouncedOnInputChange, delayed] = useDebouncedFunc(
+    onInputChange,
+    1000,
+  )
 
   const onChange = useCallback(
     e => {
@@ -25,9 +31,9 @@ export const Search = ({onInputChange, isLoading, children}) => {
           q: value || null,
         }),
       })
-      return onInputChange(value)
+      return debouncedOnInputChange(value)
     },
-    [history, onInputChange, params, pathname],
+    [history, debouncedOnInputChange, params, pathname],
   )
 
   const {q} = params
@@ -37,13 +43,13 @@ export const Search = ({onInputChange, isLoading, children}) => {
       <Flex flex={q ? 0 : 1} alignItems="center">
         <SearchInput value={q} onChange={onChange} />
       </Flex>
-      {isLoading && !!q && <SearchLoader />}
+      {(isLoading || delayed) && !!q && <SearchLoader />}
       {!isLoading && !children && !!q && (
         <Box margin="auto">
           <H1>{t('Nothing found!')}</H1>
         </Box>
       )}
-      {!isLoading && !!q && children}
+      {!isLoading && !delayed && !!q && children}
     </Flex>
   )
 }

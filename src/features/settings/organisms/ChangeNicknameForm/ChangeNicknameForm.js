@@ -1,5 +1,4 @@
-import React, {useEffect, useMemo} from 'react'
-import debounce from 'debounce-fn'
+import React, {useCallback, useEffect} from 'react'
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
@@ -8,6 +7,7 @@ import {useTranslation} from 'react-i18next'
 import {Button, Input} from 'ui'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
 import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
+import {useDebouncedFunc} from 'useDebouncedFunc'
 
 const schema = yup.object().shape({
   nickname: yup
@@ -20,37 +20,28 @@ const schema = yup.object().shape({
 export const ChangeNicknameForm = ({user}) => {
   const {t} = useTranslation('settings')
 
-  const [execExistsQuery, existing] = useMyLazyQuery(doesNicknameExist())
   const [update, {loading: updating}] = useMyMutation(updateNickname())
 
-  const doesExistDebounced = useMemo(
-    () => debounce(execExistsQuery, {wait: 1000, before: true, after: true}),
-    [execExistsQuery],
-  )
+  const [execExistsQuery, {data, loading}] = useMyLazyQuery(doesNicknameExist())
+  const [doesExistDebounced, delayed] = useDebouncedFunc(execExistsQuery, 1000)
+  const isLoading = loading || delayed
 
   const {register, errors, handleSubmit, watch} = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
 
-  const formData = watch()
+  const {nickname} = watch()
 
   useEffect(() => {
-    if (!errors.nickname && formData.nickname)
-      doesExistDebounced({nickname: formData.nickname})
-  }, [errors.nickname, formData.nickname, doesExistDebounced])
+    if (!errors.nickname && nickname) doesExistDebounced({nickname})
+  }, [errors.nickname, nickname, doesExistDebounced])
 
-  const isLoading =
-    existing.loading ||
-    (!errors?.nickname &&
-      (existing.variables?.nickname || '') !== (formData?.nickname || ''))
-
-  const onSubmit = useMemo(
-    () =>
-      handleSubmit(data => {
-        if (!isLoading && !existing.data?.doesNicknameExist) update(data)
-      }),
-    [handleSubmit, isLoading, existing.data, update],
+  const onSubmit = useCallback(
+    handleSubmit(
+      formData => !isLoading && !data?.doesNicknameExist && update(formData),
+    ),
+    [handleSubmit, isLoading, update, data],
   )
 
   return (
@@ -62,7 +53,7 @@ export const ChangeNicknameForm = ({user}) => {
         placeholder={user.nickname}
         error={
           errors.nickname?.message ||
-          (existing.data?.doesNicknameExist && t('Nickname already exists'))
+          (data?.doesNicknameExist && t('Nickname already exists'))
         }
         isLoading={isLoading}
       />
