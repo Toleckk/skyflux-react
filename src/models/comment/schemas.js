@@ -13,8 +13,8 @@ export const CommentFragment = gql`
 `
 
 export const GET_COMMENTS_BY_POST_ID = gql`
-  query getCommentsByPostId($_id: ID!, $first: Int, $after: String) {
-    getCommentsByPostId(_id: $_id, first: $first, after: $after) {
+  query getCommentsByPostId($_id: ID!, $first: Int, $after: ID) {
+    getCommentsByPostId(post_id: $_id, first: $first, after: $after) {
       edges {
         cursor
         node {

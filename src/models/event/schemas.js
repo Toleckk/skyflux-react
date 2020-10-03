@@ -12,7 +12,7 @@ export const EventFragment = gql`
 `
 
 export const GET_EVENTS = gql`
-  query getEvents($first: Int, $after: String) {
+  query getEvents($first: Int, $after: ID) {
     getEvents(after: $after, first: $first) {
       pageInfo {
         endCursor
