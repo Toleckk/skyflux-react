@@ -9,7 +9,7 @@ export const Post = PropTypes.shape({
   likesCount: PropTypes.number.isRequired,
   commentsCount: PropTypes.number.isRequired,
   createdAt: PropTypes.string.isRequired,
-  hasMyLike: PropTypes.bool.isRequired,
+  isLikedByMe: PropTypes.bool.isRequired,
   user: MiniUser.isRequired,
 })
 

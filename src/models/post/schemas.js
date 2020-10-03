@@ -7,7 +7,7 @@ const PostFragment = gql`
     likesCount
     commentsCount
     createdAt
-    hasMyLike
+    isLikedByMe
     user {
       nickname
       avatar

@@ -12,8 +12,8 @@ export const PostCard = ({publication}) => {
   const [unlike] = useMyMutation(deleteLike({postId: publication._id}))
 
   const onClick = useCallback(
-    () => (publication.hasMyLike ? unlike() : like()),
-    [publication.hasMyLike, like, unlike],
+    () => (publication.isLikedByMe ? unlike() : like()),
+    [publication.isLikedByMe, like, unlike],
   )
 
   return (
