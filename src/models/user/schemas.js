@@ -6,7 +6,7 @@ export const UserFragment = gql`
     nickname
     avatar
     postsCount
-    subscriptionsCount
+    subsCount
     subscribersCount
     amISubscribed
     isPrivate
