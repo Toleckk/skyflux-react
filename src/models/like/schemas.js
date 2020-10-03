@@ -2,7 +2,7 @@ import {gql} from '@apollo/client'
 
 export const CREATE_LIKE = gql`
   mutation createLike($postId: ID!) {
-    createLike(postId: $postId) {
+    createLike(post_id: $postId) {
       _id
     }
   }

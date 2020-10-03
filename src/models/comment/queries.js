@@ -2,9 +2,9 @@ import deepmerge from 'deepmerge'
 import {getPostById} from 'models/post'
 import {CREATE_COMMENT, GET_COMMENTS_BY_POST_ID} from './schemas'
 
-export const getCommentsByPostId = (_id, variables = {}) => ({
+export const getCommentsByPostId = (postId, variables = {}) => ({
   query: GET_COMMENTS_BY_POST_ID,
-  variables: deepmerge({_id}, variables),
+  variables: deepmerge({postId}, variables),
 })
 
 export const createComment = variables => ({
