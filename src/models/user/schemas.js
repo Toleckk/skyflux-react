@@ -119,12 +119,18 @@ export const RESET_PASSWORD = gql`
 
 export const MAKE_ACCOUNT_PRIVATE = gql`
   mutation makeAccountPrivate {
-    makeAccountPrivate
+    makeAccountPrivate {
+      _id
+      private
+    }
   }
 `
 
 export const MAKE_ACCOUNT_PUBLIC = gql`
   mutation makeAccountPublic {
-    makeAccountPublic
+    makeAccountPublic {
+      _id
+      private
+    }
   }
 `
