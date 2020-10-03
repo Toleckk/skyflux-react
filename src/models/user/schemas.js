@@ -89,10 +89,8 @@ export const CREATE_USER = gql`
 `
 
 export const UPDATE_PROFILE_INFO = gql`
-  mutation updateProfileInfo($avatar: String, $description: DescrpitionInput) {
-    updateProfileInfo(
-      profileInfo: {avatar: $avatar, description: $description}
-    ) {
+  mutation updateProfileInfo($avatar: String, $description: DescrpitionInput!) {
+    updateProfileInfo(avatar: $avatar, description: $description) {
       _id
     }
   }
