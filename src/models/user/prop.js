@@ -16,7 +16,7 @@ export const User = PropTypes.shape({
   subsCount: PropTypes.number.isRequired,
   subscribersCount: PropTypes.number.isRequired,
   isSubscribedByMe: PropTypes.bool.isRequired,
-  isPrivate: PropTypes.bool.isRequired,
+  private: PropTypes.bool.isRequired,
   description: Description.isRequired,
 })
 

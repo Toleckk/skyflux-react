@@ -9,7 +9,7 @@ export const UserFragment = gql`
     subsCount
     subscribersCount
     isSubscribedByMe
-    isPrivate
+    private
     description {
       about
       birthday
