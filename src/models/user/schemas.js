@@ -38,7 +38,7 @@ export const GET_USER_BY_NICKNAME = gql`
 
 export const GET_SUGGESTIONS = gql`
   query getSuggestions {
-    getSuggestions {
+    getSuggestions(first: 4) {
       edges {
         node {
           _id
