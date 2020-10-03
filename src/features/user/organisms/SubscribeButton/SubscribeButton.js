@@ -13,9 +13,9 @@ export const SubscribeButton = ({user}) => {
 
   return (
     <Button
-      onClick={user.amISubscribed ? () => unsubscribe() : () => subscribe()}
+      onClick={user.isSubscribedByMe ? () => unsubscribe() : () => subscribe()}
     >
-      {t(user.amISubscribed ? 'Do not read' : 'Read')}
+      {t(user.isSubscribedByMe ? 'Do not read' : 'Read')}
     </Button>
   )
 }
