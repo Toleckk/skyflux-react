@@ -4,7 +4,7 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {Avatar, H2} from 'ui'
 import {me} from 'models/user'
-import {removeCurrentSession} from 'models/session'
+import {deleteCurrentSession} from 'models/session'
 import {NavigationButton} from '../../molecules'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
 import {EventsDisplay} from '../EventsDisplay'
@@ -12,7 +12,7 @@ import {StyledItem} from './styles'
 
 export const DesktopNav = withTranslation('nav')(({t}) => {
   const {data, loading} = useMyQuery(me())
-  const [logout] = useMyMutation(removeCurrentSession())
+  const [logout] = useMyMutation(deleteCurrentSession())
 
   const {close, toggle, isOpened} = useModal('notifications')
 

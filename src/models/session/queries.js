@@ -1,5 +1,5 @@
 import {me} from 'models/user'
-import {CREATE_SESSION, REMOVE_CURRENT_SESSION} from './schemas'
+import {CREATE_SESSION, DELETE_CURRENT_SESSION} from './schemas'
 
 export const createSession = (variables = {}) => ({
   mutation: CREATE_SESSION,
@@ -9,7 +9,7 @@ export const createSession = (variables = {}) => ({
     localStorage.setItem('token', createSession || null),
 })
 
-export const removeCurrentSession = () => ({
-  mutation: REMOVE_CURRENT_SESSION,
+export const deleteCurrentSession = () => ({
+  mutation: DELETE_CURRENT_SESSION,
   onCompleted: (_, {client}) => client.resetStore(),
 })

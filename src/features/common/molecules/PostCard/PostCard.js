@@ -3,13 +3,13 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Icon, Text} from 'ui'
 import {Post} from 'models/post'
 import {useMyMutation} from 'features/common/hooks'
-import {createLike, removeLike} from 'models/like'
+import {createLike, deleteLike} from 'models/like'
 import {Link} from 'react-router-dom'
 import {PublicationCard} from '../PublicationCard'
 
 export const PostCard = ({publication}) => {
   const [like] = useMyMutation(createLike({postId: publication._id}))
-  const [unlike] = useMyMutation(removeLike({postId: publication._id}))
+  const [unlike] = useMyMutation(deleteLike({postId: publication._id}))
 
   const onClick = useCallback(
     () => (publication.hasMyLike ? unlike() : like()),

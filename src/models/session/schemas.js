@@ -6,8 +6,8 @@ export const CREATE_SESSION = gql`
   }
 `
 
-export const REMOVE_CURRENT_SESSION = gql`
-  mutation removeCurrentSession {
-    removeCurrentSession
+export const DELETE_CURRENT_SESSION = gql`
+  mutation deleteCurrentSession {
+    deleteCurrentSession
   }
 `
