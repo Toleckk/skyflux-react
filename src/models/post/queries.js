@@ -1,4 +1,5 @@
 import deepmerge from 'deepmerge'
+import {addNodeToConnection} from 'utils'
 import {me} from 'models/user'
 import {
   CREATE_POST,
@@ -29,7 +30,20 @@ export const getFoundPosts = (text, variables = {}) => ({
   skip: !text,
 })
 
-export const createPost = () => ({
+export const createPost = (variables = {}) => ({
   mutation: CREATE_POST,
-  refetchQueries: [me(), getFeed()],
+  variables,
+  refetchQueries: [me()],
+  onCompleted: ({createPost: node}, {client: {cache}}) => {
+    const {me: user} = cache.readQuery(me())
+
+    const updateConnection = addNodeToConnection(node)
+
+    cache.modify({
+      fields: {
+        [`getPostsByNickname({"first":25,"nickname":"${user.nickname}"})`]: updateConnection,
+        'getFeed({"first":25})': updateConnection,
+      },
+    })
+  },
 })

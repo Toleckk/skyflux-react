@@ -81,7 +81,8 @@ export const GET_FOUND_POSTS = gql`
 export const CREATE_POST = gql`
   mutation createPost($text: String!) {
     createPost(text: $text) {
-      _id
+      ...PostFragment
     }
   }
+  ${PostFragment}
 `
