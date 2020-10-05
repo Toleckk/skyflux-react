@@ -2,10 +2,13 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar} from 'ui'
 import {MiniUser} from 'models/user'
+import {useIsMe} from 'features/common/hooks'
 import {BigNickname} from '../../atoms'
 import {SubscribeButton} from '../../organisms'
 
 export const UserRow = ({user}) => {
+  const isMe = useIsMe(user)
+
   return (
     <Flex padding="0.5rem" alignItems="center">
       <Box height="2.5rem" width="2.5rem" margin="0 1rem 0 0.5rem">
@@ -14,7 +17,7 @@ export const UserRow = ({user}) => {
       <Box flex={1}>
         <BigNickname>{user.nickname}</BigNickname>
       </Box>
-      <SubscribeButton user={user} />
+      {!isMe && <SubscribeButton user={user} />}
     </Flex>
   )
 }
