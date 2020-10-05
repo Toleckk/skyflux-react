@@ -26,7 +26,7 @@ export const PrivateSwitcher = ({user}) => {
       <Box marginLeft="2rem">
         <Toggle
           onChange={onChange}
-          defaultChecked={user.isPrivate}
+          defaultChecked={user.private}
           disabled={loadingPrivate || loadingPublic}
         />
       </Box>

@@ -1,5 +1,5 @@
 import {getPostById} from 'models/post'
-import {CREATE_LIKE, REMOVE_LIKE} from './schemas'
+import {CREATE_LIKE, DELETE_LIKE} from './schemas'
 
 export const createLike = (variables = {}) => ({
   mutation: CREATE_LIKE,
@@ -7,8 +7,8 @@ export const createLike = (variables = {}) => ({
   refetchQueries: (_, variables) => [getPostById(variables.postId)],
 })
 
-export const removeLike = (variables = {}) => ({
-  mutation: REMOVE_LIKE,
+export const deleteLike = (variables = {}) => ({
+  mutation: DELETE_LIKE,
   variables,
   refetchQueries: (_, variables) => [getPostById(variables.postId)],
 })

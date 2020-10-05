@@ -16,7 +16,7 @@ export const UserInfo = ({user}) => {
         </Box>
         <Flex flex={1} justifyContent="space-evenly" alignItems="center">
           <Stat count={user.postsCount} name={t('Posts')} icon="post" />
-          <Stat count={user.subscriptionsCount} name={t('Reads')} icon="user" />
+          <Stat count={user.subsCount} name={t('Reads')} icon="user" />
           <Stat count={user.subscribersCount} name={t('Read by')} icon="user" />
         </Flex>
       </Flex>

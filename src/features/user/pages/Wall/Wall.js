@@ -45,7 +45,7 @@ export const Wall = withTranslation('user')(({t}) => {
       <Divider />
       {userLoading || postsLoading ? (
         <Loader />
-      ) : user.isPrivate ? (
+      ) : user.private ? (
         <PrivateScreen />
       ) : (
         <PostList posts={posts} ref={postsContainerRef} />

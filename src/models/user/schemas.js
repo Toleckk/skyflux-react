@@ -6,10 +6,10 @@ export const UserFragment = gql`
     nickname
     avatar
     postsCount
-    subscriptionsCount
+    subsCount
     subscribersCount
-    amISubscribed
-    isPrivate
+    isSubscribedByMe
+    private
     description {
       about
       birthday
@@ -38,7 +38,7 @@ export const GET_USER_BY_NICKNAME = gql`
 
 export const GET_SUGGESTIONS = gql`
   query getSuggestions {
-    getSuggestions {
+    getSuggestions(first: 4) {
       edges {
         node {
           _id
@@ -56,7 +56,7 @@ export const GET_SUGGESTIONS = gql`
 `
 
 export const GET_FOUND_USERS = gql`
-  query getFoundUsers($text: String!, $after: String, $first: Int) {
+  query getFoundUsers($text: String!, $after: ID, $first: Int) {
     getFoundUsers(text: $text, after: $after, first: $first) {
       edges {
         node {
@@ -89,10 +89,8 @@ export const CREATE_USER = gql`
 `
 
 export const UPDATE_PROFILE_INFO = gql`
-  mutation updateProfileInfo($avatar: String, $description: DescrpitionInput) {
-    updateProfileInfo(
-      profileInfo: {avatar: $avatar, description: $description}
-    ) {
+  mutation updateProfileInfo($avatar: String, $description: DescrpitionInput!) {
+    updateProfileInfo(avatar: $avatar, description: $description) {
       _id
     }
   }
@@ -121,12 +119,18 @@ export const RESET_PASSWORD = gql`
 
 export const MAKE_ACCOUNT_PRIVATE = gql`
   mutation makeAccountPrivate {
-    makeAccountPrivate
+    makeAccountPrivate {
+      _id
+      private
+    }
   }
 `
 
 export const MAKE_ACCOUNT_PUBLIC = gql`
   mutation makeAccountPublic {
-    makeAccountPublic
+    makeAccountPublic {
+      _id
+      private
+    }
   }
 `

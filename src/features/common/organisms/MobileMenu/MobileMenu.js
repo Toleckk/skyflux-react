@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {Avatar, H2, Icon} from 'ui'
 import {me} from 'models/user'
-import {removeCurrentSession} from 'models/session'
+import {deleteCurrentSession} from 'models/session'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
 import {StyledBigNickname} from './styles'
 
@@ -17,7 +17,7 @@ export const MobileMenu = ({onItemClick}) => {
   const {data, loading} = useMyQuery(me())
   const user = data?.me
 
-  const [logout] = useMyMutation(removeCurrentSession())
+  const [logout] = useMyMutation(deleteCurrentSession())
 
   if (loading && !data) return <></>
 

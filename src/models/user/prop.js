@@ -13,10 +13,10 @@ export const User = PropTypes.shape({
   nickname: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   postsCount: PropTypes.number.isRequired,
-  subscriptionsCount: PropTypes.number.isRequired,
+  subsCount: PropTypes.number.isRequired,
   subscribersCount: PropTypes.number.isRequired,
-  amISubscribed: PropTypes.bool.isRequired,
-  isPrivate: PropTypes.bool.isRequired,
+  isSubscribedByMe: PropTypes.bool.isRequired,
+  private: PropTypes.bool.isRequired,
   description: Description.isRequired,
 })
 

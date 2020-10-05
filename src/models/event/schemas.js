@@ -1,18 +1,38 @@
 import {gql} from '@apollo/client'
 
-export const EventFragment = gql`
-  fragment EventFragment on Event {
-    _id
-    user {
-      _id
-      nickname
-      avatar
+export const MiniSubEventFragment = gql`
+  fragment MiniSubEventFragment on SubEvent {
+    kind
+    subj {
+      sub {
+        accepted
+        from {
+          _id
+          avatar
+          nickname
+        }
+      }
+    }
+  }
+`
+
+export const MiniCommentEventFragment = gql`
+  fragment MiniCommentEventFragment on CommentEvent {
+    kind
+    subj {
+      comment {
+        text
+        user {
+          avatar
+          nickname
+        }
+      }
     }
   }
 `
 
 export const GET_EVENTS = gql`
-  query getEvents($first: Int, $after: String) {
+  query getEvents($first: Int, $after: ID) {
     getEvents(after: $after, first: $first) {
       pageInfo {
         endCursor
@@ -23,10 +43,12 @@ export const GET_EVENTS = gql`
       edges {
         cursor
         node {
-          ...EventFragment
+          ...MiniCommentEventFragment
+          ...MiniSubEventFragment
         }
       }
     }
   }
-  ${EventFragment}
+  ${MiniSubEventFragment}
+  ${MiniCommentEventFragment}
 `
