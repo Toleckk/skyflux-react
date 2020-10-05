@@ -13,3 +13,12 @@ export const DELETE_SUB = gql`
     deleteSub(nickname: $nickname)
   }
 `
+
+export const ACCEPT_SUB = gql`
+  mutation acceptSub($_id: ID!) {
+    acceptSub(sub_id: $_id) {
+      _id
+      accepted
+    }
+  }
+`
