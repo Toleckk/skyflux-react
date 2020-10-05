@@ -3,7 +3,8 @@ import {MiniUser} from 'models/user'
 
 export const SubRequest = PropTypes.shape({
   _id: PropTypes.string.isRequired,
-  from: MiniUser,
+  from: MiniUser.isRequired,
+  accepted: PropTypes.bool.isRequired,
 })
 
 export const SubConnectionList = PropTypes.arrayOf(
