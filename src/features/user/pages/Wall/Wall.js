@@ -7,7 +7,7 @@ import {useInfiniteScroll} from 'useInfiniteScroll'
 import {Divider, Loader} from 'ui'
 import {PostForm} from 'features/common/organisms'
 import {PostList} from 'features/common/molecules'
-import {useMyQuery} from 'features/common/hooks'
+import {useIsMe, useMyQuery} from 'features/common/hooks'
 import {getUserByNickname} from 'models/user'
 import {getPostsByNickname} from 'models/post'
 import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
@@ -15,6 +15,9 @@ import {StyledHeader, StyledStaticDivider} from './styles'
 
 export const Wall = withTranslation('user')(({t}) => {
   const {nickname} = useParams()
+
+  const isMe = useIsMe({nickname})
+
   const {data: userData, loading: userLoading} = useMyQuery(
     getUserByNickname(nickname),
   )
@@ -41,11 +44,15 @@ export const Wall = withTranslation('user')(({t}) => {
         </Box>
       </ReactVisibilitySensor>
       <Divider />
-      <PostForm placeholder={t('Write a text')} />
-      <Divider />
+      {isMe && (
+        <>
+          <PostForm placeholder={t('Write a text')} />
+          <Divider />
+        </>
+      )}
       {userLoading || postsLoading ? (
         <Loader />
-      ) : user.private ? (
+      ) : user.private && !isMe ? (
         <PrivateScreen />
       ) : (
         <PostList posts={posts} ref={postsContainerRef} />
