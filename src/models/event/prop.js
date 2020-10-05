@@ -1,21 +1,30 @@
 import PropTypes from 'prop-types'
-import {MiniUser} from 'models/user'
-import {ID} from 'models/post'
+import {Comment} from 'models/comment'
+import {SubRequest} from 'models/sub'
+
+export const SubEventBody = PropTypes.shape({
+  sub: SubRequest.isRequired,
+})
+
+export const CommentEventBody = PropTypes.shape({
+  comment: Comment.isRequired,
+})
 
 export const Event = PropTypes.shape({
-  user: MiniUser.isRequired,
+  kind: PropTypes.string,
+  subj: PropTypes.oneOfType([SubEventBody, CommentEventBody]),
 })
 
 export const EventPageInfo = PropTypes.shape({
   hasNextPage: PropTypes.bool.isRequired,
   hasPreviousPage: PropTypes.bool.isRequired,
-  startCursor: ID.isRequired,
-  endCursor: ID.isRequired,
+  startCursor: PropTypes.string.isRequired,
+  endCursor: PropTypes.string.isRequired,
 })
 
 export const EventConnectionList = PropTypes.arrayOf(
   PropTypes.shape({
-    cursor: ID.isRequired,
+    cursor: PropTypes.string.isRequired,
     node: Event.isRequired,
   }).isRequired,
 )
