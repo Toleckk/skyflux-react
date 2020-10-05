@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useParams} from 'react-router'
-import {useInfiniteScroll} from 'useInfiniteScroll'
+import {useInfiniteScroll} from 'utils'
 import {Loader} from 'ui'
 import {CommentList, PostCard} from 'features/common/molecules'
 import {useMyQuery} from 'features/common/hooks'

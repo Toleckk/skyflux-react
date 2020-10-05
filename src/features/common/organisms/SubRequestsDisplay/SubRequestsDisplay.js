@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {useInfiniteScroll} from 'useInfiniteScroll'
+import {useInfiniteScroll} from 'utils'
 import {H2, Loader} from 'ui'
 import {getSubRequests} from 'models/sub'
 import {useMyQuery} from '../../hooks'

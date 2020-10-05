@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch} from 'react-router-dom'
-import {PublicRoute} from 'Route'
+import {PublicRoute} from 'utils'
 import {Auth, Message, Register, Reset, Restore} from './pages'
 import {Landing} from './templates'
 

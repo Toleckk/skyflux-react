@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Trans, withTranslation} from 'react-i18next'
-import {useInfiniteScroll} from 'useInfiniteScroll'
+import {useInfiniteScroll} from 'utils'
 import {PostForm} from 'features/common/organisms'
 import {PostList, UserList} from 'features/common/molecules'
 import {useMyQuery} from 'features/common/hooks'

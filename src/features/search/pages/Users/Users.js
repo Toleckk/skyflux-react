@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
-import {useInfiniteScroll} from 'useInfiniteScroll'
+import {useInfiniteScroll} from 'utils'
 import {useMyQuery} from 'features/common/hooks'
 import {getFoundUsers} from 'models/user'
 import {Search} from '../../templates'

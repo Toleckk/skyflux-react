@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next'
 import {useHistory, useLocation} from 'react-router'
 import {parse, stringify} from 'query-string'
 import {H1} from 'ui'
-import {useDebouncedFunc} from 'useDebouncedFunc'
+import {useDebouncedFunc} from 'utils'
 import {SearchInput} from '../../molecules'
 import {SearchLoader} from '../../atoms'
 

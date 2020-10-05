@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch} from 'react-router-dom'
-import {PrivateRoute} from 'Route'
+import {PrivateRoute} from 'utils'
 import {Common} from './pages'
 
 export const SettingsRouter = () => (

@@ -5,9 +5,9 @@ import {yupResolver} from '@hookform/resolvers'
 import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Button, Input} from 'ui'
+import {useDebouncedFunc} from 'utils'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
 import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
-import {useDebouncedFunc} from 'useDebouncedFunc'
 
 const schema = yup.object().shape({
   nickname: yup
