@@ -14,6 +14,31 @@ export const DELETE_SUB = gql`
   }
 `
 
+export const GET_SUB_REQUESTS = gql`
+  query getSubRequests($first: Int, $after: ID) {
+    getSubRequests(first: $first, after: $after) {
+      edges {
+        cursor
+        node {
+          _id
+          accepted
+          from {
+            _id
+            nickname
+            avatar
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+`
+
 export const ACCEPT_SUB = gql`
   mutation acceptSub($_id: ID!) {
     acceptSub(sub_id: $_id) {
