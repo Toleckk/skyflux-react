@@ -1,16 +1,15 @@
 import React, {useRef} from 'react'
 import {useClickAway} from 'react-use'
-import {Box, Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
-import {Avatar, H2} from 'ui'
+import {Flex} from 'reflexbox/styled-components'
+import {Avatar} from 'ui'
 import {me} from 'models/user'
 import {deleteCurrentSession} from 'models/session'
 import {NavigationButton} from '../../molecules'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
-import {EventsDisplay} from '../EventsDisplay'
+import {SubRequestsDisplay} from '..'
 import {StyledItem} from './styles'
 
-export const DesktopNav = withTranslation('nav')(({t}) => {
+export const DesktopNav = () => {
   const {data, loading} = useMyQuery(me())
   const [logout] = useMyMutation(deleteCurrentSession())
 
@@ -51,19 +50,9 @@ export const DesktopNav = withTranslation('nav')(({t}) => {
       </ul>
       {isOpened && (
         <Flex flexDirection="column" paddingRight="1rem">
-          <Flex
-            flexBasis="0px"
-            flexGrow="1"
-            overflow="hidden"
-            flexDirection="column"
-          >
-            <Box margin="0 2rem">
-              <H2>{t('Subscriptions requests')}</H2>
-            </Box>
-            <EventsDisplay />
-          </Flex>
+          <SubRequestsDisplay />
         </Flex>
       )}
     </Flex>
   )
-})
+}
