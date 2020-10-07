@@ -1,6 +1,7 @@
 export * from './Avatar'
 export * from './BottomBar'
 export * from './Button'
+export * from './Date'
 export * from './Divider'
 export * from './H1'
 export * from './H2'

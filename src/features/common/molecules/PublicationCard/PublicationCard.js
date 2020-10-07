@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, SecondaryText, Text} from 'ui'
+import {Avatar, Date, SecondaryText} from 'ui'
 import {MiniUser} from 'models/user'
 import {StyledContainer, StyledDivider, StyledNickname} from './styles'
 
@@ -16,7 +16,7 @@ export const PublicationCard = ({publication, children}) => {
           <Box flex={1} marginLeft="1rem">
             <StyledNickname>{publication.user.nickname}</StyledNickname>
           </Box>
-          <Text>{publication.createdAt}</Text>
+          <Date date={publication.createdAt} />
         </Flex>
         <Box margin="5px 0 10px">
           <SecondaryText>{publication.text}</SecondaryText>

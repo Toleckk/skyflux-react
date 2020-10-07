@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Avatar, Icon, Text} from 'ui'
+import {Avatar, Date, Icon, Text} from 'ui'
 import {User} from 'models/user'
 import {About, BigNickname, Stat} from '../../atoms'
 
@@ -33,7 +33,7 @@ export const UserInfo = ({user}) => {
           <>
             <Icon icon="birthday" width="1em" height="1em" />
             &nbsp;
-            {user.description.birthday}
+            <Date date={user.description.birthday} time={false} />
             &nbsp;&nbsp;
           </>
         )}
