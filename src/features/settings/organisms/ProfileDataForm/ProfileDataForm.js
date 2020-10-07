@@ -10,11 +10,11 @@ import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
 
 const schema = yup.object().shape({
-  avatar: yup.string().url().required(),
+  avatar: yup.string().url(),
   description: yup
     .object()
     .shape({
-      birthday: yup.date(),
+      birthday: yup.string(),
       from: yup.string().max(36),
       about: yup.string().max(120),
     })
