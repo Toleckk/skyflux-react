@@ -5,11 +5,17 @@ import {Input} from 'ui'
 import {StyledContainer} from './styles'
 
 export const DateInput = forwardRef(({value, label, ...props}, ref) => {
-  const [date, setDate] = useState(new Date(value))
+  const [date, setDate] = useState(value ? new Date(value) : value)
 
   return (
     <StyledContainer>
-      <input hidden readOnly value={date} ref={ref} {...props} />
+      <input
+        hidden
+        readOnly
+        value={date?.toDateString?.() || ''}
+        ref={ref}
+        {...props}
+      />
       <DatePicker
         dateFormat="dd.MM.yyyy"
         customInput={<Input label={label} />}
