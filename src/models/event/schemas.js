@@ -29,6 +29,10 @@ export const MiniCommentEventFragment = gql`
           avatar
           nickname
         }
+        post {
+          _id
+          text
+        }
       }
     }
   }
