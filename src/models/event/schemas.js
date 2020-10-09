@@ -3,6 +3,7 @@ import {gql} from '@apollo/client'
 export const MiniSubEventFragment = gql`
   fragment MiniSubEventFragment on SubEvent {
     kind
+    createdAt
     subj {
       sub {
         accepted
@@ -19,9 +20,11 @@ export const MiniSubEventFragment = gql`
 export const MiniCommentEventFragment = gql`
   fragment MiniCommentEventFragment on CommentEvent {
     kind
+    createdAt
     subj {
       comment {
         text
+        createdAt
         user {
           avatar
           nickname
