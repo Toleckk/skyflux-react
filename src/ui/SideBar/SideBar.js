@@ -25,6 +25,8 @@ export const SideBar = styled.div`
   border-radius: 1rem;
   border: 1px solid transparent;
 
+  background-color: rgb(${props => props.theme.primaryDark});
+
   ${props => props.minHeight && expandable(props.minHeight)}
 
   ${props => props.border === true && border}
