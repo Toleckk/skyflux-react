@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react'
 import PropTypes from 'prop-types'
-import {Text} from '../Text'
+import {Tip} from '../Tip'
 
 export const Date = ({date, time}) => {
   const dateStr = useMemo(
@@ -10,7 +10,7 @@ export const Date = ({date, time}) => {
     [date, time],
   )
 
-  return <Text>{dateStr}</Text>
+  return <Tip>{dateStr}</Tip>
 }
 
 Date.defaultProps = {
