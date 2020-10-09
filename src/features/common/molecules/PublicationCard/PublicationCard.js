@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, Date, SecondaryText} from 'ui'
+import {Date, SecondaryText} from 'ui'
 import {MiniUser} from 'models/user'
+import {UserBadge} from '../UserBadge'
 
 export const PublicationCard = ({publication, children}) => {
   return (
     <Flex flexDirection="column">
       <Flex alignItems="center">
         <Box flex={1}>
-          <Box width="2rem" height="2rem">
-            <Avatar src={publication.user.avatar} />
-          </Box>
+          <UserBadge user={publication.user} />
         </Box>
         <Date date={publication.createdAt} />
       </Flex>
