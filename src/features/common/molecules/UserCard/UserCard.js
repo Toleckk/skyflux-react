@@ -1,23 +1,32 @@
-import React from 'react'
+import React, {useMemo} from 'react'
+import PropTypes from 'prop-types'
 import {Box} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {Avatar} from 'ui'
 import {MiniUser} from 'models/user'
 import {StyledContainer, StyledNickname} from './styles'
 
-export const UserCard = ({user}) => (
-  <Link to={'/@' + user.nickname}>
-    <StyledContainer>
-      <Box width="7.5rem" height="7.5rem">
-        <Avatar src={user.avatar} />
-      </Box>
-      <Box marginTop="1.5rem">
-        <StyledNickname>@{user.nickname}</StyledNickname>
-      </Box>
-    </StyledContainer>
-  </Link>
-)
+export const UserCard = ({user, children}) => {
+  const link = '/@' + user.nickname
+
+  const Component = useMemo(() => (children ? 'div' : Link), [children])
+
+  return (
+    <Component to={link}>
+      <StyledContainer>
+        <Box as={Link} to={link} width="5rem" height="5rem">
+          <Avatar src={user.avatar} />
+        </Box>
+        <Box as={Link} to={link} marginTop="1rem">
+          <StyledNickname>@{user.nickname}</StyledNickname>
+        </Box>
+        {children}
+      </StyledContainer>
+    </Component>
+  )
+}
 
 UserCard.propTypes = {
   user: MiniUser.isRequired,
+  children: PropTypes.node,
 }
