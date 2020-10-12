@@ -47,3 +47,9 @@ export const ACCEPT_SUB = gql`
     }
   }
 `
+
+export const GET_SUB_REQUESTS_COUNT = gql`
+  query getSubRequestsCount {
+    getSubRequestsCount
+  }
+`

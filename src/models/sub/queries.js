@@ -1,5 +1,11 @@
 import {getUserByNickname} from 'models/user'
-import {ACCEPT_SUB, CREATE_SUB, DELETE_SUB, GET_SUB_REQUESTS} from './schemas'
+import {
+  ACCEPT_SUB,
+  CREATE_SUB,
+  DELETE_SUB,
+  GET_SUB_REQUESTS,
+  GET_SUB_REQUESTS_COUNT,
+} from './schemas'
 
 export const createSub = (variables = {}) => ({
   mutation: CREATE_SUB,
@@ -21,4 +27,8 @@ export const getSubRequests = (variables = {}) => ({
 export const acceptSub = (variables = {}) => ({
   mutation: ACCEPT_SUB,
   variables,
+})
+
+export const getSubRequestsCount = () => ({
+  query: GET_SUB_REQUESTS_COUNT,
 })
