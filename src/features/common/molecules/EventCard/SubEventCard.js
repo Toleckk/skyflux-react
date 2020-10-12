@@ -1,6 +1,6 @@
 import React from 'react'
 import {withTranslation} from 'react-i18next'
-import {Flex} from 'reflexbox/styled-components'
+import {Box, Flex} from 'reflexbox/styled-components'
 import {Date, Text} from 'ui'
 import {UserBadge} from '../UserBadge'
 
@@ -13,7 +13,9 @@ export const SubEventCard = withTranslation('sub')(({event, t}) => (
         {t(event.subj.sub.accepted ? 'now reads you' : 'wants to read you')}
       </Text>
     </Flex>
-    <Date date={event.createdAt} />
+    <Box marginLeft="1rem">
+      <Date date={event.createdAt} />
+    </Box>
   </Flex>
 ))
 

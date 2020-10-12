@@ -1,10 +1,10 @@
 import React, {forwardRef} from 'react'
 import {EventConnectionList} from 'models/event'
-import {PublicationList} from '../PublicationList'
 import {EventCard} from '../EventCard'
+import {StyledPublicationList} from './styles'
 
 export const EventList = forwardRef(({events}, ref) => (
-  <PublicationList publications={events} Card={EventCard} ref={ref} />
+  <StyledPublicationList publications={events} Card={EventCard} ref={ref} />
 ))
 
 EventList.displayName = 'EventList'

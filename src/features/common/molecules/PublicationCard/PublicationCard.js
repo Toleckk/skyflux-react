@@ -9,7 +9,7 @@ export const PublicationCard = ({publication, children}) => {
   return (
     <Flex flexDirection="column">
       <Flex alignItems="center">
-        <Box flex={1}>
+        <Box flex={1} marginRight="1rem">
           <UserBadge user={publication.user} />
         </Box>
         <Date date={publication.createdAt} />
