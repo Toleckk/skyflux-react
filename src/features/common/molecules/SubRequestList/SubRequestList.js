@@ -1,14 +1,14 @@
 import React, {forwardRef} from 'react'
 import {SubConnectionList} from 'models/sub'
 import {SubRequestCard} from '../SubRequestCard'
-import {StyledItem, StyledList} from './styles'
+import {StyledList} from './styles'
 
 export const SubRequestList = forwardRef(({subs}, ref) => (
   <StyledList ref={ref}>
     {subs.map(sub => (
-      <StyledItem key={sub.cursor}>
+      <li key={sub.cursor}>
         <SubRequestCard sub={sub.node} />
-      </StyledItem>
+      </li>
     ))}
   </StyledList>
 ))
