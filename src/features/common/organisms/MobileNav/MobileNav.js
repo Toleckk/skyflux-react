@@ -6,7 +6,7 @@ import {Avatar} from 'ui'
 import {me} from 'models/user'
 import {useModal, useMyQuery} from '../../hooks'
 import {NavigationButton} from '../../molecules'
-import {MobileMenu, SubRequestsDisplay} from '..'
+import {MobileMenu, NotificationTabs} from '..'
 import {StyledItem} from './styles'
 
 export const MobileNav = () => {
@@ -35,7 +35,7 @@ export const MobileNav = () => {
         </StyledItem>
       </Flex>
       <Drawer visible={isOpened} onClose={close} placement="right">
-        <SubRequestsDisplay />
+        <NotificationTabs />
       </Drawer>
       <Drawer visible={menuOpened} onClose={closeMenu} placement="right">
         <MobileMenu onItemClick={closeMenu} />

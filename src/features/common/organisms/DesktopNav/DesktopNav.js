@@ -6,7 +6,7 @@ import {me} from 'models/user'
 import {deleteCurrentSession} from 'models/session'
 import {NavigationButton} from '../../molecules'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
-import {SubRequestsDisplay} from '..'
+import {NotificationTabs} from '../NotificationTabs'
 import {StyledItem} from './styles'
 
 export const DesktopNav = () => {
@@ -49,8 +49,10 @@ export const DesktopNav = () => {
         </StyledItem>
       </ul>
       {isOpened && (
-        <Flex flexDirection="column" paddingRight="1rem">
-          <SubRequestsDisplay />
+        <Flex flexDirection="column">
+          <Flex flexBasis={0} flexGrow={1} overflowY="hidden">
+            <NotificationTabs />
+          </Flex>
         </Flex>
       )}
     </Flex>
