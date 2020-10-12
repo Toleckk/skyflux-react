@@ -5,7 +5,9 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 2rem;
+  height: 100%;
+
+  padding: 1.5rem;
 
   box-shadow: -1px 1px 10px rgb(${props => props.theme.primary});
   border: 1px solid rgb(${props => props.theme.primary});

@@ -3,4 +3,6 @@ import {Nickname} from 'ui'
 
 export const StyledNickname = styled(Nickname)`
   text-align: center;
+  word-break: break-all;
+  display: block;
 `
