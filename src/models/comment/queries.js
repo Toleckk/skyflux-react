@@ -1,7 +1,11 @@
 import deepmerge from 'deepmerge'
 import {addNodeToConnection} from 'utils'
 import {getPostById} from 'models/post'
-import {CREATE_COMMENT, GET_COMMENTS_BY_POST_ID} from './schemas'
+import {
+  COMMENT_CREATED,
+  CREATE_COMMENT,
+  GET_COMMENTS_BY_POST_ID,
+} from './schemas'
 
 export const getCommentsByPostId = (postId, variables = {}) => ({
   query: GET_COMMENTS_BY_POST_ID,
@@ -20,4 +24,9 @@ export const createComment = (variables = {}) => ({
       },
     })
   },
+})
+
+export const commentCreated = (postId, variables = {}) => ({
+  subscription: COMMENT_CREATED,
+  variables: deepmerge({postId}, variables),
 })
