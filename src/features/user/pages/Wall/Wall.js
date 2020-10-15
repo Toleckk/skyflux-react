@@ -52,7 +52,7 @@ export const Wall = withTranslation('user')(({t}) => {
       )}
       {userLoading || postsLoading ? (
         <Loader />
-      ) : user.private && !isMe ? (
+      ) : user.private && !isMe && !user.isSubscribedByMe ? (
         <PrivateScreen />
       ) : (
         <PostList posts={posts} ref={postsContainerRef} />
