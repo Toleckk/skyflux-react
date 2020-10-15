@@ -57,16 +57,11 @@ export const createUser = (variables = {}) => ({
 
 export const updateProfileInfo = (variables = {}) => ({
   mutation: UPDATE_PROFILE_INFO,
-  refetchQueries: [me()],
   variables,
 })
 
 export const updateNickname = (variables = {}) => ({
   mutation: UPDATE_NICKNAME,
-  refetchQueries: ({data}) => [
-    me(),
-    getUserByNickname(data?.updateNickname?.nickname),
-  ],
   variables,
 })
 
@@ -83,12 +78,10 @@ export const resetPassword = (variables = {}) => ({
 
 export const makeAccountPrivate = (variables = {}) => ({
   mutation: MAKE_ACCOUNT_PRIVATE,
-  refetchQueries: [me()],
   variables,
 })
 
 export const makeAccountPublic = (variables = {}) => ({
   mutation: MAKE_ACCOUNT_PUBLIC,
-  refetchQueries: [me()],
   variables,
 })

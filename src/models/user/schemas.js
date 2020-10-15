@@ -92,6 +92,12 @@ export const UPDATE_PROFILE_INFO = gql`
   mutation updateProfileInfo($avatar: String, $description: DescrpitionInput!) {
     updateProfileInfo(avatar: $avatar, description: $description) {
       _id
+      avatar
+      description {
+        about
+        birthday
+        from
+      }
     }
   }
 `
