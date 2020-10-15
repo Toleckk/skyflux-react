@@ -1,6 +1,5 @@
 import deepmerge from 'deepmerge'
 import {addNodeToConnection} from 'utils'
-import {getPostById} from 'models/post'
 import {
   COMMENT_CREATED,
   CREATE_COMMENT,
@@ -31,7 +30,6 @@ export const getCommentsByPostId = (postId, variables = {}) => {
 export const createComment = (variables = {}) => ({
   mutation: CREATE_COMMENT,
   variables,
-  refetchQueries: (_, {postId}) => [getPostById(postId)],
 })
 
 export const commentCreated = (postId, variables = {}) => ({

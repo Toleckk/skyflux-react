@@ -1,5 +1,6 @@
 import deepmerge from 'deepmerge'
-import {addNodeToConnection} from 'utils'
+import {addNodeToConnection, refetchOnUpdate} from 'utils'
+import {commentCreated} from 'models/comment'
 import {me} from 'models/user'
 import {
   CREATE_POST,
@@ -10,10 +11,24 @@ import {
   POST_CREATED,
 } from './schemas'
 
-export const getPostById = (_id, variables = {}) => ({
-  query: GET_POST_BY_ID,
-  variables: deepmerge({_id}, variables),
-})
+export const getPostById = (_id, variables = {}) => {
+  const {
+    subscription: commentAdded,
+    variables: commentAddedVars,
+  } = commentCreated(_id)
+
+  return {
+    query: GET_POST_BY_ID,
+    variables: deepmerge({_id}, variables),
+    subscriptions: [
+      {
+        document: commentAdded,
+        variables: commentAddedVars,
+        updateQuery: refetchOnUpdate,
+      },
+    ],
+  }
+}
 
 export const getPostsByNickname = (nickname, variables = {}) => {
   const {subscription, variables: subVariables} = postCreated(nickname)
