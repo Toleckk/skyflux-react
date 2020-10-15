@@ -36,9 +36,6 @@ export const CREATE_COMMENT = gql`
   mutation createComment($postId: ID!, $text: String!) {
     createComment(text: $text, post_id: $postId) {
       ...CommentFragment
-      post {
-        _id
-      }
     }
   }
   ${CommentFragment}
@@ -48,7 +45,23 @@ export const COMMENT_CREATED = gql`
   subscription commentCreated($postId: ID!) {
     commentCreated(post_id: $postId) {
       ...CommentFragment
+      post {
+        _id
+        commentsCount
+      }
     }
   }
   ${CommentFragment}
+`
+
+export const COMMENT_DELETED = gql`
+  subscription commentDeleted($postId: ID!) {
+    commentDeleted(post_id: $postId) {
+      _id
+      post {
+        _id
+        commentsCount
+      }
+    }
+  }
 `
