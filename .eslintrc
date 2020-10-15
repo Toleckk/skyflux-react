@@ -42,6 +42,8 @@
           "react-datepicker/dist/react-datepicker.css",
           "models/*",
           "@apollo/client/link/context",
+          "@apollo/client/utilities",
+          "@apollo/client/link/ws",
           "**/features/*",
           "**/common/*"
         ]
