@@ -60,3 +60,29 @@ export const GET_SUB_REQUESTS_COUNT = gql`
     getSubRequestsCount
   }
 `
+
+export const SUB_REQUEST_CREATED = gql`
+  subscription subRequestCreated {
+    subRequestCreated {
+      ...SubRequestFragment
+    }
+  }
+  ${SubRequestFragment}
+`
+
+export const SUB_ACCEPTED = gql`
+  subscription subAccepted {
+    subAccepted {
+      ...SubRequestFragment
+    }
+  }
+  ${SubRequestFragment}
+`
+
+export const SUB_DELETED = gql`
+  subscription subDeleted {
+    subDeleted {
+      _id
+    }
+  }
+`
