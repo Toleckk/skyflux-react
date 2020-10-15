@@ -37,7 +37,7 @@ export const createPost = (variables = {}) => ({
   onCompleted: ({createPost: node}, {client: {cache}}) => {
     const {me: user} = cache.readQuery(me())
 
-    const updateConnection = addNodeToConnection(node)
+    const updateConnection = connection => addNodeToConnection(node, connection)
 
     cache.modify({
       fields: {

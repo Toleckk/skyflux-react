@@ -1,4 +1,4 @@
-export const addNodeToConnection = node => connection => ({
+export const addNodeToConnection = (node, connection) => ({
   ...connection,
   edges: [
     ...(connection.edges.some(({cursor}) => cursor === node._id)

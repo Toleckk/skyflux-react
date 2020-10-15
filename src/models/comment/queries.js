@@ -15,9 +15,8 @@ export const createComment = (variables = {}) => ({
   onCompleted: ({createComment: node}, {client: {cache}}) => {
     cache.modify({
       fields: {
-        [`getCommentsByPostId({"first":25,"post_id":"${node.post._id}"})`]: addNodeToConnection(
-          node,
-        ),
+        [`getCommentsByPostId({"first":25,"post_id":"${node.post._id}"})`]: connection =>
+          addNodeToConnection(node, connection),
       },
     })
   },
