@@ -15,10 +15,26 @@ export const getPostById = (_id, variables = {}) => ({
   variables: deepmerge({_id}, variables),
 })
 
-export const getPostsByNickname = (nickname, variables = {}) => ({
-  query: GET_POSTS_BY_NICKNAME,
-  variables: deepmerge({nickname}, variables),
-})
+export const getPostsByNickname = (nickname, variables = {}) => {
+  const {subscription, variables: subVariables} = postCreated(nickname)
+
+  return {
+    query: GET_POSTS_BY_NICKNAME,
+    variables: deepmerge({nickname}, variables),
+    subscriptions: [
+      {
+        document: subscription,
+        variables: subVariables,
+        updateQuery: ({getPostsByNickname}, {subscriptionData: {data}}) => ({
+          getPostsByNickname: addNodeToConnection(
+            data.postCreated,
+            getPostsByNickname,
+          ),
+        }),
+      },
+    ],
+  }
+}
 
 export const getFeed = (variables = {}) => ({
   query: GET_FEED,
