@@ -74,6 +74,14 @@ export const SUB_ACCEPTED = gql`
   subscription subAccepted {
     subAccepted {
       ...SubRequestFragment
+      from {
+        _id
+        subsCount
+      }
+      to {
+        _id
+        subscribersCount
+      }
     }
   }
   ${SubRequestFragment}
@@ -83,6 +91,14 @@ export const SUB_DELETED = gql`
   subscription subDeleted {
     subDeleted {
       _id
+      from {
+        _id
+        subsCount
+      }
+      to {
+        _id
+        subscribersCount
+      }
     }
   }
 `
