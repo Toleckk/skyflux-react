@@ -86,3 +86,12 @@ export const CREATE_POST = gql`
   }
   ${PostFragment}
 `
+
+export const POST_CREATED = gql`
+  subscription postCreated($nickname: String!) {
+    postCreated(nickname: $nickname) {
+      ...PostFragment
+    }
+  }
+  ${PostFragment}
+`

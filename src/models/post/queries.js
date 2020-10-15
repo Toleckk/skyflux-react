@@ -7,6 +7,7 @@ import {
   GET_FOUND_POSTS,
   GET_POST_BY_ID,
   GET_POSTS_BY_NICKNAME,
+  POST_CREATED,
 } from './schemas'
 
 export const getPostById = (_id, variables = {}) => ({
@@ -46,4 +47,9 @@ export const createPost = (variables = {}) => ({
       },
     })
   },
+})
+
+export const postCreated = (nickname, variables = {}) => ({
+  subscription: POST_CREATED,
+  variables: deepmerge({nickname}, variables),
 })
