@@ -71,9 +71,10 @@ export const updateProfileInfo = (variables = {}) => ({
 
 export const updateNickname = (variables = {}) => ({
   mutation: UPDATE_NICKNAME,
-  refetchQueries: ({data}) => {
-    return [me(), getUserByNickname(data?.updateNickname?.nickname)]
-  },
+  refetchQueries: ({data}) => [
+    me(),
+    getUserByNickname(data?.updateNickname?.nickname),
+  ],
   variables,
 })
 
