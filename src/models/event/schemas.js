@@ -53,3 +53,22 @@ export const GET_EVENTS = gql`
   ${MiniSubEventFragment}
   ${MiniCommentEventFragment}
 `
+
+export const EVENT_ADDED = gql`
+  subscription eventAdded {
+    eventAdded {
+      ...MiniCommentEventFragment
+      ...MiniSubEventFragment
+    }
+  }
+  ${MiniCommentEventFragment}
+  ${MiniSubEventFragment}
+`
+
+export const EVENT_DELETED = gql`
+  subscription eventDeleted {
+    eventDeleted {
+      _id
+    }
+  }
+`
