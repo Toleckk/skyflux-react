@@ -14,7 +14,7 @@ export const useMyQuery = ({query, ...props}) => {
       const unsubs = options.subscriptions.map(({updateQuery, ...sub}) =>
         subscribeToMore({
           ...sub,
-          updateQuery: (...args) => updateQuery?.(...args, rest),
+          updateQuery: (...args) => updateQuery?.(...args, rest) || args[0],
         }),
       )
       isSubscribedRef.current = true
