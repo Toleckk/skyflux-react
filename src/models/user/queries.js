@@ -1,6 +1,4 @@
 import deepmerge from 'deepmerge'
-import {refetchOnUpdate} from 'utils'
-import {postCreated} from 'models/post'
 import {subAccepted, subDeleted} from 'models/sub'
 import {
   CREATE_USER,
@@ -23,7 +21,6 @@ export const me = (variables = {}) => ({
 })
 
 export const getUserByNickname = (nickname, variables = {}) => {
-  const {subscription: postAdded, variables: postVars} = postCreated(nickname)
   const {subscription: subDel, variables: subDelVars} = subDeleted()
   const {subscription: accepted, variables: acceptedVars} = subAccepted()
 
@@ -31,13 +28,8 @@ export const getUserByNickname = (nickname, variables = {}) => {
     query: GET_USER_BY_NICKNAME,
     variables: deepmerge({nickname}, variables),
     subscriptions: [
-      {document: postAdded, variables: postVars, updateQuery: refetchOnUpdate},
-      {document: subDel, variables: subDelVars, updateQuery: refetchOnUpdate},
-      {
-        document: accepted,
-        variables: acceptedVars,
-        updateQuery: refetchOnUpdate,
-      },
+      {document: subDel, variables: subDelVars},
+      {document: accepted, variables: acceptedVars},
     ],
   }
 }
