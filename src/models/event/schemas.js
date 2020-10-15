@@ -1,4 +1,6 @@
 import {gql} from '@apollo/client'
+import {SubRequestFragment} from 'models/sub'
+import {CommentFragment} from 'models/comment'
 
 export const MiniSubEventFragment = gql`
   fragment MiniSubEventFragment on SubEvent {
@@ -6,15 +8,11 @@ export const MiniSubEventFragment = gql`
     createdAt
     subj {
       sub {
-        accepted
-        from {
-          _id
-          avatar
-          nickname
-        }
+        ...SubRequestFragment
       }
     }
   }
+  ${SubRequestFragment}
 `
 
 export const MiniCommentEventFragment = gql`
@@ -23,12 +21,7 @@ export const MiniCommentEventFragment = gql`
     createdAt
     subj {
       comment {
-        text
-        createdAt
-        user {
-          avatar
-          nickname
-        }
+        ...CommentFragment
         post {
           _id
           text
@@ -36,6 +29,7 @@ export const MiniCommentEventFragment = gql`
       }
     }
   }
+  ${CommentFragment}
 `
 
 export const GET_EVENTS = gql`
@@ -58,4 +52,23 @@ export const GET_EVENTS = gql`
   }
   ${MiniSubEventFragment}
   ${MiniCommentEventFragment}
+`
+
+export const EVENT_ADDED = gql`
+  subscription eventAdded {
+    eventAdded {
+      ...MiniCommentEventFragment
+      ...MiniSubEventFragment
+    }
+  }
+  ${MiniCommentEventFragment}
+  ${MiniSubEventFragment}
+`
+
+export const EVENT_DELETED = gql`
+  subscription eventDeleted {
+    eventDeleted {
+      _id
+    }
+  }
 `

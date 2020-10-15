@@ -1,4 +1,7 @@
 import deepmerge from 'deepmerge'
+import {refetchOnUpdate} from 'utils'
+import {postCreated} from 'models/post'
+import {subAccepted, subDeleted} from 'models/sub'
 import {
   CREATE_USER,
   DOES_NICKNAME_EXIST,
@@ -19,10 +22,25 @@ export const me = (variables = {}) => ({
   variables,
 })
 
-export const getUserByNickname = (nickname, variables = {}) => ({
-  query: GET_USER_BY_NICKNAME,
-  variables: deepmerge({nickname}, variables),
-})
+export const getUserByNickname = (nickname, variables = {}) => {
+  const {subscription: postAdded, variables: postVars} = postCreated(nickname)
+  const {subscription: subDel, variables: subDelVars} = subDeleted()
+  const {subscription: accepted, variables: acceptedVars} = subAccepted()
+
+  return {
+    query: GET_USER_BY_NICKNAME,
+    variables: deepmerge({nickname}, variables),
+    subscriptions: [
+      {document: postAdded, variables: postVars, updateQuery: refetchOnUpdate},
+      {document: subDel, variables: subDelVars, updateQuery: refetchOnUpdate},
+      {
+        document: accepted,
+        variables: acceptedVars,
+        updateQuery: refetchOnUpdate,
+      },
+    ],
+  }
+}
 
 export const getSuggestions = (variables = {}) => ({
   query: GET_SUGGESTIONS,

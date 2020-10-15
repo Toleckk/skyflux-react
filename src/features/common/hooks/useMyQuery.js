@@ -1,11 +1,29 @@
 import {useQuery} from '@apollo/client'
-import {useCallback} from 'react'
+import {useCallback, useRef} from 'react'
 import {useDeepCompareMemo} from 'use-deep-compare'
+import {useDeepCompareEffect} from 'react-use'
 
 export const useMyQuery = ({query, ...props}) => {
   const options = useDeepCompareMemo(() => props, [props])
 
-  const {data, fetchMore, ...rest} = useQuery(query, options)
+  const {data, fetchMore, subscribeToMore, ...rest} = useQuery(query, options)
+
+  const isSubscribedRef = useRef(false)
+  useDeepCompareEffect(() => {
+    if (options.subscriptions && !isSubscribedRef.current) {
+      const unsubs = options.subscriptions.map(({updateQuery, ...sub}) =>
+        subscribeToMore({
+          ...sub,
+          updateQuery: (...args) => updateQuery?.(...args, rest),
+        }),
+      )
+      isSubscribedRef.current = true
+      return () => {
+        isSubscribedRef.current = false
+        unsubs.forEach(unsub => unsub())
+      }
+    }
+  }, [isSubscribedRef, options.subscriptions, subscribeToMore, rest])
 
   const name = query.definitions.find(
     ({kind}) => kind === 'OperationDefinition',
@@ -36,5 +54,5 @@ export const useMyQuery = ({query, ...props}) => {
     [data, fetchMore, name, options.variables],
   )
 
-  return {data, fetchMore: handledFetchMore, ...rest}
+  return {data, fetchMore: handledFetchMore, subscribeToMore, ...rest}
 }

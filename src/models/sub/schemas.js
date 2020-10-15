@@ -1,5 +1,17 @@
 import {gql} from '@apollo/client'
 
+export const SubRequestFragment = gql`
+  fragment SubRequestFragment on Sub {
+    _id
+    accepted
+    from {
+      _id
+      nickname
+      avatar
+    }
+  }
+`
+
 export const CREATE_SUB = gql`
   mutation createSubscription($nickname: String!) {
     createSub(nickname: $nickname) {
@@ -20,13 +32,7 @@ export const GET_SUB_REQUESTS = gql`
       edges {
         cursor
         node {
-          _id
-          accepted
-          from {
-            _id
-            nickname
-            avatar
-          }
+          ...SubRequestFragment
         }
       }
       pageInfo {
@@ -37,6 +43,7 @@ export const GET_SUB_REQUESTS = gql`
       }
     }
   }
+  ${SubRequestFragment}
 `
 
 export const ACCEPT_SUB = gql`
@@ -51,5 +58,31 @@ export const ACCEPT_SUB = gql`
 export const GET_SUB_REQUESTS_COUNT = gql`
   query getSubRequestsCount {
     getSubRequestsCount
+  }
+`
+
+export const SUB_REQUEST_CREATED = gql`
+  subscription subRequestCreated {
+    subRequestCreated {
+      ...SubRequestFragment
+    }
+  }
+  ${SubRequestFragment}
+`
+
+export const SUB_ACCEPTED = gql`
+  subscription subAccepted {
+    subAccepted {
+      ...SubRequestFragment
+    }
+  }
+  ${SubRequestFragment}
+`
+
+export const SUB_DELETED = gql`
+  subscription subDeleted {
+    subDeleted {
+      _id
+    }
   }
 `

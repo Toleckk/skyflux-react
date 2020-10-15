@@ -43,3 +43,12 @@ export const CREATE_COMMENT = gql`
   }
   ${CommentFragment}
 `
+
+export const COMMENT_CREATED = gql`
+  subscription commentCreated($postId: ID!) {
+    commentCreated(post_id: $postId) {
+      ...CommentFragment
+    }
+  }
+  ${CommentFragment}
+`
