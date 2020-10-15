@@ -1,6 +1,5 @@
 import deepmerge from 'deepmerge'
-import {addNodeToConnection, refetchOnUpdate} from 'utils'
-import {commentCreated} from 'models/comment'
+import {addNodeToConnection, deleteNodeFromConnection} from 'utils'
 import {
   CREATE_POST,
   GET_FEED,
@@ -8,40 +7,38 @@ import {
   GET_POST_BY_ID,
   GET_POSTS_BY_NICKNAME,
   POST_CREATED,
+  POST_DELETED,
 } from './schemas'
 
-export const getPostById = (_id, variables = {}) => {
-  const {
-    subscription: commentAdded,
-    variables: commentAddedVars,
-  } = commentCreated(_id)
-
-  return {
-    query: GET_POST_BY_ID,
-    variables: deepmerge({_id}, variables),
-    subscriptions: [
-      {
-        document: commentAdded,
-        variables: commentAddedVars,
-        updateQuery: refetchOnUpdate,
-      },
-    ],
-  }
-}
+export const getPostById = (_id, variables = {}) => ({
+  query: GET_POST_BY_ID,
+  variables: deepmerge({_id}, variables),
+})
 
 export const getPostsByNickname = (nickname, variables = {}) => {
-  const {subscription, variables: subVariables} = postCreated(nickname)
+  const {subscription: created, variables: createdVars} = postCreated(nickname)
+  const {subscription: deleted, variables: deletedVars} = postDeleted(nickname)
 
   return {
     query: GET_POSTS_BY_NICKNAME,
     variables: deepmerge({nickname}, variables),
     subscriptions: [
       {
-        document: subscription,
-        variables: subVariables,
+        document: created,
+        variables: createdVars,
         updateQuery: ({getPostsByNickname}, {subscriptionData: {data}}) => ({
           getPostsByNickname: addNodeToConnection(
             data.postCreated,
+            getPostsByNickname,
+          ),
+        }),
+      },
+      {
+        document: deleted,
+        variables: deletedVars,
+        updateQuery: ({getPostsByNickname}, {subscriptionData: {data}}) => ({
+          getPostsByNickname: deleteNodeFromConnection(
+            data.postDeleted,
             getPostsByNickname,
           ),
         }),
@@ -68,5 +65,10 @@ export const createPost = (variables = {}) => ({
 
 export const postCreated = (nickname, variables = {}) => ({
   subscription: POST_CREATED,
+  variables: deepmerge({nickname}, variables),
+})
+
+export const postDeleted = (nickname, variables = {}) => ({
+  subscription: POST_DELETED,
   variables: deepmerge({nickname}, variables),
 })

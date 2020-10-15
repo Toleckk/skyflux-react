@@ -91,7 +91,25 @@ export const POST_CREATED = gql`
   subscription postCreated($nickname: String!) {
     postCreated(nickname: $nickname) {
       ...PostFragment
+      user {
+        _id
+        avatar
+        nickname
+        postsCount
+      }
     }
   }
   ${PostFragment}
+`
+
+export const POST_DELETED = gql`
+  subscription postDeleted($nickname: String!) {
+    postDeleted(nickname: $nickname) {
+      _id
+      user {
+        _id
+        postsCount
+      }
+    }
+  }
 `
