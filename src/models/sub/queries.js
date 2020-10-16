@@ -37,7 +37,10 @@ export const getSubRequests = (variables = {}) => {
         document: created,
         variables: createdVars,
         updateQuery: ({getSubRequests}, {subscriptionData: {data}}) => ({
-          getSubRequests: addNodeToConnection(data.subCreated, getSubRequests),
+          getSubRequests: addNodeToConnection(
+            data.subRequestCreated,
+            getSubRequests,
+          ),
         }),
       },
       {
