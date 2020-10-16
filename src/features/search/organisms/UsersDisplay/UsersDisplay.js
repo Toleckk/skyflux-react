@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {H1, Link} from 'ui'
+import {MiniUserConnectionList} from 'models/user'
 import {UserList} from 'features/common/molecules'
 
 export const UsersDisplay = forwardRef(({users, withAllLink, mini}, ref) => {
@@ -31,7 +32,7 @@ UsersDisplay.defaultProps = {
 }
 
 UsersDisplay.propTypes = {
-  users: UserList.propTypes.users,
+  users: MiniUserConnectionList.isRequired,
   withAllLink: PropTypes.bool,
   mini: PropTypes.bool,
 }

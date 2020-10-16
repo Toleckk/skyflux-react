@@ -1,6 +1,7 @@
 import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
 import {ListItem} from 'ui'
+import {MiniUser} from 'models/user'
 import {PublicationCard} from '../PublicationCard'
 
 export const PublicationList = forwardRef(
@@ -24,7 +25,12 @@ PublicationList.defaultProps = {
 PublicationList.propTypes = {
   publications: PropTypes.arrayOf(
     PropTypes.shape({
-      node: PublicationCard.propTypes.publication,
+      node: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        createdAt: PropTypes.string.isRequired,
+        user: MiniUser.isRequired,
+      }).isRequired,
       cursor: PropTypes.string.isRequired,
     }),
   ).isRequired,

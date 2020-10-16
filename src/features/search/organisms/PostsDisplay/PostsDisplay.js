@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {H1, Link} from 'ui'
+import {PostConnectionList} from 'models/post'
 import {PostList} from 'features/common/molecules'
 
 export const PostsDisplay = forwardRef(({posts, withAllLink}, ref) => {
@@ -30,6 +31,6 @@ PostsDisplay.defaultProps = {
 }
 
 PostsDisplay.propTypes = {
-  posts: PostList.propTypes.posts,
+  posts: PostConnectionList.isRequired,
   withAllLink: PropTypes.bool,
 }

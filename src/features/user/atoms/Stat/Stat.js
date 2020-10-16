@@ -24,5 +24,5 @@ export const Stat = ({name, count, icon}) => (
 Stat.propTypes = {
   name: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
-  icon: Icon.propTypes.icon,
+  icon: PropTypes.string.isRequired,
 }

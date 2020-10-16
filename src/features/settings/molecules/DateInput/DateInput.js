@@ -39,5 +39,5 @@ DateInput.defaultProps = {
 
 DateInput.propTypes = {
   value: PropTypes.string,
-  label: Input.propTypes.label,
+  label: PropTypes.string,
 }
