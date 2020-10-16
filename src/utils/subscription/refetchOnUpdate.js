@@ -1,4 +1,1 @@
-export const refetchOnUpdate = (prev, __, {refetch}) => {
-  refetch()
-  return prev
-}
+export const refetchOnUpdate = () => Symbol.for('refetch')
