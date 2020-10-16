@@ -76,6 +76,8 @@ export const SUB_ACCEPTED = gql`
       ...SubRequestFragment
       from {
         _id
+        nickname
+        avatar
         subsCount
       }
       to {
@@ -93,6 +95,8 @@ export const SUB_DELETED = gql`
       _id
       from {
         _id
+        nickname
+        avatar
         subsCount
       }
       to {
