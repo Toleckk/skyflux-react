@@ -55,6 +55,14 @@ export const ACCEPT_SUB = gql`
   }
 `
 
+export const DECLINE_SUB = gql`
+  mutation declineSub($_id: ID!) {
+    declineSub(_id: $_id) {
+      _id
+    }
+  }
+`
+
 export const GET_SUB_REQUESTS_COUNT = gql`
   query getSubRequestsCount {
     getSubRequestsCount

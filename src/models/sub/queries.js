@@ -6,6 +6,7 @@ import {
 import {
   ACCEPT_SUB,
   CREATE_SUB,
+  DECLINE_SUB,
   DELETE_SUB,
   GET_SUB_REQUESTS,
   GET_SUB_REQUESTS_COUNT,
@@ -69,6 +70,11 @@ export const getSubRequests = (variables = {}) => {
 
 export const acceptSub = (variables = {}) => ({
   mutation: ACCEPT_SUB,
+  variables,
+})
+
+export const declineSub = (variables = {}) => ({
+  mutation: DECLINE_SUB,
   variables,
 })
 
