@@ -9,6 +9,12 @@ export const CommentFragment = gql`
       nickname
       avatar
     }
+    post {
+      user {
+        _id
+        nickname
+      }
+    }
   }
 `
 
