@@ -4,6 +4,7 @@ import {
   COMMENT_CREATED,
   COMMENT_DELETED,
   CREATE_COMMENT,
+  DELETE_COMMENT,
   GET_COMMENTS_BY_POST_ID,
 } from './schemas'
 
@@ -41,6 +42,11 @@ export const getCommentsByPostId = (postId, variables = {}) => {
 
 export const createComment = (variables = {}) => ({
   mutation: CREATE_COMMENT,
+  variables,
+})
+
+export const deleteComment = (variables = {}) => ({
+  mutation: DELETE_COMMENT,
   variables,
 })
 

@@ -87,6 +87,14 @@ export const CREATE_POST = gql`
   ${PostFragment}
 `
 
+export const DELETE_POST = gql`
+  mutation deletePost($_id: ID!) {
+    deletePost(_id: $_id) {
+      _id
+    }
+  }
+`
+
 export const POST_CREATED = gql`
   subscription postCreated($nickname: String!) {
     postCreated(nickname: $nickname) {

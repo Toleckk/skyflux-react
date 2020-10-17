@@ -2,6 +2,7 @@ import deepmerge from 'deepmerge'
 import {addNodeToConnection, deleteNodeFromConnection} from 'utils'
 import {
   CREATE_POST,
+  DELETE_POST,
   GET_FEED,
   GET_FOUND_POSTS,
   GET_POST_BY_ID,
@@ -60,6 +61,11 @@ export const getFoundPosts = (text, variables = {}) => ({
 
 export const createPost = (variables = {}) => ({
   mutation: CREATE_POST,
+  variables,
+})
+
+export const deletePost = (variables = {}) => ({
+  mutation: DELETE_POST,
   variables,
 })
 

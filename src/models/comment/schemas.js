@@ -9,6 +9,12 @@ export const CommentFragment = gql`
       nickname
       avatar
     }
+    post {
+      user {
+        _id
+        nickname
+      }
+    }
   }
 `
 
@@ -39,6 +45,14 @@ export const CREATE_COMMENT = gql`
     }
   }
   ${CommentFragment}
+`
+
+export const DELETE_COMMENT = gql`
+  mutation deleteComment($_id: ID!) {
+    deleteComment(_id: $_id) {
+      _id
+    }
+  }
 `
 
 export const COMMENT_CREATED = gql`

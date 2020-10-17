@@ -9,9 +9,10 @@ export const Comment = PropTypes.shape({
   createdAt: PropTypes.string.isRequired,
   user: MiniUser.isRequired,
   post: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  }),
+    _id: PropTypes.string,
+    user: MiniUser.isRequired,
+    text: PropTypes.string,
+  }).isRequired,
 })
 
 export const CommentPage = PropTypes.shape({

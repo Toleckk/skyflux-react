@@ -25,6 +25,10 @@ export const MiniCommentEventFragment = gql`
         post {
           _id
           text
+          user {
+            _id
+            nickname
+          }
         }
       }
     }

@@ -1,15 +1,17 @@
 import React, {useCallback} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Icon, Text} from 'ui'
-import {Post} from 'models/post'
-import {useMyMutation} from 'features/common/hooks'
-import {createLike, deleteLike} from 'models/like'
 import {Link} from 'react-router-dom'
+import {Icon, Text} from 'ui'
+import {deletePost, Post} from 'models/post'
+import {createLike, deleteLike} from 'models/like'
+import {useIsMe, useMyMutation} from '../../hooks'
 import {PublicationCard} from '../PublicationCard'
 
 export const PostCard = ({publication}) => {
+  const isMe = useIsMe(publication.user)
   const [like] = useMyMutation(createLike({postId: publication._id}))
   const [unlike] = useMyMutation(deleteLike({postId: publication._id}))
+  const [remove] = useMyMutation(deletePost({_id: publication._id}))
 
   const onClick = useCallback(
     () => (publication.isLikedByMe ? unlike() : like()),
@@ -17,7 +19,10 @@ export const PostCard = ({publication}) => {
   )
 
   return (
-    <PublicationCard publication={publication}>
+    <PublicationCard
+      publication={publication}
+      onDelete={isMe && (() => remove())}
+    >
       <Flex justifyContent="space-between">
         <Flex alignItems="center" as={Link} to={'/post/' + publication._id}>
           <Icon icon="comment" size="1.5rem" />
