@@ -2,7 +2,7 @@ import React, {useMemo} from 'react'
 import {withTranslation} from 'react-i18next'
 import {Comment, deleteComment} from 'models/comment'
 import {Link, Tip} from 'ui'
-import {useIsMe, useMyMutation} from '../../hooks'
+import {useConfirmDialog, useIsMe, useMyMutation} from '../../hooks'
 import {PublicationCard} from '..'
 
 export const CommentCard = withTranslation('post')(({publication, t}) => {
@@ -10,10 +10,11 @@ export const CommentCard = withTranslation('post')(({publication, t}) => {
   const isMyPost = useIsMe(publication.post.user)
 
   const [remove] = useMyMutation(deleteComment({_id: publication._id}))
+  const [removeWithConfirmation, Modal] = useConfirmDialog(remove)
 
   const onDelete = useMemo(
-    () => (isMyComment || isMyPost) && (() => remove()),
-    [isMyComment, isMyPost, remove],
+    () => (isMyComment || isMyPost) && (() => removeWithConfirmation()),
+    [isMyComment, isMyPost, removeWithConfirmation],
   )
 
   return (
@@ -28,6 +29,10 @@ export const CommentCard = withTranslation('post')(({publication, t}) => {
           </Tip>
         </div>
       )}
+      <Modal
+        text={t('Are you sure you want to delete this comment?')}
+        icon="trash"
+      />
     </PublicationCard>
   )
 })
