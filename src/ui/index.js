@@ -1,5 +1,6 @@
 export * from './Avatar'
 export * from './BottomBar'
+export * from './ConfirmDialog'
 export * from './Button'
 export * from './Date'
 export * from './Divider'
