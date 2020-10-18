@@ -1,3 +1,4 @@
+export * from './useConfirmDialog'
 export * from './useIsMe'
 export * from './useMediaScreens'
 export * from './useModal'
