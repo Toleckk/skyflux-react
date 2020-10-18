@@ -5,6 +5,8 @@ export const StyledDrawer = styled(Drawer)`
   display: flex;
   justify-content: center;
 
+  background-color: transparent;
+
   overflow-y: hidden !important;
   overflow-x: hidden !important;
 
