@@ -1,36 +1,23 @@
-import React, {forwardRef, useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import {Input} from 'ui'
 import {StyledContainer} from './styles'
 
-export const DateInput = forwardRef(({value, label, ...props}, ref) => {
-  const [date, setDate] = useState(value ? new Date(value) : value)
-
-  return (
-    <StyledContainer>
-      <input
-        hidden
-        readOnly
-        value={date?.toDateString?.() || ''}
-        ref={ref}
-        {...props}
-      />
-      <DatePicker
-        dateFormat="dd.MM.yyyy"
-        customInput={<Input label={label} />}
-        showYearDropdown
-        showMonthDropdown
-        selected={date}
-        onChange={setDate}
-        isClearable
-        placeholderText=""
-      />
-    </StyledContainer>
-  )
-})
-
-DateInput.displayName = 'DateInput'
+export const DateInput = ({value, label, ...props}) => (
+  <StyledContainer>
+    <DatePicker
+      dateFormat="dd.MM.yyyy"
+      customInput={<Input label={label} />}
+      showYearDropdown
+      showMonthDropdown
+      selected={value ? new Date(value) : value}
+      isClearable
+      placeholderText=""
+      {...props}
+    />
+  </StyledContainer>
+)
 
 DateInput.defaultProps = {
   value: null,
@@ -38,6 +25,6 @@ DateInput.defaultProps = {
 }
 
 DateInput.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   label: PropTypes.string,
 }

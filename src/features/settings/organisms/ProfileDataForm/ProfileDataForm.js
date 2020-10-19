@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {useForm} from 'react-hook-form'
+import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Input} from 'ui'
@@ -27,8 +27,7 @@ export const ProfileDataForm = ({user}) => {
 
   const [update] = useMyMutation(updateProfileInfo())
 
-  const {handleSubmit, register} = useForm({
-    defaultValues: user,
+  const {handleSubmit, register, control} = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
@@ -50,11 +49,11 @@ export const ProfileDataForm = ({user}) => {
           />
         </Box>
         <Box width="50%">
-          <DateInput
-            label={t('Birthdate')}
+          <Controller
             name="description.birthday"
-            value={user.description.birthday}
-            ref={register}
+            defaultValue={user.description.birthday}
+            control={control}
+            as={<DateInput label={t('Birthdate')} />}
           />
           <Input label={t('From')} name="description.from" ref={register} />
         </Box>
