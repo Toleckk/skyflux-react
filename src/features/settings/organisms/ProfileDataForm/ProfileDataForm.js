@@ -55,10 +55,20 @@ export const ProfileDataForm = ({user}) => {
             control={control}
             as={<DateInput label={t('Birthdate')} />}
           />
-          <Input label={t('From')} name="description.from" ref={register} />
+          <Input
+            label={t('From')}
+            name="description.from"
+            ref={register}
+            defaultValue={user.description.from}
+          />
         </Box>
       </Flex>
-      <Input multi name="description.about" ref={register} />
+      <Input
+        multi
+        name="description.about"
+        ref={register}
+        defaultValue={user.description.about}
+      />
     </Box>
   )
 }
