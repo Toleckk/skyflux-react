@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
-import {Input} from 'ui'
+import {Icon, Input} from 'ui'
 import {updateProfileInfo, User} from 'models/user'
 import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
@@ -27,7 +27,7 @@ export const ProfileDataForm = ({user}) => {
 
   const [update] = useMyMutation(updateProfileInfo())
 
-  const {handleSubmit, register, reset, control} = useForm({
+  const {handleSubmit, register, formState, reset, control} = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
@@ -49,7 +49,7 @@ export const ProfileDataForm = ({user}) => {
   const onSubmit = useMemo(() => handleSubmit(update), [handleSubmit, update])
 
   return (
-    <Box
+    <Flex
       as="form"
       onSubmit={onSubmit}
       onReset={resetForm}
@@ -86,7 +86,17 @@ export const ProfileDataForm = ({user}) => {
         ref={register}
         defaultValue={user.description.about}
       />
-    </Box>
+      {formState.isDirty && (
+        <Flex float="right" alignSelf="flex-end" marginTop="1rem">
+          <Box as="button" type="reset">
+            <Icon icon="reset" size="2rem" />
+          </Box>
+          <Box as="button" type="submit" marginLeft="1rem">
+            <Icon icon="confirm" size="2rem" />
+          </Box>
+        </Flex>
+      )}
+    </Flex>
   )
 }
 
