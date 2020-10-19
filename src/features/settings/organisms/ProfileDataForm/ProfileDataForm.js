@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect, useMemo} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Controller, useForm} from 'react-hook-form'
@@ -27,17 +27,34 @@ export const ProfileDataForm = ({user}) => {
 
   const [update] = useMyMutation(updateProfileInfo())
 
-  const {handleSubmit, register, control} = useForm({
+  const {handleSubmit, register, reset, control} = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
 
-  const {avatar = user.avatar, upload, loading} = useUploadAvatar()
+  const {
+    avatar = user.avatar,
+    upload,
+    loading,
+    reset: resetAvatar,
+  } = useUploadAvatar()
 
-  const onSubmit = useCallback(handleSubmit(update), [handleSubmit])
+  const resetForm = useCallback(() => {
+    reset()
+    resetAvatar()
+  }, [reset, resetAvatar])
+
+  useEffect(resetForm, [resetForm, user])
+
+  const onSubmit = useMemo(() => handleSubmit(update), [handleSubmit, update])
 
   return (
-    <Box as="form" onSubmit={onSubmit}>
+    <Box
+      as="form"
+      onSubmit={onSubmit}
+      onReset={resetForm}
+      flexDirection="column"
+    >
       <Flex justifyContent="space-between" marginBottom="1rem">
         <Box width="9rem" height="9rem">
           <AvatarUploader
