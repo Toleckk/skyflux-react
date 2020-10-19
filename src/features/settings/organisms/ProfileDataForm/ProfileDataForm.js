@@ -8,6 +8,7 @@ import {Input} from 'ui'
 import {updateProfileInfo, User} from 'models/user'
 import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
+import {useUploadAvatar} from '../../hooks'
 
 const schema = yup.object().shape({
   avatar: yup.string().url(),
@@ -29,7 +30,10 @@ export const ProfileDataForm = ({user}) => {
   const {handleSubmit, register} = useForm({
     defaultValues: user,
     resolver: yupResolver(schema),
+    mode: 'onChange',
   })
+
+  const {avatar = user.avatar, upload, loading} = useUploadAvatar()
 
   const onSubmit = useCallback(handleSubmit(update), [handleSubmit])
 
@@ -37,7 +41,13 @@ export const ProfileDataForm = ({user}) => {
     <Box as="form" onSubmit={onSubmit}>
       <Flex justifyContent="space-between" marginBottom="1rem">
         <Box width="9rem" height="9rem">
-          <AvatarUploader name="avatar" value={user.avatar} ref={register} />
+          <AvatarUploader
+            name="avatar"
+            onFileSelected={upload}
+            loading={loading}
+            value={avatar}
+            ref={register}
+          />
         </Box>
         <Box width="50%">
           <DateInput
