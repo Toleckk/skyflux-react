@@ -25,6 +25,7 @@ export const AvatarUploader = forwardRef(
 
     return (
       <StyledButton
+        type="button"
         disabled={loading}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
