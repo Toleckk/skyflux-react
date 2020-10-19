@@ -6,9 +6,14 @@ import {StyledButton, StyledIconContainer} from './styles'
 
 export const AvatarUploader = forwardRef(
   ({onFileSelected, loading, value, ...props}, ref) => {
+    const onDropAccepted = useCallback(
+      files => !loading && onFileSelected(files[0]),
+      [onFileSelected, loading],
+    )
+
     const {getRootProps, getInputProps, isDragAccept} = useDropzone({
       accept: 'image/*',
-      onDropAccepted: onFileSelected,
+      onDropAccepted,
       multiple: false,
       disabled: loading,
       maxSize: 4194304,
