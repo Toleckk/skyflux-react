@@ -1,8 +1,7 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {Drawer} from 'react-pretty-drawer'
 import useBooleanState from 'use-boolean-state'
-import {Avatar} from 'ui'
+import {Avatar, Modal} from 'ui'
 import {me} from 'models/user'
 import {useModal, useMyQuery} from '../../hooks'
 import {NavigationButton} from '../../molecules'
@@ -34,12 +33,12 @@ export const MobileNav = () => {
           </NavigationButton>
         </StyledItem>
       </Flex>
-      <Drawer visible={isOpened} onClose={close} placement="right">
+      <Modal visible={isOpened} onClose={close} placement="right">
         <NotificationTabs />
-      </Drawer>
-      <Drawer visible={menuOpened} onClose={closeMenu} placement="right">
+      </Modal>
+      <Modal visible={menuOpened} onClose={closeMenu} placement="right">
         <MobileMenu onItemClick={closeMenu} />
-      </Drawer>
+      </Modal>
     </nav>
   )
 }
