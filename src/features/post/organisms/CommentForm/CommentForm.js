@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useMemo} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
@@ -13,11 +13,17 @@ const schema = yup.object().shape({
 })
 
 export const CommentForm = ({post}) => {
-  const {register, handleSubmit} = useForm({resolver: yupResolver(schema)})
+  const {register, handleSubmit, reset} = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {text: ''},
+  })
 
   const [create] = useMyMutation(createComment())
 
-  const onSubmit = useCallback(handleSubmit(create), [handleSubmit, create])
+  const onSubmit = useMemo(
+    () => handleSubmit(data => create(data).finally(reset)),
+    [handleSubmit, create, reset],
+  )
 
   return (
     <form onSubmit={onSubmit}>
