@@ -1,9 +1,14 @@
 import React, {forwardRef, useCallback, useState} from 'react'
+import noop from 'noop6'
 import PropTypes from 'prop-types'
 import {TextArea} from 'ui'
+import {useFormEnter} from 'utils'
 
 export const PostInput = forwardRef(
-  ({onFocus, onBlur, onChange, value, defaultValue, ...props}, ref) => {
+  (
+    {onFocus, onBlur, onChange, value, defaultValue, onKeyDown, ...props},
+    ref,
+  ) => {
     const [isFocused, setFocused] = useState(false)
     const [text, setText] = useState(value || defaultValue)
 
@@ -23,14 +28,7 @@ export const PostInput = forwardRef(
       [onBlur, setFocused],
     )
 
-    const onAreaChange = useCallback(
-      event => {
-        event.persist()
-        setText(event.target.value)
-        return onChange?.(event)
-      },
-      [onChange, setText],
-    )
+    const handleEnter = useFormEnter({onKeyDown})
 
     return (
       <TextArea
@@ -39,6 +37,7 @@ export const PostInput = forwardRef(
         onFocus={onAreaFocus}
         onBlur={onAreaBlur}
         onChange={onAreaChange}
+        onKeyDown={handleEnter}
         ref={ref}
         {...props}
       />
@@ -50,13 +49,13 @@ PostInput.displayName = 'PostInput'
 
 PostInput.defaultProps = {
   value: '',
-  defaultValue: '',
+  onKeyDown: noop,
 }
 
 PostInput.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   value: PropTypes.string,
   defaultValue: PropTypes.string,
 }
