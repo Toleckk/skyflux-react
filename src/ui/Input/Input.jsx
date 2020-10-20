@@ -1,7 +1,9 @@
 import React, {forwardRef, memo, useMemo, useState} from 'react'
+import noop from 'noop6'
 import {Flex} from 'reflexbox/styled-components'
 import PropTypes from 'prop-types'
 import {v4} from 'uuid'
+import {useFormEnter} from 'utils'
 import {Icon, Loader} from '..'
 import {
   StyledAside,
@@ -13,12 +15,16 @@ import {
 
 export const Input = memo(
   forwardRef(
-    ({id, label, error, isLoading, type, multi, children, ...props}, ref) => {
+    (
+      {id, label, error, isLoading, type, multi, children, onKeyDown, ...props},
+      ref,
+    ) => {
       const realId = useMemo(() => id || v4(), [id])
 
       const [isEyeActive, setEyeActive] = useState(false)
-
       const onEyeClick = () => setEyeActive(isActive => !isActive)
+
+      const handleEnter = useFormEnter({onKeyDown})
 
       return (
         <StyledFieldset error={!!error} hasLabel={!!label}>
@@ -35,6 +41,7 @@ export const Input = memo(
               ref={ref}
               hasPadding={isLoading || type === 'password'}
               type={type === 'password' && isEyeActive ? 'text' : type}
+              onKeyDown={handleEnter}
               {...props}
             />
             <StyledAside>
@@ -63,6 +70,7 @@ Input.defaultProps = {
   id: null,
   label: '',
   multi: false,
+  onKeyDown: noop,
 }
 
 Input.propTypes = {
@@ -70,6 +78,7 @@ Input.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   isLoading: PropTypes.bool,
+  onKeyDown: PropTypes.func,
   type: PropTypes.oneOf(['text', 'password']),
   multi: PropTypes.bool,
   children: PropTypes.node,
