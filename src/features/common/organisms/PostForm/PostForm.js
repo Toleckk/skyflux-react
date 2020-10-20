@@ -1,6 +1,6 @@
-import React, {useCallback} from 'react'
+import React, {useMemo} from 'react'
 import PropTypes from 'prop-types'
-import {useForm} from 'react-hook-form'
+import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Icon} from 'ui'
@@ -17,22 +17,34 @@ const schema = yup.object().shape({
 export const PostForm = ({placeholder}) => {
   const [create, {loading}] = useMyMutation(createPost())
 
-  const {register, handleSubmit, formState} = useForm({
+  const {handleSubmit, formState, reset, control} = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {text: ''},
   })
 
-  const onSubmit = useCallback(handleSubmit(create), [handleSubmit, create])
+  const onSubmit = useMemo(
+    () => handleSubmit(data => create(data).finally(reset)),
+    [handleSubmit, create, reset],
+  )
 
   const [isFocused, focus, blur] = useBooleanState(false)
 
   return (
     <StyledContainer as="form" onSubmit={onSubmit}>
-      <PostInput
+      <Controller
         name="text"
-        onBlur={blur}
-        onFocus={focus}
-        placeholder={placeholder}
-        ref={register}
+        control={control}
+        render={({onBlur, ...props}) => (
+          <PostInput
+            placeholder={placeholder}
+            onBlur={e => {
+              blur()
+              onBlur(e)
+            }}
+            onFocus={focus}
+            {...props}
+          />
+        )}
       />
       {(isFocused || formState.isDirty) && (
         <StyledButton type="submit" disabled={loading}>
