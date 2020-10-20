@@ -1,6 +1,8 @@
 import React from 'react'
-import {Box, Flex} from 'reflexbox/styled-components'
+import useBooleanState from 'use-boolean-state'
+import Lightbox from 'react-image-lightbox'
 import {useTranslation} from 'react-i18next'
+import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar, Date, Icon, Text} from 'ui'
 import {User} from 'models/user'
 import {About, BigNickname, Stat} from '../../atoms'
@@ -8,11 +10,16 @@ import {About, BigNickname, Stat} from '../../atoms'
 export const UserInfo = ({user}) => {
   const {t} = useTranslation('user')
 
+  const [avatarOpened, openAvatar, closeAvatar] = useBooleanState(false)
+
   return (
     <div>
       <Flex>
-        <Box width="9rem" height="9rem">
+        <Box width="9rem" height="9rem" as="button" onClick={openAvatar}>
           <Avatar src={user.avatar} />
+          {avatarOpened && (
+            <Lightbox mainSrc={user.avatar} onCloseRequest={closeAvatar} />
+          )}
         </Box>
         <Flex flex={1} justifyContent="space-evenly" alignItems="center">
           <Stat count={user.postsCount} name={t('Posts')} icon="post" />
