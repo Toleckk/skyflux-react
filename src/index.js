@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'react-image-lightbox/style.css'
 import 'normalize.css'
 import 'focus-within-polyfill'
 import './index.css'

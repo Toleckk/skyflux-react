@@ -45,7 +45,8 @@
           "@apollo/client/utilities",
           "@apollo/client/link/ws",
           "**/features/*",
-          "**/common/*"
+          "**/common/*",
+          "react-image-lightbox/style.css"
         ]
       }
     ],
