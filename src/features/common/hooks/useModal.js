@@ -32,5 +32,6 @@ export const useModal = name => {
     toggle,
     close,
     isOpened,
+    payload: params[name],
   }
 }
