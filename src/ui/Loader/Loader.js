@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {keyframes} from 'styled-components'
+import {Flex} from 'reflexbox/styled-components'
 import {StyledContainer, StyledRing} from './styles'
 
 const first = keyframes`
@@ -22,20 +23,28 @@ const second = keyframes`
 `
 
 export const Loader = ({size, borderWidth, hasShadow, hasBackground}) => (
-  <StyledContainer size={size} hasBackground={hasBackground}>
-    <StyledRing
-      animation={first}
-      size={size}
-      borderWidth={borderWidth}
-      hasShadow={hasShadow}
-    />
-    <StyledRing
-      animation={second}
-      size={size}
-      borderWidth={borderWidth}
-      hasShadow={hasShadow}
-    />
-  </StyledContainer>
+  <Flex
+    width="100%"
+    height="100%"
+    alignItems="center"
+    justifyContent="center"
+    flex={1}
+  >
+    <StyledContainer size={size} hasBackground={hasBackground}>
+      <StyledRing
+        animation={first}
+        size={size}
+        borderWidth={borderWidth}
+        hasShadow={hasShadow}
+      />
+      <StyledRing
+        animation={second}
+        size={size}
+        borderWidth={borderWidth}
+        hasShadow={hasShadow}
+      />
+    </StyledContainer>
+  </Flex>
 )
 
 Loader.defaultProps = {
