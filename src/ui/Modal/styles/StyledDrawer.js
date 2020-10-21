@@ -7,8 +7,7 @@ export const StyledDrawer = styled(Drawer)`
 
   background-color: transparent;
 
-  overflow-y: hidden !important;
-  overflow-x: hidden !important;
+  overflow: visible;
 
   @media (min-width: 768px) {
     margin: auto;
