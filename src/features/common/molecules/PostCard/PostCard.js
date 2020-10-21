@@ -1,15 +1,15 @@
 import React, {useCallback} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {Icon, Text} from 'ui'
 import {deletePost, Post} from 'models/post'
 import {createLike, deleteLike} from 'models/like'
-import {useConfirmDialog, useIsMe, useMyMutation} from '../../hooks'
+import {useConfirmDialog, useIsMe, useModal, useMyMutation} from '../../hooks'
 import {PublicationCard} from '../PublicationCard'
 
 export const PostCard = ({publication}) => {
   const {t} = useTranslation('post')
+  const {open} = useModal('post')
 
   const isMe = useIsMe(publication.user)
   const [like] = useMyMutation(createLike({postId: publication._id}))
@@ -23,13 +23,18 @@ export const PostCard = ({publication}) => {
     [publication.isLikedByMe, like, unlike],
   )
 
+  const openPost = useCallback(() => open(publication._id), [
+    open,
+    publication._id,
+  ])
+
   return (
     <PublicationCard
       publication={publication}
       onDelete={isMe && (() => removeWithConfirmation())}
     >
       <Flex justifyContent="space-between">
-        <Flex alignItems="center" as={Link} to={'/post/' + publication._id}>
+        <Flex alignItems="center" as="button" onClick={openPost}>
           <Icon icon="comment" size="1.5rem" />
           <Box marginLeft="1ex">
             <Text>{publication.commentsCount}</Text>
