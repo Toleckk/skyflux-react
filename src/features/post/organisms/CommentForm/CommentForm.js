@@ -18,16 +18,19 @@ export const CommentForm = ({post}) => {
     defaultValues: {text: ''},
   })
 
-  const [create] = useMyMutation(createComment())
+  const [create] = useMyMutation(createComment({postId: post._id}))
 
   const onSubmit = useMemo(
-    () => handleSubmit(data => create(data).finally(reset)),
+    () =>
+      handleSubmit(data => {
+        create(data)
+        reset()
+      }),
     [handleSubmit, create, reset],
   )
 
   return (
     <form onSubmit={onSubmit}>
-      <input hidden readOnly value={post._id} name="postId" ref={register} />
       <Input multi rows="1" name="text" ref={register}>
         <Box width="2rem" height="2rem" as="button" type="submit">
           <Icon icon="message" />

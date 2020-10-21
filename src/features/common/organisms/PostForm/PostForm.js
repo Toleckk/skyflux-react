@@ -23,7 +23,11 @@ export const PostForm = ({placeholder}) => {
   })
 
   const onSubmit = useMemo(
-    () => handleSubmit(data => create(data).finally(reset)),
+    () =>
+      handleSubmit(data => {
+        create(data)
+        reset()
+      }),
     [handleSubmit, create, reset],
   )
 
