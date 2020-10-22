@@ -3,10 +3,11 @@ import {CREATE_SESSION, DELETE_CURRENT_SESSION} from './schemas'
 
 export const createSession = (variables = {}) => ({
   mutation: CREATE_SESSION,
-  refetchQueries: [me()],
   variables,
-  onCompleted: ({createSession}) =>
-    localStorage.setItem('token', createSession || null),
+  onCompleted: ({createSession}, {client}) => {
+    localStorage.setItem('token', createSession || null)
+    client.query({...me(), fetchPolicy: 'network-only'})
+  },
 })
 
 export const deleteCurrentSession = () => ({
