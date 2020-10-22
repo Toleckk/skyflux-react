@@ -42,7 +42,7 @@ export const Search = ({onInputChange, isLoading, children}) => {
         <SearchInput value={q} onChange={onChange} />
       </Flex>
       {(isLoading || delayed) && !!q && <SearchLoader />}
-      {!isLoading && !children && !!q && (
+      {!(isLoading || delayed) && !children && !!q && (
         <Box margin="auto">
           <H1>{t('Nothing found!')}</H1>
         </Box>
