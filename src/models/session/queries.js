@@ -12,5 +12,5 @@ export const createSession = (variables = {}) => ({
 
 export const deleteCurrentSession = () => ({
   mutation: DELETE_CURRENT_SESSION,
-  onCompleted: (_, {client}) => client.resetStore(),
+  onCompleted: (_, {client}) => client.cache.reset(),
 })
