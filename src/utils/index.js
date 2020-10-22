@@ -1,5 +1,6 @@
 export * from './subscription'
 export * from './Route'
+export * from './useDebouncedEffect'
 export * from './useDebouncedFunc'
 export * from './useInfiniteScroll'
 export * from './uploadFileToCloudinary'
