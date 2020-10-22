@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next'
 import {useHistory, useLocation} from 'react-router'
 import {parse, stringify} from 'query-string'
 import {H1} from 'ui'
-import {useDebouncedFunc} from 'utils'
+import {useDebouncedEffect} from 'utils'
 import {SearchInput} from '../../molecules'
 import {SearchLoader} from '../../atoms'
 
@@ -14,29 +14,27 @@ export const Search = ({onInputChange, isLoading, children}) => {
 
   const history = useHistory()
   const {pathname, search} = useLocation()
-  const params = parse(search)
+  const {q, ...params} = parse(search)
 
-  const [debouncedOnInputChange, delayed] = useDebouncedFunc(
-    onInputChange,
+  const delayed = useDebouncedEffect(
+    () => {
+      onInputChange(q)
+    },
+    [onInputChange, q],
     1000,
   )
 
   const onChange = useCallback(
-    e => {
-      const {value} = e.target
+    e =>
       history.replace({
         pathname,
         search: stringify({
           ...params,
-          q: value || null,
+          q: e.target.value || null,
         }),
-      })
-      return debouncedOnInputChange(value)
-    },
-    [history, debouncedOnInputChange, params, pathname],
+      }),
+    [history, params, pathname],
   )
-
-  const {q} = params
 
   return (
     <Flex flexDirection="column" minHeight="100vh" paddingTop="2rem">
