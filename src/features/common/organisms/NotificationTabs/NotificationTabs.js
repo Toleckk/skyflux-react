@@ -1,5 +1,5 @@
 import React, {Suspense, useState} from 'react'
-import {withTranslation} from 'react-i18next'
+import {Trans} from 'react-i18next'
 import {Tab} from 'react-tabs'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {getSubRequestsCount} from 'models/sub'
@@ -15,7 +15,7 @@ import {
   StyledTabs,
 } from './styles'
 
-export const NotificationTabs = withTranslation('nav')(({t}) => {
+export const NotificationTabs = () => {
   const {data, loading} = useMyQuery(getSubRequestsCount())
   const {data: meQuery} = useMyQuery(me())
   const subReqCount = data?.getSubRequestsCount
@@ -31,7 +31,7 @@ export const NotificationTabs = withTranslation('nav')(({t}) => {
               <Icon icon={'birthday'} size="1rem" />
               {activeTab === 0 && (
                 <H2 flex={1} as={Box}>
-                  &nbsp;{t('Events')}
+                  &nbsp;<Trans ns="nav">Events</Trans>
                 </H2>
               )}
             </Flex>
@@ -41,7 +41,7 @@ export const NotificationTabs = withTranslation('nav')(({t}) => {
             <Flex alignItems="center" width="100%">
               {activeTab === 1 && (
                 <H2 flex={1} as={Box}>
-                  {t('Subscriptions requests')}&nbsp;
+                  <Trans ns="nav">Subscriptions requests</Trans>&nbsp;
                 </H2>
               )}
               <Icon icon={'user'} size="1rem" />
@@ -60,4 +60,4 @@ export const NotificationTabs = withTranslation('nav')(({t}) => {
       </Suspense>
     </StyledTabs>
   )
-})
+}
