@@ -1,18 +1,20 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, Suspense} from 'react'
 import PropTypes from 'prop-types'
-import {ListItem} from 'ui'
+import {ListItem, Loader} from 'ui'
 import {MiniUser} from 'models/user'
 import {PublicationCard} from '../PublicationCard'
 
 export const PublicationList = forwardRef(
   ({publications, Card, ...props}, ref) => (
-    <ul {...props} ref={ref}>
-      {publications.map(publication => (
-        <ListItem key={publication.cursor}>
-          <Card publication={publication.node} />
-        </ListItem>
-      ))}
-    </ul>
+    <Suspense fallback={<Loader />}>
+      <ul {...props} ref={ref}>
+        {publications.map(publication => (
+          <ListItem key={publication.cursor}>
+            <Card publication={publication.node} />
+          </ListItem>
+        ))}
+      </ul>
+    </Suspense>
   ),
 )
 

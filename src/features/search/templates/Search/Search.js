@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {Suspense, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
@@ -47,7 +47,9 @@ export const Search = ({onInputChange, isLoading, children}) => {
           <H1>{t('Nothing found!')}</H1>
         </Box>
       )}
-      {!isLoading && !delayed && !!q && children}
+      <Suspense fallback={<SearchLoader />}>
+        {!isLoading && !delayed && !!q && children}
+      </Suspense>
     </Flex>
   )
 }
