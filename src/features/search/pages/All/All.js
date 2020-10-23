@@ -21,12 +21,12 @@ export const All = () => {
     >
       {!!users?.length && (
         <Box marginTop="2rem">
-          <UsersDisplay users={users} withAllLink mini />
+          <UsersDisplay users={users} query={text} mini />
         </Box>
       )}
       {!!posts?.length && (
         <Box marginTop="2rem">
-          <PostsDisplay posts={posts} withAllLink />
+          <PostsDisplay posts={posts} query={text} />
         </Box>
       )}
     </Search>

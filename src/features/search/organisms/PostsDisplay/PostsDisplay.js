@@ -6,7 +6,7 @@ import {H1, Link} from 'ui'
 import {PostConnectionList} from 'models/post'
 import {PostList} from 'features/common/molecules'
 
-export const PostsDisplay = forwardRef(({posts, withAllLink}, ref) => {
+export const PostsDisplay = forwardRef(({posts, query}, ref) => {
   const {t} = useTranslation('search')
 
   return (
@@ -17,7 +17,9 @@ export const PostsDisplay = forwardRef(({posts, withAllLink}, ref) => {
         marginBottom="1.5rem"
       >
         <H1>{t('Found posts')}</H1>
-        {withAllLink && <Link to="/search/posts">{t('Show all')}</Link>}
+        {!!query && (
+          <Link to={'/search/posts?q=' + query}>{t('Show all')}</Link>
+        )}
       </Flex>
       <PostList posts={posts} ref={ref} />
     </div>
@@ -27,10 +29,10 @@ export const PostsDisplay = forwardRef(({posts, withAllLink}, ref) => {
 PostsDisplay.displayName = 'PostsDisplay'
 
 PostsDisplay.defaultProps = {
-  withALlLink: false,
+  query: '',
 }
 
 PostsDisplay.propTypes = {
   posts: PostConnectionList.isRequired,
-  withAllLink: PropTypes.bool,
+  query: PropTypes.string,
 }
