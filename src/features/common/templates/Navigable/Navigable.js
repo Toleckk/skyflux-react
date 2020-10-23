@@ -4,8 +4,9 @@ import {Flex} from 'reflexbox/styled-components'
 import {useMedia} from 'react-use'
 import {BottomBar, SideBar} from 'ui'
 import {DesktopNav, MobileNav} from '../../organisms'
+import {SwitchThemeButton} from '../../molecules'
 import {useModal} from '../../hooks'
-import {StyledContainer} from './styles'
+import {StyledContainer, StyledThemeButtonContainer} from './styles'
 
 export const Navigable = ({children}) => {
   const isDesktop = useMedia('(min-width: 768px)')
@@ -24,6 +25,11 @@ export const Navigable = ({children}) => {
         <BottomBar>
           <MobileNav />
         </BottomBar>
+      )}
+      {isDesktop && (
+        <StyledThemeButtonContainer>
+          <SwitchThemeButton />
+        </StyledThemeButtonContainer>
       )}
     </StyledContainer>
   )
