@@ -1,5 +1,5 @@
 import React, {Suspense, useState} from 'react'
-import {Trans} from 'react-i18next'
+import {Translation} from 'react-i18next'
 import {Tab} from 'react-tabs'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {getSubRequestsCount} from 'models/sub'
@@ -31,7 +31,7 @@ export const NotificationTabs = () => {
               <Icon icon={'birthday'} size="1rem" />
               {activeTab === 0 && (
                 <H2 flex={1} as={Box}>
-                  &nbsp;<Trans ns="nav">Events</Trans>
+                  &nbsp;<Translation ns="nav">{t => t('Events')}</Translation>
                 </H2>
               )}
             </Flex>
@@ -41,7 +41,10 @@ export const NotificationTabs = () => {
             <Flex alignItems="center" width="100%">
               {activeTab === 1 && (
                 <H2 flex={1} as={Box}>
-                  <Trans ns="nav">Subscriptions requests</Trans>&nbsp;
+                  <Translation ns="nav">
+                    {t => t('Subscriptions requests')}
+                  </Translation>
+                  &nbsp;
                 </H2>
               )}
               <Icon icon={'user'} size="1rem" />
