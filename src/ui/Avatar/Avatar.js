@@ -1,12 +1,20 @@
-import styled from 'styled-components'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {Icon} from '../Icon'
+import {StyledContainer} from './styles'
 
-export const Avatar = styled.img`
-  user-select: none;
-  border-radius: 50%;
+export const Avatar = ({src, children, ...props}) => (
+  <StyledContainer {...props}>
+    {src ? (
+      <img src={src} alt="avatar" width="100%" height="100%" />
+    ) : (
+      <Icon icon="birthday" size="100%" />
+    )}
+    {children}
+  </StyledContainer>
+)
 
-  border: 2px solid rgb(${props => props.theme.primary});
-  box-shadow: 0 0 1rem rgb(${props => props.theme.primary});
-
-  width: 100%;
-  height: 100%;
-`
+Avatar.propTypes = {
+  src: PropTypes.string,
+  children: PropTypes.node,
+}
