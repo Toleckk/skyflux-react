@@ -7,7 +7,12 @@ import {Avatar, H2, Icon} from 'ui'
 import {me} from 'models/user'
 import {deleteCurrentSession} from 'models/session'
 import {useModal, useMyMutation, useMyQuery} from '../../hooks'
-import {StyledBigNickname} from './styles'
+import {SwitchThemeButton} from '../../molecules'
+import {
+  StyledBigNickname,
+  StyledRelativeContainer,
+  StyledThemeButtonContainer,
+} from './styles'
 
 export const MobileMenu = ({onItemClick}) => {
   const {t} = useTranslation('nav')
@@ -22,7 +27,7 @@ export const MobileMenu = ({onItemClick}) => {
   if (loading && !data) return <></>
 
   return (
-    <Flex paddingTop="2rem" flexDirection="column" alignItems="center">
+    <StyledRelativeContainer>
       <Link to={'/@' + user.nickname} onClick={onItemClick}>
         <Box width="6rem" height="6rem">
           <Avatar src={user.avatar} />
@@ -84,7 +89,10 @@ export const MobileMenu = ({onItemClick}) => {
           </Flex>
         </li>
       </ul>
-    </Flex>
+      <StyledThemeButtonContainer>
+        <SwitchThemeButton />
+      </StyledThemeButtonContainer>
+    </StyledRelativeContainer>
   )
 }
 

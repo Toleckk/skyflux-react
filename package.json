@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "deep-equal": "^2.0.4",
+    "deep-shape-equals": "^0.1.2",
     "deepmerge": "^4.2.2",
     "focus-within-polyfill": "^5.0.9",
     "graphql": "^15.3.0",
