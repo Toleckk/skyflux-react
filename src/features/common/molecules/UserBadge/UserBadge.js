@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {MiniUser} from 'models/user'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar} from 'ui'
@@ -7,10 +8,14 @@ import {StyledNickname} from './styles'
 export const UserBadge = ({user}) => (
   <Flex alignItems="center">
     <Box width="2rem" height="2rem">
-      <Avatar src={user.avatar} />
+      <Link to={'/@' + user.nickname}>
+        <Avatar src={user.avatar} />
+      </Link>
     </Box>
     <Box marginLeft="1rem">
-      <StyledNickname>{user.nickname}</StyledNickname>
+      <Link to={'/@' + user.nickname}>
+        <StyledNickname>{user.nickname}</StyledNickname>
+      </Link>
     </Box>
   </Flex>
 )
