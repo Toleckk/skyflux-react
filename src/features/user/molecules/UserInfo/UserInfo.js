@@ -1,33 +1,22 @@
 import React from 'react'
-import useBooleanState from 'use-boolean-state'
-import Lightbox from 'react-image-lightbox'
 import {useTranslation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar, Date, Icon, Text} from 'ui'
+import {Date, Icon, Text} from 'ui'
 import {User} from 'models/user'
 import {useIsMe} from 'features/common/hooks'
 import {About, BigNickname, Stat} from '../../atoms'
+import {UserAvatar} from '../UserAvatar'
 import {StyledRelativeContainer, StyledSubscribeButton} from './styles'
 
 export const UserInfo = ({user}) => {
   const {t} = useTranslation('user')
   const isMe = useIsMe(user)
 
-  const [avatarOpened, openAvatar, closeAvatar] = useBooleanState(false)
-
   return (
     <StyledRelativeContainer>
       <Flex>
-        <Box
-          width="9rem"
-          height="9rem"
-          as={user.avatar ? 'button' : 'div'}
-          onClick={user.avatar ? openAvatar : null}
-        >
-          <Avatar src={user.avatar} />
-          {avatarOpened && (
-            <Lightbox mainSrc={user.avatar} onCloseRequest={closeAvatar} />
-          )}
+        <Box width="9rem" height="9rem">
+          <UserAvatar user={user} />
         </Box>
         <Flex flex={1} justifyContent="space-evenly" alignItems="center">
           <Stat count={user.postsCount} name={t('Posts')} icon="post" />
