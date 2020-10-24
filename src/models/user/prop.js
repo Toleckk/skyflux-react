@@ -18,6 +18,10 @@ export const User = PropTypes.shape({
   isSubscribedByMe: PropTypes.bool.isRequired,
   private: PropTypes.bool.isRequired,
   description: Description.isRequired,
+  mySub: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    accepted: PropTypes.bool.isRequired,
+  }),
 })
 
 export const MiniUser = PropTypes.shape({
