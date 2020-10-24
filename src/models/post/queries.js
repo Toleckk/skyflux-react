@@ -58,10 +58,22 @@ export const getPostsByNickname = (nickname, variables = {}) => {
   }
 }
 
-export const getFeed = (variables = {}) => ({
-  query: GET_FEED,
-  variables,
-})
+export const getFeed = (variables = {}) => {
+  const {subscription: accepted, variables: acceptedVars} = subAccepted()
+
+  return {
+    query: GET_FEED,
+    variables,
+    subscriptions: [
+      {
+        document: accepted,
+        variables: acceptedVars,
+        updateQuery: prev =>
+          prev.getFeed.length ? prev : Symbol.for('refetch'),
+      },
+    ],
+  }
+}
 
 export const getFoundPosts = (text, variables = {}) => ({
   query: GET_FOUND_POSTS,
