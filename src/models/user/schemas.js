@@ -8,7 +8,6 @@ export const UserFragment = gql`
     postsCount
     subsCount
     subscribersCount
-    isSubscribedByMe
     private
     mySub {
       _id
