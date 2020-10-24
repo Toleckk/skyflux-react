@@ -12,12 +12,16 @@ export const SubscribeButton = ({user, className}) => {
   const [subscribe] = useMyMutation(createSub({nickname: user.nickname}))
   const [unsubscribe] = useMyMutation(deleteSub({nickname: user.nickname}))
 
+  const onClick = () => (user.mySub ? unsubscribe() : subscribe())
+  const text = !user.mySub
+    ? 'Read'
+    : user.mySub.accepted
+    ? 'Do not read'
+    : 'Cancel'
+
   return (
-    <Button
-      onClick={user.isSubscribedByMe ? () => unsubscribe() : () => subscribe()}
-      className={className}
-    >
-      {t(user.isSubscribedByMe ? 'Do not read' : 'Read')}
+    <Button onClick={onClick} className={className}>
+      {t(text)}
     </Button>
   )
 }

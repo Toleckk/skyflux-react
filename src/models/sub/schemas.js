@@ -75,6 +75,13 @@ export const SUB_REQUEST_CREATED = gql`
   subscription subRequestCreated {
     subRequestCreated {
       ...SubRequestFragment
+      to {
+        _id
+        mySub {
+          _id
+          accepted
+        }
+      }
     }
   }
   ${SubRequestFragment}
@@ -93,6 +100,10 @@ export const SUB_ACCEPTED = gql`
       to {
         _id
         subscribersCount
+        mySub {
+          _id
+          accepted
+        }
       }
     }
   }
@@ -112,6 +123,10 @@ export const SUB_DELETED = gql`
       to {
         _id
         subscribersCount
+        mySub {
+          _id
+          accepted
+        }
       }
     }
   }

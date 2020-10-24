@@ -10,6 +10,10 @@ export const UserFragment = gql`
     subscribersCount
     isSubscribedByMe
     private
+    mySub {
+      _id
+      accepted
+    }
     description {
       about
       birthday
