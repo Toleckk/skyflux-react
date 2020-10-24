@@ -13,7 +13,7 @@ export const SubRequestFragment = gql`
 `
 
 export const CREATE_SUB = gql`
-  mutation createSubscription($nickname: String!) {
+  mutation createSub($nickname: String!) {
     createSub(nickname: $nickname) {
       _id
     }
