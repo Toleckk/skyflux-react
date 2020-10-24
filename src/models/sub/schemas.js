@@ -22,7 +22,9 @@ export const CREATE_SUB = gql`
 
 export const DELETE_SUB = gql`
   mutation deleteSub($nickname: String!) {
-    deleteSub(nickname: $nickname)
+    deleteSub(nickname: $nickname) {
+      _id
+    }
   }
 `
 
