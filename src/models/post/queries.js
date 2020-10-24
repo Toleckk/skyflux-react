@@ -1,5 +1,6 @@
 import deepmerge from 'deepmerge'
 import {addNodeToConnection, deleteNodeFromConnection} from 'utils'
+import {subAccepted} from 'models/sub'
 import {
   CREATE_POST,
   DELETE_POST,
@@ -19,6 +20,7 @@ export const getPostById = (_id, variables = {}) => ({
 export const getPostsByNickname = (nickname, variables = {}) => {
   const {subscription: created, variables: createdVars} = postCreated(nickname)
   const {subscription: deleted, variables: deletedVars} = postDeleted(nickname)
+  const {subscription: accepted, variables: acceptedVars} = subAccepted()
 
   return {
     query: GET_POSTS_BY_NICKNAME,
@@ -43,6 +45,14 @@ export const getPostsByNickname = (nickname, variables = {}) => {
             getPostsByNickname,
           ),
         }),
+      },
+      {
+        document: accepted,
+        variables: acceptedVars,
+        updateQuery: (prev, {subscriptionData: {data}}) =>
+          data.subAccepted.to.nickname === nickname
+            ? Symbol.for('refetch')
+            : prev,
       },
     ],
   }

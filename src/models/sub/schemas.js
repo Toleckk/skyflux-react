@@ -99,6 +99,7 @@ export const SUB_ACCEPTED = gql`
       }
       to {
         _id
+        nickname
         subscribersCount
         mySub {
           _id
