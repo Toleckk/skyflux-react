@@ -1,5 +1,5 @@
 import deepmerge from 'deepmerge'
-import {subAccepted, subDeleted} from 'models/sub'
+import {subAccepted, subDeleted, subRequestCreated} from 'models/sub'
 import {
   CREATE_USER,
   DOES_NICKNAME_EXIST,
@@ -23,6 +23,7 @@ export const me = (variables = {}) => ({
 export const getUserByNickname = (nickname, variables = {}) => {
   const {subscription: subDel, variables: subDelVars} = subDeleted()
   const {subscription: accepted, variables: acceptedVars} = subAccepted()
+  const {subscription: created, variables: createdVars} = subRequestCreated()
 
   return {
     query: GET_USER_BY_NICKNAME,
@@ -30,6 +31,7 @@ export const getUserByNickname = (nickname, variables = {}) => {
     subscriptions: [
       {document: subDel, variables: subDelVars},
       {document: accepted, variables: acceptedVars},
+      {document: created, variables: createdVars},
     ],
   }
 }
