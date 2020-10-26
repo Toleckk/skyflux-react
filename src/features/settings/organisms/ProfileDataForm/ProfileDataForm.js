@@ -84,6 +84,7 @@ export const ProfileDataForm = ({user}) => {
       <Input
         multi
         name="description.about"
+        placeholder={t('Tell about yourself')}
         ref={register}
         defaultValue={user.description.about}
       />
