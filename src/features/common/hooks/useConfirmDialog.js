@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react'
 import {useBooleanState} from 'use-boolean-state'
 import {useLatest} from 'react-use'
-import {ConfirmDialog, Icon, Text} from 'ui'
+import {ConfirmDialog} from 'ui'
 
 export const useConfirmDialog = fn => {
   const [opened, open, close] = useBooleanState(false)
@@ -18,12 +18,13 @@ export const useConfirmDialog = fn => {
 
   const Component = useCallback(
     ({text, icon}) => (
-      <ConfirmDialog visible={opened} onClose={close}>
-        <Text>{text}</Text>
-        <button onClick={callFn}>
-          <Icon icon={icon} size="2rem" />
-        </button>
-      </ConfirmDialog>
+      <ConfirmDialog
+        text={text}
+        icon={icon}
+        visible={opened}
+        onSubmit={callFn}
+        onCancel={close}
+      />
     ),
     [opened, close, callFn],
   )
