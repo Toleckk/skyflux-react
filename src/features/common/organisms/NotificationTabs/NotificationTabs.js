@@ -1,6 +1,6 @@
 import React, {Suspense, useState} from 'react'
 import {Translation} from 'react-i18next'
-import {Tab} from 'react-tabs'
+import SwipeableViews from 'react-swipeable-views'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {getSubRequestsCount} from 'models/sub'
 import {me} from 'models/user'
@@ -8,12 +8,7 @@ import {H2, Icon, Loader} from 'ui'
 import {useMyQuery} from '../../hooks'
 import {SubRequestsDisplay} from '../SubRequestsDisplay'
 import {EventsDisplay} from '../EventsDisplay'
-import {
-  StyledDivider,
-  StyledTabList,
-  StyledTabPanel,
-  StyledTabs,
-} from './styles'
+import {StyledDivider, StyledTab, StyledTabList, StyledTabs} from './styles'
 
 export const NotificationTabs = () => {
   const {data, loading} = useMyQuery(getSubRequestsCount())
@@ -23,10 +18,10 @@ export const NotificationTabs = () => {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <StyledTabs defaultIndex={activeTab} onSelect={setActiveTab}>
+    <StyledTabs>
       <Suspense fallback={<Loader />}>
         <StyledTabList>
-          <Tab>
+          <StyledTab onClick={() => setActiveTab(0)} selected={activeTab === 0}>
             <Flex alignItems="center" width="100%">
               <Icon icon={'birthday'} size="1rem" />
               {activeTab === 0 && (
@@ -36,8 +31,13 @@ export const NotificationTabs = () => {
               )}
             </Flex>
             <StyledDivider />
-          </Tab>
-          <Tab disabled={!subReqCount || loading} hidden={!meQuery.me.private}>
+          </StyledTab>
+          <StyledTab
+            onClick={() => setActiveTab(1)}
+            disabled={!subReqCount || loading}
+            hidden={!meQuery.me.private}
+            selected={activeTab === 1}
+          >
             <Flex alignItems="center" width="100%">
               {activeTab === 1 && (
                 <H2 flex={1} as={Box}>
@@ -51,15 +51,18 @@ export const NotificationTabs = () => {
               <H2>&nbsp; +{subReqCount || 0}</H2>
             </Flex>
             <StyledDivider />
-          </Tab>
+          </StyledTab>
         </StyledTabList>
 
-        <StyledTabPanel>
+        <SwipeableViews
+          index={activeTab}
+          onChangeIndex={setActiveTab}
+          style={{flex: 1}}
+          containerStyle={{height: '100%'}}
+        >
           <EventsDisplay />
-        </StyledTabPanel>
-        <StyledTabPanel>
           <SubRequestsDisplay />
-        </StyledTabPanel>
+        </SwipeableViews>
       </Suspense>
     </StyledTabs>
   )

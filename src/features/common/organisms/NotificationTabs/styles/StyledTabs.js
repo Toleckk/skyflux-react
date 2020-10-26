@@ -1,15 +1,16 @@
 import styled from 'styled-components'
-import {Tabs} from 'react-tabs'
 
-export const StyledTabs = styled(Tabs)`
+export const StyledTabs = styled.div`
   display: flex;
   flex-direction: column;
 
-  padding-right: 1rem;
+  padding: 0.5rem 1rem;
 
   overflow: hidden;
 
-  width: 100%;
+  background-color: rgb(${props => props.theme.primaryDark});
+
+  width: 85vw;
 
   @media (min-width: 1366px) {
     width: 50vw;
