@@ -11,9 +11,7 @@ export const Auth = withTranslation('id')(({t}) => (
     <H1 center>{t('Let people know about your thoughts')}</H1>
     <PageDescription>{t('Log in to your account now!')}</PageDescription>
     <Divider />
-    <Box width="35%">
-      <AuthForm />
-    </Box>
+    <AuthForm />
     <Box marginTop="1rem" alignSelf="center">
       <Link to="/id/restore">{t('Forgot password?')}</Link>
     </Box>

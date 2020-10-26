@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react'
-import {Box, Flex} from 'reflexbox/styled-components'
+import {Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
@@ -8,6 +8,7 @@ import {Divider, Input, Text} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {createUser} from 'models/user'
 import {SubmitButton} from '../../atoms'
+import {StyledResponsibleGrid} from './styles'
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -38,40 +39,32 @@ export const RegisterForm = withTranslation('id')(({t}) => {
       onSubmit={onSubmit}
     >
       <Divider />
-      <Flex width="90%" justifyContent="space-between" alignItems="center">
-        <Box flex={1} marginRight="2rem">
-          <Text as="label" htmlFor="email">
-            {t('Enter your email')}
-          </Text>
-        </Box>
-        <Box width="40%">
-          <Input
-            id="email"
-            name="email"
-            label={t('Email')}
-            error={errors.email?.message}
-            ref={register}
-          />
-        </Box>
-      </Flex>
+      <StyledResponsibleGrid>
+        <Text as="label" htmlFor="email">
+          {t('Enter your email')}
+        </Text>
+        <Input
+          id="email"
+          name="email"
+          label={t('Email')}
+          error={errors.email?.message}
+          ref={register}
+        />
+      </StyledResponsibleGrid>
       <Divider />
-      <Flex width="90%" justifyContent="space-between" alignItems="center">
-        <Box flex={1} marginRight="2rem">
-          <Text as="label" htmlFor="password">
-            {t('Password should be')}
-          </Text>
-        </Box>
-        <Box width="40%">
-          <Input
-            id="password"
-            name="password"
-            label={t('Password')}
-            type="password"
-            error={errors.password?.message}
-            ref={register}
-          />
-        </Box>
-      </Flex>
+      <StyledResponsibleGrid>
+        <Text as="label" htmlFor="password">
+          {t('Password should be')}
+        </Text>
+        <Input
+          id="password"
+          name="password"
+          label={t('Password')}
+          type="password"
+          error={errors.password?.message}
+          ref={register}
+        />
+      </StyledResponsibleGrid>
       <Divider />
       <SubmitButton>{t('Next')}</SubmitButton>
     </Flex>
