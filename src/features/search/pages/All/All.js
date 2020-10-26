@@ -19,15 +19,19 @@ export const All = () => {
       onInputChange={setText}
       isLoading={usersQuery.loading || postsQuery.loading}
     >
-      {!!users?.length && (
-        <Box marginTop="2rem">
-          <UsersDisplay users={users} query={text} mini />
-        </Box>
-      )}
-      {!!posts?.length && (
-        <Box marginTop="2rem">
-          <PostsDisplay posts={posts} query={text} />
-        </Box>
+      {(!!users?.length || !!posts?.length) && (
+        <>
+          {!!users?.length && (
+            <Box marginTop="2rem">
+              <UsersDisplay users={users} query={text} mini />
+            </Box>
+          )}
+          {!!posts?.length && (
+            <Box marginTop="2rem">
+              <PostsDisplay posts={posts} query={text} />
+            </Box>
+          )}
+        </>
       )}
     </Search>
   )
