@@ -7,7 +7,7 @@ import {RestoreForm} from '../../organisms'
 
 export const Restore = withTranslation('id')(({t}) => (
   <Flex flexDirection="column" alignItems="center">
-    <H1>{t('Enter restore data')}</H1>
+    <H1 center>{t('Enter restore data')}</H1>
     <PageDescription>{t('Procedure will restore access')}</PageDescription>
     <Divider />
     <RestoreForm />

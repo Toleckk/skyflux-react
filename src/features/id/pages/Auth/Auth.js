@@ -8,7 +8,7 @@ import {FieldDescription, PageDescription, SubmitButton} from '../../atoms'
 
 export const Auth = withTranslation('id')(({t}) => (
   <Flex alignItems="center" flexDirection="column">
-    <H1>{t('Let people know about your thoughts')}</H1>
+    <H1 center>{t('Let people know about your thoughts')}</H1>
     <PageDescription>{t('Log in to your account now!')}</PageDescription>
     <Divider />
     <Box width="35%">

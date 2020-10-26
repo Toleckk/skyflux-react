@@ -6,7 +6,7 @@ import {PageDescription} from '../../atoms'
 
 export const Message = withTranslation('id')(({t}) => (
   <Flex flexDirection="column" alignItems="center">
-    <H1>{t('Password restoring')}</H1>
+    <H1 center>{t('Password restoring')}</H1>
     <PageDescription>{t('Check your email')}</PageDescription>
     <Divider />
     <Box width="60%" margin="3rem">

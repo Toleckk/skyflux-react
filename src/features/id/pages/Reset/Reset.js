@@ -7,7 +7,7 @@ import {ResetForm} from '../../organisms'
 
 export const Reset = withTranslation('id')(({t}) => (
   <Flex flexDirection="column" alignItems="center">
-    <H1>{t('Create new password')}</H1>
+    <H1 center>{t('Create new password')}</H1>
     <PageDescription>{t('Active sessions will be canceled')}</PageDescription>
     <Divider />
     <FieldDescription>{t('Password should be')}</FieldDescription>
