@@ -4,7 +4,7 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {useInfiniteScroll} from 'utils'
-import {Divider, Loader} from 'ui'
+import {Divider, H1, Loader} from 'ui'
 import {PostForm} from 'features/common/organisms'
 import {PostList} from 'features/common/molecules'
 import {useIsMe, useMyQuery} from 'features/common/hooks'
@@ -54,6 +54,10 @@ export const Wall = withTranslation('user')(({t}) => {
         <Loader />
       ) : user.private && !isMe && !user.mySub?.accepted ? (
         <PrivateScreen />
+      ) : !posts.length ? (
+        <Flex flex={1} alignItems="center" justifyContent="center">
+          <H1 center>{t("This user hasn't publish any posts yet")}</H1>
+        </Flex>
       ) : (
         <PostList posts={posts} ref={postsContainerRef} />
       )}
