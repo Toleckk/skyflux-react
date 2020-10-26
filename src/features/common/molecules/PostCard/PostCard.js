@@ -6,6 +6,7 @@ import {deletePost, Post} from 'models/post'
 import {createLike, deleteLike} from 'models/like'
 import {useConfirmDialog, useIsMe, useModal, useMyMutation} from '../../hooks'
 import {PublicationCard} from '../PublicationCard'
+import {StyledLikeIcon} from './styles'
 
 export const PostCard = ({publication}) => {
   const {t} = useTranslation('post')
@@ -41,7 +42,11 @@ export const PostCard = ({publication}) => {
           </Box>
         </Flex>
         <Flex alignItems="center" as="button" onClick={onClick}>
-          <Icon icon="love" size="1.5rem" />
+          <StyledLikeIcon
+            icon="love"
+            size="1.5rem"
+            active={publication.isLikedByMe}
+          />
           <Box marginLeft="1ex">
             <Text>{publication.likesCount}</Text>
           </Box>
