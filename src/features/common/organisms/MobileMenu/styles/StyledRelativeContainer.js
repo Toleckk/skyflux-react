@@ -8,4 +8,8 @@ export const StyledRelativeContainer = styled.div`
   align-items: center;
 
   padding-top: 2rem;
+
+  background: rgb(${props => props.theme.primaryDark});
+
+  width: 70vw;
 `
