@@ -14,7 +14,7 @@ export const Auth = withTranslation('id')(({t}) => (
     <Box width="35%">
       <AuthForm />
     </Box>
-    <Box marginTop="15px" alignSelf="center">
+    <Box marginTop="1rem" alignSelf="center">
       <Link to="/id/restore">{t('Forgot password?')}</Link>
     </Box>
     <Divider />

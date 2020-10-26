@@ -50,7 +50,7 @@ export const AuthForm = withTranslation('id')(({className, t}) => {
           ref={register}
           error={errors.login?.message}
         />
-        <Box marginTop="15px">
+        <Box marginTop="1rem">
           <Input
             label={t('Password')}
             name="password"
@@ -59,7 +59,7 @@ export const AuthForm = withTranslation('id')(({className, t}) => {
             ref={register}
           />
         </Box>
-        <Box marginTop="30px" alignSelf="center">
+        <Box marginTop="2rem" alignSelf="center">
           <SubmitButton>{t('Sign in')}</SubmitButton>
         </Box>
       </Flex>
