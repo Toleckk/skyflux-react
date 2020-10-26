@@ -64,7 +64,7 @@ export const MobileMenu = ({onItemClick}) => {
                   <Box width="2rem" height="2rem" marginRight="2rem">
                     <Icon icon="notifications" />
                   </Box>
-                  <H2>{t('Notifications')}</H2>
+                  <H2>{t('Events')}</H2>
                 </Flex>
               </li>
               <li>
