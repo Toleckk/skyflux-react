@@ -1,9 +1,10 @@
 import React, {useCallback} from 'react'
-import {Box, Flex} from 'reflexbox/styled-components'
+import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useConfirmDialog, useMyMutation} from 'features/common/hooks'
 import {makeAccountPrivate, makeAccountPublic, User} from 'models/user'
 import {H2, Toggle} from 'ui'
+import {StyledResponsibleContainer} from './styles'
 
 export const PrivateSwitcher = ({user}) => {
   const {t} = useTranslation('settings')
@@ -23,7 +24,7 @@ export const PrivateSwitcher = ({user}) => {
   )
 
   return (
-    <Flex alignItems="center">
+    <StyledResponsibleContainer>
       <H2>{t('Private profile')}</H2>
       <Box marginLeft="2rem">
         <Toggle
@@ -38,7 +39,7 @@ export const PrivateSwitcher = ({user}) => {
         )}
         icon="confirm"
       />
-    </Flex>
+    </StyledResponsibleContainer>
   )
 }
 

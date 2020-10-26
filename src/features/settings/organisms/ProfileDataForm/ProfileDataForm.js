@@ -9,6 +9,7 @@ import {updateProfileInfo, User} from 'models/user'
 import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
 import {useUploadAvatar} from '../../hooks'
+import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
 
 const schema = yup.object().shape({
   avatar: yup.string().url(),
@@ -55,7 +56,7 @@ export const ProfileDataForm = ({user}) => {
       onReset={resetForm}
       flexDirection="column"
     >
-      <Flex justifyContent="space-between" marginBottom="1rem">
+      <StyledResponsibleContainer>
         <Box width="9rem" height="9rem">
           <AvatarUploader
             name="avatar"
@@ -65,7 +66,7 @@ export const ProfileDataForm = ({user}) => {
             ref={register}
           />
         </Box>
-        <Box width="50%">
+        <StyledInputsContainer>
           <Controller
             name="description.birthday"
             defaultValue={user.description.birthday}
@@ -78,8 +79,8 @@ export const ProfileDataForm = ({user}) => {
             ref={register}
             defaultValue={user.description.from}
           />
-        </Box>
-      </Flex>
+        </StyledInputsContainer>
+      </StyledResponsibleContainer>
       <Input
         multi
         name="description.about"

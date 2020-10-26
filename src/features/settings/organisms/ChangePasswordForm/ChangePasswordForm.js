@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next'
 import {Button, Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {updatePassword} from 'models/user'
+import {ResponsibleForm} from '../../atoms'
 
 const schema = yup.object().shape({
   oldPassword: yup
@@ -33,7 +34,7 @@ export const ChangePasswordForm = () => {
   const {t} = useTranslation('settings')
 
   return (
-    <Box width="40%" as="form" onSubmit={onSubmit}>
+    <ResponsibleForm onSubmit={onSubmit}>
       <Input
         type="password"
         label={t('Old password')}
@@ -41,7 +42,7 @@ export const ChangePasswordForm = () => {
         name="oldPassword"
         error={errors.oldPassword?.message}
       />
-      <Box marginTop="1rem">
+      <Box marginTop="1rem" width="100%">
         <Input
           type="password"
           label={t('New password')}
@@ -53,6 +54,6 @@ export const ChangePasswordForm = () => {
       <Box marginTop="1rem">
         <Button type="submit">{t('Change')}</Button>
       </Box>
-    </Box>
+    </ResponsibleForm>
   )
 }

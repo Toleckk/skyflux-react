@@ -8,6 +8,7 @@ import {Button, Input} from 'ui'
 import {useDebouncedFunc} from 'utils'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
 import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
+import {ResponsibleForm} from '../../atoms'
 
 const schema = yup.object().shape({
   nickname: yup
@@ -45,7 +46,7 @@ export const ChangeNicknameForm = ({user}) => {
   )
 
   return (
-    <Box as="form" onSubmit={onSubmit} width="40%">
+    <ResponsibleForm onSubmit={onSubmit}>
       <Input
         ref={register}
         name="nickname"
@@ -62,7 +63,7 @@ export const ChangeNicknameForm = ({user}) => {
           {t('Change')}
         </Button>
       </Box>
-    </Box>
+    </ResponsibleForm>
   )
 }
 
