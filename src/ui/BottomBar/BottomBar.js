@@ -7,7 +7,6 @@ export const BottomBar = styled.div`
 
   width: 100%;
 
-  padding: 5px 0;
-
   box-shadow: 0 0 10px rgb(${props => props.theme.primary});
+  background-color: rgb(${props => props.theme.primaryDark});
 `
