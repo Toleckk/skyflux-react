@@ -6,7 +6,11 @@ import {StyledDrawer} from './styles'
 
 export const Modal = ({placement, children, visible, onClose}) => {
   const isDesktop = useMedia('(min-width: 768px)')
-  const props = isDesktop ? {width: 'auto', height: 'auto'} : {}
+  const props = isDesktop
+    ? {width: 'auto', height: 'auto'}
+    : placement === 'right' || placement === 'left'
+    ? {width: 'auto'}
+    : {height: 'auto'}
 
   return (
     <StyledDrawer

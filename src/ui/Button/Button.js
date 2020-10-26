@@ -11,7 +11,7 @@ export const Button = styled.button`
   border: 1.5px solid rgb(${props => props.theme.primary});
 
   color: rgb(${props => props.theme.secondaryText});
-  font-size: medium;
+  font-size: 1rem;
 
   transition: all 100ms;
 

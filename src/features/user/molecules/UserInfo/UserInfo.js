@@ -6,7 +6,11 @@ import {User} from 'models/user'
 import {useIsMe} from 'features/common/hooks'
 import {About, BigNickname, Stat} from '../../atoms'
 import {UserAvatar} from '../UserAvatar'
-import {StyledRelativeContainer, StyledSubscribeButton} from './styles'
+import {
+  StyledAvatarContainer,
+  StyledRelativeContainer,
+  StyledSubscribeButton,
+} from './styles'
 
 export const UserInfo = ({user}) => {
   const {t} = useTranslation('user')
@@ -15,9 +19,9 @@ export const UserInfo = ({user}) => {
   return (
     <StyledRelativeContainer>
       <Flex>
-        <Box width="9rem" height="9rem">
+        <StyledAvatarContainer>
           <UserAvatar user={user} />
-        </Box>
+        </StyledAvatarContainer>
         <Flex flex={1} justifyContent="space-evenly" alignItems="center">
           <Stat count={user.postsCount} name={t('Posts')} icon="post" />
           <Stat count={user.subsCount} name={t('Reads')} icon="user" />

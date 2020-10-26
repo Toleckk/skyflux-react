@@ -2,8 +2,11 @@ import styled from 'styled-components'
 import {SubscribeButton} from '../../../organisms'
 
 export const StyledSubscribeButton = styled(SubscribeButton)`
-  position: absolute;
+  align-self: flex-end;
 
-  top: 0;
-  right: 0;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 `

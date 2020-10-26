@@ -13,7 +13,7 @@ export const StyledInput = styled.input`
 
   color: rgb(${props => props.theme.primaryText});
 
-  font-size: large;
+  font-size: 1.125rem;
   line-height: normal;
 
   &:focus {

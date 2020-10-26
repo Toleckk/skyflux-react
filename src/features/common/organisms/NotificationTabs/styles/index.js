@@ -1,4 +1,4 @@
 export * from './StyledDivider'
+export * from './StyledTab'
 export * from './StyledTabList'
-export * from './StyledTabPanel'
 export * from './StyledTabs'

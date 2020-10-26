@@ -7,9 +7,14 @@ export const StyledList = styled.ul`
   padding: 0 1rem;
 
   display: grid;
-  grid-template-columns: repeat(3, 30%);
   grid-row-gap: 1rem;
   justify-content: space-between;
+
+  grid-template-columns: repeat(2, 48%);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 30%);
+  }
 
   @media (min-width: 1366px) {
     grid-template-columns: repeat(4, 23%);

@@ -10,6 +10,7 @@ import {
   PrivateSwitcher,
   ProfileDataForm,
 } from '../../organisms'
+import {StyledItem} from './styles'
 
 export const Common = withTranslation('settings')(({t}) => {
   const {data, loading} = useMyQuery(me())
@@ -19,19 +20,27 @@ export const Common = withTranslation('settings')(({t}) => {
   if (loading) return <Loader />
 
   return (
-    <div>
-      <H1>{t('Profile information')}</H1>
-      <ProfileDataForm user={user} />
+    <ul>
+      <StyledItem>
+        <H1>{t('Profile information')}</H1>
+        <ProfileDataForm user={user} />
+      </StyledItem>
       <Divider />
-      <H1>{t('Change nickname')}</H1>
-      <ChangeNicknameForm user={user} />
+      <StyledItem>
+        <H1>{t('Change nickname')}</H1>
+        <ChangeNicknameForm user={user} />
+      </StyledItem>
       <Divider />
-      <H1>{t('Privacy settings')}</H1>
-      <PrivateSwitcher user={user} />
+      <StyledItem>
+        <H1>{t('Privacy settings')}</H1>
+        <PrivateSwitcher user={user} />
+      </StyledItem>
       <Divider />
-      <H1>{t('Login data')}</H1>
-      <ChangePasswordForm />
+      <StyledItem>
+        <H1>{t('Login data')}</H1>
+        <ChangePasswordForm />
+      </StyledItem>
       <Divider />
-    </div>
+    </ul>
   )
 })

@@ -1,9 +1,11 @@
 import React, {useMemo} from 'react'
+import {Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {Comment, deleteComment} from 'models/comment'
-import {Link, Tip} from 'ui'
+import {Tip} from 'ui'
 import {useConfirmDialog, useIsMe, useMyMutation} from '../../hooks'
 import {PublicationCard} from '..'
+import {StyledEllipsisLink} from './styles'
 
 export const CommentCard = withTranslation('post')(({publication, t}) => {
   const isMyComment = useIsMe(publication.user)
@@ -21,12 +23,14 @@ export const CommentCard = withTranslation('post')(({publication, t}) => {
     <PublicationCard publication={publication} onDelete={onDelete}>
       {!!publication.post && !!publication.post.text && (
         <div>
-          <Tip>
+          <Flex as={Tip}>
             {t('To post')}&nbsp;
-            <Link to={`/post/${publication.post._id}`}>
-              {publication.post.text}
-            </Link>
-          </Tip>
+            <Flex flex={1}>
+              <StyledEllipsisLink to={`/post/${publication.post._id}`}>
+                {publication.post.text}
+              </StyledEllipsisLink>
+            </Flex>
+          </Flex>
         </div>
       )}
       <Modal

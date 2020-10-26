@@ -14,7 +14,7 @@ export const UserCard = ({user, children}) => {
   return (
     <Component to={link}>
       <StyledContainer>
-        <Box as={Link} to={link} width="5rem" height="5rem">
+        <Box as={Link} to={link} width="5em" height="5em">
           <Avatar src={user.avatar} />
         </Box>
         <Box as={Link} to={link} marginTop="1rem">

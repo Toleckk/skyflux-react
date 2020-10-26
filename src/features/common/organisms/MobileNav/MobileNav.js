@@ -8,6 +8,8 @@ import {NavigationButton} from '../../molecules'
 import {MobileMenu, NotificationTabs} from '..'
 import {StyledItem} from './styles'
 
+export const MOBILE_NAV_HEIGHT = '3rem'
+
 export const MobileNav = () => {
   const {data, loading} = useMyQuery(me())
   const {close, toggle, isOpened} = useModal('notifications')
@@ -17,7 +19,13 @@ export const MobileNav = () => {
 
   return (
     <nav>
-      <Flex as="ul" justifyContent="space-evenly">
+      <Flex
+        as="ul"
+        justifyContent="space-evenly"
+        alignItems="center"
+        height={MOBILE_NAV_HEIGHT}
+        width="100%"
+      >
         <StyledItem>
           <NavigationButton icon="search" to="/search" />
         </StyledItem>
