@@ -8,7 +8,7 @@ export const Avatar = ({src, children, ...props}) => (
     {src ? (
       <img src={src} alt="avatar" width="100%" height="100%" />
     ) : (
-      <Icon icon="birthday" size="100%" />
+      <Icon icon="avatar" size="80%" />
     )}
     {children}
   </StyledContainer>

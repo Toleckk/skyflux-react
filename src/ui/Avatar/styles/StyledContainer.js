@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
 export const StyledContainer = styled.div`
-  display: block;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
   position: relative;
 
   user-select: none;
