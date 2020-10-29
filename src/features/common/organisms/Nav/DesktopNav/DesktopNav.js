@@ -4,9 +4,9 @@ import {Flex} from 'reflexbox/styled-components'
 import {Avatar} from 'ui'
 import {me} from 'models/user'
 import {deleteCurrentSession} from 'models/session'
-import {NavigationButton} from '../../molecules'
-import {useModal, useMyMutation, useMyQuery} from '../../hooks'
-import {NotificationTabs} from '../NotificationTabs'
+import {NavigationButton} from '../../../molecules'
+import {useModal, useMyMutation, useMyQuery} from '../../../hooks'
+import {NotificationTabs} from '../../NotificationTabs'
 import {StyledItem} from './styles'
 
 export const DesktopNav = () => {
