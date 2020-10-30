@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {useMedia} from 'react-use'
+import {me} from 'models/user'
 import {BottomBar, SideBar} from 'ui'
 import {DesktopNav, MobileNav} from '../../organisms'
 import {SwitchThemeButton} from '../../molecules'
-import {useModal} from '../../hooks'
+import {useModal, useMyQuery} from '../../hooks'
 import {
   StyledChildrenWrapper,
   StyledContainer,
@@ -12,6 +13,7 @@ import {
 } from './styles'
 
 export const Navigable = ({children}) => {
+  const {data, loading} = useMyQuery(me())
   const isDesktop = useMedia('(min-width: 768px)')
   const {isOpened} = useModal('notifications')
 
@@ -19,7 +21,10 @@ export const Navigable = ({children}) => {
     <StyledContainer>
       <StyledChildrenWrapper>{children}</StyledChildrenWrapper>
       {isDesktop ? (
-        <SideBar minHeight={isOpened || '6rem'} border={isOpened || 'hover'}>
+        <SideBar
+          minHeight={!isOpened && (loading || data.me) && '6rem'}
+          border={isOpened || (!loading && !data.me) || 'hover'}
+        >
           <DesktopNav />
         </SideBar>
       ) : (

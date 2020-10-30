@@ -1,53 +1,39 @@
-import React, {useRef} from 'react'
+import React, {useCallback, useRef} from 'react'
 import {useClickAway} from 'react-use'
-import {Flex} from 'reflexbox/styled-components'
-import {Avatar} from 'ui'
+import useBooleanState from 'use-boolean-state'
+import {Box, Flex} from 'reflexbox/styled-components'
 import {me} from 'models/user'
-import {deleteCurrentSession} from 'models/session'
-import {NavigationButton} from '../../../molecules'
-import {useModal, useMyMutation, useMyQuery} from '../../../hooks'
+import {useModal, useMyQuery} from '../../../hooks'
 import {NotificationTabs} from '../../NotificationTabs'
-import {StyledItem} from './styles'
+import {AuthForm} from '../../AuthForm'
+import {Authorized} from './Authorized'
+import {Guest} from './Guest'
 
 export const DesktopNav = () => {
   const {data, loading} = useMyQuery(me())
-  const [logout] = useMyMutation(deleteCurrentSession())
+  const {isOpened, close} = useModal('notifications')
+  const [isAuthFormOpened, , closeAuthForm, toggleAuthForm] = useBooleanState(
+    false,
+  )
 
-  const {close, toggle, isOpened} = useModal('notifications')
+  const closeAllModals = useCallback(() => {
+    close()
+    closeAuthForm()
+  }, [close, closeAuthForm])
 
   const ref = useRef()
-  useClickAway(ref, close)
+  useClickAway(ref, closeAllModals)
 
-  if (loading || !data) return <></>
+  if (loading) return <></>
 
   return (
     <Flex as="nav" ref={ref}>
-      <ul>
-        <StyledItem>
-          <NavigationButton to={'/@' + data?.me?.nickname}>
-            <Avatar src={data?.me?.avatar} />
-          </NavigationButton>
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton to="/feed" icon="feed" />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton
-            icon="notifications"
-            onClick={toggle}
-            isActive={isOpened}
-          />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton icon="settings" to="/settings" />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton icon="search" to="/search" />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton icon="logout" onClick={() => logout()} />
-        </StyledItem>
-      </ul>
+      {data.me ? <Authorized /> : <Guest onAuthClick={toggleAuthForm} />}
+      {!data.me && isAuthFormOpened && (
+        <Box padding="0 1rem 1rem">
+          <AuthForm />
+        </Box>
+      )}
       {isOpened && (
         <Flex flexDirection="column">
           <Flex flexBasis={0} flexGrow={1} overflowY="hidden">

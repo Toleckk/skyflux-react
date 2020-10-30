@@ -1,51 +1,40 @@
 import React from 'react'
-import {Flex} from 'reflexbox/styled-components'
 import useBooleanState from 'use-boolean-state'
-import {Avatar, Modal} from 'ui'
+import {Modal} from 'ui'
 import {me} from 'models/user'
 import {useModal, useMyQuery} from '../../../hooks'
-import {NavigationButton} from '../../../molecules'
-import {MobileMenu, NotificationTabs} from '../../index'
-import {StyledItem} from './styles'
+import {AuthForm, MobileMenu, NotificationTabs} from '../..'
+import {Authorized} from './Authorized'
+import {Guest} from './Guest'
+import {StyledAuthFormContainer} from './styles'
 
 export const MOBILE_NAV_HEIGHT = '3rem'
 
 export const MobileNav = () => {
   const {data, loading} = useMyQuery(me())
-  const {close, toggle, isOpened} = useModal('notifications')
+  const {close, isOpened, open} = useModal('notifications')
   const [menuOpened, openMenu, closeMenu] = useBooleanState(false)
+  const [authOpened, openAuth, closeAuth] = useBooleanState(false)
 
-  if (loading || !data) return <></>
+  if (loading) return <></>
 
   return (
     <nav>
-      <Flex
-        as="ul"
-        justifyContent="space-evenly"
-        alignItems="center"
-        height={MOBILE_NAV_HEIGHT}
-        width="100%"
-      >
-        <StyledItem>
-          <NavigationButton icon="search" to="/search" />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton icon="notifications" onClick={toggle} />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton icon="feed" to="/feed" />
-        </StyledItem>
-        <StyledItem>
-          <NavigationButton onClick={openMenu}>
-            <Avatar src={data?.me?.avatar} />
-          </NavigationButton>
-        </StyledItem>
-      </Flex>
+      {data.me ? (
+        <Authorized onMenuClick={openMenu} onNotificationsClick={open} />
+      ) : (
+        <Guest onAuthClick={openAuth} />
+      )}
       <Modal visible={isOpened} onClose={close} placement="right">
         <NotificationTabs />
       </Modal>
       <Modal visible={menuOpened} onClose={closeMenu} placement="right">
         <MobileMenu onItemClick={closeMenu} />
+      </Modal>
+      <Modal visible={authOpened} onClose={closeAuth} placement="bottom">
+        <StyledAuthFormContainer>
+          <AuthForm />
+        </StyledAuthFormContainer>
       </Modal>
     </nav>
   )
