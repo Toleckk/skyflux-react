@@ -1,3 +1,4 @@
+export * from './AuthForm'
 export * from './EventsDisplay'
 export * from './MobileMenu'
 export * from './Nav'
