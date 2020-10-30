@@ -3,14 +3,13 @@ import {Box} from 'reflexbox/styled-components'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
+import {text} from 'validation'
 import {Icon, Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {Post} from 'models/post'
 import {createComment} from 'models/comment'
 
-const schema = yup.object().shape({
-  text: yup.string().max(120).required(),
-})
+const schema = yup.object().shape({text: text.required()})
 
 export const CommentForm = ({post}) => {
   const {register, handleSubmit, reset} = useForm({

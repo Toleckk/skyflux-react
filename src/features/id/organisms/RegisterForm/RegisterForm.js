@@ -4,6 +4,7 @@ import {withTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
+import {email, password} from 'validation'
 import {Divider, Input, Text} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {createUser} from 'models/user'
@@ -11,11 +12,8 @@ import {SubmitButton} from '../../atoms'
 import {StyledResponsibleGrid} from './styles'
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup
-    .string()
-    .required()
-    .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/),
+  email: email.required(),
+  password: password.required(),
 })
 
 export const RegisterForm = withTranslation('id')(({t}) => {

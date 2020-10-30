@@ -5,6 +5,7 @@ import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Icon, Input} from 'ui'
+import {avatar, description} from 'validation'
 import {updateProfileInfo, User} from 'models/user'
 import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
@@ -12,15 +13,8 @@ import {useUploadAvatar} from '../../hooks'
 import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
 
 const schema = yup.object().shape({
-  avatar: yup.string().url(),
-  description: yup
-    .object()
-    .shape({
-      birthday: yup.string(),
-      from: yup.string().max(36),
-      about: yup.string().max(120),
-    })
-    .required(),
+  avatar,
+  description: description.required(),
 })
 
 export const ProfileDataForm = ({user}) => {

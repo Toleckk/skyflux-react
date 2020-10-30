@@ -5,31 +5,15 @@ import {withTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
-import {Input} from 'ui'
+import {login, password} from 'validation'
 import {useMyMutation} from 'features/common/hooks'
+import {Input} from 'ui'
 import {createSession} from 'models/session'
 import {SubmitButton} from '../../atoms'
 
-const schema = yup.object().shape({
-  login: yup
-    .string()
-    .required()
-    .or(
-      [
-        yup.string().email(),
-        yup
-          .string()
-          .matches(
-            /^(?!.*__)(?!_)(?!.*_$)(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9._]{5,69}$/,
-          ),
-      ],
-      'Invalid login',
-    ),
-  password: yup
-    .string()
-    .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Invalid password')
-    .required(),
-})
+const schema = yup
+  .object()
+  .shape({login: login.required(), password: password.required()})
 
 export const AuthForm = withTranslation('id')(({className, t}) => {
   const [login] = useMyMutation(createSession())

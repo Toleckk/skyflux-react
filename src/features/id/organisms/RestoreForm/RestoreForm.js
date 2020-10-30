@@ -2,6 +2,7 @@ import React, {useCallback} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import * as yup from 'yup'
+import {login} from 'validation'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import {Input} from 'ui'
@@ -9,22 +10,7 @@ import {useMyMutation} from 'features/common/hooks'
 import {createResetRequest} from 'models/reset'
 import {FieldDescription, SubmitButton} from '../../atoms'
 
-const schema = yup.object().shape({
-  login: yup
-    .string()
-    .required()
-    .or(
-      [
-        yup.string().email(),
-        yup
-          .string()
-          .matches(
-            /^(?!.*__)(?!_)(?!.*_$)(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9._]{5,69}$/,
-          ),
-      ],
-      'Invalid login',
-    ),
-})
+const schema = yup.object().shape({login: login.required()})
 
 export const RestoreForm = withTranslation('id')(({t}) => {
   const {handleSubmit, register, errors} = useForm({

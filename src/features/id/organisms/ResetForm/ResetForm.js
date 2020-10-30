@@ -5,16 +5,14 @@ import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
+import {password} from 'validation'
 import {Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {resetPassword} from 'models/user'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
-  password: yup
-    .string()
-    .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Invalid password')
-    .required(),
+  password: password.required(),
   confirm: yup
     .string()
     .oneOf([yup.ref('password'), ''], 'Passwords must match')

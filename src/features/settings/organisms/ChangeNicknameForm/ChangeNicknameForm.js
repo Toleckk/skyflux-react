@@ -4,19 +4,14 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
+import {nickname} from 'validation'
 import {Button, Input} from 'ui'
 import {useDebouncedFunc} from 'utils'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
 import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
 import {ResponsibleForm} from '../../atoms'
 
-const schema = yup.object().shape({
-  nickname: yup
-    .string()
-    .matches(
-      /^(?!.*__)(?!_)(?!.*_$)(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9._]{5,69}$/,
-    ),
-})
+const schema = yup.object().shape({nickname: nickname.required()})
 
 export const ChangeNicknameForm = ({user}) => {
   const {t} = useTranslation('settings')

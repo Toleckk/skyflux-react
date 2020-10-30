@@ -3,16 +3,15 @@ import PropTypes from 'prop-types'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
-import {Icon} from 'ui'
 import {useBooleanState} from 'use-boolean-state'
+import {text} from 'validation'
+import {Icon} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {createPost} from 'models/post'
 import {PostInput} from '../../molecules'
 import {StyledButton, StyledContainer} from './styles'
 
-const schema = yup.object().shape({
-  text: yup.string().max(120).required(),
-})
+const schema = yup.object().shape({text: text.required()})
 
 export const PostForm = ({placeholder}) => {
   const [create, {loading}] = useMyMutation(createPost())

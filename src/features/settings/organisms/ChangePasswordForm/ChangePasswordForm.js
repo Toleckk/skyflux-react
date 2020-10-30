@@ -4,19 +4,15 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {useTranslation} from 'react-i18next'
+import {password} from 'validation'
 import {Button, Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {updatePassword} from 'models/user'
 import {ResponsibleForm} from '../../atoms'
 
 const schema = yup.object().shape({
-  oldPassword: yup
-    .string()
-    .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Invalid password')
-    .required(),
-  newPassword: yup
-    .string()
-    .matches(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Invalid password')
+  oldPassword: password.required(),
+  newPassword: password
     .notOneOf([yup.ref('old'), "Passwords can't be equal"])
     .required(),
 })
