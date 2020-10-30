@@ -1,4 +1,3 @@
-import {me} from 'models/user'
 import {CREATE_SESSION, DELETE_CURRENT_SESSION} from './schemas'
 
 export const createSession = (variables = {}) => ({
@@ -6,7 +5,7 @@ export const createSession = (variables = {}) => ({
   variables,
   onCompleted: ({createSession}, {client}) => {
     localStorage.setItem('token', createSession || null)
-    client.query({...me(), fetchPolicy: 'network-only'})
+    client.cache.reset()
   },
 })
 
