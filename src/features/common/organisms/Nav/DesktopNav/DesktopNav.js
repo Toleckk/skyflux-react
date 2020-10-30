@@ -34,7 +34,7 @@ export const DesktopNav = () => {
           <AuthForm />
         </Box>
       )}
-      {isOpened && (
+      {isOpened && data.me && (
         <Flex flexDirection="column">
           <Flex flexBasis={0} flexGrow={1} overflowY="hidden">
             <NotificationTabs />
