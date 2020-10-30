@@ -8,7 +8,7 @@ export const PostRouter = () => {
 
   return (
     <>
-      <Route path="/post/:id" component={Display} />
+      <Route exact path="/post/:id" component={Display} />
       <PostModal _id={payload} visible={isOpened} onClose={close} />
     </>
   )

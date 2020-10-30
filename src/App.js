@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react'
 import {BrowserRouter} from 'react-router-dom'
-import {Route, Switch} from 'react-router'
+import {Redirect, Route, Switch} from 'react-router'
 import {ApolloProvider} from '@apollo/client'
 import {client} from 'configs'
 import {Navigable} from 'features/common/templates'
@@ -11,7 +11,7 @@ import {PostRouter} from 'features/post'
 import {SearchRouter} from 'features/search'
 import {SettingsRouter} from 'features/settings'
 import {PageLoader} from 'ui'
-import {Theme} from 'utils'
+import {PrivateRoute, Theme} from 'utils'
 
 export const App = () => (
   <Theme>
@@ -19,6 +19,9 @@ export const App = () => (
       <Suspense fallback={<PageLoader />}>
         <BrowserRouter>
           <Switch>
+            <PrivateRoute path="/" exact>
+              <Redirect to="/feed" />
+            </PrivateRoute>
             <Route path="/id">
               <IdRouter />
             </Route>

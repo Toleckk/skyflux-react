@@ -5,6 +5,6 @@ import {Common} from './pages'
 
 export const SettingsRouter = () => (
   <Switch>
-    <PrivateRoute path="/settings" component={Common} />
+    <PrivateRoute exact path="/settings" component={Common} />
   </Switch>
 )
