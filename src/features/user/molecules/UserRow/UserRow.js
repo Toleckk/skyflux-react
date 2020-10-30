@@ -1,13 +1,14 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar} from 'ui'
-import {MiniUser} from 'models/user'
-import {useIsMe} from 'features/common/hooks'
+import {me, MiniUser} from 'models/user'
+import {useIsMe, useMyQuery} from 'features/common/hooks'
 import {BigNickname} from '../../atoms'
 import {SubscribeButton} from '../../organisms'
 
 export const UserRow = ({user}) => {
   const isMe = useIsMe(user)
+  const {data} = useMyQuery(me())
 
   return (
     <Flex padding="0.5rem" alignItems="center">
@@ -17,7 +18,7 @@ export const UserRow = ({user}) => {
       <Box flex={1}>
         <BigNickname>{user.nickname}</BigNickname>
       </Box>
-      {!isMe && <SubscribeButton user={user} />}
+      {!isMe && data.me && <SubscribeButton user={user} />}
     </Flex>
   )
 }
