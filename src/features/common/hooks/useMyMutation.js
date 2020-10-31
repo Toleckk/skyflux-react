@@ -1,4 +1,4 @@
-import {useCallback, useRef} from 'react'
+import {useCallback, useMemo, useRef} from 'react'
 import {useMutation} from '@apollo/client'
 import noop from 'noop6'
 import {useDeepCompareMemo} from 'use-deep-compare'
@@ -13,14 +13,14 @@ export const useMyMutation = ({mutation, ...props}) => {
     (...args) => onCompletedRef.current(...args),
     [onCompletedRef],
   )
-  const [mutate, ...rest] = useMutation(mutation, {
+  const [mutate, result] = useMutation(mutation, {
     ...options,
     onCompleted: completeCallback,
   })
 
   onCompletedRef.current = useCallback(
-    (...args) => onCompleted(...args, ...rest),
-    [onCompleted, rest],
+    (...args) => onCompleted(...args, result),
+    [onCompleted, result],
   )
 
   const refetch = useCallback(
@@ -44,5 +44,26 @@ export const useMyMutation = ({mutation, ...props}) => {
     [mutate, refetch, variables],
   )
 
-  return [mutateVars, ...rest]
+  const mutateIgnoringErrors = useCallback(
+    (...args) => mutateVars(...args).catch(noop),
+    [mutateVars],
+  )
+
+  const formattedResult = useMemo(
+    () => ({
+      ...result,
+      error: result.error?.graphQLErrors
+        ?.map?.(e => e.extensions)
+        ?.reduce(
+          (acc, {exception}) => ({
+            ...acc,
+            ...exception,
+          }),
+          {},
+        ),
+    }),
+    [result],
+  )
+
+  return [mutateIgnoringErrors, formattedResult]
 }
