@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Controller, useForm} from 'react-hook-form'
@@ -46,12 +46,10 @@ export const ProfileDataForm = ({user}) => {
 
   useEffect(resetForm, [resetForm, user])
 
-  const onSubmit = useMemo(() => handleSubmit(update), [handleSubmit, update])
-
   return (
     <Flex
       as="form"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(update)}
       onReset={resetForm}
       flexDirection="column"
     >
