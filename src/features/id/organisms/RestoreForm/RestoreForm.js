@@ -1,10 +1,11 @@
-import React, {useCallback} from 'react'
+import React, {useMemo} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import * as yup from 'yup'
 import {login} from 'validation'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
+import {mergeErrors} from 'utils'
 import {Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {createResetRequest} from 'models/reset'
@@ -13,14 +14,16 @@ import {FieldDescription, SubmitButton} from '../../atoms'
 const schema = yup.object().shape({login: login.required()})
 
 export const RestoreForm = withTranslation('id')(({t}) => {
-  const {handleSubmit, register, errors} = useForm({
+  const [createRequest, {error}] = useMyMutation(createResetRequest())
+
+  const {handleSubmit, register, errors: formErrors} = useForm({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const [createRequest] = useMyMutation(createResetRequest())
+  const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useCallback(handleSubmit(createRequest), [
+  const onSubmit = useMemo(() => handleSubmit(createRequest), [
     handleSubmit,
     createRequest,
   ])
@@ -34,7 +37,7 @@ export const RestoreForm = withTranslation('id')(({t}) => {
             label={t('Login')}
             name="login"
             ref={register}
-            error={errors.login?.message}
+            error={errors.login}
           />
           <Flex marginTop="1.5em" justifyContent="center">
             <SubmitButton>{t('Next')}</SubmitButton>

@@ -6,7 +6,7 @@ import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {nickname} from 'validation'
 import {Button, Input} from 'ui'
-import {useDebouncedFunc} from 'utils'
+import {mergeErrors, useDebouncedFunc} from 'utils'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
 import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
 import {ResponsibleForm} from '../../atoms'
@@ -16,13 +16,13 @@ const schema = yup.object().shape({nickname: nickname.required()})
 export const ChangeNicknameForm = ({user}) => {
   const {t} = useTranslation('settings')
 
-  const [update, {loading: updating}] = useMyMutation(updateNickname())
+  const [update, {loading: updating, error}] = useMyMutation(updateNickname())
 
   const [execExistsQuery, {data, loading}] = useMyLazyQuery(doesNicknameExist())
   const [doesExistDebounced, delayed] = useDebouncedFunc(execExistsQuery, 1000)
   const isLoading = loading || delayed
 
-  const {register, errors, handleSubmit, watch} = useForm({
+  const {register, errors: formErrors, handleSubmit, watch} = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
@@ -30,8 +30,14 @@ export const ChangeNicknameForm = ({user}) => {
   const {nickname} = watch()
 
   useEffect(() => {
-    if (!errors.nickname && nickname) doesExistDebounced({nickname})
-  }, [errors.nickname, nickname, doesExistDebounced])
+    if (!formErrors.nickname && nickname) doesExistDebounced({nickname})
+  }, [formErrors.nickname, nickname, doesExistDebounced])
+
+  const errors = mergeErrors(
+    {nickname: !!data?.doesNicknameExist && 'Nickname already exists'},
+    error,
+    formErrors,
+  )
 
   const onSubmit = useCallback(
     handleSubmit(
@@ -47,10 +53,7 @@ export const ChangeNicknameForm = ({user}) => {
         name="nickname"
         label={t('New nickname')}
         placeholder={user.nickname}
-        error={
-          errors.nickname?.message ||
-          (data?.doesNicknameExist && t('Nickname already exists'))
-        }
+        error={t(errors.nickname)}
         isLoading={isLoading}
       />
       <Box marginTop="1rem">

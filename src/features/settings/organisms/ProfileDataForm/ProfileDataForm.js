@@ -5,6 +5,7 @@ import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Icon, Input} from 'ui'
+import {mergeErrors} from 'utils'
 import {
   ABOUT_MAX_LENGTH,
   avatar,
@@ -25,12 +26,21 @@ const schema = yup.object().shape({
 export const ProfileDataForm = ({user}) => {
   const {t} = useTranslation('settings')
 
-  const [update] = useMyMutation(updateProfileInfo())
+  const [update, {error}] = useMyMutation(updateProfileInfo())
 
-  const {handleSubmit, register, formState, reset, control} = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState,
+    reset,
+    control,
+    errors: formErrors,
+  } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
+
+  const errors = mergeErrors(error, formErrors)
 
   const {
     avatar = user.avatar,
@@ -61,6 +71,7 @@ export const ProfileDataForm = ({user}) => {
             loading={loading}
             value={avatar}
             ref={register}
+            error={t(errors.avatar)}
           />
         </Box>
         <StyledInputsContainer>
@@ -68,7 +79,12 @@ export const ProfileDataForm = ({user}) => {
             name="description.birthday"
             defaultValue={user.description.birthday}
             control={control}
-            as={<DateInput label={t('Birthdate')} />}
+            as={
+              <DateInput
+                label={t('Birthdate')}
+                error={t(errors.description?.birthday)}
+              />
+            }
           />
           <Input
             label={t('From')}
@@ -76,6 +92,7 @@ export const ProfileDataForm = ({user}) => {
             ref={register}
             maxLength={FROM_MAX_LENGTH}
             defaultValue={user.description.from}
+            error={t(errors.description?.from)}
           />
         </StyledInputsContainer>
       </StyledResponsibleContainer>
@@ -86,6 +103,7 @@ export const ProfileDataForm = ({user}) => {
         ref={register}
         maxLength={ABOUT_MAX_LENGTH}
         defaultValue={user.description.about}
+        error={t(errors.description?.about)}
       />
       {formState.isDirty && (
         <Flex float="right" alignSelf="flex-end" marginTop="1rem">

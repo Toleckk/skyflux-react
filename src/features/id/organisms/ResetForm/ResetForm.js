@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useMemo} from 'react'
 import {useParams} from 'react-router'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
@@ -7,6 +7,7 @@ import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {password} from 'validation'
 import {Input} from 'ui'
+import {mergeErrors} from 'utils'
 import {useMyMutation} from 'features/common/hooks'
 import {resetPassword} from 'models/user'
 import {SubmitButton} from '../../atoms'
@@ -23,14 +24,16 @@ export const ResetForm = () => {
   const {t} = useTranslation('id')
   const {token} = useParams()
 
-  const {handleSubmit, register, errors} = useForm({
+  const [reset, {error}] = useMyMutation(resetPassword())
+
+  const {handleSubmit, register, errors: formErrors} = useForm({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const [reset] = useMyMutation(resetPassword())
+  const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useCallback(handleSubmit(reset), [handleSubmit, reset])
+  const onSubmit = useMemo(() => handleSubmit(reset), [handleSubmit, reset])
 
   return (
     <form onSubmit={onSubmit}>
@@ -42,7 +45,7 @@ export const ResetForm = () => {
             name="password"
             type="password"
             ref={register}
-            error={errors.password?.message}
+            error={errors.password}
           />
         </Box>
         <Box marginTop="1em">
@@ -51,7 +54,7 @@ export const ResetForm = () => {
             name="confirm"
             type="password"
             ref={register}
-            error={errors.confirm?.message}
+            error={errors.confirm}
           />
         </Box>
         <Box marginTop="1.5em" alignSelf="center">

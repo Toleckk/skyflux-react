@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {email, password} from 'validation'
+import {mergeErrors} from 'utils'
 import {Divider, Input, Text} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {createUser} from 'models/user'
@@ -17,15 +18,17 @@ const schema = yup.object().shape({
 })
 
 export const RegisterForm = withTranslation('id')(({t}) => {
-  const [signUp] = useMyMutation({
+  const [signUp, {error}] = useMyMutation({
     ...createUser(),
     asyncMode: true,
   })
 
-  const {register, handleSubmit, errors} = useForm({
+  const {register, handleSubmit, errors: formErrors} = useForm({
     resolver: yupResolver(schema),
     mode: 'onBlur',
   })
+
+  const errors = mergeErrors(error, formErrors)
 
   const onSubmit = useCallback(handleSubmit(signUp), [handleSubmit])
 
@@ -45,7 +48,7 @@ export const RegisterForm = withTranslation('id')(({t}) => {
           id="email"
           name="email"
           label={t('Email')}
-          error={errors.email?.message}
+          error={t(errors.email)}
           ref={register}
         />
       </StyledResponsibleGrid>
@@ -59,7 +62,7 @@ export const RegisterForm = withTranslation('id')(({t}) => {
           name="password"
           label={t('Password')}
           type="password"
-          error={errors.password?.message}
+          error={t(errors.password)}
           ref={register}
         />
       </StyledResponsibleGrid>

@@ -5,6 +5,7 @@ import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {useTranslation} from 'react-i18next'
 import {password} from 'validation'
+import {mergeErrors} from 'utils'
 import {Button, Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {updatePassword} from 'models/user'
@@ -18,12 +19,14 @@ const schema = yup.object().shape({
 })
 
 export const ChangePasswordForm = () => {
-  const [update] = useMyMutation(updatePassword())
+  const [update, {error}] = useMyMutation(updatePassword())
 
-  const {handleSubmit, register, errors} = useForm({
+  const {handleSubmit, register, errors: formErrors} = useForm({
     resolver: yupResolver(schema),
     mode: 'onBlur',
   })
+
+  const errors = mergeErrors(formErrors, error)
 
   const onSubmit = useCallback(handleSubmit(update), [update])
 
@@ -36,7 +39,7 @@ export const ChangePasswordForm = () => {
         label={t('Old password')}
         ref={register}
         name="oldPassword"
-        error={errors.oldPassword?.message}
+        error={t(errors.oldPassword)}
       />
       <Box marginTop="1rem" width="100%">
         <Input
@@ -44,7 +47,7 @@ export const ChangePasswordForm = () => {
           label={t('New password')}
           ref={register}
           name="newPassword"
-          error={errors.newPassword?.message}
+          error={t(errors.newPassword)}
         />
       </Box>
       <Box marginTop="1rem">
