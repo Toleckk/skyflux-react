@@ -20,7 +20,7 @@ export const login = yup
   .string()
   .or([nickname, email], 'Login must be valid email or nickname')
 
-export const avatar = yup.string().url()
+export const avatar = yup.string().url('Avatar must be valid url')
 
 export const birthday = yup.mixed().test({
   name: 'birthday',
