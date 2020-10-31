@@ -11,7 +11,7 @@ export const nickname = yup
   .string()
   .matches(
     /^(?!\._)(?!_\.)(?!.*__)(?!_)(?!.*_$)(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9._]{5,69}$/,
-    'Nickname may contain latin letters, numbers, alone dots and underscores',
+    'Nickname may contain latin letters, numbers, alone dots and underscores and must contains from 5 to 70 symbols',
   )
 
 export const email = yup.string().email()
