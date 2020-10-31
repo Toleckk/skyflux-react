@@ -13,5 +13,10 @@
   "Nickname already exists": "Никнейм существует",
   "Change nickname": "Изменить никнейм",
   "Change": "Изменить",
-  "Are you sure you want to make your account public? All pending sub requests will be accepted": "Вы уверены, что хотите сделать аккаунт публичным? Все запросы на подписку будут приняты"
+  "Are you sure you want to make your account public? All pending sub requests will be accepted": "Вы уверены, что хотите сделать аккаунт публичным? Все запросы на подписку будут приняты",
+  "Password must be at least 8 characters long and contain numbers and letters in upper and lower case": "Пароль должен быть не короче 8 символов и содержать цифры и буквы в верхнем и нижнем регистрах",
+  "Passwords can't be equal": "Пароли не могут быть одинаковыми",
+  "Login must be valid email or nickname": "Логин должен быть валидным эмейлом или никнеймом",
+  "Birthday should be a valid date or empty string": "День рождения должен быть датой или пустой строкой",
+  "Nickname may contain latin letters, numbers, alone dots and underscores and must contains from 5 to 70 symbols": "Никнейм может содержать только латинские буквы, цифры, одиночные точки и подчёркивания и должен содержать от 5 до 70 символов"
 }
