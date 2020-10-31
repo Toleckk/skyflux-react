@@ -4,7 +4,7 @@ import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {useBooleanState} from 'use-boolean-state'
-import {text} from 'validation'
+import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {createPost} from 'models/post'
@@ -45,6 +45,7 @@ export const PostForm = ({placeholder}) => {
               onBlur(e)
             }}
             onFocus={focus}
+            maxLength={TEXT_MAX_LENGTH}
             {...props}
           />
         )}

@@ -5,7 +5,12 @@ import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
 import {Icon, Input} from 'ui'
-import {avatar, description} from 'validation'
+import {
+  ABOUT_MAX_LENGTH,
+  avatar,
+  description,
+  FROM_MAX_LENGTH,
+} from 'validation'
 import {updateProfileInfo, User} from 'models/user'
 import {useMyMutation} from 'features/common/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
@@ -71,6 +76,7 @@ export const ProfileDataForm = ({user}) => {
             label={t('From')}
             name="description.from"
             ref={register}
+            maxLength={FROM_MAX_LENGTH}
             defaultValue={user.description.from}
           />
         </StyledInputsContainer>
@@ -80,6 +86,7 @@ export const ProfileDataForm = ({user}) => {
         name="description.about"
         placeholder={t('Tell about yourself')}
         ref={register}
+        maxLength={ABOUT_MAX_LENGTH}
         defaultValue={user.description.about}
       />
       {formState.isDirty && (

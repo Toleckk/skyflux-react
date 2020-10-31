@@ -28,12 +28,15 @@ export const birthday = yup.mixed().test({
   message: 'Birthday should be a valid date or empty string',
 })
 
-export const from = yup.string().max(36)
+export const FROM_MAX_LENGTH = 36
+export const from = yup.string().max(FROM_MAX_LENGTH)
 
-export const about = yup.string().max(120)
+export const ABOUT_MAX_LENGTH = 120
+export const about = yup.string().max(ABOUT_MAX_LENGTH)
 
 export const description = yup.object().shape({birthday, from, about})
 
-export const text = yup.string().max(120)
+export const TEXT_MAX_LENGTH = 120
+export const text = yup.string().max(TEXT_MAX_LENGTH)
 
 export const token = yup.string().length(36)

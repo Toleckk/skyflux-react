@@ -3,7 +3,7 @@ import {Box} from 'reflexbox/styled-components'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
-import {text} from 'validation'
+import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon, Input} from 'ui'
 import {useMyMutation} from 'features/common/hooks'
 import {Post} from 'models/post'
@@ -30,7 +30,13 @@ export const CommentForm = ({post}) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Input multi rows="1" name="text" ref={register}>
+      <Input
+        multi
+        rows="1"
+        name="text"
+        ref={register}
+        maxLength={TEXT_MAX_LENGTH}
+      >
         <Box width="2rem" height="2rem" as="button" type="submit">
           <Icon icon="message" />
         </Box>
