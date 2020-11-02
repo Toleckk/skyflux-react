@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Nickname = styled.span`
-  font-size: 1.125rem;
+  font-size: 1.125em;
   font-weight: 700;
   color: rgb(${props => props.theme.secondaryText});
   filter: drop-shadow(

@@ -6,5 +6,5 @@ export const Text = styled.span`
 
   color: rgb(${props => props.theme.primaryText});
 
-  font-size: 1rem;
+  font-size: 1em;
 `
