@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {useMedia} from 'react-use'
 import {me} from 'models/user'
 import {BottomBar, SideBar} from 'ui'
-import {DesktopNav, MobileNav} from '../../organisms'
+import {DesktopNav, MobileNav, NotificationPopup} from '../../organisms'
 import {SwitchThemeButton} from '../../molecules'
 import {useModal, useMyQuery} from '../../hooks'
 import {
@@ -37,6 +37,7 @@ export const Navigable = ({children}) => {
           <SwitchThemeButton />
         </StyledThemeButtonContainer>
       )}
+      <NotificationPopup />
     </StyledContainer>
   )
 }
