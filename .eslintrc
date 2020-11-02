@@ -46,7 +46,8 @@
           "@apollo/client/link/ws",
           "**/features/*",
           "**/common/*",
-          "react-image-lightbox/style.css"
+          "react-image-lightbox/style.css",
+          "react-toastify/dist/ReactToastify.min.css"
         ]
       }
     ],
