@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react'
+import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {Comment, deleteComment} from 'models/comment'
@@ -7,7 +8,7 @@ import {useConfirmDialog, useIsMe, useMyMutation} from '../../hooks'
 import {PublicationCard} from '..'
 import {StyledEllipsisLink} from './styles'
 
-export const CommentCard = withTranslation('post')(({publication, t}) => {
+export const CommentCard = withTranslation('post')(({publication, t, mini}) => {
   const isMyComment = useIsMe(publication.user)
   const isMyPost = useIsMe(publication.post.user)
 
@@ -20,7 +21,7 @@ export const CommentCard = withTranslation('post')(({publication, t}) => {
   )
 
   return (
-    <PublicationCard publication={publication} onDelete={onDelete}>
+    <PublicationCard publication={publication} onDelete={onDelete} mini={mini}>
       {!!publication.post && !!publication.post.text && (
         <div>
           <Flex as={Tip}>
@@ -41,6 +42,11 @@ export const CommentCard = withTranslation('post')(({publication, t}) => {
   )
 })
 
+CommentCard.defaultProps = {
+  mini: false,
+}
+
 CommentCard.propTypes = {
   publication: Comment.isRequired,
+  mini: PropTypes.bool,
 }
