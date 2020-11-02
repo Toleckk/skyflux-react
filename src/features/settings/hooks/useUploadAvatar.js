@@ -2,20 +2,19 @@ import {useCallback, useEffect, useState} from 'react'
 import {useAsyncFn} from 'react-use'
 import {uploadFileToCloudinary} from 'utils'
 
-export const useUploadAvatar = () => {
-  const [avatar, setAvatar] = useState(undefined)
+export const useUploadAvatar = def => {
+  const [avatar, setAvatar] = useState(def)
 
-  const [{loading, value = {secure_url: undefined}}, upload] = useAsyncFn(
+  const [{loading, value = {secure_url: def}}, upload] = useAsyncFn(
     file => uploadFileToCloudinary(file),
     [],
   )
 
-  useEffect(() => void (value.secure_url && setAvatar(value.secure_url)), [
-    value.secure_url,
-    setAvatar,
-  ])
+  useEffect(() => setAvatar(value.secure_url), [value.secure_url, setAvatar])
 
-  const reset = useCallback(() => setAvatar(undefined), [setAvatar])
+  const reset = useCallback(() => setAvatar(def), [setAvatar, def])
 
-  return {loading, avatar, upload, reset}
+  const remove = useCallback(() => setAvatar(undefined), [setAvatar])
+
+  return {loading, avatar, upload, reset, remove}
 }

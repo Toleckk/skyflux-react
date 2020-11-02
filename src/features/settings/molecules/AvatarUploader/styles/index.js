@@ -1,2 +1,3 @@
-export * from './StyledButton'
+export * from './StyledContainer'
+export * from './StyledDeleteButton'
 export * from './StyledIconContainer'

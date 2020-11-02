@@ -7,12 +7,17 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import {useDropzone} from 'react-dropzone'
+import {Box} from 'reflexbox/styled-components'
 import {Avatar, Icon} from 'ui'
-import {StyledButton, StyledIconContainer} from './styles'
+import {
+  StyledContainer,
+  StyledDeleteButton,
+  StyledIconContainer,
+} from './styles'
 import useMergedRef from '@react-hook/merged-ref'
 
 export const AvatarUploader = forwardRef(
-  ({onFileSelected, loading, value, ...props}, ref) => {
+  ({onFileSelected, onDelete, loading, value, ...props}, ref) => {
     const onDropAccepted = useCallback(
       files => !loading && onFileSelected(files[0]),
       [onFileSelected, loading],
@@ -42,28 +47,38 @@ export const AvatarUploader = forwardRef(
     const registerRef = useMergedRef(ref, inputRef)
 
     return (
-      <StyledButton
-        type="button"
-        disabled={loading}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        {...getRootProps()}
-      >
-        <input {...getInputProps()} />
-        <input
-          readOnly
-          hidden
-          value={value || ''}
-          ref={registerRef}
-          {...props}
-        />
-        <Avatar src={value} />
-        {(loading || isDragAccept || hovered) && (
-          <StyledIconContainer>
-            <Icon icon={loading ? 'uploading' : 'upload'} size="50%" />
-          </StyledIconContainer>
+      <StyledContainer>
+        <Box
+          as="button"
+          type="button"
+          disabled={loading}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          height="100%"
+          width="100%"
+          {...getRootProps()}
+        >
+          <input {...getInputProps()} />
+          <input
+            readOnly
+            hidden
+            value={value || ''}
+            ref={registerRef}
+            {...props}
+          />
+          <Avatar src={value} />
+          {(loading || isDragAccept || hovered) && (
+            <StyledIconContainer>
+              <Icon icon={loading ? 'uploading' : 'upload'} size="50%" />
+            </StyledIconContainer>
+          )}
+        </Box>
+        {!!value && (
+          <StyledDeleteButton onClick={onDelete}>
+            <Icon icon="delete" size="1rem" />
+          </StyledDeleteButton>
         )}
-      </StyledButton>
+      </StyledContainer>
     )
   },
 )
@@ -72,6 +87,7 @@ AvatarUploader.displayName = 'AvatarUploader'
 
 AvatarUploader.propTypes = {
   onFileSelected: PropTypes.func,
+  onDelete: PropTypes.func,
   loading: PropTypes.bool,
   value: PropTypes.string,
 }

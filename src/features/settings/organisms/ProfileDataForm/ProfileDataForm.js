@@ -42,12 +42,9 @@ export const ProfileDataForm = ({user}) => {
 
   const errors = mergeErrors(error, formErrors)
 
-  const {
-    avatar = user.avatar,
-    upload,
-    loading,
-    reset: resetAvatar,
-  } = useUploadAvatar()
+  const {avatar, upload, loading, reset: resetAvatar, remove} = useUploadAvatar(
+    user.avatar,
+  )
 
   const resetForm = useCallback(() => {
     reset()
@@ -68,6 +65,7 @@ export const ProfileDataForm = ({user}) => {
           <AvatarUploader
             name="avatar"
             onFileSelected={upload}
+            onDelete={remove}
             loading={loading}
             value={avatar}
             ref={register}
