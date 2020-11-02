@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Trans, useTranslation} from 'react-i18next'
+import {useMyTitle} from 'features/common/hooks'
 import {PostForm} from 'features/common/organisms'
 import {Divider, H1, Link, Text} from 'ui'
 import {FeedDisplay, SuggestionsDisplay} from '../../organisms'
@@ -8,6 +9,8 @@ import {StyledContainer} from './styles'
 
 export const All = () => {
   const {t} = useTranslation('feed')
+
+  useMyTitle(t('Feed'))
 
   const [feedState, setFeedState] = useState({loading: true, fulfilled: false})
 

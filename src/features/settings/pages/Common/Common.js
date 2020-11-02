@@ -1,7 +1,7 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {withTranslation} from 'react-i18next'
-import {useMyQuery} from 'features/common/hooks'
+import {useMyQuery, useMyTitle} from 'features/common/hooks'
 import {me} from 'models/user'
 import {Divider, H1, Loader} from 'ui'
 import {
@@ -13,6 +13,8 @@ import {
 import {StyledItem} from './styles'
 
 export const Common = withTranslation('settings')(({t}) => {
+  useMyTitle(t('Settings'))
+
   const {data, loading} = useMyQuery(me())
 
   const user = data?.me

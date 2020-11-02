@@ -4,6 +4,7 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useHistory, useLocation} from 'react-router'
 import {parse, stringify} from 'query-string'
+import {useMyTitle} from 'features/common/hooks'
 import {H1} from 'ui'
 import {useDebouncedEffect} from 'utils'
 import {SearchInput} from '../../molecules'
@@ -11,6 +12,8 @@ import {SearchLoader} from '../../atoms'
 
 export const Search = ({onInputChange, isLoading, children}) => {
   const {t} = useTranslation('search')
+
+  useMyTitle(t('Search'))
 
   const history = useHistory()
   const {pathname, search} = useLocation()

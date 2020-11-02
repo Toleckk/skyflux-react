@@ -7,7 +7,7 @@ import {useInfiniteScroll} from 'utils'
 import {Divider, H1, Loader} from 'ui'
 import {PostForm} from 'features/common/organisms'
 import {PostList} from 'features/common/molecules'
-import {useIsMe, useMyQuery} from 'features/common/hooks'
+import {useIsMe, useMyQuery, useMyTitle} from 'features/common/hooks'
 import {getUserByNickname} from 'models/user'
 import {getPostsByNickname} from 'models/post'
 import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
@@ -15,6 +15,7 @@ import {StyledHeader, StyledStaticDivider} from './styles'
 
 export const Wall = withTranslation('user')(({t}) => {
   const {nickname} = useParams()
+  useMyTitle('@' + nickname)
 
   const isMe = useIsMe({nickname})
 
