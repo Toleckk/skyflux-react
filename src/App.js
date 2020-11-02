@@ -10,31 +10,34 @@ import {FeedRouter} from 'features/feed'
 import {PostRouter} from 'features/post'
 import {SearchRouter} from 'features/search'
 import {SettingsRouter} from 'features/settings'
+import {ErrorBoundary} from 'features/common/organisms'
 import {PageLoader} from 'ui'
 import {PrivateRoute, Theme} from 'utils'
 
 export const App = () => (
   <Theme>
-    <ApolloProvider client={client}>
-      <Suspense fallback={<PageLoader />}>
-        <BrowserRouter>
-          <Switch>
-            <PrivateRoute path="/" exact>
-              <Redirect to="/feed" />
-            </PrivateRoute>
-            <Route path="/id">
-              <IdRouter />
-            </Route>
-            <Navigable>
-              <FeedRouter />
-              <PostRouter />
-              <SearchRouter />
-              <SettingsRouter />
-              <UserRouter />
-            </Navigable>
-          </Switch>
-        </BrowserRouter>
-      </Suspense>
-    </ApolloProvider>
+    <Suspense fallback={<PageLoader />}>
+      <ApolloProvider client={client}>
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Switch>
+              <PrivateRoute path="/" exact>
+                <Redirect to="/feed" />
+              </PrivateRoute>
+              <Route path="/id">
+                <IdRouter />
+              </Route>
+              <Navigable>
+                <FeedRouter />
+                <PostRouter />
+                <SearchRouter />
+                <SettingsRouter />
+                <UserRouter />
+              </Navigable>
+            </Switch>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </ApolloProvider>
+    </Suspense>
   </Theme>
 )

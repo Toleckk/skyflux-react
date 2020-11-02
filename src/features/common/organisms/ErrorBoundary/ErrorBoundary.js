@@ -1,0 +1,45 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import {Translation} from 'react-i18next'
+import {ThemeContext} from 'styled-components'
+import {Flex} from 'reflexbox/styled-components'
+import {H1} from 'ui'
+
+export class ErrorBoundary extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+  }
+
+  static contextType = ThemeContext
+
+  state = {
+    error: false,
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({error: true})
+  }
+
+  render() {
+    if (this.state.error)
+      return (
+        <Translation ns="nav">
+          {t => (
+            <Flex
+              height="100vh"
+              width="100%"
+              alignItems="center"
+              justifyContent="center"
+              style={{
+                backgroundColor: `rgb(${this.context.primaryDark})`,
+              }}
+            >
+              <H1>{t('Something went wrong')}</H1>
+            </Flex>
+          )}
+        </Translation>
+      )
+
+    return this.props.children
+  }
+}
