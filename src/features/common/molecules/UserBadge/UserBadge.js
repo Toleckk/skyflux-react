@@ -7,12 +7,12 @@ import {StyledNickname} from './styles'
 
 export const UserBadge = ({user}) => (
   <Flex alignItems="center">
-    <Box width="2rem" height="2rem">
+    <Box width="2em" height="2em">
       <Link to={'/@' + user.nickname}>
         <Avatar src={user.avatar} />
       </Link>
     </Box>
-    <Box marginLeft="1rem">
+    <Box marginLeft="1em">
       <Link to={'/@' + user.nickname}>
         <StyledNickname>{user.nickname}</StyledNickname>
       </Link>
