@@ -1,12 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Translation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Date, Text} from 'ui'
 import {UserBadge} from '../UserBadge'
 import {StyledSubEventContainer} from './styles'
 
-export const SubEventCard = ({event}) => (
-  <StyledSubEventContainer>
+export const SubEventCard = ({event, mini}) => (
+  <StyledSubEventContainer mini={mini}>
     <Flex alignItems="center">
       <UserBadge user={event.subj.sub.from} />
       <Translation ns="sub">
@@ -18,13 +19,22 @@ export const SubEventCard = ({event}) => (
         )}
       </Translation>
     </Flex>
-    <Box width="1rem" height="0" />
-    <Box marginLeft="auto">
-      <Date date={event.createdAt} />
-    </Box>
+    {!mini && (
+      <>
+        <Box width="1rem" height="0" />
+        <Box marginLeft="auto">
+          <Date date={event.createdAt} />
+        </Box>
+      </>
+    )}
   </StyledSubEventContainer>
 )
 
+SubEventCard.defaultProps = {
+  mini: false,
+}
+
 SubEventCard.propTypes = {
   event: Event.isRequired,
+  mini: PropTypes.bool,
 }

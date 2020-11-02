@@ -1,19 +1,27 @@
-import React from 'react'
+import React, {Suspense} from 'react'
+import PropTypes from 'prop-types'
 import {Event} from 'models/event'
+import {Loader} from 'ui'
 import {CommentEventCard} from './CommentEventCard'
 import {SubEventCard} from './SubEventCard'
 
-export const EventCard = ({publication: event}) => {
-  switch (event.kind) {
-    case 'Comment':
-      return <CommentEventCard event={event} />
-    case 'Sub':
-      return <SubEventCard event={event} />
-    default:
-      return <></>
-  }
+export const EventCard = ({publication: event, mini}) => (
+  <Suspense fallback={<Loader />}>
+    {event.kind === 'Comment' ? (
+      <CommentEventCard event={event} mini={mini} />
+    ) : event.kind === 'Sub' ? (
+      <SubEventCard event={event} mini={mini} />
+    ) : (
+      <></>
+    )}
+  </Suspense>
+)
+
+EventCard.defaultProps = {
+  mini: false,
 }
 
 EventCard.propTypes = {
   publication: Event.isRequired,
+  mini: PropTypes.bool,
 }
