@@ -9,12 +9,18 @@ export const SubRequestsDisplay = () => {
   const {data, loading, fetchMore} = useMyQuery(getSubRequests({first: 25}))
   const subs = data?.getSubRequests?.edges
 
+  const hasMore = data?.getSubRequests?.pageInfo?.hasNextPage
+
   const ref = useInfiniteScroll({
     fetchMore,
     loading,
-    hasMore: data?.getSubRequests?.pageInfo?.hasNextPage,
+    hasMore,
     threshold: '100px',
   })
 
-  return loading ? <Loader /> : <SubRequestList subs={subs} ref={ref} />
+  return loading ? (
+    <Loader />
+  ) : (
+    <SubRequestList subs={subs} ref={ref} loading={hasMore} />
+  )
 }

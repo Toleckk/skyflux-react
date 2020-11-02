@@ -17,16 +17,18 @@ export const FeedDisplay = ({onEmptyFeedReceived, onFulfilledFeedReceived}) => {
       return posts?.length ? onFulfilledFeedReceived() : onEmptyFeedReceived()
   }, [onEmptyFeedReceived, onFulfilledFeedReceived, posts, loading])
 
+  const hasMore = data?.getFeed?.pageInfo?.hasNextPage
+
   const scrollContainerRef = useInfiniteScroll({
     fetchMore,
     loading,
-    hasMore: data?.getFeed?.pageInfo?.hasNextPage,
+    hasMore,
   })
 
   return loading ? (
     <Loader />
   ) : (
-    <PostList posts={posts} ref={scrollContainerRef} />
+    <PostList posts={posts} ref={scrollContainerRef} loading={hasMore} />
   )
 }
 

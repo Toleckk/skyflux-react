@@ -17,10 +17,12 @@ export const PostDisplay = ({_id}) => {
     getCommentsByPostId(_id, {first: 25}),
   )
 
+  const hasMore = commentsData?.getCommentsByPostId?.pageInfo?.hasNextPage
+
   const commentsContainerRef = useInfiniteScroll({
     fetchMore,
     loading: commentsLoading,
-    hasMore: commentsData?.getCommentsByPostId?.pageInfo?.hasNextPage,
+    hasMore,
     direction: 'up',
   })
 
@@ -46,7 +48,11 @@ export const PostDisplay = ({_id}) => {
               {!comments.length ? (
                 <H1>{t('Be the first to comment')}</H1>
               ) : (
-                <CommentList comments={comments} ref={commentsContainerRef} />
+                <CommentList
+                  comments={comments}
+                  ref={commentsContainerRef}
+                  loading={hasMore}
+                />
               )}
             </Flex>
             <Divider />

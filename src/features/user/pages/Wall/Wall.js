@@ -25,14 +25,16 @@ export const Wall = withTranslation('user')(({t}) => {
     getPostsByNickname(nickname, {first: 25}),
   )
 
+  const user = userData?.getUserByNickname
+  const posts = postsData?.getPostsByNickname?.edges
+
+  const hasMore = postsData?.getPostsByNickname?.pageInfo?.hasNextPage
+
   const postsContainerRef = useInfiniteScroll({
     fetchMore,
     loading: postsLoading,
-    hasMore: postsData?.getPostsByNickname?.pageInfo?.hasNextPage,
+    hasMore,
   })
-
-  const user = userData?.getUserByNickname
-  const posts = postsData?.getPostsByNickname?.edges
 
   const [isInfoVisible, setIsInfoVisible] = useState(false)
 
@@ -59,7 +61,7 @@ export const Wall = withTranslation('user')(({t}) => {
           <H1 center>{t("This user hasn't publish any posts yet")}</H1>
         </Flex>
       ) : (
-        <PostList posts={posts} ref={postsContainerRef} />
+        <PostList posts={posts} ref={postsContainerRef} loading={hasMore} />
       )}
       {!isInfoVisible && user && (
         <StyledHeader>

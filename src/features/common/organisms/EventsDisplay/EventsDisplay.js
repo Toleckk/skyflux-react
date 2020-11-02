@@ -9,12 +9,18 @@ export const EventsDisplay = () => {
   const {data, loading, fetchMore} = useMyQuery(getEvents({first: 25}))
   const edges = data?.getEvents?.edges
 
+  const hasMore = data?.getEvents?.pageInfo?.hasNextPage
+
   const ref = useInfiniteScroll({
     fetchMore,
     loading,
-    hasMore: data?.getEvents?.pageInfo?.hasNextPage,
+    hasMore,
     threshold: '100px',
   })
 
-  return loading ? <Loader /> : <EventList events={edges} ref={ref} />
+  return loading ? (
+    <Loader />
+  ) : (
+    <EventList events={edges} ref={ref} loading={hasMore} />
+  )
 }

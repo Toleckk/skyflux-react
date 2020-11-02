@@ -12,19 +12,24 @@ export const Users = () => {
     getFoundUsers(text, {first: 24}),
   )
 
+  const users = data?.getFoundUsers?.edges
+  const hasMore = data?.getFoundUsers?.pageInfo?.hasNextPage
+
   const usersContainerRef = useInfiniteScroll({
     fetchMore,
     loading,
-    hasMore: data?.getFoundUsers?.pageInfo?.hasNextPage,
+    hasMore,
   })
-
-  const users = data?.getFoundUsers?.edges
 
   return (
     <Search onInputChange={setText} isLoading={loading}>
       {!!users?.length && (
         <Box marginTop="2rem">
-          <UsersDisplay users={users} ref={usersContainerRef} />
+          <UsersDisplay
+            users={users}
+            ref={usersContainerRef}
+            loading={hasMore}
+          />
         </Box>
       )}
     </Search>

@@ -12,10 +12,12 @@ export const Posts = () => {
     getFoundPosts(text, {first: 25}),
   )
 
+  const hasMore = data?.getFoundPosts?.pageInfo?.hasNextPage
+
   const postsContainerRef = useInfiniteScroll({
     fetchMore,
     loading,
-    hasMore: data?.getFoundPosts?.pageInfo?.hasNextPage,
+    hasMore,
   })
 
   const posts = data?.getFoundPosts?.edges
@@ -24,7 +26,11 @@ export const Posts = () => {
     <Search onInputChange={setText} isLoading={loading}>
       {!!posts?.length && (
         <Box marginTop="2rem">
-          <PostsDisplay posts={posts} ref={postsContainerRef} />
+          <PostsDisplay
+            posts={posts}
+            ref={postsContainerRef}
+            loading={hasMore}
+          />
         </Box>
       )}
     </Search>

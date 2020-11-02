@@ -6,7 +6,7 @@ import {H1, Link} from 'ui'
 import {MiniUserConnectionList} from 'models/user'
 import {UserList} from 'features/common/molecules'
 
-export const UsersDisplay = forwardRef(({users, query, mini}, ref) => {
+export const UsersDisplay = forwardRef(({users, query, mini, loading}, ref) => {
   const {t} = useTranslation('search')
 
   return (
@@ -21,7 +21,7 @@ export const UsersDisplay = forwardRef(({users, query, mini}, ref) => {
           <Link to={'/search/users?q=' + query}>{t('Show all')}</Link>
         )}
       </Flex>
-      <UserList users={users} mini={mini} ref={ref} />
+      <UserList users={users} mini={mini} ref={ref} loading={loading} />
     </div>
   )
 })
@@ -31,10 +31,12 @@ UsersDisplay.displayName = 'UsersDisplay'
 UsersDisplay.defaultProps = {
   query: '',
   mini: false,
+  loading: false,
 }
 
 UsersDisplay.propTypes = {
   users: MiniUserConnectionList.isRequired,
   query: PropTypes.string,
   mini: PropTypes.bool,
+  loading: PropTypes.bool,
 }
