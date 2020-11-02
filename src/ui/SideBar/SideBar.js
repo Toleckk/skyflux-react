@@ -10,7 +10,8 @@ const expandable = minHeight => css`
   max-height: ${minHeight};
   overflow-y: hidden;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     max-height: calc(98vh - 2px);
   }
 `
@@ -31,7 +32,8 @@ export const SideBar = styled.div`
 
   ${props => props.border === true && border}
   
-  &:hover {
+  &:hover,
+  &:focus-within {
     ${props => props.border === 'hover' && border}
   }
 `
