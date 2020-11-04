@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {withTranslation} from 'react-i18next'
 import {Comment, deleteComment} from 'models/comment'
-import {Tip} from 'ui'
+import {Link, Tip} from 'ui'
 import {useConfirmDialog, useIsMe, useMyMutation} from '../../hooks'
 import {PublicationCard} from '..'
-import {StyledEllipsisLink} from './styles'
 
 export const CommentCard = withTranslation('post')(({publication, t, mini}) => {
   const isMyComment = useIsMe(publication.user)
@@ -27,9 +26,9 @@ export const CommentCard = withTranslation('post')(({publication, t, mini}) => {
           <Flex as={Tip}>
             {t('To post')}&nbsp;
             <Flex flex={1}>
-              <StyledEllipsisLink to={`/post/${publication.post._id}`}>
+              <Link to={`/post/${publication.post._id}`}>
                 {publication.post.text}
-              </StyledEllipsisLink>
+              </Link>
             </Flex>
           </Flex>
         </div>

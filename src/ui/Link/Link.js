@@ -5,15 +5,22 @@ export const Link = styled(RouterLink)`
   color: rgb(${props => props.theme.primaryText});
   position: relative;
 
-  transition: all 100ms;
+  max-width: 100%;
+
+  display: block;
+  padding-bottom: 3px;
 
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: all 100ms;
 
   &::after {
     content: '';
 
     position: absolute;
-    bottom: -1px;
+    bottom: 0;
     left: 0;
 
     width: 100%;
