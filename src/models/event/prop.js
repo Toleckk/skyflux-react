@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import {Comment} from 'models/comment'
 import {SubRequest} from 'models/sub'
+import {Like} from 'models/like'
 
 export const SubEventBody = PropTypes.shape({
   sub: SubRequest.isRequired,
@@ -10,9 +11,13 @@ export const CommentEventBody = PropTypes.shape({
   comment: Comment.isRequired,
 })
 
+export const LikeEventBody = PropTypes.shape({
+  like: Like.isRequired,
+})
+
 export const Event = PropTypes.shape({
   kind: PropTypes.string,
-  subj: PropTypes.oneOfType([SubEventBody, CommentEventBody]),
+  subj: PropTypes.oneOfType([SubEventBody, CommentEventBody, LikeEventBody]),
 })
 
 export const EventPageInfo = PropTypes.shape({
