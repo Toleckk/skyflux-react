@@ -4,6 +4,7 @@ import {Event} from 'models/event'
 import {Loader} from 'ui'
 import {CommentEventCard} from './CommentEventCard'
 import {SubEventCard} from './SubEventCard'
+import {LikeEventCard} from './LikeEventCard'
 
 export const EventCard = ({publication: event, mini}) => (
   <Suspense fallback={<Loader />}>
@@ -11,6 +12,8 @@ export const EventCard = ({publication: event, mini}) => (
       <CommentEventCard event={event} mini={mini} />
     ) : event.kind === 'Sub' ? (
       <SubEventCard event={event} mini={mini} />
+    ) : event.kind === 'Like' ? (
+      <LikeEventCard event={event} mini={mini} />
     ) : (
       <></>
     )}
