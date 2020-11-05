@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge'
 import {addNodeToConnection, deleteNodeFromConnection} from 'utils'
 import {subAccepted} from 'models/sub'
+import {likeCreated, likeDeleted} from 'models/like'
 import {
   CREATE_POST,
   DELETE_POST,
@@ -12,10 +13,19 @@ import {
   POST_DELETED,
 } from './schemas'
 
-export const getPostById = (_id, variables = {}) => ({
-  query: GET_POST_BY_ID,
-  variables: deepmerge({_id}, variables),
-})
+export const getPostById = (_id, variables = {}) => {
+  const {subscription: created, variables: createdVars} = likeCreated(_id)
+  const {subscription: deleted, variables: deletedVars} = likeDeleted(_id)
+
+  return {
+    query: GET_POST_BY_ID,
+    variables: deepmerge({_id}, variables),
+    subscriptions: [
+      {document: created, variables: createdVars},
+      {document: deleted, variables: deletedVars},
+    ],
+  }
+}
 
 export const getPostsByNickname = (nickname, variables = {}) => {
   const {subscription: created, variables: createdVars} = postCreated(nickname)
