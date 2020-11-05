@@ -1,8 +1,8 @@
-import React, {useCallback, useRef} from 'react'
-import {useClickAway} from 'react-use'
+import React, {useCallback} from 'react'
 import useBooleanState from 'use-boolean-state'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {me} from 'models/user'
+import {useOnClickOutside} from 'utils'
 import {useModal, useMyQuery} from '../../../hooks'
 import {NotificationTabs} from '../../NotificationTabs'
 import {AuthForm} from '../../AuthForm'
@@ -21,8 +21,7 @@ export const DesktopNav = () => {
     closeAuthForm()
   }, [close, closeAuthForm])
 
-  const ref = useRef()
-  useClickAway(ref, closeAllModals)
+  const ref = useOnClickOutside(closeAllModals)
 
   if (loading) return <></>
 
