@@ -9,6 +9,7 @@ const PostFragment = gql`
     createdAt
     isLikedByMe
     user {
+      _id
       nickname
       avatar
     }
