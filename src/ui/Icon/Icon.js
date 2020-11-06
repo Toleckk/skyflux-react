@@ -523,5 +523,6 @@ Icon.propTypes = {
     'light-theme',
     'lock',
     'notifications',
+    'avatar',
   ]).isRequired,
 }
