@@ -1,38 +1,20 @@
 import React, {Suspense} from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {useTranslation} from 'react-i18next'
-import {useInfiniteScroll} from 'utils'
-import {Divider, H1, Loader} from 'ui'
-import {CommentList, PostCard} from 'features/common/molecules'
+import {Divider, Loader} from 'ui'
+import {PostCard} from 'features/common/molecules'
 import {useMyQuery} from 'features/common/hooks'
 import {getPostById, ID} from 'models/post'
-import {getCommentsByPostId} from 'models/comment'
-import {CommentForm} from '..'
+import {CommentForm, CommentsDisplay} from '..'
 
 export const PostDisplay = ({_id}) => {
-  const {t} = useTranslation('post')
+  const {data, loading} = useMyQuery(getPostById(_id))
 
-  const {data: postData, loading: postLoading} = useMyQuery(getPostById(_id))
-  const {data: commentsData, loading: commentsLoading, fetchMore} = useMyQuery(
-    getCommentsByPostId(_id, {first: 25}),
-  )
-
-  const hasMore = commentsData?.getCommentsByPostId?.pageInfo?.hasNextPage
-
-  const commentsContainerRef = useInfiniteScroll({
-    fetchMore,
-    loading: commentsLoading,
-    hasMore,
-    direction: 'up',
-  })
-
-  const post = postData?.getPostById
-  const comments = commentsData?.getCommentsByPostId?.edges
+  const post = data?.getPostById
 
   return (
     <Flex flexDirection="column" maxHeight="100vh" height="100%">
       <Suspense fallback={<Loader />}>
-        {postLoading || commentsLoading ? (
+        {loading ? (
           <Loader />
         ) : (
           <>
@@ -45,15 +27,7 @@ export const PostDisplay = ({_id}) => {
               alignItems="center"
               overflowY="hidden"
             >
-              {!comments.length ? (
-                <H1>{t('Be the first to comment')}</H1>
-              ) : (
-                <CommentList
-                  comments={comments}
-                  ref={commentsContainerRef}
-                  loading={hasMore}
-                />
-              )}
+              <CommentsDisplay postId={_id} />
             </Flex>
             <Divider />
             <CommentForm post={post} />
