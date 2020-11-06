@@ -6,12 +6,15 @@ import {MiniUser} from 'models/user'
 import {PublicationCard} from '../PublicationCard'
 
 export const PublicationList = forwardRef(
-  ({publications, Card, loading, ...props}, ref) => (
+  ({publications, Card, loading, onItemDelete, ...props}, ref) => (
     <Suspense fallback={<Loader />}>
       <ul {...props} ref={ref}>
-        {publications.map(publication => (
-          <ListItem key={publication.cursor}>
-            <Card publication={publication.node} />
+        {publications.map(({cursor, node}) => (
+          <ListItem key={cursor}>
+            <Card
+              publication={node}
+              onDelete={onItemDelete && (() => onItemDelete(node))}
+            />
           </ListItem>
         ))}
         {loading && (
@@ -29,6 +32,7 @@ PublicationList.displayName = 'PublicationList'
 PublicationList.defaultProps = {
   Card: PublicationCard,
   loading: false,
+  onItemDelete: undefined,
 }
 
 PublicationList.propTypes = {
@@ -45,4 +49,5 @@ PublicationList.propTypes = {
     }),
   ).isRequired,
   Card: PropTypes.elementType,
+  onItemDelete: PropTypes.func,
 }

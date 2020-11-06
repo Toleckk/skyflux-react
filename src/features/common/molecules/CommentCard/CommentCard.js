@@ -1,26 +1,24 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
-import {Comment, deleteComment} from 'models/comment'
+import {useTranslation} from 'react-i18next'
+import {Comment} from 'models/comment'
 import {Link, Tip} from 'ui'
-import {useConfirmDialog, useIsMe, useMyMutation} from '../../hooks'
+import {useIsMe} from '../../hooks'
 import {PublicationCard} from '..'
 
-export const CommentCard = withTranslation('post')(({publication, t, mini}) => {
+export const CommentCard = ({publication, mini, onDelete}) => {
+  const {t} = useTranslation('post')
+
   const isMyComment = useIsMe(publication.user)
   const isMyPost = useIsMe(publication.post.user)
 
-  const [remove] = useMyMutation(deleteComment({_id: publication._id}))
-  const [removeWithConfirmation, Modal] = useConfirmDialog(remove)
-
-  const onDelete = useMemo(
-    () => (isMyComment || isMyPost) && (() => removeWithConfirmation()),
-    [isMyComment, isMyPost, removeWithConfirmation],
-  )
-
   return (
-    <PublicationCard publication={publication} onDelete={onDelete} mini={mini}>
+    <PublicationCard
+      publication={publication}
+      onDelete={(isMyComment || isMyPost) && onDelete}
+      mini={mini}
+    >
       {!!publication.post && !!publication.post.text && (
         <div>
           <Flex as={Tip}>
@@ -33,19 +31,17 @@ export const CommentCard = withTranslation('post')(({publication, t, mini}) => {
           </Flex>
         </div>
       )}
-      <Modal
-        text={t('Are you sure you want to delete this comment?')}
-        icon="trash"
-      />
     </PublicationCard>
   )
-})
+}
 
 CommentCard.defaultProps = {
   mini: false,
+  onDelete: undefined,
 }
 
 CommentCard.propTypes = {
   publication: Comment.isRequired,
   mini: PropTypes.bool,
+  onDelete: PropTypes.func,
 }

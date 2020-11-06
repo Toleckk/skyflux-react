@@ -31,7 +31,7 @@ export const PublicationCard = ({publication, children, onDelete, mini}) => (
 )
 
 PublicationCard.defaultProps = {
-  onDelete: false,
+  onDelete: undefined,
   mini: false,
 }
 
@@ -43,6 +43,6 @@ PublicationCard.propTypes = {
     user: MiniUser.isRequired,
   }).isRequired,
   children: PropTypes.node,
-  onDelete: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  onDelete: PropTypes.func,
   mini: PropTypes.bool,
 }

@@ -1,23 +1,20 @@
 import React, {useCallback} from 'react'
+import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {useTranslation} from 'react-i18next'
 import {Icon, Text} from 'ui'
-import {deletePost, Post} from 'models/post'
+import {Post} from 'models/post'
 import {createLike, deleteLike} from 'models/like'
-import {useConfirmDialog, useIsMe, useModal, useMyMutation} from '../../hooks'
+import {useIsMe, useModal, useMyMutation} from '../../hooks'
 import {PublicationCard} from '../PublicationCard'
 import {StyledLikeIcon} from './styles'
 
-export const PostCard = ({publication}) => {
-  const {t} = useTranslation('post')
+export const PostCard = ({publication, onDelete}) => {
   const {open} = useModal('post')
 
   const isMe = useIsMe(publication.user)
+
   const [like] = useMyMutation(createLike({postId: publication._id}))
   const [unlike] = useMyMutation(deleteLike({postId: publication._id}))
-  const [remove] = useMyMutation(deletePost({_id: publication._id}))
-
-  const [removeWithConfirmation, Modal] = useConfirmDialog(remove)
 
   const onClick = useCallback(
     () => (publication.isLikedByMe ? unlike() : like()),
@@ -30,10 +27,7 @@ export const PostCard = ({publication}) => {
   ])
 
   return (
-    <PublicationCard
-      publication={publication}
-      onDelete={isMe && (() => removeWithConfirmation())}
-    >
+    <PublicationCard publication={publication} onDelete={isMe && onDelete}>
       <Flex justifyContent="space-between">
         <Flex alignItems="center" as="button" onClick={openPost}>
           <Icon icon="comment" size="1.5rem" />
@@ -52,14 +46,15 @@ export const PostCard = ({publication}) => {
           </Box>
         </Flex>
       </Flex>
-      <Modal
-        text={t('Are you sure you want to delete this post?')}
-        icon="trash"
-      />
     </PublicationCard>
   )
 }
 
+PostCard.defaultProps = {
+  onDelete: null,
+}
+
 PostCard.propTypes = {
   publication: Post.isRequired,
+  onDelete: PropTypes.func,
 }
