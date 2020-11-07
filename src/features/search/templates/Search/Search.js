@@ -42,7 +42,7 @@ export const Search = ({onInputChange, isLoading, children}) => {
   return (
     <Flex flexDirection="column" minHeight="100vh" paddingTop="2rem">
       <Flex flex={q ? 0 : 1} alignItems="center">
-        <SearchInput value={q} onChange={onChange} />
+        <SearchInput value={q || ''} onChange={onChange} />
       </Flex>
       {(isLoading || delayed) && !!q && <SearchLoader />}
       {!(isLoading || delayed) && !children && !!q && (
