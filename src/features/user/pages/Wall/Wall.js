@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {useTranslation} from 'react-i18next'
+import {Translation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {Divider, Loader} from 'ui'
 import {PostForm} from 'features/common/organisms'
@@ -33,10 +33,16 @@ export const Wall = () => {
       </ReactVisibilitySensor>
       <Divider />
       {isMe && (
-        <>
-          <PostForm placeholder={t('Write a text')} />
-          <Divider />
-        </>
+        <Suspense fallback={<Loader />}>
+          <Translation ns="user">
+            {t => (
+              <>
+                <PostForm placeholder={t('Write a text')} />
+                <Divider />
+              </>
+            )}
+          </Translation>
+        </Suspense>
       )}
       {loading ? (
         <Loader />
