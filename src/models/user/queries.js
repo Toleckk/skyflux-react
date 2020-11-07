@@ -54,7 +54,6 @@ export const doesNicknameExist = (nickname = undefined, variables = {}) => ({
 
 export const createUser = (variables = {}) => ({
   mutation: CREATE_USER,
-  refetchQueries: [me()],
   variables,
 })
 
