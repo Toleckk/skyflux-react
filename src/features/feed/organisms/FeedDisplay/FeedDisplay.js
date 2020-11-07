@@ -8,7 +8,10 @@ import {useMyQuery} from 'features/common/hooks'
 import {PostList} from 'features/common/molecules'
 
 export const FeedDisplay = ({onEmptyFeedReceived, onFulfilledFeedReceived}) => {
-  const {data, loading, fetchMore} = useMyQuery(getFeed({first: 25}))
+  const {data, loading, fetchMore} = useMyQuery({
+    ...getFeed({first: 25}),
+    fetchPolicy: 'network-only',
+  })
 
   const posts = data?.getFeed?.edges
 
