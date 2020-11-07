@@ -9,20 +9,21 @@ import {StyledContainer, StyledNickname} from './styles'
 export const UserCard = ({user, children}) => {
   const link = '/@' + user.nickname
 
-  const Component = useMemo(() => (children ? 'div' : Link), [children])
+  const Wrap = useMemo(() => (children ? 'div' : Link), [children])
+  const Child = useMemo(() => (Wrap === 'div' ? Link : 'div'), [Wrap])
 
   return (
-    <Component to={link}>
+    <Wrap to={link}>
       <StyledContainer>
-        <Box as={Link} to={link} width="5em" height="5em">
+        <Box as={Child} to={link} width="5em" height="5em">
           <Avatar src={user.avatar} />
         </Box>
-        <Box as={Link} to={link} marginTop="1rem">
+        <Box as={Child} to={link} marginTop="1rem">
           <StyledNickname>@{user.nickname}</StyledNickname>
         </Box>
         {children}
       </StyledContainer>
-    </Component>
+    </Wrap>
   )
 }
 
