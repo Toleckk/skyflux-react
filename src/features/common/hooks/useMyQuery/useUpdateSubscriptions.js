@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import deepEqual from 'deep-equal'
-import {useCustomCompareEffect} from 'react-use'
+import {useCustomCompareEffect, useLatest} from 'react-use'
 
 export const useUpdateSubscriptions = ({
   subscriptions = [],
@@ -16,10 +16,12 @@ export const useUpdateSubscriptions = ({
     }
   }, [hasToBeRefetched, setHasToBeRefetched, refetch])
 
+  const subToMoreRef = useLatest(subscribeToMore)
+
   useCustomCompareEffect(
     () => {
       const unsubs = subscriptions.map(({updateQuery, ...sub}) =>
-        subscribeToMore({
+        subToMoreRef.current?.({
           ...sub,
           updateQuery: (prev, ...args) => {
             const res = updateQuery?.(prev, ...args)
@@ -30,11 +32,13 @@ export const useUpdateSubscriptions = ({
       )
       return () => unsubs.forEach(unsub => unsub())
     },
-    [subscriptions, subscribeToMore, setHasToBeRefetched],
+    [subscriptions, subToMoreRef, setHasToBeRefetched],
     ([prevSubs, ...prev], [nextSubs, ...next]) =>
       deepEqual(
         prevSubs?.map(({updateQuery, ...rest}) => rest),
         nextSubs?.map(({updateQuery, ...rest}) => rest),
-      ) && deepEqual(prev, next),
+      ) &&
+      prev[0] === next[0] &&
+      prev[1] === next[1],
   )
 }
