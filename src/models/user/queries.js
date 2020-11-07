@@ -44,6 +44,7 @@ export const getSuggestions = (variables = {}) => ({
 export const getFoundUsers = (text, variables = {}) => ({
   query: GET_FOUND_USERS,
   variables: deepmerge({text}, variables),
+  skip: !text && !variables.text,
 })
 
 export const doesNicknameExist = (nickname = undefined, variables = {}) => ({
