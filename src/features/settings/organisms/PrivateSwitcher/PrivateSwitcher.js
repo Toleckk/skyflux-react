@@ -18,9 +18,9 @@ export const PrivateSwitcher = ({user}) => {
 
   const [makePublicWithConfirmation, Modal] = useConfirmDialog(makePublic)
 
-  const onChange = useCallback(
-    e => (e.target.checked ? makePrivate() : makePublicWithConfirmation()),
-    [makePrivate, makePublicWithConfirmation],
+  const toggle = useCallback(
+    () => (!user.private ? makePrivate() : makePublicWithConfirmation()),
+    [makePrivate, makePublicWithConfirmation, user],
   )
 
   return (
@@ -28,9 +28,10 @@ export const PrivateSwitcher = ({user}) => {
       <H2>{t('Private profile')}</H2>
       <Box marginLeft="2rem">
         <Toggle
-          onChange={onChange}
+          onClick={toggle}
           checked={user.private}
           disabled={loadingPrivate || loadingPublic}
+          readOnly
         />
       </Box>
       <Modal
