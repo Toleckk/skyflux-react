@@ -1,12 +1,13 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/common/hooks'
 import {Divider, H1} from 'ui'
 import {FieldDescription, PageDescription} from '../../atoms'
 import {ResetForm} from '../../organisms'
 
-export const Reset = withTranslation('id')(({t}) => {
+export const Reset = () => {
+  const {t} = useTranslation('id')
   useMyTitle(t('Restoring'))
 
   return (
@@ -19,4 +20,4 @@ export const Reset = withTranslation('id')(({t}) => {
       <Divider />
     </Flex>
   )
-})
+}

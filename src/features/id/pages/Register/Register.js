@@ -1,12 +1,13 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/common/hooks'
 import {H1} from 'ui'
 import {PageDescription} from '../../atoms'
 import {RegisterForm} from '../../organisms'
 
-export const Register = withTranslation('id')(({t}) => {
+export const Register = () => {
+  const {t} = useTranslation('id')
   useMyTitle(t('Registration'))
 
   return (
@@ -16,4 +17,4 @@ export const Register = withTranslation('id')(({t}) => {
       <RegisterForm />
     </Flex>
   )
-})
+}

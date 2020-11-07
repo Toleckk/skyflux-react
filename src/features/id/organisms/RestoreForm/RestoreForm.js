@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import * as yup from 'yup'
 import {login} from 'validation'
 import {useForm} from 'react-hook-form'
@@ -13,7 +13,9 @@ import {FieldDescription, SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({login: login.required()})
 
-export const RestoreForm = withTranslation('id')(({t}) => {
+export const RestoreForm = () => {
+  const {t} = useTranslation('id')
+
   const [createRequest, {error}] = useMyMutation(createResetRequest())
 
   const {handleSubmit, register, errors: formErrors} = useForm({
@@ -46,4 +48,4 @@ export const RestoreForm = withTranslation('id')(({t}) => {
       </Box>
     </Flex>
   )
-})
+}

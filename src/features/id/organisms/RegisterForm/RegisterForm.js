@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup'
@@ -17,11 +17,10 @@ const schema = yup.object().shape({
   password: password.required(),
 })
 
-export const RegisterForm = withTranslation('id')(({t}) => {
-  const [signUp, {error}] = useMyMutation({
-    ...createUser(),
-    asyncMode: true,
-  })
+export const RegisterForm = () => {
+  const {t} = useTranslation('id')
+
+  const [signUp, {error}] = useMyMutation(createUser())
 
   const {register, handleSubmit, errors: formErrors} = useForm({
     resolver: yupResolver(schema),
@@ -70,4 +69,4 @@ export const RegisterForm = withTranslation('id')(({t}) => {
       <SubmitButton>{t('Next')}</SubmitButton>
     </Flex>
   )
-})
+}

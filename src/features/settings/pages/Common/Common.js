@@ -1,6 +1,6 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import {useMyQuery, useMyTitle} from 'features/common/hooks'
 import {me} from 'models/user'
 import {Divider, H1, Loader} from 'ui'
@@ -12,7 +12,8 @@ import {
 } from '../../organisms'
 import {StyledItem} from './styles'
 
-export const Common = withTranslation('settings')(({t}) => {
+export const Common = () => {
+  const {t} = useTranslation('settings')
   useMyTitle(t('Settings'))
 
   const {data, loading} = useMyQuery(me())
@@ -45,4 +46,4 @@ export const Common = withTranslation('settings')(({t}) => {
       <Divider />
     </ul>
   )
-})
+}

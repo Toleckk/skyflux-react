@@ -1,13 +1,14 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/common/hooks'
 import {Divider, H1, Link} from 'ui'
 import {AuthForm} from '../../organisms'
 import {FieldDescription, PageDescription, SubmitButton} from '../../atoms'
 
-export const Auth = withTranslation('id')(({t}) => {
+export const Auth = () => {
+  const {t} = useTranslation('id')
   useMyTitle(t('Log in'))
 
   return (
@@ -28,4 +29,4 @@ export const Auth = withTranslation('id')(({t}) => {
       </Box>
     </Flex>
   )
-})
+}

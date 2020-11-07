@@ -1,11 +1,12 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {withTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/common/hooks'
 import {Divider, H1, Text} from 'ui'
 import {PageDescription} from '../../atoms'
 
-export const Message = withTranslation('id')(({t}) => {
+export const Message = () => {
+  const {t} = useTranslation('id')
   useMyTitle(t('Resetting'))
 
   return (
@@ -19,4 +20,4 @@ export const Message = withTranslation('id')(({t}) => {
       <Divider />
     </Flex>
   )
-})
+}
