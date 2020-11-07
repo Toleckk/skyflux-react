@@ -13,3 +13,9 @@ yup.addMethod(yup.string, 'or', function (schemas, msg) {
     exclusive: false,
   })
 })
+
+const required = yup.string.prototype.required
+
+yup.addMethod(yup.string, 'required', function (_, msg) {
+  return required.call(this, msg || 'It is a required field')
+})
