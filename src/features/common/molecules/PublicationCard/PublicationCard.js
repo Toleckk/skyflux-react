@@ -43,6 +43,6 @@ PublicationCard.propTypes = {
     user: MiniUser.isRequired,
   }).isRequired,
   children: PropTypes.node,
-  onDelete: PropTypes.func,
+  onDelete: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   mini: PropTypes.bool,
 }
