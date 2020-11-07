@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import PropTypes from 'prop-types'
 import {useTranslation} from 'react-i18next'
 import {Flex} from 'reflexbox/styled-components'
@@ -12,8 +12,8 @@ import {
 } from 'features/common/hooks'
 import {PostList} from 'features/common/molecules'
 
-export const PostsDisplay = ({nickname}) => {
-  const {t} = useTranslation('user')
+export const PostsDisplay = memo(({nickname}) => {
+  const {t, ready} = useTranslation('post', {useSuspense: false})
 
   const {data, loading, fetchMore} = useMyQuery(
     getPostsByNickname(nickname, {first: 25}),
@@ -31,11 +31,11 @@ export const PostsDisplay = ({nickname}) => {
   const [del] = useMyMutation(deletePost())
   const [deleteWithConfirmation, Modal] = useConfirmDialog(del)
 
-  return loading ? (
-    <Loader />
-  ) : !posts.length ? (
+  if (loading || !ready) return <Loader />
+
+  return !posts.length ? (
     <Flex flex={1} alignItems="center" justifyContent="center">
-      <H1 center>{t("This user hasn't publish any posts yet")}</H1>
+      <H1 center>{t('There is no posts yet')}</H1>
     </Flex>
   ) : (
     <>
@@ -51,7 +51,7 @@ export const PostsDisplay = ({nickname}) => {
       />
     </>
   )
-}
+})
 
 PostsDisplay.propTypes = {
   nickname: PropTypes.string.isRequired,
