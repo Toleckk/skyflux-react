@@ -1,8 +1,11 @@
 import {useQuery} from '@apollo/client'
+import {useDeepCompareMemo} from 'use-deep-compare'
 import {useUpdateSubscriptions} from './useUpdateSubscriptions'
 import {usePaginatedFetchMore} from './usePaginatedFetchMore'
 
-export const useMyQuery = ({query, subscriptions, ...options}) => {
+export const useMyQuery = ({query, subscriptions, ...rest}) => {
+  const options = useDeepCompareMemo(() => rest, [rest])
+
   const queryResult = useQuery(query, options)
 
   useUpdateSubscriptions({subscriptions, ...queryResult})
