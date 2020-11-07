@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Icon} from 'ui'
 import {
   StyledIconContainer,
@@ -7,19 +6,11 @@ import {
   StyledRelativeContainer,
 } from './styles'
 
-export const SearchInput = ({id, ...props}) => (
+export const SearchInput = props => (
   <StyledRelativeContainer>
-    <StyledInput id={id} {...props} />
-    <StyledIconContainer htmlFor={id}>
+    <StyledInput id="search" {...props} />
+    <StyledIconContainer htmlFor="search">
       <Icon icon="find" width="3rem" height="3rem" color="currentColor" />
     </StyledIconContainer>
   </StyledRelativeContainer>
 )
-
-SearchInput.defaultProps = {
-  id: 'search',
-}
-
-SearchInput.propTypes = {
-  id: PropTypes.string,
-}
