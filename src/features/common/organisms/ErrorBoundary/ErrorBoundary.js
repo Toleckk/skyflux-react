@@ -5,7 +5,7 @@ import {ThemeContext} from 'styled-components'
 import {Flex} from 'reflexbox/styled-components'
 import {H1} from 'ui'
 
-export class ErrorBoundary extends React.Component {
+export class ErrorBoundary extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
   }
