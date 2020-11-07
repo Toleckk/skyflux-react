@@ -1,4 +1,4 @@
-import {useRef} from 'react'
+import {useCallback, useRef} from 'react'
 import {useLatest} from 'react-use'
 import {useDeepCompareMemo} from 'use-deep-compare'
 import noop from 'noop6'
@@ -13,12 +13,14 @@ export const useSuspendedQuery = ({onCompleted = noop, ...props}) => {
     new Promise(resolve => (resolveRef.current = resolve)),
   )
 
+  const onCompletedFn = useCallback(() => {
+    resolveRef.current()
+    onCompletedRef.current()
+  }, [resolveRef, onCompletedRef])
+
   const {loading, ...rest} = useMyQuery({
-    ...props,
-    onCompleted: () => {
-      resolveRef.current()
-      onCompletedRef.current()
-    },
+    ...options,
+    onCompleted: onCompletedFn,
   })
 
   if (loading) throw promiseRef.current
