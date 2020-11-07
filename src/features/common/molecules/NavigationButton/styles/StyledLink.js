@@ -14,13 +14,13 @@ export const StyledLink = styled(Link)`
     ${activeStyle}
   }
 
-  ${props => props.isActive && activeStyle}
+  ${props => props.$isActive && activeStyle}
 `
 
 StyledLink.defaultProps = {
-  isActive: false,
+  $isActive: false,
 }
 
 StyledLink.propTypes = {
-  isActive: PropTypes.bool,
+  $isActive: PropTypes.bool,
 }

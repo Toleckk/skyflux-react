@@ -39,7 +39,7 @@ export const PostCard = ({publication, onDelete}) => {
           <StyledLikeIcon
             icon="love"
             size="1.5rem"
-            active={publication.isLikedByMe}
+            $isActive={publication.isLikedByMe}
           />
           <Box marginLeft="1ex">
             <Text>{publication.likesCount}</Text>

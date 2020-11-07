@@ -10,7 +10,7 @@ export const NavigationButton = ({to, children, isActive, icon, ...props}) => {
 
   return (
     <StyledLink
-      isActive={isActive || (to && !!pathname.match(to))}
+      $isActive={isActive || (to && !!pathname.match(to))}
       {...linkProps}
       {...props}
     >
