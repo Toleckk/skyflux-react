@@ -7,7 +7,7 @@ export const Link = styled(RouterLink)`
 
   max-width: 100%;
 
-  display: block;
+  display: inline;
   padding-bottom: 3px;
 
   white-space: nowrap;
