@@ -40,10 +40,9 @@ export const useInfiniteScroll = ({
         direction={direction}
         threshold={threshold}
         onIntersect={onIntersect}
-        root={element.current}
       />
     ),
-    [direction, threshold, onIntersect, element],
+    [direction, threshold, onIntersect],
   )
 
   const [container, setContainer] = useState(null)

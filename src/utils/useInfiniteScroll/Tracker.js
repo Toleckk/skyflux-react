@@ -2,13 +2,7 @@ import React, {useEffect, useMemo, useRef} from 'react'
 import PropTypes from 'prop-types'
 import {useIntersection, useLatest} from 'react-use'
 
-export const Tracker = ({
-  onIntersect,
-  threshold,
-  direction,
-  root,
-  ...props
-}) => {
+export const Tracker = ({onIntersect, threshold, direction, ...props}) => {
   const onIntersectRef = useLatest(onIntersect)
 
   const style = useMemo(() => computeStyles({direction, threshold}), [
@@ -20,8 +14,8 @@ export const Tracker = ({
   const intersection = useIntersection(ref, {})
 
   useEffect(() => {
-    if (intersection && intersection.isIntersecting)
-      return void onIntersectRef.current?.()
+    if (intersection && intersection.isIntersecting && onIntersectRef.current)
+      onIntersectRef.current()
   }, [intersection, onIntersectRef])
 
   return <div style={style} ref={ref} {...props} />
@@ -31,7 +25,6 @@ Tracker.propTypes = {
   onIntersect: PropTypes.func,
   threshold: PropTypes.string.isRequired,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
-  root: PropTypes.elementType,
 }
 
 const computeStyles = ({direction, threshold}) => ({
