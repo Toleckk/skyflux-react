@@ -32,5 +32,9 @@
   "Confirm password": "Подтвердите пароль",
   "Enter nickname or email": "Введите Ваш никнейм или адрес электронной почты, к которому привязан Ваш аккаунт",
   "Password must be at least 8 characters long and contain numbers and letters in upper and lower case": "Пароль должен быть не короче 8 символов и содержать цифры и буквы в верхнем и нижнем регистрах",
-  "Nickname may contain latin letters, numbers, alone dots and underscores and must contains from 5 to 70 symbols": "Никнейм может содержать только латинские буквы, цифры, одиночные точки и подчёркивания и должен содержать от 5 до 70 символов"
+  "Nickname may contain latin letters, numbers, alone dots and underscores and must contains from 5 to 70 symbols": "Никнейм может содержать только латинские буквы, цифры, одиночные точки и подчёркивания и должен содержать от 5 до 70 символов",
+  "It is a required field": "Это обязательное поле",
+  "Login must be valid email or nickname": "Логин должен быть валидным эмейлом или никнеймом",
+  "Must be a valid email": "Должен быть валидным эмейлом",
+  "Duplicate value": "Эмейл уже зарегистрирован"
 }

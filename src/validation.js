@@ -14,7 +14,7 @@ export const nickname = yup
     'Nickname may contain latin letters, numbers, alone dots and underscores and must contains from 5 to 70 symbols',
   )
 
-export const email = yup.string().email()
+export const email = yup.string().email('Must be a valid email')
 
 export const login = yup
   .string()

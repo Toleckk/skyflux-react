@@ -44,7 +44,7 @@ export const AuthForm = ({className}) => {
                 label={t('Password')}
                 name="password"
                 type="password"
-                error={errors.password}
+                error={t(errors.password)}
                 ref={register}
               />
             </Box>

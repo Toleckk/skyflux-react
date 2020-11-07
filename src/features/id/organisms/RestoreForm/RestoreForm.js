@@ -37,7 +37,7 @@ export const RestoreForm = withTranslation('id')(({t}) => {
             label={t('Login')}
             name="login"
             ref={register}
-            error={errors.login}
+            error={t(errors.login)}
           />
           <Flex marginTop="1.5em" justifyContent="center">
             <SubmitButton>{t('Next')}</SubmitButton>
