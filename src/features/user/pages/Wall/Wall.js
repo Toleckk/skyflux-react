@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {memo, Suspense, useState} from 'react'
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
@@ -11,9 +11,7 @@ import {PostsDisplay} from '../../organisms'
 import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
 import {StyledHeader, StyledStaticDivider} from './styles'
 
-export const Wall = () => {
-  const {t} = useTranslation('user')
-
+export const Wall = memo(() => {
   const {nickname} = useParams()
   useMyTitle('@' + nickname)
 
@@ -59,4 +57,4 @@ export const Wall = () => {
       )}
     </Flex>
   )
-}
+})
