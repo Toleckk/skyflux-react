@@ -12,6 +12,7 @@ const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_API_URL.replace(/^http/, 'ws'),
   options: {
     reconnect: true,
+    lazy: true,
     connectionParams: () => {
       const token = localStorage.getItem('token')
 
@@ -53,3 +54,5 @@ export const client = new ApolloClient({
   link: authLink.concat(splitLink),
   cache: new InMemoryCache(),
 })
+
+client.resetConnection = () => wsLink?.subscriptionClient?.client?.close?.()

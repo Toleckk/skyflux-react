@@ -5,11 +5,16 @@ export const createSession = (variables = {}) => ({
   variables,
   onCompleted: ({createSession}, {client}) => {
     localStorage.setItem('token', createSession || null)
+    client.resetConnection()
     client.cache.reset()
   },
 })
 
 export const deleteCurrentSession = () => ({
   mutation: DELETE_CURRENT_SESSION,
-  onCompleted: (_, {client}) => client.cache.reset(),
+  onCompleted: (_, {client}) => {
+    localStorage.setItem('token', null)
+    client.resetConnection()
+    client.cache.reset()
+  },
 })
