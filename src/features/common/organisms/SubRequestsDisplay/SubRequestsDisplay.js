@@ -6,7 +6,10 @@ import {useMyQuery} from '../../hooks'
 import {SubRequestList} from '../../molecules'
 
 export const SubRequestsDisplay = () => {
-  const {data, loading, fetchMore} = useMyQuery(getSubRequests({first: 25}))
+  const {data, loading, fetchMore} = useMyQuery({
+    ...getSubRequests({first: 25}),
+    fetchPolicy: 'network-only',
+  })
   const subs = data?.getSubRequests?.edges
 
   const hasMore = data?.getSubRequests?.pageInfo?.hasNextPage

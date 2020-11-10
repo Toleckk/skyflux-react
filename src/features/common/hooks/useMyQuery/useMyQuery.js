@@ -6,7 +6,10 @@ import {usePaginatedFetchMore} from './usePaginatedFetchMore'
 export const useMyQuery = ({query, subscriptions, ...rest}) => {
   const options = useDeepCompareMemo(() => rest, [rest])
 
-  const queryResult = useQuery(query, options)
+  const queryResult = useQuery(query, {
+    ...options,
+    nextFetchPolicy: 'cache-first',
+  })
 
   useUpdateSubscriptions({subscriptions, ...queryResult})
 

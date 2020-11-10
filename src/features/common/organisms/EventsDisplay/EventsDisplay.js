@@ -6,7 +6,10 @@ import {useMyQuery} from '../../hooks'
 import {EventList} from '../../molecules'
 
 export const EventsDisplay = () => {
-  const {data, loading, fetchMore} = useMyQuery(getEvents({first: 25}))
+  const {data, loading, fetchMore} = useMyQuery({
+    ...getEvents({first: 25}),
+    fetchPolicy: 'network-only',
+  })
   const edges = data?.getEvents?.edges
 
   const hasMore = data?.getEvents?.pageInfo?.hasNextPage

@@ -7,7 +7,10 @@ import {getPostById, ID} from 'models/post'
 import {CommentForm, CommentsDisplay} from '..'
 
 export const PostDisplay = ({_id}) => {
-  const {data, loading} = useMyQuery(getPostById(_id))
+  const {data, loading} = useMyQuery({
+    ...getPostById(_id),
+    fetchPolicy: 'network-only',
+  })
 
   const post = data?.getPostById
 

@@ -17,7 +17,11 @@ export const Wall = memo(() => {
 
   const isMe = useIsMe({nickname})
 
-  const {data, loading} = useMyQuery(getUserByNickname(nickname))
+  const {data, loading} = useMyQuery({
+    ...getUserByNickname(nickname),
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'network-only',
+  })
   const user = data?.getUserByNickname
 
   const [ref, isInfoVisible] = useInView()

@@ -15,9 +15,10 @@ import {PostList} from 'features/common/molecules'
 export const PostsDisplay = memo(({nickname}) => {
   const {t, ready} = useTranslation('post', {useSuspense: false})
 
-  const {data, loading, fetchMore} = useMyQuery(
-    getPostsByNickname(nickname, {first: 25}),
-  )
+  const {data, loading, fetchMore} = useMyQuery({
+    ...getPostsByNickname(nickname, {first: 25}),
+    fetchPolicy: 'network-only',
+  })
 
   const posts = data?.getPostsByNickname?.edges
   const hasMore = data?.getPostsByNickname?.pageInfo?.hasNextPage

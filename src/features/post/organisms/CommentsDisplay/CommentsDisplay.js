@@ -14,9 +14,10 @@ import {CommentList} from 'features/common/molecules'
 export const CommentsDisplay = ({postId}) => {
   const {t} = useTranslation('post')
 
-  const {data, loading, fetchMore} = useMyQuery(
-    getCommentsByPostId(postId, {first: 25}),
-  )
+  const {data, loading, fetchMore} = useMyQuery({
+    ...getCommentsByPostId(postId, {first: 25}),
+    fetchPolicy: 'network-only',
+  })
 
   const comments = data?.getCommentsByPostId?.edges
   const hasMore = data?.getCommentsByPostId?.pageInfo?.hasNextPage
