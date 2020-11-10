@@ -1,8 +1,8 @@
-import React, {memo, Suspense, useState} from 'react'
-import ReactVisibilitySensor from 'react-visibility-sensor'
+import React, {memo, Suspense} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
 import {useParams} from 'react-router'
+import {useInView} from 'react-intersection-observer'
 import {Divider, Loader} from 'ui'
 import {PostForm} from 'features/common/organisms'
 import {useIsMe, useMyQuery, useMyTitle} from 'features/common/hooks'
@@ -20,15 +20,13 @@ export const Wall = memo(() => {
   const {data, loading} = useMyQuery(getUserByNickname(nickname))
   const user = data?.getUserByNickname
 
-  const [isInfoVisible, setIsInfoVisible] = useState(false)
+  const [ref, isInfoVisible] = useInView()
 
   return (
     <Flex flexDirection="column" minHeight="100%">
-      <ReactVisibilitySensor onChange={setIsInfoVisible} partialVisibility>
-        <Box padding="0.5rem 0.5rem 0 0.5rem">
-          {loading ? <Loader /> : <UserInfo user={user} />}
-        </Box>
-      </ReactVisibilitySensor>
+      <Box padding="0.5rem 0.5rem 0 0.5rem" ref={ref}>
+        {loading ? <Loader /> : <UserInfo user={user} />}
+      </Box>
       <Divider />
       {isMe && (
         <Suspense fallback={<Loader />}>
