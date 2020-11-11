@@ -5,28 +5,16 @@ export const usePaginatedFetchMore = ({query, data, fetchMore, variables}) => {
     ({kind}) => kind === 'OperationDefinition',
   )?.name?.value
 
+  const after = data?.[name]?.pageInfo?.endCursor
+  const hasNextPage = data?.[name]?.pageInfo?.hasNextPage || false
+
   return useCallback(
     () =>
       name &&
-      data?.[name]?.pageInfo?.hasNextPage &&
+      hasNextPage &&
       fetchMore({
-        updateQuery: (previousResult, {fetchMoreResult}) => {
-          const {pageInfo, edges} = fetchMoreResult[name]
-          const {__typename} = previousResult[name]
-          const previousEdges = previousResult[name].edges
-
-          return edges.length
-            ? {
-                [name]: {
-                  __typename,
-                  edges: previousEdges.concat(edges),
-                  pageInfo,
-                },
-              }
-            : previousResult
-        },
-        variables: {...variables, after: data[name].pageInfo.endCursor},
+        variables: {...variables, after},
       }),
-    [data, fetchMore, name, variables],
+    [after, fetchMore, hasNextPage, name, variables],
   )
 }

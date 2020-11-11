@@ -4,7 +4,7 @@ import {
   InMemoryCache,
   split,
 } from '@apollo/client'
-import {getMainDefinition} from '@apollo/client/utilities'
+import {getMainDefinition, relayStylePagination} from '@apollo/client/utilities'
 import {WebSocketLink} from '@apollo/client/link/ws'
 import {setContext} from '@apollo/client/link/context'
 
@@ -50,9 +50,25 @@ const authLink = setContext((_, {headers}) => {
   }
 })
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        getFeed: relayStylePagination(false),
+        getEvents: relayStylePagination(false),
+        getPostsByNickname: relayStylePagination(['nickname']),
+        getCommentsByPostId: relayStylePagination(['post_id']),
+        getSubRequests: relayStylePagination(false),
+        getFoundUsers: relayStylePagination(['text']),
+        getFoundPosts: relayStylePagination(['text']),
+      },
+    },
+  },
+})
+
 export const client = new ApolloClient({
   link: authLink.concat(splitLink),
-  cache: new InMemoryCache(),
+  cache,
 })
 
 client.resetConnection = () => wsLink?.subscriptionClient?.client?.close?.()
