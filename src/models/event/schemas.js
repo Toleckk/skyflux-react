@@ -3,59 +3,61 @@ import {SubRequestFragment} from 'models/sub'
 import {CommentFragment} from 'models/comment'
 import {LikeFragment} from 'models/like'
 
-export const MiniSubEventFragment = gql`
-  fragment MiniSubEventFragment on SubEvent {
-    kind
-    createdAt
-    subj {
-      sub {
-        ...SubRequestFragment
-      }
+export const MiniSubEventBodyFragment = gql`
+  fragment MiniSubEventBodyFragment on SubEventBody {
+    sub {
+      ...SubRequestFragment
     }
   }
   ${SubRequestFragment}
 `
 
-export const MiniCommentEventFragment = gql`
-  fragment MiniCommentEventFragment on CommentEvent {
-    kind
-    createdAt
-    subj {
-      comment {
-        ...CommentFragment
-        post {
+export const MiniCommentEventBodyFragment = gql`
+  fragment MiniCommentEventBodyFragment on CommentEventBody {
+    comment {
+      ...CommentFragment
+      post {
+        _id
+        text
+        user {
           _id
-          text
-          user {
-            _id
-            nickname
-          }
+          nickname
         }
       }
     }
   }
   ${CommentFragment}
 `
-
-export const LikeEventFragment = gql`
-  fragment LikeEventFragment on LikeEvent {
-    kind
-    createdAt
-    subj {
-      like {
-        ...LikeFragment
-        post {
-          _id
-          text
-        }
+export const LikeEventBodyFragment = gql`
+  fragment LikeEventBodyFragment on LikeEventBody {
+    like {
+      ...LikeFragment
+      post {
+        _id
+        text
       }
     }
   }
   ${LikeFragment}
 `
 
+export const EventFragment = gql`
+  fragment EventFragment on Event {
+    createdAt
+    kind
+    subj {
+      ...LikeEventBodyFragment
+      ...MiniCommentEventBodyFragment
+      ...MiniSubEventBodyFragment
+    }
+  }
+  ${LikeEventBodyFragment}
+  ${MiniSubEventBodyFragment}
+  ${MiniCommentEventBodyFragment}
+`
+
 export const GET_EVENTS = gql`
-  query getEvents($first: Int, $after: ID) {
+  query getEvents($first: Int!, $after: ID) {
     getEvents(after: $after, first: $first) {
       pageInfo {
         endCursor
@@ -66,29 +68,21 @@ export const GET_EVENTS = gql`
       edges {
         cursor
         node {
-          ...LikeEventFragment
-          ...MiniCommentEventFragment
-          ...MiniSubEventFragment
+          ...EventFragment
         }
       }
     }
   }
-  ${LikeEventFragment}
-  ${MiniSubEventFragment}
-  ${MiniCommentEventFragment}
+  ${EventFragment}
 `
 
 export const EVENT_ADDED = gql`
   subscription eventAdded {
     eventAdded {
-      ...LikeEventFragment
-      ...MiniCommentEventFragment
-      ...MiniSubEventFragment
+      ...EventFragment
     }
   }
-  ${LikeEventFragment}
-  ${MiniCommentEventFragment}
-  ${MiniSubEventFragment}
+  ${EventFragment}
 `
 
 export const EVENT_DELETED = gql`

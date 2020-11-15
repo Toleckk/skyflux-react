@@ -29,7 +29,7 @@ export const DELETE_SUB = gql`
 `
 
 export const GET_SUB_REQUESTS = gql`
-  query getSubRequests($first: Int, $after: ID) {
+  query getSubRequests($first: Int!, $after: ID) {
     getSubRequests(first: $first, after: $after) {
       edges {
         cursor
@@ -50,7 +50,7 @@ export const GET_SUB_REQUESTS = gql`
 
 export const ACCEPT_SUB = gql`
   mutation acceptSub($_id: ID!) {
-    acceptSub(sub_id: $_id) {
+    acceptSub(_id: $_id) {
       _id
       accepted
     }

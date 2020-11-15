@@ -59,7 +59,7 @@ export const GET_SUGGESTIONS = gql`
 `
 
 export const GET_FOUND_USERS = gql`
-  query getFoundUsers($text: String!, $after: ID, $first: Int) {
+  query getFoundUsers($text: String!, $after: ID, $first: Int!) {
     getFoundUsers(text: $text, after: $after, first: $first) {
       edges {
         node {
@@ -85,7 +85,7 @@ export const DOES_NICKNAME_EXIST = gql`
 
 export const CREATE_USER = gql`
   mutation createUser($email: String!, $password: String!) {
-    createUser(email: $email, password: $password) {
+    createUser(user: {email: $email, password: $password}) {
       _id
     }
   }
@@ -93,7 +93,7 @@ export const CREATE_USER = gql`
 
 export const UPDATE_PROFILE_INFO = gql`
   mutation updateProfileInfo($avatar: String, $description: DescrpitionInput!) {
-    updateProfileInfo(avatar: $avatar, description: $description) {
+    updateProfileInfo(user: {avatar: $avatar, description: $description}) {
       _id
       avatar
       description {
@@ -107,7 +107,7 @@ export const UPDATE_PROFILE_INFO = gql`
 
 export const UPDATE_NICKNAME = gql`
   mutation updateNickname($nickname: String!) {
-    updateNickname(nickname: $nickname) {
+    updateNickname(user: {nickname: $nickname}) {
       _id
       nickname
     }
@@ -116,13 +116,15 @@ export const UPDATE_NICKNAME = gql`
 
 export const UPDATE_PASSWORD = gql`
   mutation updatePassword($oldPassword: String!, $newPassword: String!) {
-    updatePassword(oldPassword: $oldPassword, newPassword: $newPassword)
+    updatePassword(
+      credentials: {oldPassword: $oldPassword, newPassword: $newPassword}
+    )
   }
 `
 
 export const RESET_PASSWORD = gql`
   mutation resetPassword($token: String!, $password: String!) {
-    resetPassword(token: $token, password: $password)
+    resetPassword(credentials: {token: $token, password: $password})
   }
 `
 
