@@ -13,6 +13,7 @@ import {PostRouter} from 'features/post'
 import {SearchRouter} from 'features/search'
 import {SettingsRouter} from 'features/settings'
 import {ErrorBoundary} from 'features/common/organisms'
+import {LoadingIndicator} from 'features/common/molecules'
 
 export const App = () => (
   <Theme>
@@ -20,6 +21,7 @@ export const App = () => (
       <ApolloProvider client={client}>
         <ErrorBoundary>
           <UserSuspense>
+            <LoadingIndicator />
             <BrowserRouter>
               <Switch>
                 <PrivateRoute path="/" exact>

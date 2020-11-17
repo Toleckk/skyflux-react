@@ -1,5 +1,6 @@
 export * from './useConfirmDialog'
 export * from './useIsMe'
+export {useLoader} from './useLoader'
 export * from './useMediaScreens'
 export * from './useModal'
 export * from './useMyLazyQuery'
