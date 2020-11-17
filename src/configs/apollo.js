@@ -72,3 +72,7 @@ export const client = new ApolloClient({
 })
 
 client.resetConnection = () => wsLink?.subscriptionClient?.client?.close?.()
+client.resetPersist = () =>
+  Object.keys(localStorage)
+    .filter(key => key.startsWith('PERSIST_'))
+    .forEach(key => localStorage.removeItem(key))

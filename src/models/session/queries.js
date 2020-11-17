@@ -7,6 +7,7 @@ export const createSession = (variables = {}) => ({
     localStorage.setItem('token', createSession || null)
     client.resetConnection()
     client.cache.reset()
+    client.resetPersist()
   },
 })
 
@@ -16,5 +17,6 @@ export const deleteCurrentSession = () => ({
     localStorage.setItem('token', null)
     client.resetConnection()
     client.cache.reset()
+    client.resetPersist()
   },
 })
