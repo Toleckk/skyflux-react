@@ -1,12 +1,12 @@
 import React from 'react'
 import {Redirect, Route} from 'react-router'
-import {useSuspendedQuery} from 'features/common/hooks'
-import {me} from 'models/user'
+import {useQuery} from '@apollo/client'
+import {ME} from 'models/user'
 
 export const PrivateRoute = props => {
-  const {data} = useSuspendedQuery(me())
+  const {data} = useQuery(ME)
 
-  if (!data.me) return <Redirect to="/id/auth" />
+  if (!data?.me) return <Redirect to="/id/auth" />
 
   return <Route {...props} />
 }
