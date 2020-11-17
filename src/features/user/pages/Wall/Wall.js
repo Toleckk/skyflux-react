@@ -3,10 +3,13 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {useInView} from 'react-intersection-observer'
+import {useNetwork} from 'react-use'
+import {useAsync} from '@react-hook/async'
+import {useQuery} from '@apollo/client'
 import {Divider, Loader} from 'ui'
+import {useIsMe, useLoader, useMyTitle} from 'features/common/hooks'
 import {PostForm} from 'features/common/organisms'
-import {useIsMe, useMyQuery, useMyTitle} from 'features/common/hooks'
-import {getUserByNickname} from 'models/user'
+import {GET_USER_BY_NICKNAME} from 'models/user'
 import {PostsDisplay} from '../../organisms'
 import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
 import {StyledHeader, StyledStaticDivider} from './styles'
@@ -17,19 +20,35 @@ export const Wall = memo(() => {
 
   const isMe = useIsMe({nickname})
 
-  const {data, loading} = useMyQuery({
-    ...getUserByNickname(nickname),
+  const {data, loading, fetchMore} = useQuery(GET_USER_BY_NICKNAME, {
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'network-only',
+    variables: {
+      nickname,
+      firstPosts: 25,
+    },
   })
+
   const user = data?.getUserByNickname
+
+  const [{status}, more] = useAsync(() =>
+    fetchMore({
+      variables: {
+        afterPost: user?.posts?.pageInfo?.endCursor,
+      },
+    }),
+  )
+
+  const {online} = useNetwork()
+  useLoader(loading && online && status !== 'loading' && user)
 
   const [ref, isInfoVisible] = useInView()
 
   return (
     <Flex flexDirection="column" minHeight="100%">
       <Box padding="0.5rem 0.5rem 0 0.5rem" ref={ref}>
-        {loading ? <Loader /> : <UserInfo user={user} />}
+        {!user ? <Loader /> : <UserInfo user={user} />}
       </Box>
       <Divider />
       {isMe && (
@@ -44,13 +63,17 @@ export const Wall = memo(() => {
           </Translation>
         </Suspense>
       )}
-      {loading ? (
-        <Loader />
-      ) : user.private && !isMe && !user.mySub?.accepted ? (
+
+      {user && user.private && !isMe && !user.mySub?.accepted ? (
         <PrivateScreen />
+      ) : user ? (
+        <PostsDisplay onMore={more} posts={user.posts} />
+      ) : !online ? (
+        <div>Data cannot be loaded</div>
       ) : (
-        <PostsDisplay nickname={nickname} />
+        <Loader />
       )}
+
       {!isInfoVisible && user && (
         <StyledHeader>
           <UserRow user={user} />

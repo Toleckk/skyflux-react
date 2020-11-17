@@ -1,21 +1,29 @@
-import React, {forwardRef} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import {EventConnectionList} from 'models/event'
+import {useInfiniteScroll} from 'utils'
+import {EventConnection} from 'models/event'
+import {ListItem} from 'ui'
 import {EventCard} from '../EventCard'
-import {StyledPublicationList} from './styles'
+import {StyledList} from './styles'
 
-export const EventList = forwardRef(({events, loading}, ref) => (
-  <StyledPublicationList
-    publications={events}
-    Card={EventCard}
-    ref={ref}
-    loading={loading}
-  />
-))
+export const EventList = ({events, onMore}) => {
+  const ref = useInfiniteScroll({
+    fetchMore: onMore,
+    hasMore: events.pageInfo.hasNextPage,
+  })
 
-EventList.displayName = 'EventList'
+  return (
+    <StyledList ref={ref}>
+      {events.edges.map(({cursor, node}) => (
+        <ListItem key={cursor}>
+          <EventCard publication={node} />
+        </ListItem>
+      ))}
+    </StyledList>
+  )
+}
 
 EventList.propTypes = {
-  events: EventConnectionList.isRequired,
-  loading: PropTypes.bool.isRequired,
+  events: EventConnection.isRequired,
+  onMore: PropTypes.func,
 }

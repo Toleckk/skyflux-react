@@ -1,6 +1,7 @@
 import {gql} from '@apollo/client'
+import {CommentFragment} from '../comment'
 
-const PostFragment = gql`
+export const PostFragment = gql`
   fragment PostFragment on Post {
     _id
     text
@@ -17,12 +18,27 @@ const PostFragment = gql`
 `
 
 export const GET_POST_BY_ID = gql`
-  query getPostById($_id: ID!) {
+  query getPostById($_id: ID!, $afterComment: ID, $firstComments: Int!) {
     getPostById(_id: $_id) {
       ...PostFragment
+      comments(after: $afterComment, first: $firstComments) {
+        edges {
+          cursor
+          node {
+            ...CommentFragment
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+          startCursor
+          hasPreviousPage
+        }
+      }
     }
   }
   ${PostFragment}
+  ${CommentFragment}
 `
 
 export const GET_POSTS_BY_NICKNAME = gql`

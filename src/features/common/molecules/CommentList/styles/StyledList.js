@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import {PublicationList} from '../../PublicationList'
 
-export const StyledPublicationList = styled(PublicationList)`
+export const StyledList = styled.li`
   display: flex;
   flex-direction: column-reverse;
   overflow-y: auto;

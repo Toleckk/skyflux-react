@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
@@ -6,7 +6,7 @@ import {H1, Link} from 'ui'
 import {MiniUserConnectionList} from 'models/user'
 import {UserList} from 'features/common/molecules'
 
-export const UsersDisplay = forwardRef(({users, query, mini, loading}, ref) => {
+export const UsersDisplay = ({users, query, mini, onMore}) => {
   const {t} = useTranslation('search')
 
   return (
@@ -21,22 +21,19 @@ export const UsersDisplay = forwardRef(({users, query, mini, loading}, ref) => {
           <Link to={'/search/users?q=' + query}>{t('Show all')}</Link>
         )}
       </Flex>
-      <UserList users={users} mini={mini} ref={ref} loading={loading} />
+      <UserList users={users} mini={mini} onMore={onMore} />
     </div>
   )
-})
-
-UsersDisplay.displayName = 'UsersDisplay'
+}
 
 UsersDisplay.defaultProps = {
   query: '',
   mini: false,
-  loading: false,
 }
 
 UsersDisplay.propTypes = {
   users: MiniUserConnectionList.isRequired,
   query: PropTypes.string,
   mini: PropTypes.bool,
-  loading: PropTypes.bool,
+  onMore: PropTypes.func,
 }

@@ -1,3 +1,2 @@
 export * from './CommentForm'
-export * from './CommentsDisplay'
-export * from './PostDisplay'
+export * from './Post'

@@ -2,7 +2,7 @@ import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {useMyTitle} from 'features/common/hooks'
-import {PostDisplay} from '../../organisms'
+import {Post} from '../../organisms'
 
 export const Display = () => {
   const {t} = useTranslation('post')
@@ -10,5 +10,5 @@ export const Display = () => {
 
   const {id} = useParams()
 
-  return <PostDisplay _id={id} />
+  return <Post _id={id} />
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import {useInfiniteScroll} from 'utils'
 import {Loader} from 'ui'
 import {getSubRequests} from 'models/sub'
 import {useMyQuery} from '../../hooks'
@@ -10,20 +9,10 @@ export const SubRequestsDisplay = () => {
     ...getSubRequests({first: 25}),
     fetchPolicy: 'network-only',
   })
-  const subs = data?.getSubRequests?.edges
 
-  const hasMore = data?.getSubRequests?.pageInfo?.hasNextPage
-
-  const ref = useInfiniteScroll({
-    fetchMore,
-    loading,
-    hasMore,
-    threshold: '100px',
-  })
-
-  return loading ? (
+  return loading || !data?.getSubRequests ? (
     <Loader />
   ) : (
-    <SubRequestList subs={subs} ref={ref} loading={hasMore} />
+    <SubRequestList subs={data.getSubRequests} onMore={fetchMore} />
   )
 }

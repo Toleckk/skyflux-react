@@ -1,32 +1,24 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
-import {useMyQuery} from 'features/common/hooks'
-import {getFoundUsers} from 'models/user'
-import {getFoundPosts} from 'models/post'
 import {Search} from '../../templates'
 import {PostsDisplay, UsersDisplay} from '../../organisms'
+import {useSearchPosts, useSearchUsers} from '../../hooks'
 
 export const All = () => {
   const [text, setText] = useState('')
-  const usersQuery = useMyQuery(getFoundUsers(text, {first: 4}))
-  const postsQuery = useMyQuery(getFoundPosts(text, {first: 5}))
-
-  const users = usersQuery.data?.getFoundUsers?.edges
-  const posts = postsQuery.data?.getFoundPosts?.edges
+  const {users, loading: usersLoading} = useSearchUsers(text, 4)
+  const {posts, loading: postsLoading} = useSearchPosts(text, 5)
 
   return (
-    <Search
-      onInputChange={setText}
-      isLoading={usersQuery.loading || postsQuery.loading}
-    >
-      {(!!users?.length || !!posts?.length) && (
+    <Search onInputChange={setText} isLoading={usersLoading || postsLoading}>
+      {(!!users?.edges?.length || !!posts?.edges?.length) && (
         <>
-          {!!users?.length && (
+          {!!users?.edges?.length && (
             <Box marginTop="2rem">
               <UsersDisplay users={users} query={text} mini />
             </Box>
           )}
-          {!!posts?.length && (
+          {!!posts?.edges?.length && (
             <Box marginTop="2rem">
               <PostsDisplay posts={posts} query={text} />
             </Box>

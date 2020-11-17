@@ -1,36 +1,19 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
-import {useInfiniteScroll} from 'utils'
-import {useMyQuery} from 'features/common/hooks'
-import {getFoundPosts} from 'models/post'
 import {Search} from '../../templates'
 import {PostsDisplay} from '../../organisms'
+import {useSearchPosts} from '../../hooks'
 
 export const Posts = () => {
   const [text, setText] = useState('')
-  const {data, loading, fetchMore} = useMyQuery(
-    getFoundPosts(text, {first: 25}),
-  )
 
-  const hasMore = data?.getFoundPosts?.pageInfo?.hasNextPage
-
-  const postsContainerRef = useInfiniteScroll({
-    fetchMore,
-    loading,
-    hasMore,
-  })
-
-  const posts = data?.getFoundPosts?.edges
+  const {posts, loading, more} = useSearchPosts(text)
 
   return (
     <Search onInputChange={setText} isLoading={loading}>
-      {!!posts?.length && (
+      {!!posts?.edges?.length && (
         <Box marginTop="2rem">
-          <PostsDisplay
-            posts={posts}
-            ref={postsContainerRef}
-            loading={hasMore}
-          />
+          <PostsDisplay posts={posts} onMore={more} />
         </Box>
       )}
     </Search>

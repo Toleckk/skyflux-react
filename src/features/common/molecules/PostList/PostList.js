@@ -1,28 +1,48 @@
-import React, {forwardRef} from 'react'
+import React, {Suspense} from 'react'
 import PropTypes from 'prop-types'
-import {PostConnectionList} from 'models/post'
+import {useTranslation} from 'react-i18next'
+import {Flex} from 'reflexbox/styled-components'
+import {H1, ListItem, Loader} from 'ui'
+import {useInfiniteScroll} from 'utils'
+import {PostConnection} from 'models/post'
 import {PostCard} from '../PostCard'
-import {PublicationList} from '../PublicationList'
 
-export const PostList = forwardRef(({posts, loading, onPostDelete}, ref) => (
-  <PublicationList
-    publications={posts}
-    Card={PostCard}
-    ref={ref}
-    loading={loading}
-    onItemDelete={onPostDelete}
-  />
-))
+export const PostList = ({posts, onPostDelete, onMore}) => {
+  const {t} = useTranslation('post')
 
-PostList.displayName = 'PostList'
+  const edges = posts.edges
+  const hasMore = posts.pageInfo.hasNextPage
+
+  const postsContainerRef = useInfiniteScroll({fetchMore: onMore, hasMore})
+
+  return !edges.length ? (
+    <Flex flex={1} alignItems="center" justifyContent="center">
+      <H1 center>{t('There is no posts yet')}</H1>
+    </Flex>
+  ) : (
+    <Suspense fallback={<Loader />}>
+      <ul ref={hasMore ? postsContainerRef : undefined}>
+        {edges.map(({cursor, node}) => (
+          <ListItem key={cursor}>
+            <PostCard publication={node} onDelete={onPostDelete} />
+          </ListItem>
+        ))}
+        {!!onMore && hasMore && (
+          <Flex as="li" width="100%" height="3rem">
+            <Loader size="1.5rem" hasShadow={false} borderWidth="3px" />
+          </Flex>
+        )}
+      </ul>
+    </Suspense>
+  )
+}
 
 PostList.defaultProps = {
-  loading: false,
   onPostDelete: undefined,
 }
 
 PostList.propTypes = {
-  posts: PostConnectionList.isRequired,
+  posts: PostConnection.isRequired,
   onPostDelete: PropTypes.func,
-  loading: PropTypes.bool,
+  onMore: PropTypes.func,
 }

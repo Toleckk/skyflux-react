@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
@@ -6,7 +6,7 @@ import {H1, Link} from 'ui'
 import {PostConnectionList} from 'models/post'
 import {PostList} from 'features/common/molecules'
 
-export const PostsDisplay = forwardRef(({posts, query, loading}, ref) => {
+export const PostsDisplay = ({posts, query, onMore}) => {
   const {t} = useTranslation('search')
 
   return (
@@ -21,10 +21,10 @@ export const PostsDisplay = forwardRef(({posts, query, loading}, ref) => {
           <Link to={'/search/posts?q=' + query}>{t('Show all')}</Link>
         )}
       </Flex>
-      <PostList posts={posts} ref={ref} loading={loading} />
+      <PostList posts={posts} onMore={onMore} />
     </div>
   )
-})
+}
 
 PostsDisplay.displayName = 'PostsDisplay'
 
@@ -37,4 +37,5 @@ PostsDisplay.propTypes = {
   posts: PostConnectionList.isRequired,
   loading: PropTypes.bool,
   query: PropTypes.string,
+  onMore: PropTypes.func,
 }

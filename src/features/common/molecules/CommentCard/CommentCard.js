@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import PropTypes from 'prop-types'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
@@ -13,10 +13,15 @@ export const CommentCard = ({publication, mini, onDelete}) => {
   const isMyComment = useIsMe(publication.user)
   const isMyPost = useIsMe(publication.post.user)
 
+  const deleteComment = useCallback(() => onDelete?.(publication), [
+    onDelete,
+    publication,
+  ])
+
   return (
     <PublicationCard
       publication={publication}
-      onDelete={(isMyComment || isMyPost) && onDelete}
+      onDelete={(isMyComment || isMyPost) && onDelete && deleteComment}
       mini={mini}
     >
       {!!publication.post && !!publication.post.text && (
@@ -37,7 +42,6 @@ export const CommentCard = ({publication, mini, onDelete}) => {
 
 CommentCard.defaultProps = {
   mini: false,
-  onDelete: undefined,
 }
 
 CommentCard.propTypes = {

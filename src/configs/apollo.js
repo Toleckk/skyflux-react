@@ -63,6 +63,16 @@ const cache = new InMemoryCache({
         getFoundPosts: relayStylePagination(['text']),
       },
     },
+    Post: {
+      fields: {
+        comments: relayStylePagination(false),
+      },
+    },
+    User: {
+      fields: {
+        posts: relayStylePagination(false),
+      },
+    },
   },
 })
 

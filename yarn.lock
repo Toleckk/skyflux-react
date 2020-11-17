@@ -1512,6 +1512,18 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@react-hook/async@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/async/-/async-3.1.0.tgz#fbd26d6c915407ec53ac470544372b5aa67f9285"
+  integrity sha512-ARzQftneuY7l2O2+XO3n7qWklPb2VSrq69I6JoDW74ZRxVyHCXnQeY7GmDmphCr605kM7Daiznktax6w4NrgVA==
+  dependencies:
+    "@react-hook/latest" "^1.0.2"
+
+"@react-hook/latest@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/latest/-/latest-1.0.3.tgz#c2d1d0b0af8b69ec6e2b3a2412ba0768ac82db80"
+  integrity sha512-dy6duzl+JnAZcDbNTfmaP3xHiKtbXYOaz3G51MGVljh548Y8MWzTr+PHLOfvpypEVW9zwvl+VyKjbWKEVbV1Rg==
+
 "@react-hook/merged-ref@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@react-hook/merged-ref/-/merged-ref-1.3.0.tgz#0f482780e1eefc1abdc964dd3d04680186b07c8a"

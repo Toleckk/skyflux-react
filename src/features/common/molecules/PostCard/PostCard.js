@@ -26,8 +26,16 @@ export const PostCard = ({publication, onDelete}) => {
     publication._id,
   ])
 
+  const deletePost = useCallback(() => onDelete(publication), [
+    onDelete,
+    publication,
+  ])
+
   return (
-    <PublicationCard publication={publication} onDelete={isMe && onDelete}>
+    <PublicationCard
+      publication={publication}
+      onDelete={isMe && !!onDelete && deletePost}
+    >
       <Flex justifyContent="space-between">
         <Flex alignItems="center" as="button" onClick={openPost}>
           <Icon icon="comment" size="1.5rem" />

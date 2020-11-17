@@ -13,3 +13,15 @@ export const SubConnectionList = PropTypes.arrayOf(
     node: SubRequest.isRequired,
   }).isRequired,
 )
+
+export const SubPageInfo = PropTypes.shape({
+  hasNextPage: PropTypes.bool.isRequired,
+  endCursor: PropTypes.string,
+  hasPreviousPage: PropTypes.bool.isRequired,
+  startCursor: PropTypes.string,
+})
+
+export const SubConnection = PropTypes.shape({
+  edges: SubConnectionList.isRequired,
+  pageInfo: SubPageInfo.isRequired,
+})

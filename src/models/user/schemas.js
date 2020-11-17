@@ -1,4 +1,5 @@
 import {gql} from '@apollo/client'
+import {PostFragment} from 'models/post'
 
 export const UserFragment = gql`
   fragment UserFragment on User {
@@ -31,12 +32,27 @@ export const ME = gql`
 `
 
 export const GET_USER_BY_NICKNAME = gql`
-  query getByNickname($nickname: String!) {
+  query getByNickname($nickname: String!, $firstPosts: Int!, $afterPost: ID) {
     getUserByNickname(nickname: $nickname) {
       ...UserFragment
+      posts(first: $firstPosts, after: $afterPost) {
+        edges {
+          cursor
+          node {
+            ...PostFragment
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+      }
     }
   }
   ${UserFragment}
+  ${PostFragment}
 `
 
 export const GET_SUGGESTIONS = gql`

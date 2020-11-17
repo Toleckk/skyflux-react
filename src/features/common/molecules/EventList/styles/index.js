@@ -1,1 +1,1 @@
-export * from './StyledPublicationList'
+export * from './StyledList'

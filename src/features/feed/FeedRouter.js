@@ -1,10 +1,14 @@
-import React from 'react'
-import {Switch} from 'react-router'
+import React, {memo} from 'react'
 import {PrivateRoute} from 'utils'
+import {Switch} from 'react-router'
 import {All} from './pages'
 
-export const FeedRouter = () => (
-  <Switch>
-    <PrivateRoute exact path="/feed" component={All} />
-  </Switch>
-)
+export const FeedRouter = memo(() => {
+  return (
+    <Switch>
+      <PrivateRoute exact path="/feed" component={All} />
+    </Switch>
+  )
+})
+
+FeedRouter.displayName = 'FeedRouter'

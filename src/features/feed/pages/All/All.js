@@ -1,41 +1,37 @@
-import React, {useCallback, useState} from 'react'
+import React, {memo} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Trans, useTranslation} from 'react-i18next'
+import {PostList, UserList} from 'features/common/molecules'
 import {useMyTitle} from 'features/common/hooks'
 import {PostForm} from 'features/common/organisms'
-import {Divider, H1, Link, Text} from 'ui'
-import {FeedDisplay, SuggestionsDisplay} from '../../organisms'
+import {Divider, H1, Link, Loader, Text} from 'ui'
+import {useFeed, useSuggestions} from '../../hooks'
 import {StyledContainer} from './styles'
 
-export const All = () => {
+export const All = memo(() => {
   const {t} = useTranslation('feed')
 
   useMyTitle(t('Feed'))
 
-  const [feedState, setFeedState] = useState({loading: true, fulfilled: false})
+  const {posts, loading: feedLoading, more} = useFeed()
 
-  const setIsEmpty = useCallback(
-    () => setFeedState({loading: false, fulfilled: false}),
-    [setFeedState],
-  )
-  const setIsFulfilled = useCallback(
-    () => setFeedState({loading: false, fulfilled: true}),
-    [setFeedState],
+  const {users, loading: suggestionsLoading} = useSuggestions(
+    feedLoading || !!posts?.edges?.length,
   )
 
   return (
     <StyledContainer>
       <PostForm placeholder={t('Write a news')} />
       <Divider />
-      <FeedDisplay
-        onEmptyFeedReceived={setIsEmpty}
-        onFulfilledFeedReceived={setIsFulfilled}
-      />
-      {!feedState.loading && !feedState.fulfilled && (
+      {feedLoading && !posts?.edges?.length ? (
+        <Loader />
+      ) : posts?.edges?.length ? (
+        <PostList posts={posts} onMore={more} />
+      ) : (
         <div>
           <H1>{t('Your feed is empty')}</H1>
           <Box margin="1rem 0">
-            <SuggestionsDisplay />
+            {suggestionsLoading ? <Loader /> : <UserList users={users} />}
           </Box>
           <Text>
             <Trans t={t}>
@@ -47,4 +43,6 @@ export const All = () => {
       )}
     </StyledContainer>
   )
-}
+})
+
+All.displayName = 'All'
