@@ -1,11 +1,11 @@
 import {useQuery} from '@apollo/client'
-import {GET_FOUND_USERS} from 'models/user'
+import {USERS} from 'models/user'
 import {useCallback} from 'react'
 
-export const useSearchUsers = (text, step = 24) => {
-  const {data, loading, fetchMore} = useQuery(GET_FOUND_USERS, {
+export const useSearchUsers = (query, step = 24) => {
+  const {data, loading, fetchMore} = useQuery(USERS, {
     variables: {
-      text,
+      query,
       first: step,
     },
   })
@@ -14,11 +14,11 @@ export const useSearchUsers = (text, step = 24) => {
     () =>
       fetchMore({
         variables: {
-          after: data?.getFoundUsers?.pageInfo.endCursor,
+          after: data?.users?.pageInfo.endCursor,
         },
       }),
     [fetchMore, data],
   )
 
-  return {users: data?.getFoundUsers, loading, more}
+  return {users: data?.users, loading, more}
 }

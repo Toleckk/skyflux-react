@@ -17,9 +17,9 @@ export const PostFragment = gql`
   }
 `
 
-export const GET_POST_BY_ID = gql`
-  query getPostById($_id: ID!, $afterComment: ID, $firstComments: Int!) {
-    getPostById(_id: $_id) {
+export const POST = gql`
+  query post($_id: ID!, $afterComment: ID, $firstComments: Int!) {
+    post(_id: $_id) {
       ...PostFragment
       comments(after: $afterComment, first: $firstComments) {
         edges {
@@ -41,9 +41,9 @@ export const GET_POST_BY_ID = gql`
   ${CommentFragment}
 `
 
-export const GET_POSTS_BY_NICKNAME = gql`
-  query getPostsByNickname($nickname: String!, $first: Int!, $after: ID) {
-    getPostsByNickname(nickname: $nickname, after: $after, first: $first) {
+export const FEED = gql`
+  query feed($first: Int!, $after: ID) {
+    feed(first: $first, after: $after) {
       edges {
         node {
           ...PostFragment
@@ -59,27 +59,9 @@ export const GET_POSTS_BY_NICKNAME = gql`
   ${PostFragment}
 `
 
-export const GET_FEED = gql`
-  query getFeed($first: Int!, $after: ID) {
-    getFeed(first: $first, after: $after) {
-      edges {
-        node {
-          ...PostFragment
-        }
-        cursor
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-  ${PostFragment}
-`
-
-export const GET_FOUND_POSTS = gql`
-  query getFoundPosts($text: String!, $first: Int!, $after: ID) {
-    getFoundPosts(text: $text, after: $after, first: $first) {
+export const POSTS = gql`
+  query posts($query: String!, $first: Int!, $after: ID) {
+    posts(query: $query, after: $after, first: $first) {
       edges {
         node {
           ...PostFragment

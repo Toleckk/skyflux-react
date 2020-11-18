@@ -1,12 +1,12 @@
 import {useAsync} from '@react-hook/async'
 import {useQuery} from '@apollo/client'
-import {GET_FEED} from 'models/post'
+import {FEED} from 'models/post'
 import {useLoader, usePersist} from 'features/common/hooks'
 
 export const useFeed = () => {
-  usePersist(GET_FEED)
+  usePersist(FEED)
 
-  const {data, fetchMore, loading} = useQuery(GET_FEED, {
+  const {data, fetchMore, loading} = useQuery(FEED, {
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
@@ -18,17 +18,17 @@ export const useFeed = () => {
   const [{status}, more] = useAsync(() =>
     fetchMore({
       variables: {
-        after: data?.getFeed?.pageInfo.endCursor,
+        after: data?.feed?.pageInfo.endCursor,
       },
     }),
   )
 
-  const isInitialLoading = loading && status !== 'loading' && !data?.getFeed
+  const isInitialLoading = loading && status !== 'loading' && !data?.feed
 
-  useLoader(loading && status !== 'loading' && !!data?.getFeed)
+  useLoader(loading && status !== 'loading' && !!data?.feed)
 
   return {
-    posts: data?.getFeed,
+    posts: data?.feed,
     loading: isInitialLoading,
     more,
   }

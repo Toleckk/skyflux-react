@@ -54,13 +54,11 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        getFeed: relayStylePagination(false),
-        getEvents: relayStylePagination(false),
-        getPostsByNickname: relayStylePagination(['nickname']),
-        getCommentsByPostId: relayStylePagination(['post_id']),
-        getSubRequests: relayStylePagination(false),
-        getFoundUsers: relayStylePagination(['text']),
-        getFoundPosts: relayStylePagination(['text']),
+        feed: relayStylePagination(false),
+        events: relayStylePagination(false),
+        subRequests: relayStylePagination(false),
+        users: relayStylePagination(['query']),
+        posts: relayStylePagination(['query']),
       },
     },
     Post: {

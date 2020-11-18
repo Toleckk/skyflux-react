@@ -1,17 +1,17 @@
 import deepmerge from 'deepmerge'
-import {getPostById} from 'models/post'
+import {post} from 'models/post'
 import {CREATE_LIKE, DELETE_LIKE, LIKE_CREATED, LIKE_DELETED} from './schemas'
 
 export const createLike = (variables = {}) => ({
   mutation: CREATE_LIKE,
   variables,
-  refetchQueries: (_, variables) => [getPostById(variables.postId)],
+  refetchQueries: (_, variables) => [post(variables.postId)],
 })
 
 export const deleteLike = (variables = {}) => ({
   mutation: DELETE_LIKE,
   variables,
-  refetchQueries: (_, variables) => [getPostById(variables.postId)],
+  refetchQueries: (_, variables) => [post(variables.postId)],
 })
 
 export const likeCreated = (postId, variables = {}) => ({

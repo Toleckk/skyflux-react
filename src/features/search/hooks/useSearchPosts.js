@@ -1,13 +1,13 @@
 import {useCallback} from 'react'
 import {useQuery} from '@apollo/client'
-import {GET_FOUND_POSTS} from 'models/post'
+import {POSTS} from 'models/post'
 
-export const useSearchPosts = (text, step = 25) => {
-  const {data, loading, fetchMore} = useQuery(GET_FOUND_POSTS, {
+export const useSearchPosts = (query, step = 25) => {
+  const {data, loading, fetchMore} = useQuery(POSTS, {
     fetchPolicy: 'network-only',
     nextFetchPolicy: 'cache-first',
     variables: {
-      text,
+      query,
       first: step,
     },
   })
@@ -15,13 +15,13 @@ export const useSearchPosts = (text, step = 25) => {
   const more = useCallback(
     () =>
       fetchMore({
-        variables: {after: data?.getFoundPosts?.pageInfo?.endCursor},
+        variables: {after: data?.posts?.pageInfo?.endCursor},
       }),
     [data, fetchMore],
   )
 
   return {
-    posts: data?.getFoundPosts,
+    posts: data?.posts,
     loading,
     more,
   }

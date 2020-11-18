@@ -31,9 +31,9 @@ export const ME = gql`
   ${UserFragment}
 `
 
-export const GET_USER_BY_NICKNAME = gql`
-  query getByNickname($nickname: String!, $firstPosts: Int!, $afterPost: ID) {
-    getUserByNickname(nickname: $nickname) {
+export const USER = gql`
+  query user($nickname: String!, $firstPosts: Int!, $afterPost: ID) {
+    user(nickname: $nickname) {
       ...UserFragment
       posts(first: $firstPosts, after: $afterPost) {
         edges {
@@ -55,9 +55,9 @@ export const GET_USER_BY_NICKNAME = gql`
   ${PostFragment}
 `
 
-export const GET_SUGGESTIONS = gql`
-  query getSuggestions {
-    getSuggestions(first: 4) {
+export const SUGGESTIONS = gql`
+  query suggestions {
+    suggestions(first: 4) {
       edges {
         node {
           _id
@@ -74,9 +74,9 @@ export const GET_SUGGESTIONS = gql`
   }
 `
 
-export const GET_FOUND_USERS = gql`
-  query getFoundUsers($text: String!, $after: ID, $first: Int!) {
-    getFoundUsers(text: $text, after: $after, first: $first) {
+export const USERS = gql`
+  query users($query: String!, $after: ID, $first: Int!) {
+    users(query: $query, after: $after, first: $first) {
       edges {
         node {
           _id

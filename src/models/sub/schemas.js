@@ -28,9 +28,9 @@ export const DELETE_SUB = gql`
   }
 `
 
-export const GET_SUB_REQUESTS = gql`
-  query getSubRequests($first: Int!, $after: ID) {
-    getSubRequests(first: $first, after: $after) {
+export const SUB_REQUESTS = gql`
+  query subRequests($first: Int!, $after: ID) {
+    subRequests(first: $first, after: $after) {
       edges {
         cursor
         node {
@@ -65,9 +65,9 @@ export const DECLINE_SUB = gql`
   }
 `
 
-export const GET_SUB_REQUESTS_COUNT = gql`
-  query getSubRequestsCount {
-    getSubRequestsCount
+export const SUB_REQUESTS_COUNT = gql`
+  query subRequestsCount {
+    subRequestsCount
   }
 `
 

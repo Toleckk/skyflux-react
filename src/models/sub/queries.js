@@ -8,11 +8,11 @@ import {
   CREATE_SUB,
   DECLINE_SUB,
   DELETE_SUB,
-  GET_SUB_REQUESTS,
-  GET_SUB_REQUESTS_COUNT,
   SUB_ACCEPTED,
   SUB_DELETED,
   SUB_REQUEST_CREATED,
+  SUB_REQUESTS,
+  SUB_REQUESTS_COUNT,
 } from './schemas'
 
 export const createSub = (variables = {}) => ({
@@ -25,43 +25,34 @@ export const deleteSub = (variables = {}) => ({
   variables,
 })
 
-export const getSubRequests = (variables = {}) => {
+export const subRequests = (variables = {}) => {
   const {subscription: created, variables: createdVars} = subRequestCreated()
   const {subscription: deleted, variables: deletedVars} = subDeleted()
   const {subscription: accepted, variables: acceptedVars} = subAccepted()
 
   return {
-    query: GET_SUB_REQUESTS,
+    query: SUB_REQUESTS,
     variables,
     subscriptions: [
       {
         document: created,
         variables: createdVars,
-        updateQuery: ({getSubRequests}, {subscriptionData: {data}}) => ({
-          getSubRequests: addNodeToConnection(
-            data.subRequestCreated,
-            getSubRequests,
-          ),
+        updateQuery: ({subRequests}, {subscriptionData: {data}}) => ({
+          subRequests: addNodeToConnection(data.subRequestCreated, subRequests),
         }),
       },
       {
         document: deleted,
         variables: deletedVars,
-        updateQuery: ({getSubRequests}, {subscriptionData: {data}}) => ({
-          getSubRequests: deleteNodeFromConnection(
-            data.subDeleted,
-            getSubRequests,
-          ),
+        updateQuery: ({subRequests}, {subscriptionData: {data}}) => ({
+          subRequests: deleteNodeFromConnection(data.subDeleted, subRequests),
         }),
       },
       {
         document: accepted,
         variables: acceptedVars,
-        updateQuery: ({getSubRequests}, {subscriptionData: {data}}) => ({
-          getSubRequests: deleteNodeFromConnection(
-            data.subAccepted,
-            getSubRequests,
-          ),
+        updateQuery: ({subRequests}, {subscriptionData: {data}}) => ({
+          subRequests: deleteNodeFromConnection(data.subAccepted, subRequests),
         }),
       },
     ],
@@ -78,13 +69,13 @@ export const declineSub = (variables = {}) => ({
   variables,
 })
 
-export const getSubRequestsCount = () => {
+export const subRequestsCount = () => {
   const {subscription: created, variables: createdVars} = subRequestCreated()
   const {subscription: deleted, variables: deletedVars} = subDeleted()
   const {subscription: accepted, variables: acceptedVars} = subAccepted()
 
   return {
-    query: GET_SUB_REQUESTS_COUNT,
+    query: SUB_REQUESTS_COUNT,
     subscriptions: [
       {document: created, variables: createdVars, updateQuery: refetchOnUpdate},
       {document: deleted, variables: deletedVars, updateQuery: refetchOnUpdate},

@@ -1,6 +1,6 @@
 import React, {Suspense, useState} from 'react'
 import SwipeableViews from 'react-swipeable-views'
-import {getSubRequestsCount} from 'models/sub'
+import {subRequestsCount} from 'models/sub'
 import {Loader} from 'ui'
 import {useMyQuery} from '../../hooks'
 import {SubRequestsDisplay} from '../SubRequestsDisplay'
@@ -10,8 +10,8 @@ import {EventsTab} from './EventsTab'
 import {RequestsTab} from './RequestsTab'
 
 export const NotificationTabs = () => {
-  const {data, loading} = useMyQuery(getSubRequestsCount())
-  const subReqCount = data?.getSubRequestsCount
+  const {data, loading} = useMyQuery(subRequestsCount())
+  const subReqCount = data?.subRequestsCount
 
   const [activeTab, setActiveTab] = useState(0)
 

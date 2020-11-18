@@ -18,26 +18,6 @@ export const CommentFragment = gql`
   }
 `
 
-export const GET_COMMENTS_BY_POST_ID = gql`
-  query getCommentsByPostId($postId: ID!, $first: Int!, $after: ID) {
-    getCommentsByPostId(post_id: $postId, first: $first, after: $after) {
-      edges {
-        cursor
-        node {
-          ...CommentFragment
-        }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
-      }
-    }
-  }
-  ${CommentFragment}
-`
-
 export const CREATE_COMMENT = gql`
   mutation createComment($postId: ID!, $text: String!) {
     createComment(comment: {text: $text, post_id: $postId}) {

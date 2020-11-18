@@ -56,9 +56,9 @@ export const EventFragment = gql`
   ${MiniCommentEventBodyFragment}
 `
 
-export const GET_EVENTS = gql`
-  query getEvents($first: Int!, $after: ID) {
-    getEvents(after: $after, first: $first) {
+export const EVENTS = gql`
+  query events($first: Int!, $after: ID) {
+    events(after: $after, first: $first) {
       pageInfo {
         endCursor
         hasNextPage

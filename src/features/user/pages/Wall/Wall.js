@@ -9,7 +9,7 @@ import {useQuery} from '@apollo/client'
 import {Divider, Loader} from 'ui'
 import {useIsMe, useLoader, useMyTitle} from 'features/common/hooks'
 import {PostForm} from 'features/common/organisms'
-import {GET_USER_BY_NICKNAME} from 'models/user'
+import {USER} from 'models/user'
 import {PostsDisplay} from '../../organisms'
 import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
 import {StyledHeader, StyledStaticDivider} from './styles'
@@ -20,7 +20,7 @@ export const Wall = memo(() => {
 
   const isMe = useIsMe({nickname})
 
-  const {data, loading, fetchMore} = useQuery(GET_USER_BY_NICKNAME, {
+  const {data, loading, fetchMore} = useQuery(USER, {
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
@@ -30,7 +30,7 @@ export const Wall = memo(() => {
     },
   })
 
-  const user = data?.getUserByNickname
+  const user = data?.user
 
   const [{status}, more] = useAsync(() =>
     fetchMore({
