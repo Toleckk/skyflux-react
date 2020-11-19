@@ -3,7 +3,7 @@ import {useAsync} from '@react-hook/async'
 import {useQuery} from '@apollo/client'
 import {FEED} from 'models/post'
 import {SUB_UPDATED} from 'models/sub'
-import {useLoader, useMe, usePersist} from 'features/common/hooks'
+import {useLoader, useMe, usePersist} from 'features/shared/hooks'
 
 export const useFeed = () => {
   usePersist(FEED)

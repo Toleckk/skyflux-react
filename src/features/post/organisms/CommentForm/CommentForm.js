@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
 import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon, Input} from 'ui'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {Post} from 'models/post'
 import {createComment} from 'models/comment'
 

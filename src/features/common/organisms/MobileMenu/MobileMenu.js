@@ -6,7 +6,7 @@ import {Translation} from 'react-i18next'
 import {Avatar, H2, Icon, Loader} from 'ui'
 import {me} from 'models/user'
 import {deleteCurrentSession} from 'models/session'
-import {useModal, useMyMutation, useMyQuery} from '../../hooks'
+import {useModal, useMyMutation, useMyQuery} from 'features/shared/hooks'
 import {SwitchThemeButton} from '../../molecules'
 import {
   StyledBigNickname,

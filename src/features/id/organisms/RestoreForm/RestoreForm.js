@@ -7,7 +7,7 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import {mergeErrors} from 'utils'
 import {Input} from 'ui'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {createResetRequest} from 'models/reset'
 import {FieldDescription, SubmitButton} from '../../atoms'
 

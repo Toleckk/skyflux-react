@@ -24,6 +24,7 @@
           "!reflexbox/styled-components",
           "**/../user/**",
           "**/../common/**",
+          "**/../shared/**",
           "**/../feed/**",
           "**/../id/**",
           "**/../post/**",
@@ -46,6 +47,7 @@
           "@apollo/client/link/ws",
           "**/features/*",
           "**/common/*",
+          "**/shared/*",
           "react-image-lightbox/style.css",
           "react-toastify/dist/ReactToastify.min.css"
         ]

@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react'
 import PropTypes from 'prop-types'
-import {useMediaScreens} from 'features/common/hooks'
+import {useMediaScreens} from 'features/shared/hooks'
 import {MiniUserConnection} from 'models/user'
 import {Loader} from 'ui'
 import {useInfiniteScroll} from 'utils'

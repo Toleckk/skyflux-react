@@ -2,8 +2,8 @@ import React, {memo} from 'react'
 import PropTypes from 'prop-types'
 import {useTranslation} from 'react-i18next'
 import {deletePost, PostConnection} from 'models/post'
-import {useConfirmDialog, useMyMutation} from 'features/common/hooks'
-import {PostList} from 'features/common/molecules'
+import {useConfirmDialog, useMyMutation} from 'features/shared/hooks'
+import {PostList} from 'features/shared/molecules'
 
 export const PostsDisplay = memo(({posts, onMore}) => {
   const {t} = useTranslation('post', {useSuspense: false})

@@ -5,7 +5,7 @@ import {useNetwork} from 'react-use'
 import {handleMore} from 'utils'
 import {USER} from 'models/user'
 import {POST_UPDATED} from 'models/post'
-import {useLoader} from 'features/common/hooks'
+import {useLoader} from 'features/shared/hooks'
 
 export const useUser = nickname => {
   const {data, loading, fetchMore, subscribeToMore} = useQuery(USER, {

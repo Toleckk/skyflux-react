@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next'
 import {password} from 'validation'
 import {mergeErrors} from 'utils'
 import {Button, Input} from 'ui'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {updatePassword} from 'models/user'
 import {ResponsibleForm} from '../../atoms'
 

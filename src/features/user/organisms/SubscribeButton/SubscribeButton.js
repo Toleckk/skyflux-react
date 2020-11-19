@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {useTranslation} from 'react-i18next'
 import {User} from 'models/user'
 import {Button} from 'ui'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {createSub, deleteSub} from 'models/sub'
 
 export const SubscribeButton = ({user, className}) => {

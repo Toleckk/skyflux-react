@@ -1,7 +1,7 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'react-i18next'
-import {useMyQuery, useMyTitle} from 'features/common/hooks'
+import {useMyQuery, useMyTitle} from 'features/shared/hooks'
 import {me} from 'models/user'
 import {Divider, H1, Loader} from 'ui'
 import {

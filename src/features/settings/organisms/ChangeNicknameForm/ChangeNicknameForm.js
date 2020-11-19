@@ -8,7 +8,7 @@ import {nickname} from 'validation'
 import {Button, Input} from 'ui'
 import {mergeErrors, useDebouncedFunc} from 'utils'
 import {doesNicknameExist, updateNickname, User} from 'models/user'
-import {useMyLazyQuery, useMyMutation} from 'features/common/hooks'
+import {useMyLazyQuery, useMyMutation} from 'features/shared/hooks'
 import {ResponsibleForm} from '../../atoms'
 
 const schema = yup.object().shape({nickname: nickname.required()})

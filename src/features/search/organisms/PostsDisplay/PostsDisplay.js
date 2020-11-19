@@ -4,7 +4,7 @@ import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {H1, Link} from 'ui'
 import {PostConnectionList} from 'models/post'
-import {PostList} from 'features/common/molecules'
+import {PostList} from 'features/shared/molecules'
 
 export const PostsDisplay = ({posts, query, onMore}) => {
   const {t} = useTranslation('search')

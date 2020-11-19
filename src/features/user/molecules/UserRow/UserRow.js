@@ -2,7 +2,7 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Avatar} from 'ui'
 import {me, MiniUser} from 'models/user'
-import {useIsMe, useMyQuery} from 'features/common/hooks'
+import {useIsMe, useMyQuery} from 'features/shared/hooks'
 import {BigNickname} from '../../atoms'
 import {SubscribeButton} from '../../organisms'
 

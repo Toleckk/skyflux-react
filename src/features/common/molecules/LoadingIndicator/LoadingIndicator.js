@@ -1,6 +1,6 @@
 import React from 'react'
 import {Loader} from 'ui'
-import {useLoader} from 'features/common/hooks'
+import {useLoader} from 'features/shared/hooks'
 import {StyledContainer, StyledLoaderContainer} from './styles'
 
 export const LoadingIndicator = () => {

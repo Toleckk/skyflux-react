@@ -4,7 +4,7 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
 import {H2, Icon} from 'ui'
 import {me} from 'models/user'
-import {useMyQuery} from '../../hooks'
+import {useMyQuery} from 'features/shared/hooks'
 import {StyledDivider, StyledTab} from './styles'
 
 export const RequestsTab = ({selected, onClick, count}) => {

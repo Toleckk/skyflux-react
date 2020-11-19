@@ -8,7 +8,7 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 import {Button, Input, Link, Loader} from 'ui'
 import {createSession} from 'models/session'
-import {useMyMutation} from '../../hooks'
+import {useMyMutation} from 'features/shared/hooks'
 
 const schema = yup
   .object()

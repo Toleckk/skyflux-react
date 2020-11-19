@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useMemo} from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import {email, password} from 'validation'
 import {mergeErrors} from 'utils'
 import {Divider, Input, Text} from 'ui'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {createUser} from 'models/user'
 import {SubmitButton} from '../../atoms'
 import {StyledResponsibleGrid} from './styles'
@@ -29,7 +29,7 @@ export const RegisterForm = () => {
 
   const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useCallback(handleSubmit(signUp), [handleSubmit])
+  const onSubmit = useMemo(() => handleSubmit(signUp), [handleSubmit, signUp])
 
   return (
     <Flex

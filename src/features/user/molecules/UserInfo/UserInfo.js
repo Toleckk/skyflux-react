@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Date, Icon, Text} from 'ui'
 import {me, User} from 'models/user'
-import {useIsMe, useMyQuery} from 'features/common/hooks'
+import {useIsMe, useMyQuery} from 'features/shared/hooks'
 import {About, BigNickname, Stat} from '../../atoms'
 import {UserAvatar} from '../UserAvatar'
 import {

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import {useMedia} from 'react-use'
 import {me} from 'models/user'
 import {BottomBar, SideBar} from 'ui'
+import {useModal, useMyQuery} from 'features/shared/hooks'
 import {DesktopNav, MobileNav, NotificationPopup} from '../../organisms'
 import {SwitchThemeButton} from '../../molecules'
-import {useModal, useMyQuery} from '../../hooks'
 import {
   StyledChildrenWrapper,
   StyledContainer,

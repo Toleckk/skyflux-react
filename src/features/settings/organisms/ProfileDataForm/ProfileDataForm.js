@@ -13,7 +13,7 @@ import {
   FROM_MAX_LENGTH,
 } from 'validation'
 import {updateProfileInfo, User} from 'models/user'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {AvatarUploader, DateInput} from '../../molecules'
 import {useUploadAvatar} from '../../hooks'
 import {StyledInputsContainer, StyledResponsibleContainer} from './styles'

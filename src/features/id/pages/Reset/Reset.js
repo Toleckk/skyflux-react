@@ -1,7 +1,7 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {useMyTitle} from 'features/common/hooks'
+import {useMyTitle} from 'features/shared/hooks'
 import {Divider, H1} from 'ui'
 import {FieldDescription, PageDescription} from '../../atoms'
 import {ResetForm} from '../../organisms'

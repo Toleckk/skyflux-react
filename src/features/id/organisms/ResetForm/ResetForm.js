@@ -8,7 +8,7 @@ import * as yup from 'yup'
 import {password} from 'validation'
 import {Input} from 'ui'
 import {mergeErrors} from 'utils'
-import {useMyMutation} from 'features/common/hooks'
+import {useMyMutation} from 'features/shared/hooks'
 import {resetPassword} from 'models/user'
 import {SubmitButton} from '../../atoms'
 

@@ -2,8 +2,8 @@ import React from 'react'
 import {Avatar} from 'ui'
 import {me} from 'models/user'
 import {deleteCurrentSession} from 'models/session'
+import {useModal, useMyMutation, useMyQuery} from 'features/shared/hooks'
 import {NavigationButton} from '../../../molecules'
-import {useModal, useMyMutation, useMyQuery} from '../../../hooks'
 import {StyledList} from './styles'
 
 export const Authorized = () => {

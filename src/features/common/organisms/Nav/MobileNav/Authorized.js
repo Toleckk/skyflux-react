@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Avatar} from 'ui'
 import {me} from 'models/user'
+import {useMyQuery} from 'features/shared/hooks'
 import {NavigationButton} from '../../../molecules'
-import {useMyQuery} from '../../../hooks'
 import {StyledList} from './styles'
 
 export const Authorized = ({onMenuClick, onNotificationsClick}) => {

@@ -4,7 +4,7 @@ import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {H1, Link} from 'ui'
 import {MiniUserConnectionList} from 'models/user'
-import {UserList} from 'features/common/molecules'
+import {UserList} from 'features/shared/molecules'
 
 export const UsersDisplay = ({users, query, mini, onMore}) => {
   const {t} = useTranslation('search')
