@@ -4,12 +4,12 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
+import {useMutation} from '@apollo/client'
 import * as yup from 'yup'
 import {password} from 'validation'
 import {Input} from 'ui'
 import {mergeErrors} from 'utils'
-import {useMyMutation} from 'features/shared/hooks'
-import {resetPassword} from 'models/user'
+import {ME, RESET_PASSWORD} from 'models/user'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
@@ -24,7 +24,9 @@ export const ResetForm = () => {
   const {t} = useTranslation('id')
   const {token} = useParams()
 
-  const [reset, {error}] = useMyMutation(resetPassword())
+  const [reset, {error}] = useMutation(RESET_PASSWORD, {
+    refetchQueries: [{query: ME}],
+  })
 
   const {handleSubmit, register, errors: formErrors} = useForm({
     mode: 'onBlur',
@@ -33,7 +35,10 @@ export const ResetForm = () => {
 
   const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useMemo(() => handleSubmit(reset), [handleSubmit, reset])
+  const onSubmit = useMemo(
+    () => handleSubmit(variables => reset({variables})),
+    [handleSubmit, reset],
+  )
 
   return (
     <form onSubmit={onSubmit}>

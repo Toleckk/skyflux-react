@@ -4,14 +4,16 @@ import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Comment} from 'models/comment'
 import {Link, Tip} from 'ui'
-import {useIsMe} from '../../hooks'
+import {useMe} from '../../hooks'
 import {PublicationCard} from '..'
 
 export const CommentCard = ({publication, mini, onDelete}) => {
   const {t} = useTranslation('post')
 
-  const isMyComment = useIsMe(publication.user)
-  const isMyPost = useIsMe(publication.post.user)
+  const {isMe} = useMe()
+
+  const isMyComment = isMe(publication.user)
+  const isMyPost = isMe(publication.post.user)
 
   const deleteComment = useCallback(() => onDelete?.(publication), [
     onDelete,

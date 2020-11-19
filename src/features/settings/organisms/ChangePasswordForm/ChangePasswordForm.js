@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useMemo} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
@@ -7,9 +7,9 @@ import {useTranslation} from 'react-i18next'
 import {password} from 'validation'
 import {mergeErrors} from 'utils'
 import {Button, Input} from 'ui'
-import {useMyMutation} from 'features/shared/hooks'
-import {updatePassword} from 'models/user'
+import {UPDATE_PASSWORD} from 'models/user'
 import {ResponsibleForm} from '../../atoms'
+import {useMutation} from '@apollo/client'
 
 const schema = yup.object().shape({
   oldPassword: password.required(),
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 })
 
 export const ChangePasswordForm = () => {
-  const [update, {error}] = useMyMutation(updatePassword())
+  const [update, {error}] = useMutation(UPDATE_PASSWORD)
 
   const {handleSubmit, register, errors: formErrors} = useForm({
     resolver: yupResolver(schema),
@@ -28,7 +28,10 @@ export const ChangePasswordForm = () => {
 
   const errors = mergeErrors(formErrors, error)
 
-  const onSubmit = useCallback(handleSubmit(update), [update])
+  const onSubmit = useMemo(
+    () => handleSubmit(variables => update({variables})),
+    [handleSubmit, update],
+  )
 
   const {t} = useTranslation('settings')
 

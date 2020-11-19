@@ -7,18 +7,18 @@ import {useTranslation} from 'react-i18next'
 import {nickname} from 'validation'
 import {Button, Input} from 'ui'
 import {mergeErrors, useDebouncedFunc} from 'utils'
-import {doesNicknameExist, updateNickname, User} from 'models/user'
-import {useMyLazyQuery, useMyMutation} from 'features/shared/hooks'
+import {DOES_NICKNAME_EXIST, UPDATE_NICKNAME, User} from 'models/user'
 import {ResponsibleForm} from '../../atoms'
+import {useLazyQuery, useMutation} from '@apollo/client'
 
 const schema = yup.object().shape({nickname: nickname.required()})
 
 export const ChangeNicknameForm = ({user}) => {
   const {t} = useTranslation('settings')
 
-  const [update, {loading: updating, error}] = useMyMutation(updateNickname())
+  const [update, {loading: updating, error}] = useMutation(UPDATE_NICKNAME)
 
-  const [execExistsQuery, {data, loading}] = useMyLazyQuery(doesNicknameExist())
+  const [execExistsQuery, {data, loading}] = useLazyQuery(DOES_NICKNAME_EXIST)
   const [doesExistDebounced, delayed] = useDebouncedFunc(execExistsQuery, 1000)
   const isLoading = loading || delayed
 
@@ -41,7 +41,8 @@ export const ChangeNicknameForm = ({user}) => {
 
   const onSubmit = useCallback(
     handleSubmit(
-      formData => !isLoading && !data?.doesNicknameExist && update(formData),
+      variables =>
+        !isLoading && !data?.doesNicknameExist && update({variables}),
     ),
     [handleSubmit, isLoading, update, data],
   )

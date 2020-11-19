@@ -2,8 +2,8 @@ import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Date, Icon, Text} from 'ui'
-import {me, User} from 'models/user'
-import {useIsMe, useMyQuery} from 'features/shared/hooks'
+import {User} from 'models/user'
+import {useMe} from 'features/shared/hooks'
 import {About, BigNickname, Stat} from '../../atoms'
 import {UserAvatar} from '../UserAvatar'
 import {
@@ -14,8 +14,7 @@ import {
 
 export const UserInfo = ({user}) => {
   const {t} = useTranslation('user')
-  const {data} = useMyQuery(me())
-  const isMe = useIsMe(user)
+  const {me, isMe} = useMe()
 
   return (
     <StyledRelativeContainer>
@@ -54,7 +53,7 @@ export const UserInfo = ({user}) => {
           </>
         )}
       </Flex>
-      {!isMe && data.me && <StyledSubscribeButton user={user} />}
+      {me && !isMe(user) && <StyledSubscribeButton user={user} />}
     </StyledRelativeContainer>
   )
 }

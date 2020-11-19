@@ -1,13 +1,13 @@
 import React, {useMemo} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useForm} from 'react-hook-form'
-import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
+import {useMutation} from '@apollo/client'
+import * as yup from 'yup'
 import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon, Input} from 'ui'
-import {useMyMutation} from 'features/shared/hooks'
 import {Post} from 'models/post'
-import {createComment} from 'models/comment'
+import {CREATE_COMMENT} from 'models/comment'
 
 const schema = yup.object().shape({text: text.required()})
 
@@ -17,15 +17,20 @@ export const CommentForm = ({post}) => {
     defaultValues: {text: ''},
   })
 
-  const [create] = useMyMutation(createComment({postId: post._id}))
+  const [create] = useMutation(CREATE_COMMENT)
 
   const onSubmit = useMemo(
     () =>
       handleSubmit(data => {
-        create(data)
+        create({
+          variables: {
+            ...data,
+            postId: post._id,
+          },
+        })
         reset()
       }),
-    [handleSubmit, create, reset],
+    [handleSubmit, create, reset, post._id],
   )
 
   return (

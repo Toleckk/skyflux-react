@@ -3,6 +3,7 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
+import {useMutation} from '@apollo/client'
 import * as yup from 'yup'
 import {Icon, Input} from 'ui'
 import {mergeErrors} from 'utils'
@@ -12,8 +13,7 @@ import {
   description,
   FROM_MAX_LENGTH,
 } from 'validation'
-import {updateProfileInfo, User} from 'models/user'
-import {useMyMutation} from 'features/shared/hooks'
+import {UPDATE_PROFILE_INFO, User} from 'models/user'
 import {AvatarUploader, DateInput} from '../../molecules'
 import {useUploadAvatar} from '../../hooks'
 import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 export const ProfileDataForm = ({user}) => {
   const {t} = useTranslation('settings')
 
-  const [update, {error}] = useMyMutation(updateProfileInfo())
+  const [update, {error}] = useMutation(UPDATE_PROFILE_INFO)
 
   const {
     handleSubmit,
@@ -56,7 +56,7 @@ export const ProfileDataForm = ({user}) => {
   return (
     <Flex
       as="form"
-      onSubmit={handleSubmit(update)}
+      onSubmit={handleSubmit(variables => update({variables}))}
       onReset={resetForm}
       flexDirection="column"
     >

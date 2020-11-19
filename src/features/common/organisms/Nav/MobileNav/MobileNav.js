@@ -1,9 +1,8 @@
 import React from 'react'
 import useBooleanState from 'use-boolean-state'
 import {Modal} from 'ui'
-import {me} from 'models/user'
-import {useModal, useMyQuery} from 'features/shared/hooks'
-import {MobileMenu, NotificationTabs, AuthForm} from '../..'
+import {useMe, useModal} from 'features/shared/hooks'
+import {AuthForm, MobileMenu, NotificationTabs} from '../..'
 import {Authorized} from './Authorized'
 import {Guest} from './Guest'
 import {StyledAuthFormContainer} from './styles'
@@ -11,7 +10,7 @@ import {StyledAuthFormContainer} from './styles'
 export const MOBILE_NAV_HEIGHT = '3rem'
 
 export const MobileNav = () => {
-  const {data, loading} = useMyQuery(me())
+  const {me, loading} = useMe()
   const {close, isOpened, open} = useModal('notifications')
   const [menuOpened, openMenu, closeMenu] = useBooleanState(false)
   const [authOpened, openAuth, closeAuth] = useBooleanState(false)
@@ -20,7 +19,7 @@ export const MobileNav = () => {
 
   return (
     <nav>
-      {data.me ? (
+      {me ? (
         <Authorized onMenuClick={openMenu} onNotificationsClick={open} />
       ) : (
         <Guest onAuthClick={openAuth} />

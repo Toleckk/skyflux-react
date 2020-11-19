@@ -7,16 +7,16 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
 import {mergeErrors} from 'utils'
 import {Input} from 'ui'
-import {useMyMutation} from 'features/shared/hooks'
-import {createResetRequest} from 'models/reset'
+import {CREATE_RESET_REQUEST} from 'models/reset'
 import {FieldDescription, SubmitButton} from '../../atoms'
+import {useMutation} from '@apollo/client'
 
 const schema = yup.object().shape({login: login.required()})
 
 export const RestoreForm = () => {
   const {t} = useTranslation('id')
 
-  const [createRequest, {error}] = useMyMutation(createResetRequest())
+  const [createRequest, {error}] = useMutation(CREATE_RESET_REQUEST)
 
   const {handleSubmit, register, errors: formErrors} = useForm({
     mode: 'onBlur',
@@ -25,10 +25,10 @@ export const RestoreForm = () => {
 
   const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useMemo(() => handleSubmit(createRequest), [
-    handleSubmit,
-    createRequest,
-  ])
+  const onSubmit = useMemo(
+    () => handleSubmit(variables => createRequest({variables})),
+    [handleSubmit, createRequest],
+  )
 
   return (
     <Flex flexDirection="column" alignItems="center">

@@ -5,7 +5,7 @@ import {useParams} from 'react-router'
 import {useNetwork} from 'react-use'
 import {useInView} from 'react-intersection-observer'
 import {Divider, Loader} from 'ui'
-import {useIsMe, useMyTitle} from 'features/shared/hooks'
+import {useMe, useMyTitle} from 'features/shared/hooks'
 import {PostForm} from 'features/shared/organisms'
 import {useUser} from '../../hooks'
 import {PostsDisplay} from '../../organisms'
@@ -17,8 +17,7 @@ export const Wall = memo(() => {
   useMyTitle('@' + nickname)
 
   const {user, posts, more} = useUser(nickname)
-
-  const isMe = useIsMe({nickname})
+  const {isMe} = useMe()
 
   const {online} = useNetwork()
 
@@ -30,7 +29,7 @@ export const Wall = memo(() => {
         {!user ? <Loader /> : <UserInfo user={user} />}
       </Box>
       <Divider />
-      {isMe && (
+      {isMe(nickname) && (
         <Suspense fallback={<Loader />}>
           <Translation ns="user">
             {t => (
@@ -43,7 +42,7 @@ export const Wall = memo(() => {
         </Suspense>
       )}
 
-      {user && user.private && !isMe && !user.mySub?.accepted ? (
+      {user && user.private && !isMe(nickname) && !user.mySub?.accepted ? (
         <PrivateScreen />
       ) : user ? (
         <PostsDisplay onMore={more} posts={posts} />
@@ -62,3 +61,5 @@ export const Wall = memo(() => {
     </Flex>
   )
 })
+
+Wall.displayName = 'Wall'

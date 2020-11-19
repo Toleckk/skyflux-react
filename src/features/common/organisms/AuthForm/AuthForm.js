@@ -7,22 +7,24 @@ import {login, password} from 'validation'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 import {Button, Input, Link, Loader} from 'ui'
-import {createSession} from 'models/session'
-import {useMyMutation} from 'features/shared/hooks'
+import {useLogin} from 'features/shared/hooks'
 
 const schema = yup
   .object()
   .shape({login: login.required(), password: password.required()})
 
 export const AuthForm = () => {
-  const [login] = useMyMutation(createSession())
+  const {login} = useLogin()
 
   const {handleSubmit, register, errors} = useForm({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useMemo(() => handleSubmit(login), [handleSubmit, login])
+  const onSubmit = useMemo(
+    () => handleSubmit(variables => login({variables})),
+    [handleSubmit, login],
+  )
 
   return (
     <Suspense fallback={<Loader />}>

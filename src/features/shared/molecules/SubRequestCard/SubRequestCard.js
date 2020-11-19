@@ -1,13 +1,13 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
+import {useMutation} from '@apollo/client'
 import {Icon} from 'ui'
-import {acceptSub, declineSub, SubRequest} from 'models/sub'
-import {useMyMutation} from '../../hooks'
+import {ACCEPT_SUB, DECLINE_SUB, SubRequest} from 'models/sub'
 import {UserCard} from '../UserCard'
 
 export const SubRequestCard = ({sub: {_id, from}}) => {
-  const [accept] = useMyMutation(acceptSub({_id}))
-  const [decline] = useMyMutation(declineSub({_id}))
+  const [accept] = useMutation(ACCEPT_SUB, {variables: {_id}})
+  const [decline] = useMutation(DECLINE_SUB, {variables: {_id}})
 
   return (
     <UserCard user={from}>

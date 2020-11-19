@@ -2,19 +2,19 @@ import React, {useMemo} from 'react'
 import PropTypes from 'prop-types'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
-import * as yup from 'yup'
+import {useMutation} from '@apollo/client'
 import {useBooleanState} from 'use-boolean-state'
+import * as yup from 'yup'
 import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon} from 'ui'
-import {useMyMutation} from 'features/shared/hooks'
-import {createPost} from 'models/post'
+import {CREATE_POST} from 'models/post'
 import {PostInput} from '../../molecules'
 import {StyledButton, StyledContainer} from './styles'
 
 const schema = yup.object().shape({text: text.required()})
 
 export const PostForm = ({placeholder}) => {
-  const [create, {loading}] = useMyMutation(createPost())
+  const [create, {loading}] = useMutation(CREATE_POST)
 
   const {handleSubmit, formState, reset, control} = useForm({
     resolver: yupResolver(schema),
@@ -23,8 +23,8 @@ export const PostForm = ({placeholder}) => {
 
   const onSubmit = useMemo(
     () =>
-      handleSubmit(data => {
-        create(data)
+      handleSubmit(variables => {
+        create({variables})
         reset()
       }),
     [handleSubmit, create, reset],

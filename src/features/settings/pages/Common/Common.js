@@ -1,8 +1,7 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'react-i18next'
-import {useMyQuery, useMyTitle} from 'features/shared/hooks'
-import {me} from 'models/user'
+import {useMe, useMyTitle} from 'features/shared/hooks'
 import {Divider, H1, Loader} from 'ui'
 import {
   ChangeNicknameForm,
@@ -16,9 +15,7 @@ export const Common = () => {
   const {t} = useTranslation('settings')
   useMyTitle(t('Settings'))
 
-  const {data, loading} = useMyQuery(me())
-
-  const user = data?.me
+  const {me, loading} = useMe()
 
   if (loading) return <Loader />
 
@@ -26,17 +23,17 @@ export const Common = () => {
     <ul>
       <StyledItem>
         <H1>{t('Profile information')}</H1>
-        <ProfileDataForm user={user} />
+        <ProfileDataForm user={me} />
       </StyledItem>
       <Divider />
       <StyledItem>
         <H1>{t('Change nickname')}</H1>
-        <ChangeNicknameForm user={user} />
+        <ChangeNicknameForm user={me} />
       </StyledItem>
       <Divider />
       <StyledItem>
         <H1>{t('Privacy settings')}</H1>
-        <PrivateSwitcher user={user} />
+        <PrivateSwitcher user={me} />
       </StyledItem>
       <Divider />
       <StyledItem>

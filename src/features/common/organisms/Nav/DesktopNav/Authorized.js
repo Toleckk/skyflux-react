@@ -1,21 +1,20 @@
 import React from 'react'
 import {Avatar} from 'ui'
-import {me} from 'models/user'
-import {deleteCurrentSession} from 'models/session'
-import {useModal, useMyMutation, useMyQuery} from 'features/shared/hooks'
+import {useMe, useModal} from 'features/shared/hooks'
 import {NavigationButton} from '../../../molecules'
+import {useLogout} from '../../../hooks'
 import {StyledList} from './styles'
 
 export const Authorized = () => {
-  const {data} = useMyQuery(me())
-  const [logout] = useMyMutation(deleteCurrentSession())
+  const {me} = useMe()
+  const {logout} = useLogout()
 
   const {toggle, isOpened} = useModal('notifications')
 
   return (
     <StyledList>
-      <NavigationButton to={'/@' + data?.me?.nickname}>
-        <Avatar src={data?.me?.avatar} />
+      <NavigationButton to={'/@' + me?.nickname}>
+        <Avatar src={me?.avatar} />
       </NavigationButton>
       <NavigationButton to="/feed" icon="feed" />
       <NavigationButton

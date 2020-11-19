@@ -3,16 +3,13 @@ import PropTypes from 'prop-types'
 import {useTranslation} from 'react-i18next'
 import {User} from 'models/user'
 import {Button} from 'ui'
-import {useMyMutation} from 'features/shared/hooks'
-import {createSub, deleteSub} from 'models/sub'
+import {useToggleSubscribe} from '../../hooks'
 
 export const SubscribeButton = ({user, className}) => {
   const {t} = useTranslation('user')
 
-  const [subscribe] = useMyMutation(createSub({nickname: user.nickname}))
-  const [unsubscribe] = useMyMutation(deleteSub({nickname: user.nickname}))
+  const {toggle} = useToggleSubscribe(user)
 
-  const onClick = () => (user.mySub ? unsubscribe() : subscribe())
   const text = !user.mySub
     ? 'Read'
     : user.mySub.accepted
@@ -20,7 +17,7 @@ export const SubscribeButton = ({user, className}) => {
     : 'Cancel'
 
   return (
-    <Button onClick={onClick} className={className}>
+    <Button onClick={toggle} className={className}>
       {t(text)}
     </Button>
   )

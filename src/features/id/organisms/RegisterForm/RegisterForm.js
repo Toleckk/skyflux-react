@@ -3,12 +3,12 @@ import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
+import {useMutation} from '@apollo/client'
 import * as yup from 'yup'
 import {email, password} from 'validation'
 import {mergeErrors} from 'utils'
 import {Divider, Input, Text} from 'ui'
-import {useMyMutation} from 'features/shared/hooks'
-import {createUser} from 'models/user'
+import {CREATE_USER} from 'models/user'
 import {SubmitButton} from '../../atoms'
 import {StyledResponsibleGrid} from './styles'
 
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
 export const RegisterForm = () => {
   const {t} = useTranslation('id')
 
-  const [signUp, {error}] = useMyMutation(createUser())
+  const [signUp, {error}] = useMutation(CREATE_USER)
 
   const {register, handleSubmit, errors: formErrors} = useForm({
     resolver: yupResolver(schema),
@@ -29,7 +29,10 @@ export const RegisterForm = () => {
 
   const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useMemo(() => handleSubmit(signUp), [handleSubmit, signUp])
+  const onSubmit = useMemo(
+    () => handleSubmit(variables => signUp({variables})),
+    [handleSubmit, signUp],
+  )
 
   return (
     <Flex

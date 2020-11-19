@@ -3,18 +3,17 @@ import PropTypes from 'prop-types'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
 import {H2, Icon} from 'ui'
-import {me} from 'models/user'
-import {useMyQuery} from 'features/shared/hooks'
+import {useMe} from 'features/shared/hooks'
 import {StyledDivider, StyledTab} from './styles'
 
 export const RequestsTab = ({selected, onClick, count}) => {
-  const {data} = useMyQuery(me())
+  const {me} = useMe()
 
   return (
     <StyledTab
       onClick={onClick}
       disabled={!count}
-      hidden={!data.me.private}
+      hidden={!me?.private}
       selected={selected}
     >
       <Flex alignItems="center" width="100%">

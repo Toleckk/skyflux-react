@@ -6,10 +6,9 @@ import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers'
 import {login, password} from 'validation'
-import {useMyMutation} from 'features/shared/hooks'
 import {mergeErrors} from 'utils'
 import {Input} from 'ui'
-import {createSession} from 'models/session'
+import {useLogin} from 'features/shared/hooks'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup
@@ -17,7 +16,7 @@ const schema = yup
   .shape({login: login.required(), password: password.required()})
 
 export const AuthForm = ({className}) => {
-  const [login, {error}] = useMyMutation(createSession())
+  const {login, error} = useLogin()
 
   const {handleSubmit, register, errors: formErrors} = useForm({
     mode: 'onBlur',
@@ -26,7 +25,10 @@ export const AuthForm = ({className}) => {
 
   const errors = mergeErrors(error, formErrors)
 
-  const onSubmit = useMemo(() => handleSubmit(login), [handleSubmit, login])
+  const onSubmit = useMemo(
+    () => handleSubmit(variables => login({variables})),
+    [handleSubmit, login],
+  )
 
   return (
     <form className={className} onSubmit={onSubmit}>

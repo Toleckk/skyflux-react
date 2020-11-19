@@ -4,10 +4,9 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {Translation} from 'react-i18next'
 import {Avatar, H2, Icon, Loader} from 'ui'
-import {me} from 'models/user'
-import {deleteCurrentSession} from 'models/session'
-import {useModal, useMyMutation, useMyQuery} from 'features/shared/hooks'
+import {useMe, useModal} from 'features/shared/hooks'
 import {SwitchThemeButton} from '../../molecules'
+import {useLogout} from '../../hooks'
 import {
   StyledBigNickname,
   StyledRelativeContainer,
@@ -17,12 +16,11 @@ import {
 export const MobileMenu = ({onItemClick}) => {
   const {open} = useModal('notifications')
 
-  const {data, loading} = useMyQuery(me())
-  const user = data?.me
+  const {me, loading} = useMe()
 
-  const [logout] = useMyMutation(deleteCurrentSession())
+  const {logout} = useLogout()
 
-  if (loading && !data) return <></>
+  if (loading && !me) return <></>
 
   return (
     <StyledRelativeContainer>
@@ -31,14 +29,14 @@ export const MobileMenu = ({onItemClick}) => {
           flexDirection="column"
           alignItems="center"
           as={Link}
-          to={'/@' + user.nickname}
+          to={'/@' + me.nickname}
           onClick={onItemClick}
         >
           <Box width="6rem" height="6rem">
-            <Avatar src={user.avatar} />
+            <Avatar src={me.avatar} />
           </Box>
           <Box marginTop="1rem">
-            <StyledBigNickname>@{user.nickname}</StyledBigNickname>
+            <StyledBigNickname>@{me.nickname}</StyledBigNickname>
           </Box>
         </Flex>
         <Translation ns="nav">
