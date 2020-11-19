@@ -1,19 +1,20 @@
 import React, {useEffect} from 'react'
 import {toast, ToastContainer} from 'react-toastify'
-import {eventAdded} from 'models/event'
 import {useLatest} from 'react-use'
-import {useModal, useMySubscription} from '../../hooks'
+import {useSubscription} from '@apollo/client'
+import {EVENT_UPDATED} from 'models/event'
+import {useModal} from '../../hooks'
 import {EventCard} from '../../molecules'
 
 export const NotificationPopup = () => {
-  const {data} = useMySubscription(eventAdded())
+  const {data} = useSubscription(EVENT_UPDATED)
 
   const {open} = useModal('notifications')
   const openRef = useLatest(open)
 
   useEffect(() => {
-    if (data)
-      toast(<EventCard publication={data.eventAdded} mini />, {
+    if (data && data.eventUpdated && !data.eventUpdated.deleted)
+      toast(<EventCard publication={data.eventUpdated} mini />, {
         type: 'dark',
         onClick: openRef.current,
       })

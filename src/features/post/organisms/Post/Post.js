@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react'
+import React, {Suspense, useCallback} from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useMutation} from '@apollo/client'
@@ -16,6 +16,16 @@ export const Post = ({_id}) => {
 
   const [deleteComment] = useMutation(DELETE_COMMENT)
   const [deleteCommentWithConfirmation, Modal] = useConfirmDialog(deleteComment)
+
+  const del = useCallback(
+    comment =>
+      deleteCommentWithConfirmation({
+        variables: {
+          _id: comment._id,
+        },
+      }),
+    [deleteCommentWithConfirmation],
+  )
 
   return (
     <Flex flexDirection="column" maxHeight="100vh" height="100%">
@@ -36,7 +46,7 @@ export const Post = ({_id}) => {
               <CommentList
                 comments={comments}
                 onMore={moreComments}
-                onCommentDelete={deleteCommentWithConfirmation}
+                onCommentDelete={del}
               />
               <Modal
                 text={t('Are you sure you want to delete this comment?')}

@@ -29,9 +29,7 @@ export const CommentConnectionList = PropTypes.arrayOf(
   }).isRequired,
 )
 
-export const CommentConnection = PropTypes.arrayOf(
-  PropTypes.shape({
-    pageInfo: CommentPage.isRequired,
-    edges: CommentConnectionList.isRequired,
-  }).isRequired,
-)
+export const CommentConnection = PropTypes.shape({
+  pageInfo: CommentPage.isRequired,
+  edges: CommentConnectionList.isRequired,
+})

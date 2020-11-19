@@ -9,6 +9,35 @@ export const SubRequestFragment = gql`
       nickname
       avatar
     }
+    to {
+      _id
+      subscribersCount
+      mySub {
+        _id
+        accepted
+      }
+    }
+  }
+`
+
+export const DeletedSubFragment = gql`
+  fragment DeletedSubFragment on DeletedSub {
+    _id
+    deleted
+    from {
+      _id
+      nickname
+      avatar
+      subsCount
+    }
+    to {
+      _id
+      subscribersCount
+      mySub {
+        _id
+        accepted
+      }
+    }
   }
 `
 
@@ -71,64 +100,13 @@ export const SUB_REQUESTS_COUNT = gql`
   }
 `
 
-export const SUB_REQUEST_CREATED = gql`
-  subscription subRequestCreated {
-    subRequestCreated {
+export const SUB_UPDATED = gql`
+  subscription subUpdated {
+    subUpdated {
       ...SubRequestFragment
-      to {
-        _id
-        mySub {
-          _id
-          accepted
-        }
-      }
+      ...DeletedSubFragment
     }
   }
   ${SubRequestFragment}
-`
-
-export const SUB_ACCEPTED = gql`
-  subscription subAccepted {
-    subAccepted {
-      ...SubRequestFragment
-      from {
-        _id
-        nickname
-        avatar
-        subsCount
-      }
-      to {
-        _id
-        nickname
-        subscribersCount
-        mySub {
-          _id
-          accepted
-        }
-      }
-    }
-  }
-  ${SubRequestFragment}
-`
-
-export const SUB_DELETED = gql`
-  subscription subDeleted {
-    subDeleted {
-      _id
-      from {
-        _id
-        nickname
-        avatar
-        subsCount
-      }
-      to {
-        _id
-        subscribersCount
-        mySub {
-          _id
-          accepted
-        }
-      }
-    }
-  }
+  ${DeletedSubFragment}
 `

@@ -7,13 +7,13 @@ import {me} from 'models/user'
 import {useMyQuery} from '../../hooks'
 import {StyledDivider, StyledTab} from './styles'
 
-export const RequestsTab = ({selected, onClick, disabled, count}) => {
+export const RequestsTab = ({selected, onClick, count}) => {
   const {data} = useMyQuery(me())
 
   return (
     <StyledTab
       onClick={onClick}
-      disabled={disabled}
+      disabled={!count}
       hidden={!data.me.private}
       selected={selected}
     >
@@ -36,13 +36,10 @@ export const RequestsTab = ({selected, onClick, disabled, count}) => {
 
 RequestsTab.defaultProps = {
   selected: false,
-  disabled: false,
-  count: 0,
 }
 
 RequestsTab.propTypes = {
   selected: PropTypes.bool,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  count: PropTypes.number,
+  count: PropTypes.number.isRequired,
 }

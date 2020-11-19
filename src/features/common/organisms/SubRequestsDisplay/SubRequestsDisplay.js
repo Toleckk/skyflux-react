@@ -1,18 +1,14 @@
 import React from 'react'
 import {Loader} from 'ui'
-import {subRequests} from 'models/sub'
-import {useMyQuery} from '../../hooks'
+import {useSubRequests} from '../../hooks'
 import {SubRequestList} from '../../molecules'
 
 export const SubRequestsDisplay = () => {
-  const {data, loading, fetchMore} = useMyQuery({
-    ...subRequests({first: 25}),
-    fetchPolicy: 'network-only',
-  })
+  const {requests, more, loading} = useSubRequests()
 
-  return loading || !data?.subRequests ? (
+  return loading || !requests ? (
     <Loader />
   ) : (
-    <SubRequestList subs={data.subRequests} onMore={fetchMore} />
+    <SubRequestList subs={requests} onMore={more} />
   )
 }

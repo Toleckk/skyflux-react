@@ -1,10 +1,7 @@
 import deepmerge from 'deepmerge'
-import {subAccepted, subDeleted, subRequestCreated} from 'models/sub'
 import {
   CREATE_USER,
   DOES_NICKNAME_EXIST,
-  SUGGESTIONS,
-  USER,
   MAKE_ACCOUNT_PRIVATE,
   MAKE_ACCOUNT_PUBLIC,
   ME,
@@ -12,7 +9,6 @@ import {
   UPDATE_NICKNAME,
   UPDATE_PASSWORD,
   UPDATE_PROFILE_INFO,
-  USERS,
 } from './schemas'
 
 export const me = (variables = {}) => ({
@@ -20,36 +16,10 @@ export const me = (variables = {}) => ({
   variables,
 })
 
-export const user = (nickname, variables = {}) => {
-  const {subscription: subDel, variables: subDelVars} = subDeleted()
-  const {subscription: accepted, variables: acceptedVars} = subAccepted()
-  const {subscription: created, variables: createdVars} = subRequestCreated()
-
-  return {
-    query: USER,
-    variables: deepmerge({nickname}, variables),
-    subscriptions: [
-      {document: subDel, variables: subDelVars},
-      {document: accepted, variables: acceptedVars},
-      {document: created, variables: createdVars},
-    ],
-  }
-}
-
-export const suggestions = (variables = {}) => ({
-  query: SUGGESTIONS,
-  variables,
-})
-
-export const users = (query, variables = {}) => ({
-  query: USERS,
-  variables: deepmerge({query}, variables),
-  skip: !query && !variables.query,
-})
-
 export const doesNicknameExist = (nickname = undefined, variables = {}) => ({
   query: DOES_NICKNAME_EXIST,
   variables: deepmerge({nickname}, variables),
+  skip: !nickname || !variables.nickname,
 })
 
 export const createUser = (variables = {}) => ({

@@ -18,6 +18,17 @@ export const CommentFragment = gql`
   }
 `
 
+export const DeletedCommentFragment = gql`
+  fragment DeletedCommentFragment on DeletedComment {
+    _id
+    deleted
+    post {
+      _id
+      commentsCount
+    }
+  }
+`
+
 export const CREATE_COMMENT = gql`
   mutation createComment($postId: ID!, $text: String!) {
     createComment(comment: {text: $text, post_id: $postId}) {
@@ -35,27 +46,13 @@ export const DELETE_COMMENT = gql`
   }
 `
 
-export const COMMENT_CREATED = gql`
-  subscription commentCreated($postId: ID!) {
-    commentCreated(post_id: $postId) {
+export const COMMENT_UPDATED = gql`
+  subscription commentUpdated($postId: ID!) {
+    commentUpdated(post_id: $postId) {
       ...CommentFragment
-      post {
-        _id
-        commentsCount
-      }
+      ...DeletedCommentFragment
     }
   }
   ${CommentFragment}
-`
-
-export const COMMENT_DELETED = gql`
-  subscription commentDeleted($postId: ID!) {
-    commentDeleted(post_id: $postId) {
-      _id
-      post {
-        _id
-        commentsCount
-      }
-    }
-  }
+  ${DeletedCommentFragment}
 `

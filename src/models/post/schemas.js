@@ -17,6 +17,17 @@ export const PostFragment = gql`
   }
 `
 
+export const DeletedPostFragment = gql`
+  fragment DeletedPostFragment on DeletedPost {
+    _id
+    deleted
+    user {
+      _id
+      postsCount
+    }
+  }
+`
+
 export const POST = gql`
   query post($_id: ID!, $afterComment: ID, $firstComments: Int!) {
     post(_id: $_id) {
@@ -94,29 +105,13 @@ export const DELETE_POST = gql`
   }
 `
 
-export const POST_CREATED = gql`
-  subscription postCreated($nickname: String!) {
-    postCreated(nickname: $nickname) {
+export const POST_UPDATED = gql`
+  subscription postUpdated($nickname: String!) {
+    postUpdated(nickname: $nickname) {
       ...PostFragment
-      user {
-        _id
-        avatar
-        nickname
-        postsCount
-      }
+      ...DeletedPostFragment
     }
   }
   ${PostFragment}
-`
-
-export const POST_DELETED = gql`
-  subscription postDeleted($nickname: String!) {
-    postDeleted(nickname: $nickname) {
-      _id
-      user {
-        _id
-        postsCount
-      }
-    }
-  }
+  ${DeletedPostFragment}
 `

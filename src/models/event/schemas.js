@@ -28,6 +28,7 @@ export const MiniCommentEventBodyFragment = gql`
   }
   ${CommentFragment}
 `
+
 export const LikeEventBodyFragment = gql`
   fragment LikeEventBodyFragment on LikeEventBody {
     like {
@@ -43,6 +44,7 @@ export const LikeEventBodyFragment = gql`
 
 export const EventFragment = gql`
   fragment EventFragment on Event {
+    _id
     createdAt
     kind
     subj {
@@ -54,6 +56,13 @@ export const EventFragment = gql`
   ${LikeEventBodyFragment}
   ${MiniSubEventBodyFragment}
   ${MiniCommentEventBodyFragment}
+`
+
+export const DeletedEventFragment = gql`
+  fragment DeletedEventFragment on DeletedEvent {
+    _id
+    deleted
+  }
 `
 
 export const EVENTS = gql`
@@ -76,19 +85,13 @@ export const EVENTS = gql`
   ${EventFragment}
 `
 
-export const EVENT_ADDED = gql`
-  subscription eventAdded {
-    eventAdded {
+export const EVENT_UPDATED = gql`
+  subscription eventUpdated {
+    eventUpdated {
       ...EventFragment
+      ...DeletedEventFragment
     }
   }
   ${EventFragment}
-`
-
-export const EVENT_DELETED = gql`
-  subscription eventDeleted {
-    eventDeleted {
-      _id
-    }
-  }
+  ${DeletedEventFragment}
 `
