@@ -20,5 +20,11 @@ export const NotificationPopup = () => {
       })
   }, [data, openRef])
 
-  return <ToastContainer position="bottom-left" autoClose={false} />
+  return (
+    <ToastContainer
+      position="bottom-left"
+      autoClose={false}
+      bodyStyle={{overflow: 'hidden'}}
+    />
+  )
 }

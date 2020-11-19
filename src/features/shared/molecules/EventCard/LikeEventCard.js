@@ -6,6 +6,7 @@ import {Event} from 'models/event'
 import {Date, Link, Loader, Text} from 'ui'
 import {UserBadge} from '../UserBadge'
 import {useModal} from '../../hooks'
+import {StyledEllipsisContainer, StyledSubEventContainer} from './styles'
 
 export const LikeEventCard = ({event, mini}) => {
   const {open} = useModal('post')
@@ -14,13 +15,13 @@ export const LikeEventCard = ({event, mini}) => {
     <Suspense fallback={<Loader />}>
       <Translation ns="like">
         {t => (
-          <Flex alignItems="center" justifyContent="space-between">
+          <StyledSubEventContainer mini={mini}>
             <Flex alignItems="center">
-              <Flex flexShrink={0} alignItems="center">
+              <Flex flexShrink={0} alignItems="center" maxWidth="100%">
                 <UserBadge user={event.subj.like.user} />
-                <Box margin="0 1ex">
+                <StyledEllipsisContainer>
                   <Text>{t('has liked your publication')}</Text>
-                </Box>
+                </StyledEllipsisContainer>
               </Flex>
               <Link as="button" onClick={() => open(event.subj.like.post._id)}>
                 {event.subj.like.post.text}
@@ -31,7 +32,7 @@ export const LikeEventCard = ({event, mini}) => {
                 <Date date={event.createdAt} />
               </Box>
             )}
-          </Flex>
+          </StyledSubEventContainer>
         )}
       </Translation>
     </Suspense>
