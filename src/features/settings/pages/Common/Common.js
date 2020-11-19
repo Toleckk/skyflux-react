@@ -2,7 +2,8 @@ import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'react-i18next'
 import {useMe, useMyTitle} from 'features/shared/hooks'
-import {Divider, H1, Loader} from 'ui'
+import {H1} from 'typography'
+import {Divider, Loader} from 'ui'
 import {
   ChangeNicknameForm,
   ChangePasswordForm,

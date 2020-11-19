@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Translation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {H2, Icon} from 'ui'
+import {H2} from 'typography'
+import {Icon} from 'ui'
 import {StyledDivider, StyledTab} from './styles'
 
 export const EventsTab = ({selected, onClick}) => (

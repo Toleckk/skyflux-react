@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Icon, Modal, Text} from '..'
+import {Text} from 'typography'
+import {Icon, Modal} from '..'
 import {StyledButton, StyledContainer} from './styles'
 
 export const ConfirmDialog = ({

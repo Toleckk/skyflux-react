@@ -2,7 +2,7 @@ import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/shared/hooks'
-import {H1} from 'ui'
+import {H1} from 'typography'
 import {PageDescription} from '../../atoms'
 import {RegisterForm} from '../../organisms'
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Text} from 'ui'
+import {Text} from 'typography'
 
 export const FieldDescription = styled(Text)`
   width: 70%;

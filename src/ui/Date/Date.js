@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react'
 import PropTypes from 'prop-types'
-import {Tip} from '../Tip'
+import {Tip} from 'typography'
 
 export const Date = ({date, time}) => {
   const dateStr = useMemo(
