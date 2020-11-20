@@ -2,8 +2,8 @@ import {useEffect} from 'react'
 import {useQuery} from '@apollo/client'
 import {useAsync} from '@react-hook/async'
 import {handleMore} from 'utils'
-import {EVENT_UPDATED, EVENTS} from 'models/event'
 import {useLoader, usePersist} from 'features/shared/hooks'
+import {EVENT_UPDATED, EVENTS} from '../graphql'
 
 export const useEvents = () => {
   usePersist(EVENTS)

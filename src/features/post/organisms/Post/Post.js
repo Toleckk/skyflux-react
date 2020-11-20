@@ -3,12 +3,12 @@ import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useMutation} from '@apollo/client'
 import {Divider, Loader} from 'ui'
-import {DELETE_COMMENT} from 'models/comment'
 import {ID} from 'models/post'
 import {CommentList, PostCard} from 'features/shared/molecules'
 import {useConfirmDialog} from 'features/shared/hooks'
 import {CommentForm} from '..'
 import {usePost} from '../../hooks'
+import {DELETE_COMMENT} from '../../graphql'
 
 export const Post = ({_id}) => {
   const {t} = useTranslation('post')

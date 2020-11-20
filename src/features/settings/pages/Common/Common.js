@@ -1,7 +1,8 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'react-i18next'
-import {useMe, useMyTitle} from 'features/shared/hooks'
+import {useQuery} from '@apollo/client'
+import {useMyTitle} from 'features/shared/hooks'
 import {H1} from 'typography'
 import {Divider, Loader} from 'ui'
 import {
@@ -10,13 +11,15 @@ import {
   PrivateSwitcher,
   ProfileDataForm,
 } from '../../organisms'
+import {MY_PROFILE} from '../../graphql'
 import {StyledItem} from './styles'
 
 export const Common = () => {
   const {t} = useTranslation('settings')
   useMyTitle(t('Settings'))
 
-  const {me, loading} = useMe()
+  const {data, loading} = useQuery(MY_PROFILE)
+  const me = data?.me
 
   if (loading) return <Loader />
 

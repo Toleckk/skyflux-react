@@ -5,11 +5,11 @@ import * as yup from 'yup'
 import {login} from 'validation'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
+import {useMutation} from '@apollo/client'
 import {mergeErrors} from 'utils'
 import {Input} from 'ui'
-import {CREATE_RESET_REQUEST} from 'models/reset'
 import {FieldDescription, SubmitButton} from '../../atoms'
-import {useMutation} from '@apollo/client'
+import {CREATE_RESET_REQUEST} from '../../graphql'
 
 const schema = yup.object().shape({login: login.required()})
 

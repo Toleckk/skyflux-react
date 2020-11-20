@@ -1,9 +1,8 @@
 import {useEffect} from 'react'
 import {useAsync} from '@react-hook/async'
 import {useQuery} from '@apollo/client'
-import {FEED} from 'models/post'
-import {SUB_UPDATED} from 'models/sub'
 import {useLoader, useMe, usePersist} from 'features/shared/hooks'
+import {FEED, SUB_REQUEST_UPDATED} from '../graphql'
 
 export const useFeed = () => {
   usePersist(FEED)
@@ -20,11 +19,11 @@ export const useFeed = () => {
   useEffect(
     () =>
       subscribeToMore({
-        document: SUB_UPDATED,
+        document: SUB_REQUEST_UPDATED,
         updateQuery: (_, {subscriptionData: {data}}) =>
           data?.subUpdated &&
           isMe(data.subUpdated.from) &&
-          data?.subUpdated?.accepted &&
+          data.subUpdated.accepted &&
           refetch(),
       }),
     [refetch, data, subscribeToMore, isMe],

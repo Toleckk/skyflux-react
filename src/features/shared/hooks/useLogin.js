@@ -1,6 +1,6 @@
-import {useApolloClient, useMutation} from '@apollo/client'
-import {CREATE_SESSION} from 'models/session'
 import {useCallback} from 'react'
+import {useApolloClient, useMutation} from '@apollo/client'
+import {CREATE_SESSION} from '../graphql'
 
 export const useLogin = () => {
   const client = useApolloClient()

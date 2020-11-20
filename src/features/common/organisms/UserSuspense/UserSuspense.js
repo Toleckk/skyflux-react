@@ -2,7 +2,7 @@ import React from 'react'
 import {useQuery} from '@apollo/client'
 import {useNetwork} from 'react-use'
 import {PageLoader} from 'ui'
-import {ME} from 'models/user'
+import {ME} from 'features/shared/graphql'
 import {usePersist} from 'features/shared/hooks'
 
 export const UserSuspense = ({children}) => {

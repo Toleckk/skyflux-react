@@ -1,6 +1,6 @@
 import React from 'react'
 import {Loader} from 'ui'
-import {SubRequestList} from 'features/shared/molecules'
+import {SubRequestList} from '../../molecules'
 import {useSubRequests} from '../../hooks'
 
 export const SubRequestsDisplay = () => {

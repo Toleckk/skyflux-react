@@ -1,10 +1,11 @@
 import React, {memo, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import {useTranslation} from 'react-i18next'
-import {PostConnection, DELETE_POST} from 'models/post'
+import {PostConnection} from 'models/post'
 import {useConfirmDialog} from 'features/shared/hooks'
 import {PostList} from 'features/shared/molecules'
 import {useMutation} from '@apollo/client'
+import {DELETE_POST} from '../../graphql'
 
 export const PostsDisplay = memo(({posts, onMore}) => {
   const {t} = useTranslation('post', {useSuspense: false})

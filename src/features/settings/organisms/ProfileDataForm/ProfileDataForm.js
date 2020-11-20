@@ -13,9 +13,10 @@ import {
   description,
   FROM_MAX_LENGTH,
 } from 'validation'
-import {UPDATE_PROFILE_INFO, User} from 'models/user'
+import {User} from 'models/user'
 import {AvatarUploader, DateInput} from '../../molecules'
 import {useUploadAvatar} from '../../hooks'
+import {UPDATE_PROFILE_INFO} from '../../graphql'
 import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
 
 const schema = yup.object().shape({

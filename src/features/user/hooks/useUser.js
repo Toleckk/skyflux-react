@@ -3,9 +3,8 @@ import {useQuery} from '@apollo/client'
 import {useAsync} from '@react-hook/async'
 import {useNetwork} from 'react-use'
 import {handleMore} from 'utils'
-import {USER} from 'models/user'
-import {POST_UPDATED} from 'models/post'
 import {useLoader} from 'features/shared/hooks'
+import {POST_UPDATED, USER, USER_UPDATED} from '../graphql'
 
 export const useUser = nickname => {
   const {data, loading, fetchMore, subscribeToMore} = useQuery(USER, {
@@ -17,6 +16,21 @@ export const useUser = nickname => {
       firstPosts: 25,
     },
   })
+
+  useEffect(
+    () =>
+      subscribeToMore({
+        document: USER_UPDATED,
+        variables: {nickname},
+        updateQuery: ({user}, {subscriptionData: {data}}) => ({
+          user: {
+            ...user,
+            ...(data?.userUpdated || {}),
+          },
+        }),
+      }),
+    [subscribeToMore, nickname],
+  )
 
   useEffect(
     () =>

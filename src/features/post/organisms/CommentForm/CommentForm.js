@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon, Input} from 'ui'
 import {Post} from 'models/post'
-import {CREATE_COMMENT} from 'models/comment'
+import {CREATE_COMMENT} from '../../graphql'
 
 const schema = yup.object().shape({text: text.required()})
 

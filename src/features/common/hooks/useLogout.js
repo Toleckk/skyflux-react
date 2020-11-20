@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 import {useApolloClient, useMutation} from '@apollo/client'
-import {DELETE_CURRENT_SESSION} from 'models/session'
+import {DELETE_CURRENT_SESSION} from '../graphql'
 
 export const useLogout = () => {
   const client = useApolloClient()
@@ -12,7 +12,14 @@ export const useLogout = () => {
     client.resetPersist()
   }, [client])
 
-  const [logout, {loading}] = useMutation(DELETE_CURRENT_SESSION, {onCompleted})
+  const [deleteCurrentSession, {loading}] = useMutation(
+    DELETE_CURRENT_SESSION,
+    {onCompleted},
+  )
+
+  const logout = useCallback(() => deleteCurrentSession(), [
+    deleteCurrentSession,
+  ])
 
   return {logout, loading}
 }

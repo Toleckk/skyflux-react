@@ -1,9 +1,7 @@
 import {useCallback, useEffect} from 'react'
 import {useQuery} from '@apollo/client'
 import {handleMore} from 'utils'
-import {POST} from 'models/post'
-import {COMMENT_UPDATED} from 'models/comment'
-import {LIKE_UPDATED} from 'models/like'
+import {COMMENT_UPDATED, LIKE_UPDATED, POST} from '../graphql'
 
 export const usePost = _id => {
   const {data, loading, fetchMore, subscribeToMore} = useQuery(POST, {

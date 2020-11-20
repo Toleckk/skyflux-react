@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 import {useMutation} from '@apollo/client'
-import {CREATE_LIKE, DELETE_LIKE} from 'models/like'
+import {CREATE_LIKE, DELETE_LIKE} from '../graphql'
 
 export const useToggleLike = post => {
   const variables = {postId: post._id}

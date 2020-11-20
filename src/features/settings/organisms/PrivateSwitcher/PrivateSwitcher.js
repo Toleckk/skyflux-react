@@ -2,11 +2,12 @@ import React, {useCallback} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useConfirmDialog} from 'features/shared/hooks'
-import {MAKE_ACCOUNT_PRIVATE, MAKE_ACCOUNT_PUBLIC, User} from 'models/user'
+import {useMutation} from '@apollo/client'
+import {User} from 'models/user'
 import {H2} from 'typography'
 import {Toggle} from 'ui'
+import {MAKE_ACCOUNT_PRIVATE, MAKE_ACCOUNT_PUBLIC} from '../../graphql'
 import {StyledResponsibleContainer} from './styles'
-import {useMutation} from '@apollo/client'
 
 export const PrivateSwitcher = ({user}) => {
   const {t} = useTranslation('settings')

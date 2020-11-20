@@ -91,7 +91,7 @@ export const MobileMenu = ({onItemClick}) => {
                   marginTop="2rem"
                   alignItems="center"
                   as="button"
-                  onClick={() => logout()}
+                  onClick={logout}
                 >
                   <Box width="2rem" height="2rem" marginRight="2rem">
                     <Icon icon="logout" />

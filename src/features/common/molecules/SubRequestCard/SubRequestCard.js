@@ -2,8 +2,9 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useMutation} from '@apollo/client'
 import {Icon} from 'ui'
-import {ACCEPT_SUB, DECLINE_SUB, SubRequest} from 'models/sub'
-import {UserCard} from '../UserCard'
+import {SubRequest} from 'models/sub'
+import {UserCard} from 'features/shared/molecules'
+import {ACCEPT_SUB, DECLINE_SUB} from '../../graphql'
 
 export const SubRequestCard = ({sub: {_id, from}}) => {
   const [accept] = useMutation(ACCEPT_SUB, {variables: {_id}})

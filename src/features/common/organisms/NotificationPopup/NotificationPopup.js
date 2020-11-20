@@ -2,9 +2,9 @@ import React, {useEffect} from 'react'
 import {toast, ToastContainer} from 'react-toastify'
 import {useLatest} from 'react-use'
 import {useSubscription} from '@apollo/client'
-import {EVENT_UPDATED} from 'models/event'
 import {useModal} from 'features/shared/hooks'
 import {EventCard} from 'features/shared/molecules'
+import {EVENT_UPDATED} from '../../graphql'
 
 export const NotificationPopup = () => {
   const {data} = useSubscription(EVENT_UPDATED)

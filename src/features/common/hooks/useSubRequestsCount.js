@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {useQuery} from '@apollo/client'
-import {SUB_REQUESTS_COUNT, SUB_UPDATED} from 'models/sub'
+import {SUB_UPDATED, SUB_REQUESTS_COUNT} from '../graphql'
 
 export const useSubRequestsCount = () => {
   const {data, loading, refetch, subscribeToMore} = useQuery(

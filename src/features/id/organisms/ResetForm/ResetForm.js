@@ -9,7 +9,7 @@ import * as yup from 'yup'
 import {password} from 'validation'
 import {Input} from 'ui'
 import {mergeErrors} from 'utils'
-import {ME, RESET_PASSWORD} from 'models/user'
+import {RESET_PASSWORD} from '../../graphql'
 import {SubmitButton} from '../../atoms'
 
 const schema = yup.object().shape({
@@ -24,9 +24,7 @@ export const ResetForm = () => {
   const {t} = useTranslation('id')
   const {token} = useParams()
 
-  const [reset, {error}] = useMutation(RESET_PASSWORD, {
-    refetchQueries: [{query: ME}],
-  })
+  const [reset, {error}] = useMutation(RESET_PASSWORD)
 
   const {handleSubmit, register, errors: formErrors} = useForm({
     mode: 'onBlur',

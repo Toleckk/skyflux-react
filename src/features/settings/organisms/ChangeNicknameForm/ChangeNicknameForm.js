@@ -2,14 +2,15 @@ import React, {useCallback, useEffect} from 'react'
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers'
+import {useLazyQuery, useMutation} from '@apollo/client'
 import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {nickname} from 'validation'
 import {Button, Input} from 'ui'
 import {mergeErrors, useDebouncedFunc} from 'utils'
-import {DOES_NICKNAME_EXIST, UPDATE_NICKNAME, User} from 'models/user'
+import {User} from 'models/user'
 import {ResponsibleForm} from '../../atoms'
-import {useLazyQuery, useMutation} from '@apollo/client'
+import {DOES_NICKNAME_EXIST, UPDATE_NICKNAME} from '../../graphql'
 
 const schema = yup.object().shape({nickname: nickname.required()})
 

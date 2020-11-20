@@ -9,7 +9,7 @@ import {email, password} from 'validation'
 import {mergeErrors} from 'utils'
 import {Text} from 'typography'
 import {Divider, Input} from 'ui'
-import {CREATE_USER} from 'models/user'
+import {CREATE_USER} from '../../graphql'
 import {SubmitButton} from '../../atoms'
 import {StyledResponsibleGrid} from './styles'
 

@@ -7,7 +7,7 @@ import {useBooleanState} from 'use-boolean-state'
 import * as yup from 'yup'
 import {text, TEXT_MAX_LENGTH} from 'validation'
 import {Icon} from 'ui'
-import {CREATE_POST} from 'models/post'
+import {CREATE_POST} from '../../graphql'
 import {PostInput} from '../../molecules'
 import {StyledButton, StyledContainer} from './styles'
 

@@ -1,6 +1,6 @@
-import {useQuery} from '@apollo/client'
-import {ME} from 'models/user'
 import {useCallback} from 'react'
+import {useQuery} from '@apollo/client'
+import {ME} from '../graphql'
 
 export const useMe = () => {
   const {data} = useQuery(ME)

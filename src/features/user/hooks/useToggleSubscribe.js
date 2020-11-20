@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 import {useMutation} from '@apollo/client'
-import {CREATE_SUB, DELETE_SUB} from 'models/sub'
+import {CREATE_SUB, DELETE_SUB} from '../graphql'
 
 export const useToggleSubscribe = user => {
   const variables = {nickname: user.nickname}

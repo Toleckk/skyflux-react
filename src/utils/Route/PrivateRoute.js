@@ -1,12 +1,11 @@
 import React from 'react'
 import {Redirect, Route} from 'react-router'
-import {useQuery} from '@apollo/client'
-import {ME} from 'models/user'
+import {useMe} from 'features/shared/hooks'
 
 export const PrivateRoute = props => {
-  const {data} = useQuery(ME)
+  const {me} = useMe()
 
-  if (!data?.me) return <Redirect to="/id/auth" />
+  if (!me) return <Redirect to="/id/auth" />
 
   return <Route {...props} />
 }

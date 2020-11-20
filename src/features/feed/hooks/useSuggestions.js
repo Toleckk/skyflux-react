@@ -1,5 +1,5 @@
 import {useQuery} from '@apollo/client'
-import {SUGGESTIONS} from 'models/user'
+import {SUGGESTIONS} from '../graphql'
 
 export const useSuggestions = skip => {
   const {data, loading} = useQuery(SUGGESTIONS, {
