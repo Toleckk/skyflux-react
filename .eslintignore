@@ -1,1 +1,2 @@
-src/setupTest.js
+**/graphql/types/*.ts
+globalTypes.ts

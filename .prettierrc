@@ -7,7 +7,6 @@
   "jsxBracketSameLine": false,
   "semi": false,
   "bracketSpacing": false,
-  "parser": "flow",
   "arrowParens": "avoid",
   "endOfLine": "crlf"
 }

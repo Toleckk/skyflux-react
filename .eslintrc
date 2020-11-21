@@ -4,13 +4,16 @@
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:import-order/recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "react/prop-types": 0,
     "linebreak-style": [
       "error",
       "windows"
     ],
+    "@typescript-eslint/no-explicit-any": 0,
     "eol-last": "error",
     "jsx-quotes": [
       1,
@@ -38,8 +41,9 @@
       "error",
       {
         "allow": [
+          "@hookform/resolvers/yup",
           "reflexbox/styled-components",
-          "@testing-library/jest-dom/extend-expect",
+          "@testing-library/jest-dom",
           "react-datepicker/dist/react-datepicker.css",
           "models/*",
           "@apollo/client/link/context",
@@ -57,21 +61,11 @@
     "import/no-commonjs": "error",
     "import/no-duplicates": "error",
     "import/newline-after-import": "error",
-    "import/no-default-export": "error"
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": [
-          "node_modules",
-          "src/"
-        ]
-      }
-    }
+    "import/no-default-export": "error",
+    "import/order": "error"
   },
   "plugins": [
     "import",
-    "import-order",
     "prettier",
     "react"
   ]

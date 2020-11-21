@@ -1,7 +1,0 @@
-export * from './CREATE_SUB'
-export * from './DELETE_POST'
-export * from './DELETE_SUB'
-export * from './fragments'
-export * from './POST_UPDATED'
-export * from './USER'
-export * from './USER_UPDATED'
