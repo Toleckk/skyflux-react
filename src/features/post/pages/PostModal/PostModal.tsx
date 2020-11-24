@@ -1,6 +1,6 @@
 import React from 'react'
 import {Modal} from 'ui'
-import {Post} from '../../organisms'
+import {Post} from '../../components'
 import {StyledContainer} from './styles'
 
 export type PostModalProps = {

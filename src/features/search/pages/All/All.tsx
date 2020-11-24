@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Search} from '../../templates'
-import {PostsDisplay, UsersDisplay} from '../../organisms'
+import {PostsDisplay, UsersDisplay} from '../../components'
 import {useSearchPosts, useSearchUsers} from '../../hooks'
 
 export const All: React.FC = () => {

@@ -6,10 +6,9 @@ import {useNetwork} from 'react-use'
 import {useInView} from 'react-intersection-observer'
 import {Divider, Loader} from 'ui'
 import {useMe, useMyTitle} from 'features/shared/hooks'
-import {PostForm} from 'features/shared/organisms'
+import {PostForm} from 'features/shared/components'
 import {useUser} from '../../hooks'
-import {PostsDisplay} from '../../organisms'
-import {PrivateScreen, UserInfo, UserRow} from '../../molecules'
+import {PostsDisplay, PrivateScreen, UserInfo, UserRow} from '../../components'
 import {StyledHeader, StyledStaticDivider} from './styles'
 
 export const Wall = memo(() => {

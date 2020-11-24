@@ -12,8 +12,11 @@ import {PostRouter} from 'features/post'
 import {SearchRouter} from 'features/search'
 import {SettingsRouter} from 'features/settings'
 import {Navigable} from 'features/common/templates'
-import {ErrorBoundary, UserSuspense} from 'features/common/organisms'
-import {LoadingIndicator} from 'features/common/molecules'
+import {
+  ErrorBoundary,
+  LoadingIndicator,
+  UserSuspense,
+} from 'features/common/components'
 
 export const App: React.FC = () => (
   <Theme>

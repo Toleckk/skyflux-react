@@ -4,8 +4,7 @@ import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/shared/hooks'
 import {H1} from 'typography'
 import {Divider} from 'ui'
-import {PageDescription} from '../../atoms'
-import {RestoreForm} from '../../organisms'
+import {PageDescription, RestoreForm} from '../../components'
 
 export const Restore: React.FC = () => {
   const {t} = useTranslation('id')

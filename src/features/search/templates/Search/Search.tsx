@@ -6,8 +6,7 @@ import {parse, stringify} from 'query-string'
 import {useMyTitle} from 'features/shared/hooks'
 import {H1} from 'typography'
 import {useDebouncedEffect} from 'utils'
-import {SearchInput} from '../../molecules'
-import {SearchLoader} from '../../atoms'
+import {SearchInput, SearchLoader} from '../../components'
 
 export type SearchProps = {
   onInputChange: (query: string) => unknown

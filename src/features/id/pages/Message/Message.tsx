@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/shared/hooks'
 import {H1, Text} from 'typography'
 import {Divider} from 'ui'
-import {PageDescription} from '../../atoms'
+import {PageDescription} from '../../components'
 
 export const Message: React.FC = () => {
   const {t} = useTranslation('id')

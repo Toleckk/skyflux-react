@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {MOBILE_NAV_HEIGHT} from '../../../organisms'
+import {MOBILE_NAV_HEIGHT} from '../../../components'
 
 export const StyledChildrenWrapper = styled.div`
   display: flex;

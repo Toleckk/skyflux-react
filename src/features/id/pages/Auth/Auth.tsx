@@ -5,8 +5,12 @@ import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/shared/hooks'
 import {H1} from 'typography'
 import {Divider, Link} from 'ui'
-import {AuthForm} from '../../organisms'
-import {FieldDescription, PageDescription, SubmitButton} from '../../atoms'
+import {
+  AuthForm,
+  FieldDescription,
+  PageDescription,
+  SubmitButton,
+} from '../../components'
 
 export const Auth: React.FC = () => {
   const {t} = useTranslation('id')

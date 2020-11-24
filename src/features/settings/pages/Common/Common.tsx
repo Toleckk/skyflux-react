@@ -9,7 +9,7 @@ import {
   ChangePasswordForm,
   PrivateSwitcher,
   ProfileDataForm,
-} from '../../organisms'
+} from '../../components'
 import {useMyProfile} from '../../hooks'
 import {StyledItem} from './styles'
 

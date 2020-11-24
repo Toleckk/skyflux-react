@@ -2,8 +2,12 @@ import React from 'react'
 import {useMedia} from 'react-use'
 import {BottomBar, SideBar} from 'ui'
 import {useMe, useModal} from 'features/shared/hooks'
-import {DesktopNav, MobileNav, NotificationPopup} from '../../organisms'
-import {SwitchThemeButton} from '../../molecules'
+import {
+  DesktopNav,
+  MobileNav,
+  NotificationPopup,
+  SwitchThemeButton,
+} from '../../components'
 import {
   StyledChildrenWrapper,
   StyledContainer,

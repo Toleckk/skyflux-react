@@ -2,7 +2,7 @@ import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {useMyTitle} from 'features/shared/hooks'
-import {Post} from '../../organisms'
+import {Post} from '../../components'
 
 export const Display: React.FC = () => {
   const {t} = useTranslation('post')

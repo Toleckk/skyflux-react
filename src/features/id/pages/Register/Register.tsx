@@ -3,8 +3,7 @@ import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useMyTitle} from 'features/shared/hooks'
 import {H1} from 'typography'
-import {PageDescription} from '../../atoms'
-import {RegisterForm} from '../../organisms'
+import {PageDescription, RegisterForm} from '../../components'
 
 export const Register: React.FC = () => {
   const {t} = useTranslation('id')
