@@ -30,3 +30,7 @@ yarn-error.log*
 
 # downloaded schema
 schema.graphql
+
+# generated
+src/features/*/graphql/types/*.ts
+src/_types/globalTypes.ts
