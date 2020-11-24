@@ -1,13 +1,10 @@
-import React, {Suspense, useCallback} from 'react'
+import React, {Suspense} from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {useMutation} from '@apollo/client'
 import {Divider, Loader} from 'ui'
 import {CommentList, PostCard} from 'features/shared/molecules'
-import {useConfirmDialog} from 'features/shared/hooks'
 import {CommentForm} from '..'
-import {usePost} from '../../hooks'
-import {DELETE_COMMENT} from '../../graphql'
+import {useDeleteComment, usePost} from '../../hooks'
 
 export type PostProps = {
   _id: string
@@ -17,18 +14,7 @@ export const Post: React.FC<PostProps> = ({_id}) => {
   const {t} = useTranslation('post')
   const {post, loading, comments, moreComments} = usePost(_id)
 
-  const [deleteComment] = useMutation(DELETE_COMMENT)
-  const [deleteCommentWithConfirmation, Modal] = useConfirmDialog(deleteComment)
-
-  const del = useCallback(
-    comment =>
-      deleteCommentWithConfirmation({
-        variables: {
-          _id: comment._id,
-        },
-      }),
-    [deleteCommentWithConfirmation],
-  )
+  const {deleteComment, ConfirmDeleteCommentModal} = useDeleteComment()
 
   return (
     <Flex flexDirection="column" maxHeight="100vh" height="100%">
@@ -49,9 +35,9 @@ export const Post: React.FC<PostProps> = ({_id}) => {
               <CommentList
                 comments={comments}
                 onMore={moreComments}
-                onCommentDelete={del}
+                onCommentDelete={deleteComment}
               />
-              <Modal
+              <ConfirmDeleteCommentModal
                 text={t('Are you sure you want to delete this comment?')}
                 icon="trash"
               />

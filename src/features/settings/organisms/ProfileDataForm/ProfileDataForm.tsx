@@ -1,31 +1,13 @@
-import React, {useCallback, useEffect} from 'react'
+import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Controller, useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useMutation} from '@apollo/client'
-import * as yup from 'yup'
+import {Controller} from 'react-hook-form'
 import {Icon, Input} from 'ui'
-import {mergeErrors} from 'utils'
-import {
-  ABOUT_MAX_LENGTH,
-  avatar,
-  description,
-  FROM_MAX_LENGTH,
-} from 'validation'
+import {ABOUT_MAX_LENGTH, FROM_MAX_LENGTH} from 'validation'
 import {AvatarUploader, DateInput} from '../../molecules'
-import {useUploadAvatar} from '../../hooks'
-import {
-  MyProfile_me,
-  UPDATE_PROFILE_INFO,
-  UpdateProfileInfoVariables,
-} from '../../graphql'
+import {useProfileDataForm} from '../../hooks'
+import {MyProfile_me} from '../../graphql'
 import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
-
-const schema = yup.object().shape({
-  avatar,
-  description: description.required(),
-})
 
 export type ProfileDataFormProps = {
   user: MyProfile_me
@@ -34,47 +16,33 @@ export type ProfileDataFormProps = {
 export const ProfileDataForm: React.FC<ProfileDataFormProps> = ({user}) => {
   const {t} = useTranslation('settings')
 
-  const [update, {error}] = useMutation(UPDATE_PROFILE_INFO)
-
   const {
-    handleSubmit,
-    register,
+    submit,
     formState,
     reset,
+    register,
     control,
-    errors: formErrors,
-  } = useForm<UpdateProfileInfoVariables>({
-    resolver: yupResolver(schema),
-    mode: 'onChange',
-  })
-
-  const errors = mergeErrors(error, formErrors)
-
-  const {avatar, upload, loading, reset: resetAvatar, remove} = useUploadAvatar(
-    user.avatar,
-  )
-
-  const resetForm = useCallback(() => {
-    reset()
-    resetAvatar()
-  }, [reset, resetAvatar])
-
-  useEffect(resetForm, [resetForm, user])
+    uploadAvatar,
+    removeAvatar,
+    avatarUploading,
+    avatar,
+    errors,
+  } = useProfileDataForm(user)
 
   return (
     <Flex
       as="form"
-      onSubmit={handleSubmit(variables => update({variables}))}
-      onReset={resetForm}
+      onSubmit={submit}
+      {...{onReset: reset as any}}
       flexDirection="column"
     >
       <StyledResponsibleContainer>
         <Box width="9rem" height="9rem">
           <AvatarUploader
             name="avatar"
-            onFileSelected={upload}
-            onDelete={remove}
-            loading={loading}
+            onFileSelected={uploadAvatar}
+            onDelete={removeAvatar}
+            loading={avatarUploading}
             value={avatar}
             ref={register}
           />

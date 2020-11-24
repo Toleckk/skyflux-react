@@ -1,42 +1,23 @@
-import React, {useMemo} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useMutation} from '@apollo/client'
+import React from 'react'
+import {Controller} from 'react-hook-form'
 import {useBooleanState} from 'use-boolean-state'
-import * as yup from 'yup'
-import {text, TEXT_MAX_LENGTH} from 'validation'
+import {TEXT_MAX_LENGTH} from 'validation'
 import {Icon} from 'ui'
-import {CREATE_POST} from '../../graphql'
 import {PostInput} from '../../molecules'
+import {usePostForm} from '../../hooks'
 import {StyledButton, StyledContainer} from './styles'
-
-const schema = yup.object().shape({text: text.required()})
 
 export type PostFormProps = {
   placeholder: string
 }
 
 export const PostForm: React.FC<PostFormProps> = ({placeholder}) => {
-  const [create, {loading}] = useMutation(CREATE_POST)
-
-  const {handleSubmit, formState, reset, control} = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {text: ''},
-  })
-
-  const onSubmit = useMemo(
-    () =>
-      handleSubmit(variables => {
-        create({variables})
-        reset()
-      }),
-    [handleSubmit, create, reset],
-  )
+  const {submitting, formState, control, submit} = usePostForm()
 
   const [isFocused, focus, blur] = useBooleanState(false)
 
   return (
-    <StyledContainer as="form" onSubmit={onSubmit}>
+    <StyledContainer as="form" onSubmit={submit}>
       <Controller
         name="text"
         control={control}
@@ -54,7 +35,7 @@ export const PostForm: React.FC<PostFormProps> = ({placeholder}) => {
         )}
       />
       {(isFocused || formState.isDirty) && (
-        <StyledButton type="submit" disabled={loading}>
+        <StyledButton type="submit" disabled={submitting}>
           <Icon icon="message" />
         </StyledButton>
       )}

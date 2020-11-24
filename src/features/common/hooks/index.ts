@@ -1,4 +1,5 @@
 export * from './useEvents'
 export * from './useLogout'
+export * from './useSubRequestActions'
 export * from './useSubRequests'
 export * from './useSubRequestsCount'

@@ -1,45 +1,20 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import * as yup from 'yup'
-import {login} from 'validation'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useMutation} from '@apollo/client'
-import {mergeErrors} from 'utils'
 import {Input} from 'ui'
 import {FieldDescription, SubmitButton} from '../../atoms'
-import {CREATE_RESET_REQUEST} from '../../graphql'
-import {CreateResetRequestVariables} from '../../graphql/types/CreateResetRequest'
-
-const schema = yup.object().shape({login: login.required()})
+import {useRestoreForm} from '../../hooks'
 
 export const RestoreForm: React.FC = () => {
   const {t} = useTranslation('id')
 
-  const [createRequest, {error}] = useMutation(CREATE_RESET_REQUEST)
-
-  const {
-    handleSubmit,
-    register,
-    errors: formErrors,
-  } = useForm<CreateResetRequestVariables>({
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
-  })
-
-  const errors = mergeErrors(error, formErrors)
-
-  const onSubmit = useMemo(
-    () => handleSubmit(variables => createRequest({variables})),
-    [handleSubmit, createRequest],
-  )
+  const {submit, register, errors} = useRestoreForm()
 
   return (
     <Flex flexDirection="column" alignItems="center">
       <FieldDescription>{t('Enter nickname or email')}</FieldDescription>
       <Box marginTop="1em">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={submit}>
           <Input
             label={t('Login')}
             name="login"

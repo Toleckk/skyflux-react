@@ -1,7 +1,6 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'react-i18next'
-import {useQuery} from '@apollo/client'
 import {useMyTitle} from 'features/shared/hooks'
 import {H1} from 'typography'
 import {Divider, Loader} from 'ui'
@@ -11,33 +10,32 @@ import {
   PrivateSwitcher,
   ProfileDataForm,
 } from '../../organisms'
-import {MY_PROFILE} from '../../graphql'
+import {useMyProfile} from '../../hooks'
 import {StyledItem} from './styles'
 
 export const Common: React.FC = () => {
   const {t} = useTranslation('settings')
   useMyTitle(t('Settings'))
 
-  const {data, loading} = useQuery(MY_PROFILE)
-  const me = data?.me
+  const {loading, user} = useMyProfile()
 
-  if (loading || !me) return <Loader />
+  if (loading || !user) return <Loader />
 
   return (
     <ul>
       <StyledItem>
         <H1>{t('Profile information')}</H1>
-        <ProfileDataForm user={me} />
+        <ProfileDataForm user={user} />
       </StyledItem>
       <Divider />
       <StyledItem>
         <H1>{t('Change nickname')}</H1>
-        <ChangeNicknameForm user={me} />
+        <ChangeNicknameForm user={user} />
       </StyledItem>
       <Divider />
       <StyledItem>
         <H1>{t('Privacy settings')}</H1>
-        <PrivateSwitcher user={me} />
+        <PrivateSwitcher user={user} />
       </StyledItem>
       <Divider />
       <StyledItem>

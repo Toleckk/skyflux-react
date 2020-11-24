@@ -1,50 +1,23 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useMutation} from '@apollo/client'
-import * as yup from 'yup'
-import {email, password} from 'validation'
-import {mergeErrors} from 'utils'
 import {Text} from 'typography'
 import {Divider, Input} from 'ui'
-import {CREATE_USER, CreateUserVariables} from '../../graphql'
 import {SubmitButton} from '../../atoms'
+import {useRegisterForm} from '../../hooks'
 import {StyledResponsibleGrid} from './styles'
-
-const schema = yup.object().shape({
-  email: email.required(),
-  password: password.required(),
-})
 
 export const RegisterForm: React.FC = () => {
   const {t} = useTranslation('id')
 
-  const [signUp, {error}] = useMutation(CREATE_USER)
-
-  const {
-    register,
-    handleSubmit,
-    errors: formErrors,
-  } = useForm<CreateUserVariables>({
-    resolver: yupResolver(schema),
-    mode: 'onBlur',
-  })
-
-  const errors = mergeErrors(error, formErrors)
-
-  const onSubmit = useMemo(
-    () => handleSubmit(variables => signUp({variables})),
-    [handleSubmit, signUp],
-  )
+  const {submit, register, errors} = useRegisterForm()
 
   return (
     <Flex
       as="form"
       flexDirection="column"
       alignItems="center"
-      onSubmit={onSubmit}
+      onSubmit={submit}
     >
       <Divider />
       <StyledResponsibleGrid>

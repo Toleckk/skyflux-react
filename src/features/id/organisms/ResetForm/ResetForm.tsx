@@ -1,50 +1,19 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {useParams} from 'react-router'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useMutation} from '@apollo/client'
-import * as yup from 'yup'
-import {password} from 'validation'
 import {Input} from 'ui'
-import {mergeErrors} from 'utils'
-import {RESET_PASSWORD} from '../../graphql'
 import {SubmitButton} from '../../atoms'
-import {ResetPasswordVariables} from '../../graphql/types/ResetPassword'
-
-const schema = yup.object().shape({
-  password: password.required(),
-  confirm: yup
-    .string()
-    .oneOf([yup.ref('password'), ''], 'Passwords must match')
-    .required('Confirm is a required field'),
-})
+import {useResetForm} from '../../hooks'
 
 export const ResetForm: React.FC = () => {
   const {t} = useTranslation('id')
   const {token} = useParams<{token: string}>()
 
-  const [reset, {error}] = useMutation(RESET_PASSWORD)
-
-  const {
-    handleSubmit,
-    register,
-    errors: formErrors,
-  } = useForm<ResetPasswordVariables>({
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
-  })
-
-  const errors = mergeErrors(error, formErrors)
-
-  const onSubmit = useMemo(
-    () => handleSubmit(variables => reset({variables})),
-    [handleSubmit, reset],
-  )
+  const {submit, register, errors} = useResetForm()
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={submit}>
       <input name="token" hidden readOnly value={token} ref={register} />
       <Flex flexDirection="column">
         <Box marginTop="1em">
@@ -53,7 +22,7 @@ export const ResetForm: React.FC = () => {
             name="password"
             type="password"
             ref={register}
-            error={errors.password as string}
+            error={errors.password}
           />
         </Box>
         <Box marginTop="1em">
@@ -62,7 +31,7 @@ export const ResetForm: React.FC = () => {
             name="confirm"
             type="password"
             ref={register}
-            error={errors.confirm as string}
+            error={errors.confirm}
           />
         </Box>
         <Box marginTop="1.5em" alignSelf="center">

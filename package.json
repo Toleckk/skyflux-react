@@ -24,6 +24,7 @@
     "@types/yup": "^0.29.9",
     "apollo": "^2.31.1",
     "deep-shape-equals": "^0.1.2",
+    "deepmerge": "^4.2.2",
     "focus-within-polyfill": "^5.1.0",
     "graphql": "^15.4.0",
     "graphql.macro": "^1.4.2",

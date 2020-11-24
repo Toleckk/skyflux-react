@@ -77,6 +77,11 @@ const cache = new InMemoryCache({
 export const client = new ApolloClient({
   link: authLink.concat(splitLink),
   cache,
+  defaultOptions: {
+    mutate: {
+      errorPolicy: 'all',
+    },
+  },
 })
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

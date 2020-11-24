@@ -1,47 +1,17 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {Box} from 'reflexbox/styled-components'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useMutation} from '@apollo/client'
-import * as yup from 'yup'
 import {useTranslation} from 'react-i18next'
-import {password} from 'validation'
-import {mergeErrors} from 'utils'
 import {Button, Input} from 'ui'
-import {UPDATE_PASSWORD} from '../../graphql'
 import {ResponsibleForm} from '../../atoms'
-import {UpdatePasswordVariables} from '../../graphql/types/UpdatePassword'
-
-const schema = yup.object().shape({
-  oldPassword: password.required(),
-  newPassword: password
-    .notOneOf([yup.ref('oldPassword'), "Passwords can't be equal"])
-    .required(),
-})
+import {useChangePasswordForm} from '../../hooks'
 
 export const ChangePasswordForm: React.FC = () => {
-  const [update, {error}] = useMutation(UPDATE_PASSWORD)
-
-  const {
-    handleSubmit,
-    register,
-    errors: formErrors,
-  } = useForm<UpdatePasswordVariables>({
-    resolver: yupResolver(schema),
-    mode: 'onBlur',
-  })
-
-  const errors = mergeErrors(formErrors, error)
-
-  const onSubmit = useMemo(
-    () => handleSubmit(variables => update({variables})),
-    [handleSubmit, update],
-  )
-
   const {t} = useTranslation('settings')
 
+  const {submit, errors, register} = useChangePasswordForm()
+
   return (
-    <ResponsibleForm onSubmit={onSubmit}>
+    <ResponsibleForm onSubmit={submit}>
       <Input
         type="password"
         label={t('Old password')}

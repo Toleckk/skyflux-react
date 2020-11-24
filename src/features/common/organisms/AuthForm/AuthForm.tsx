@@ -1,40 +1,21 @@
-import React, {Suspense, useMemo} from 'react'
-import {useForm} from 'react-hook-form'
+import React, {Suspense} from 'react'
 import {Translation} from 'react-i18next'
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import {login, password} from 'validation'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 import {Button, Input, Link, Loader} from 'ui'
-import {useLogin} from 'features/shared/hooks'
-import {CreateSessionVariables} from 'features/shared/graphql'
-
-const schema = yup
-  .object()
-  .shape({login: login.required(), password: password.required()})
+import {useAuthForm} from 'features/shared/hooks'
 
 export const AuthForm: React.FC = () => {
-  const {login} = useLogin()
-
-  const {handleSubmit, register, errors} = useForm<CreateSessionVariables>({
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
-  })
-
-  const onSubmit = useMemo(
-    () => handleSubmit(variables => login({variables})),
-    [handleSubmit, login],
-  )
+  const {register, submit, errors} = useAuthForm()
 
   return (
     <Suspense fallback={<Loader />}>
       <Translation ns="id">
         {t => (
-          <form onSubmit={onSubmit}>
+          <form onSubmit={submit}>
             <Input
               ref={register}
-              error={errors.login?.message}
+              error={t(errors.login)}
               name="login"
               label={t('Login')}
             />
@@ -42,7 +23,7 @@ export const AuthForm: React.FC = () => {
               <Input
                 ref={register}
                 label={t('Password')}
-                error={errors.password?.message}
+                error={t(errors.password)}
                 name="password"
                 type="password"
               />

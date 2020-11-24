@@ -16,8 +16,9 @@ export type UseLoginResult = {
 export const useLogin = (): UseLoginResult => {
   const client = useApolloClient()
   const onCompleted = useCallback(
-    ({createSession}) => {
-      localStorage.setItem('token', createSession || null)
+    data => {
+      if (!data) return
+      localStorage.setItem('token', data.createSession || null)
       client.resetConnection()
       client.cache.reset()
       client.resetPersist()
@@ -25,7 +26,9 @@ export const useLogin = (): UseLoginResult => {
     [client],
   )
 
-  const [login, {loading, error}] = useMutation(CREATE_SESSION, {onCompleted})
+  const [login, {loading, error}] = useMutation(CREATE_SESSION, {
+    onCompleted,
+  })
 
   return {login, loading, error}
 }
