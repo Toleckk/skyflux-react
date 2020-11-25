@@ -2,8 +2,8 @@ import React from 'react'
 import styled, {css} from 'styled-components'
 
 const border = css`
-  border-color: rgb(${props => props.theme.primary});
-  box-shadow: 0 0 10px rgb(${props => props.theme.primary});
+  border-color: ${props => props.theme.primary};
+  box-shadow: 0 0 10px ${props => props.theme.primary};
 `
 
 const expandable = (minHeight: React.CSSProperties['maxHeight']) => css`
@@ -31,7 +31,7 @@ export const SideBar = styled.div<SideBarProps>`
   border-radius: 1rem;
   border: 1px solid transparent;
 
-  background-color: rgb(${props => props.theme.primaryDark});
+  background-color: ${props => props.theme.primaryDark};
 
   ${props => props.minHeight && expandable(props.minHeight)}
 

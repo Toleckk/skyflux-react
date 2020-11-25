@@ -7,8 +7,8 @@ export const StyledContainer = styled.div`
 
   height: 100%;
 
-  box-shadow: -1px 1px 10px rgb(${props => props.theme.primary});
-  border: 1px solid rgb(${props => props.theme.primary});
+  box-shadow: -1px 1px 10px ${props => props.theme.primary};
+  border: 1px solid ${props => props.theme.primary};
 
   padding: 1.5em;
 
@@ -22,7 +22,7 @@ export const StyledContainer = styled.div`
 
   &:hover {
     background: rgba(0, 0, 0, 0.2);
-    border-color: rgb(${props => props.theme.secondary});
-    box-shadow: -1px 1px 10px rgb(${props => props.theme.secondary});
+    border-color: ${props => props.theme.secondary};
+    box-shadow: -1px 1px 10px ${props => props.theme.secondary};
   }
 `

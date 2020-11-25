@@ -7,15 +7,15 @@ export const TextArea = styled.textarea`
   padding: 0.6rem;
 
   background: transparent;
-  border: 1px solid rgba(${props => props.theme.secondaryText}, 0.5);
+  border: 1px solid ${props => props.theme.secondaryText}7F;
   border-radius: 1em;
 
   line-height: 1.5;
   font-size: 1.125rem;
-  color: rgb(${props => props.theme.primaryText});
+  color: ${props => props.theme.primaryText};
 
   &:focus {
-    border-color: rgba(${props => props.theme.secondaryText}, 0.7);
+    border-color: ${props => props.theme.secondaryText}B2;
     outline: none;
   }
 `

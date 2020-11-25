@@ -23,13 +23,13 @@ export const Logo: React.FC<LogoProps> = ({className}) => {
       <StyledSVG viewBox={`0 0 ${size} ${size}`}>
         <polygon
           points={bigTriangle}
-          stroke={`rgba(${secondary}, 0.35)`}
+          stroke={`${secondary}59`}
           strokeWidth={size / 30}
           fill="transparent"
         />
         <polygon
           points={smallTriangle}
-          stroke={`rgba(${secondary}, 0.3)`}
+          stroke={`${secondary}4C`}
           strokeWidth={size / 30}
           fill="transparent"
         />

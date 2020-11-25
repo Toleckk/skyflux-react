@@ -12,7 +12,7 @@ export const StyledRound = styled.div<StyledRoundProps>`
   height: calc(${props => props.height || '3rem'} * 0.8);
   width: calc(${props => props.height || '3rem'} * 0.8);
 
-  background-color: rgb(${props => props.theme.primaryText});
+  background-color: ${props => props.theme.primaryText};
 
   border-radius: 50%;
 
@@ -22,6 +22,6 @@ export const StyledRound = styled.div<StyledRoundProps>`
 
   ${StyledCheckbox}:checked + ${StyledBorder} > & {
     transform: translateX(calc(${props => props.width} - 110%));
-    background: rgb(${props => props.theme.secondary});
+    background: ${props => props.theme.secondary};
   }
 `

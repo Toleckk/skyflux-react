@@ -4,7 +4,7 @@ export const StyledHeader = styled.header`
   position: fixed;
   top: 0;
 
-  background: rgb(${props => props.theme.primaryDark});
+  background: ${props => props.theme.primaryDark};
 
   width: 100vw;
 

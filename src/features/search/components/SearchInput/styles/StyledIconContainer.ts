@@ -11,5 +11,5 @@ export const StyledIconContainer = styled.label`
   display: flex;
   align-items: center;
 
-  color: rgb(${props => props.theme.primary});
+  color: ${props => props.theme.primary};
 `

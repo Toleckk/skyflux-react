@@ -8,8 +8,8 @@ export const StyledUnderline = styled.hr`
   height: 1px;
   width: 100%;
 
-  background: rgb(${props => props.theme.secondary});
-  box-shadow: rgb(${props => props.theme.secondary}) 0 0 6px;
+  background: ${props => props.theme.secondary};
+  box-shadow: ${props => props.theme.secondary} 0 0 6px;
 
   transform: scaleX(0);
 

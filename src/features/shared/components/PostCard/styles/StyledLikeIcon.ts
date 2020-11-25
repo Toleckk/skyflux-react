@@ -8,6 +8,6 @@ export type StyledLikeIconProps = {
 export const StyledLikeIcon = styled(Icon)<StyledLikeIconProps>`
   ${({$isActive, theme}) =>
     $isActive &&
-    `filter: drop-shadow(rgb(${theme.secondary}) 0px 0px 3px) contrast(1.5);
+    `filter: drop-shadow(${theme.secondary} 0px 0px 3px) contrast(1.5);
   `}
 `

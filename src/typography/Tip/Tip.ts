@@ -6,5 +6,5 @@ export const Tip = styled.span`
 
   font-size: 0.75rem;
 
-  color: rgb(${props => props.theme.primaryText});
+  color: ${props => props.theme.primaryText};
 `

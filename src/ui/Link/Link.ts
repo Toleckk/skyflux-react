@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 
 export const Link = styled(RouterLink)`
-  color: rgb(${props => props.theme.primaryText});
+  color: ${props => props.theme.primaryText};
   position: relative;
 
   max-width: 100%;
@@ -26,13 +26,13 @@ export const Link = styled(RouterLink)`
     width: 100%;
     height: 1px;
 
-    background: rgba(${props => props.theme.secondary}, 0.7);
-    box-shadow: rgba(${props => props.theme.secondary}, 0.7) 0 0 1rem 0.05rem;
+    background: ${props => props.theme.secondary}B2;
+    box-shadow: ${props => props.theme.secondary}B2 0 0 1rem 0.05rem;
   }
 
   &:hover::after,
   &:focus::after {
-    background: rgba(${props => props.theme.secondary}, 0.9);
-    box-shadow: rgba(${props => props.theme.secondary}, 0.9) 0 0 1rem 0.05rem;
+    background: ${props => props.theme.secondary}E5;
+    box-shadow: ${props => props.theme.secondary}E5 0 0 1rem 0.05rem;
   }
 `

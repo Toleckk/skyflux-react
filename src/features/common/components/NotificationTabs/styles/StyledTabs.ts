@@ -8,7 +8,7 @@ export const StyledTabs = styled.div`
 
   overflow: hidden;
 
-  background-color: rgb(${props => props.theme.primaryDark});
+  background-color: ${props => props.theme.primaryDark};
 
   width: 85vw;
 

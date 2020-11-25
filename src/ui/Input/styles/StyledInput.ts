@@ -15,7 +15,7 @@ export const StyledInput = styled.input<StyledInputProps>`
 
   width: 100%;
 
-  color: rgb(${props => props.theme.primaryText});
+  color: ${props => props.theme.primaryText};
 
   font-size: 1.125rem;
   line-height: normal;

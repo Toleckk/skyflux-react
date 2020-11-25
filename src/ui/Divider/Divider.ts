@@ -19,10 +19,9 @@ export const Divider = styled.hr<DividerProps>`
   width: 100%;
   height: 1px;
   flex-shrink: 0;
-  background: rgb(${props => props.theme[props.color || 'primary']});
+  background: ${props => props.theme[props.color || 'primary']};
   margin: 3vh 0;
-  box-shadow: rgb(${props => props.theme[props.color || 'primary']}) 0 0 1rem
-    0.05rem;
+  box-shadow: ${props => props.theme[props.color || 'primary']} 0 0 1rem 0.05rem;
 
   animation: ${appear} 880ms ease normal;
 `

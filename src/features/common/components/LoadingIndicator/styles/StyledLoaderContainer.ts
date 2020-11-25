@@ -5,7 +5,7 @@ export const StyledLoaderContainer = styled.div`
   height: 4rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid rgb(${props => props.theme.secondary});
-  background: rgba(${props => props.theme.primaryDark}, 0.7);
-  box-shadow: 0 0 1rem rgb(${props => props.theme.secondary});
+  border: 1px solid ${props => props.theme.secondary};
+  background: ${props => props.theme.primaryDark}B2;
+  box-shadow: 0 0 1rem ${props => props.theme.secondary};
 `

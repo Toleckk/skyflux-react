@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const StyledContainer = styled.div`
-  box-shadow: 0 0 1rem rgb(${props => props.theme.secondary});
+  box-shadow: 0 0 1rem ${props => props.theme.secondary};
 
-  background: rgb(${props => props.theme.primaryDark});
+  background: ${props => props.theme.primaryDark};
 
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ export const StyledContainer = styled.div`
   border-top-right-radius: 1.5rem;
 
   border-style: solid;
-  border-color: rgb(${props => props.theme.secondary});
+  border-color: ${props => props.theme.secondary};
 
   border-width: 0;
   border-top-width: 1px;

@@ -10,7 +10,7 @@ export const StyledDivider = styled.div`
   width: 100%;
   height: 1px;
 
-  background: rgba(${props => props.theme.primary}, 0.6);
+  background: ${props => props.theme.primary}99;
 
   &:after {
     content: '';
@@ -23,7 +23,7 @@ export const StyledDivider = styled.div`
     width: 100%;
 
     transform: scale(0);
-    background: rgb(${props => props.theme.primary});
+    background: ${props => props.theme.primary};
   }
 
   ${StyledContainer}:hover > &::after {

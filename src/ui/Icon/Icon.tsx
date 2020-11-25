@@ -43,7 +43,7 @@ export const Icon: React.FC<IconProps> = memo(
     const props = {
       width: width || size,
       height: height || size,
-      fill: color ? color : `rgb(${theme.secondary})`,
+      fill: color ? color : `${theme.secondary}`,
       ...deliveredProps,
     }
 

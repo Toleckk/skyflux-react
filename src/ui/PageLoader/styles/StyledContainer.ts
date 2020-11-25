@@ -7,5 +7,5 @@ export const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: rgb(${props => props.theme.primaryDark});
+  background-color: ${props => props.theme.primaryDark};
 `

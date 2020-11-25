@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components'
 import {Link} from 'react-router-dom'
 
 const activeStyle = css`
-  filter: drop-shadow(0px 0px 6px rgb(${props => props.theme.secondary}));
+  filter: drop-shadow(0px 0px 6px ${props => props.theme.secondary});
 `
 
 export type StyledLinkProps = {

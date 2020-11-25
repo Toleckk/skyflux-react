@@ -12,14 +12,14 @@ export const StyledRing = styled.div<StyledRingProps>`
 
   box-shadow: ${props =>
     props.hasShadow
-      ? `inset rgba(${props.theme.secondary}, 0.7) 0 0 2rem 0.5rem, 
-             rgba(${props.theme.secondary}, 0.7) 0 0 2rem 0.5rem;`
+      ? `inset ${props.theme.secondary}B2 0 0 2rem 0.5rem, 
+             ${props.theme.secondary}B2 0 0 2rem 0.5rem;`
       : 'unset'};
 
   width: ${props => props.size};
   height: ${props => props.size};
 
-  border: ${props => `${props.borderWidth} solid rgb(${props.theme.primary})`};
+  border: ${props => `${props.borderWidth} solid ${props.theme.primary}`};
   border-radius: 50%;
   opacity: 0.5;
 
