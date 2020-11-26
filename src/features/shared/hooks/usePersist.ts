@@ -18,7 +18,7 @@ export const usePersist = (query: DocumentNode): void => {
   }
 
   useEffect(() => {
-    if (data && name && data[name])
+    if (data && name && Object.values(data).length)
       localStorage.setItem('PERSIST_' + name, JSON.stringify(data))
   }, [data, name])
 }
