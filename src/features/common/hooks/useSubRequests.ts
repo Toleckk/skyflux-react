@@ -1,11 +1,12 @@
 import {useCallback, useEffect} from 'react'
 import {ApolloQueryResult, useQuery} from '@apollo/client'
 import {handleMore} from 'utils'
+import {useMe} from 'features/shared/hooks'
 import {
   SUB_REQUESTS,
-  SUB_UPDATED,
   SubRequests,
   SubRequests_subRequests,
+  SUBS_UPDATED,
 } from '../graphql'
 
 export type UseSubRequestsResult = {
@@ -15,6 +16,8 @@ export type UseSubRequestsResult = {
 }
 
 export const useSubRequests = (): UseSubRequestsResult => {
+  const {me} = useMe()
+
   const {data, loading, fetchMore, subscribeToMore} = useQuery(SUB_REQUESTS, {
     fetchPolicy: 'network-only',
     nextFetchPolicy: 'cache-first',
@@ -26,17 +29,18 @@ export const useSubRequests = (): UseSubRequestsResult => {
   useEffect(
     () =>
       subscribeToMore({
-        document: SUB_UPDATED,
+        document: SUBS_UPDATED,
+        variables: {myId: me?._id},
         updateQuery: ({subRequests}, {subscriptionData: {data}}) => ({
           subRequests: handleMore(
             subRequests,
-            data && 'accepted' in data.subUpdated && data.subUpdated.accepted
-              ? {...data.subUpdated, deleted: true}
-              : data?.subUpdated,
+            data && 'accepted' in data.subsUpdated && data.subsUpdated.accepted
+              ? {...data.subsUpdated, deleted: true}
+              : data?.subsUpdated,
           ),
         }),
       }),
-    [subscribeToMore],
+    [subscribeToMore, me],
   )
 
   const requests = data?.subRequests

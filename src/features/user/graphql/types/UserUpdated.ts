@@ -35,5 +35,5 @@ export interface UserUpdated {
 }
 
 export interface UserUpdatedVariables {
-  nickname: string;
+  id: string;
 }

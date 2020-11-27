@@ -15,7 +15,7 @@ import {MaybePostFragment} from './types/MaybePostFragment'
 import {CreateSub, CreateSubVariables} from './types/CreateSub'
 import {DeletePost, DeletePostVariables} from './types/DeletePost'
 import {DeleteSub, DeleteSubVariables} from './types/DeleteSub'
-import {PostUpdated, PostUpdatedVariables} from './types/PostUpdated'
+import {PostsUpdated, PostsUpdatedVariables} from './types/PostsUpdated'
 import {UserUpdated, UserUpdatedVariables} from './types/UserUpdated'
 import {User, UserVariables} from './types/User'
 
@@ -25,7 +25,7 @@ export * from './types/MaybePostFragment'
 export * from './types/CreateSub'
 export * from './types/DeletePost'
 export * from './types/DeleteSub'
-export * from './types/PostUpdated'
+export * from './types/PostsUpdated'
 export * from './types/UserUpdated'
 export * from './types/User'
 
@@ -40,10 +40,10 @@ export const DELETE_POST: TypedDocumentNode<DeletePost, DeletePostVariables> =
   M.DELETE_POST
 export const DELETE_SUB: TypedDocumentNode<DeleteSub, DeleteSubVariables> =
   M.DELETE_SUB
-export const POST_UPDATED: TypedDocumentNode<
-  PostUpdated,
-  PostUpdatedVariables
-> = S.POST_UPDATED
+export const POSTS_UPDATED: TypedDocumentNode<
+  PostsUpdated,
+  PostsUpdatedVariables
+> = S.POSTS_UPDATED
 export const USER_UPDATED: TypedDocumentNode<
   UserUpdated,
   UserUpdatedVariables

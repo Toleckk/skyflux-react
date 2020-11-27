@@ -1,6 +1,7 @@
 import {useEffect} from 'react'
 import {useQuery} from '@apollo/client'
-import {SUB_REQUESTS_COUNT, SUB_UPDATED} from '../graphql'
+import {useMe} from 'features/shared/hooks'
+import {SUB_REQUESTS_COUNT, SUBS_UPDATED} from '../graphql'
 
 export type UseSubRequestsCountResult = {
   count: number
@@ -8,6 +9,8 @@ export type UseSubRequestsCountResult = {
 }
 
 export const useSubRequestsCount = (): UseSubRequestsCountResult => {
+  const {me} = useMe()
+
   const {data, loading, refetch, subscribeToMore} = useQuery(
     SUB_REQUESTS_COUNT,
     {
@@ -19,13 +22,14 @@ export const useSubRequestsCount = (): UseSubRequestsCountResult => {
   useEffect(
     () =>
       subscribeToMore({
-        document: SUB_UPDATED,
+        document: SUBS_UPDATED,
+        variables: {myId: me?._id},
         updateQuery: prev => {
           refetch()
           return prev
         },
       }),
-    [subscribeToMore, refetch],
+    [subscribeToMore, refetch, me],
   )
 
   return {count: data?.subRequestsCount || 0, loading}

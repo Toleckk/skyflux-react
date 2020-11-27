@@ -1,9 +1,9 @@
 import {gql} from '@apollo/client'
 import {MAYBE_POST_FRAGMENT, USER_FRAGMENT} from './fragments'
 
-export const POST_UPDATED = gql`
-  subscription PostUpdated($nickname: String!) {
-    postUpdated(nickname: $nickname) {
+export const POSTS_UPDATED = gql`
+  subscription PostsUpdated($ownerId: ID!) {
+    postsUpdated(ownerId: $ownerId) {
       ...MaybePostFragment
     }
   }
@@ -11,8 +11,8 @@ export const POST_UPDATED = gql`
 `
 
 export const USER_UPDATED = gql`
-  subscription UserUpdated($nickname: String!) {
-    userUpdated(nickname: $nickname) {
+  subscription UserUpdated($id: ID!) {
+    userUpdated(_id: $id) {
       ...UserFragment
     }
   }

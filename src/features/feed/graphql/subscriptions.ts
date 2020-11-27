@@ -1,15 +1,15 @@
 import {gql} from '@apollo/client'
+import {POST_FRAGMENT} from 'features/shared/graphql'
 
-export const SUB_REQUEST_UPDATED = gql`
-  subscription SubRequestUpdated {
-    subUpdated {
-      ... on Sub {
-        accepted
-        from {
-          _id
-          nickname
-        }
+export const FEED_UPDATED = gql`
+  subscription FeedUpdated {
+    feedUpdated {
+      ...PostFragment
+      ... on DeletedPost {
+        _id
+        deleted
       }
     }
   }
+  ${POST_FRAGMENT}
 `

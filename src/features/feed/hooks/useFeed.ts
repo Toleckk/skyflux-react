@@ -1,9 +1,9 @@
 import {useEffect} from 'react'
 import {useAsync} from '@react-hook/async'
 import {useQuery} from '@apollo/client'
-import {useLoader, useMe, usePersist} from 'features/shared/hooks'
-import {FEED, SUB_REQUEST_UPDATED} from '../graphql'
-import {Feed_feed} from '../graphql/types/Feed'
+import {useLoader, usePersist} from 'features/shared/hooks'
+import {handleMore} from 'utils'
+import {FEED, Feed_feed, FEED_UPDATED} from '../graphql'
 
 export type UseFeedResult = {
   posts?: Feed_feed
@@ -14,31 +14,20 @@ export type UseFeedResult = {
 export const useFeed = (): UseFeedResult => {
   usePersist(FEED)
 
-  const {data, fetchMore, loading, refetch, subscribeToMore} = useQuery(FEED, {
+  const {data, fetchMore, loading, subscribeToMore} = useQuery(FEED, {
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
     variables: {first: 25},
   })
 
-  const {isMe} = useMe()
-
-  useEffect(
-    () =>
-      subscribeToMore({
-        document: SUB_REQUEST_UPDATED,
-        updateQuery: (prev, {subscriptionData: {data}}) => {
-          if (
-            'from' in data.subUpdated &&
-            isMe(data.subUpdated.from) &&
-            data.subUpdated.accepted
-          )
-            refetch()
-
-          return prev
-        },
+  useEffect(() =>
+    subscribeToMore({
+      document: FEED_UPDATED,
+      updateQuery: ({feed}, {subscriptionData: {data}}) => ({
+        feed: handleMore(feed, data.feedUpdated),
       }),
-    [refetch, data, subscribeToMore, isMe],
+    }),
   )
 
   const [{status}, more] = useAsync(() =>

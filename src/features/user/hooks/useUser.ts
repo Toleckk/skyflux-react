@@ -5,7 +5,7 @@ import {useNetwork} from 'react-use'
 import {handleMore} from 'utils'
 import {useLoader} from 'features/shared/hooks'
 import {
-  POST_UPDATED,
+  POSTS_UPDATED,
   USER,
   USER_UPDATED,
   User_user,
@@ -20,7 +20,7 @@ export type UseUserResult = {
 }
 
 export const useUser = (nickname: string): UseUserResult => {
-  const {data, loading, fetchMore, subscribeToMore} = useQuery(USER, {
+  const {data, loading, fetchMore, subscribeToMore, refetch} = useQuery(USER, {
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
@@ -30,38 +30,47 @@ export const useUser = (nickname: string): UseUserResult => {
     },
   })
 
+  const user = data?.user
+  const posts = user?.posts
+
+  const id = user?._id
+
   useEffect(
     () =>
       subscribeToMore({
         document: USER_UPDATED,
-        variables: {nickname},
-        updateQuery: ({user}, {subscriptionData: {data}}) => ({
-          user: user && {
-            ...user,
-            ...(data?.userUpdated || {}),
-          },
-        }),
+        variables: {id},
+        updateQuery: ({user}, {subscriptionData: {data}}) => {
+          if (
+            !!data?.userUpdated.mySub?.accepted !== !!user?.posts.edges.length
+          )
+            refetch()
+
+          return {
+            user: user && {
+              ...user,
+              ...(data?.userUpdated || {}),
+            },
+          }
+        },
       }),
-    [subscribeToMore, nickname],
+    [subscribeToMore, nickname, id, refetch],
   )
 
   useEffect(
     () =>
       subscribeToMore({
-        document: POST_UPDATED,
-        variables: {nickname},
+        document: POSTS_UPDATED,
+        variables: {ownerId: id},
         updateQuery: ({user}, {subscriptionData: {data}}) => ({
           user: user && {
             ...user,
-            posts: handleMore(user.posts, data.postUpdated),
+            posts: handleMore(user.posts, data.postsUpdated),
           },
         }),
       }),
-    [subscribeToMore, nickname],
+    [subscribeToMore, id],
   )
-
-  const user = data?.user
-  const posts = user?.posts
 
   const [{status}, more] = useAsync(() =>
     fetchMore({

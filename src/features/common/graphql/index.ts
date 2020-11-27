@@ -25,7 +25,7 @@ import {AcceptSub, AcceptSubVariables} from './types/AcceptSub'
 import {DeclineSub, DeclineSubVariables} from './types/DeclineSub'
 import {DeleteCurrentSession} from './types/DeleteCurrentSession'
 import {EventUpdated} from './types/EventUpdated'
-import {SubUpdated} from './types/SubUpdated'
+import {SubsUpdated, SubsUpdatedVariables} from './types/SubsUpdated'
 import {SubRequestsCount} from './types/SubRequestsCount'
 import {SubRequests, SubRequestsVariables} from './types/SubRequests'
 import {Events, EventsVariables} from './types/Events'
@@ -46,7 +46,7 @@ export * from './types/AcceptSub'
 export * from './types/DeclineSub'
 export * from './types/DeleteCurrentSession'
 export * from './types/EventUpdated'
-export * from './types/SubUpdated'
+export * from './types/SubsUpdated'
 export * from './types/SubRequestsCount'
 export * from './types/SubRequests'
 export * from './types/Events'
@@ -81,7 +81,10 @@ export const DECLINE_SUB: TypedDocumentNode<DeclineSub, DeclineSubVariables> =
 export const DELETE_CURRENT_SESSION: TypedDocumentNode<DeleteCurrentSession> =
   M.DELETE_CURRENT_SESSION
 export const EVENT_UPDATED: TypedDocumentNode<EventUpdated> = S.EVENT_UPDATED
-export const SUB_UPDATED: TypedDocumentNode<SubUpdated> = S.SUB_UPDATED
+export const SUBS_UPDATED: TypedDocumentNode<
+  SubsUpdated,
+  SubsUpdatedVariables
+> = S.SUBS_UPDATED
 export const SUB_REQUESTS_COUNT: TypedDocumentNode<SubRequestsCount> =
   Q.SUB_REQUESTS_COUNT
 export const SUB_REQUESTS: TypedDocumentNode<

@@ -10,9 +10,9 @@ export const EVENT_UPDATED = gql`
   ${MAYBE_EVENT_FRAGMENT}
 `
 
-export const SUB_UPDATED = gql`
-  subscription SubUpdated {
-    subUpdated {
+export const SUBS_UPDATED = gql`
+  subscription SubsUpdated($myId: ID!) {
+    subsUpdated(to: $myId) {
       ...MaybeSubRequestFragment
     }
   }
