@@ -3,7 +3,7 @@ import {
   COMMENT_WITH_POST_FRAGMENT,
   POST_BADGE_FRAGMENT,
   USER_BADGE_FRAGMENT,
-} from 'features/shared/graphql'
+} from '@skyflux/react/features/shared/graphql'
 
 export const SUB_REQUEST_FRAGMENT = gql`
   fragment SubRequestFragment on Sub {

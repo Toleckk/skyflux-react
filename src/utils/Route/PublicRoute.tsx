@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect, Route, RouteProps} from 'react-router'
-import {useMe} from 'features/shared/hooks'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 
 export const PublicRoute: React.FC<RouteProps> = props => {
   const {me} = useMe()

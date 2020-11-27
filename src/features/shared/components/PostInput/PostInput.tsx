@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react'
-import {TextArea} from 'ui'
-import {useFormEnter} from 'utils'
+import {TextArea} from '@skyflux/react/ui'
+import {useFormEnter} from '@skyflux/react/utils'
 
 export type PostInputProps = React.PropsWithoutRef<
   JSX.IntrinsicElements['textarea']

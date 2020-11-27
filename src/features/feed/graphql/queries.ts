@@ -2,7 +2,7 @@ import {gql} from '@apollo/client'
 import {
   POST_CONNECTION_FRAGMENT,
   USER_BADGE_FRAGMENT,
-} from 'features/shared/graphql'
+} from '@skyflux/react/features/shared/graphql'
 
 export const FEED = gql`
   query Feed($first: Int!, $after: ID) {

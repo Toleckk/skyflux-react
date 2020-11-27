@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Button, Input} from 'ui'
+import {Button, Input} from '@skyflux/react/ui'
 import {ResponsibleForm} from '../../components'
 import {MyProfile_me} from '../../graphql'
 import {useChangeNicknameForm} from '../../hooks'

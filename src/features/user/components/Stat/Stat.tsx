@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {H1, Text} from 'typography'
-import {Icon, IconProps} from 'ui'
+import {H1, Text} from '@skyflux/react/typography'
+import {Icon, IconProps} from '@skyflux/react/ui'
 import {StyledFilter, StyledUnderline} from './styles'
 
 export type StatProps = {

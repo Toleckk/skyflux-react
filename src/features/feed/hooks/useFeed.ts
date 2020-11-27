@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 import {useAsync} from '@react-hook/async'
 import {useQuery} from '@apollo/client'
-import {useLoader, usePersist} from 'features/shared/hooks'
-import {handleMore} from 'utils'
+import {useLoader, usePersist} from '@skyflux/react/features/shared/hooks'
+import {handleMore} from '@skyflux/react/utils'
 import {FEED, Feed_feed, FEED_UPDATED} from '../graphql'
 
 export type UseFeedResult = {

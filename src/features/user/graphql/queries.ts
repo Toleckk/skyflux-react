@@ -1,5 +1,5 @@
 import {gql} from '@apollo/client'
-import {POST_CONNECTION_FRAGMENT} from 'features/shared/graphql'
+import {POST_CONNECTION_FRAGMENT} from '@skyflux/react/features/shared/graphql'
 import {USER_FRAGMENT} from './fragments'
 
 export const USER = gql`

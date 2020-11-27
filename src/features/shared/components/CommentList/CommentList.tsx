@@ -1,12 +1,12 @@
 import React from 'react'
-import {useInfiniteScroll} from 'utils'
-import {H1} from 'typography'
-import {ListItem, Loader} from 'ui'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
+import {useInfiniteScroll} from '@skyflux/react/utils'
+import {H1} from '@skyflux/react/typography'
+import {ListItem, Loader} from '@skyflux/react/ui'
+import {StyledList} from './styles'
 import {CommentCard} from '..'
 import {CommentConnectionFragment, CommentFragment} from '../../graphql'
-import {StyledList} from './styles'
 
 export type CommentListProps = {
   comments: CommentConnectionFragment

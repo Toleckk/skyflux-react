@@ -3,8 +3,8 @@ import {useMutation} from '@apollo/client'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import {email, password} from 'validation'
-import {CustomFormHookResult, mergeErrors} from 'utils'
+import {email, password} from '@skyflux/react/validation'
+import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
 import {CREATE_USER, CreateUserVariables} from '../graphql'
 
 export type UseRegisterFormResult = CustomFormHookResult<CreateUserVariables>

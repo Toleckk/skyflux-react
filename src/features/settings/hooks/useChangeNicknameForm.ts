@@ -2,9 +2,13 @@ import {useEffect, useMemo} from 'react'
 import {useLazyQuery, useMutation} from '@apollo/client'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {CustomFormHookResult, mergeErrors, useDebouncedFunc} from 'utils'
 import * as yup from 'yup'
-import {nickname} from 'validation'
+import {
+  CustomFormHookResult,
+  mergeErrors,
+  useDebouncedFunc,
+} from '@skyflux/react/utils'
+import {nickname} from '@skyflux/react/validation'
 import {
   DOES_NICKNAME_EXIST,
   UPDATE_NICKNAME,

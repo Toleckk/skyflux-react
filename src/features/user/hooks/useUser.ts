@@ -2,8 +2,8 @@ import {useEffect} from 'react'
 import {useQuery} from '@apollo/client'
 import {useAsync} from '@react-hook/async'
 import {useNetwork} from 'react-use'
-import {handleMore} from 'utils'
-import {useLoader} from 'features/shared/hooks'
+import {handleMore} from '@skyflux/react/utils'
+import {useLoader} from '@skyflux/react/features/shared/hooks'
 import {
   POSTS_UPDATED,
   USER,

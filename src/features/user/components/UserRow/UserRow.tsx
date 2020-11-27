@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar} from 'ui'
-import {useMe} from 'features/shared/hooks'
+import {Avatar} from '@skyflux/react/ui'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 import {BigNickname, SubscribeButton} from '../../components'
 import {User_user} from '../../graphql'
 

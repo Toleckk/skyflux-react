@@ -3,7 +3,7 @@ import {ApolloError, FetchResult, useMutation} from '@apollo/client'
 import {
   AppliedConfirmDialogProps,
   useConfirmDialog,
-} from 'features/shared/hooks'
+} from '@skyflux/react/features/shared/hooks'
 import {DELETE_POST, DeletePost, DeletePostVariables} from '../graphql'
 
 export type UseDeletePostResult = {

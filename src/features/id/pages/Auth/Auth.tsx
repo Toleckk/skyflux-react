@@ -2,9 +2,9 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {useMyTitle} from 'features/shared/hooks'
-import {H1} from 'typography'
-import {Divider, Link} from 'ui'
+import {H1} from '@skyflux/react/typography'
+import {Divider, Link} from '@skyflux/react/ui'
+import {useMyTitle} from '@skyflux/react/features/shared/hooks'
 import {
   AuthForm,
   FieldDescription,

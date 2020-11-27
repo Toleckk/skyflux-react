@@ -1,18 +1,18 @@
 import React from 'react'
 import {useMedia} from 'react-use'
-import {BottomBar, SideBar} from 'ui'
-import {useMe, useModal} from 'features/shared/hooks'
+import {BottomBar, SideBar} from '@skyflux/react/ui'
+import {useMe, useModal} from '@skyflux/react/features/shared/hooks'
+import {
+  StyledChildrenWrapper,
+  StyledContainer,
+  StyledThemeButtonContainer,
+} from './styles'
 import {
   DesktopNav,
   MobileNav,
   NotificationPopup,
   SwitchThemeButton,
 } from '../../components'
-import {
-  StyledChildrenWrapper,
-  StyledContainer,
-  StyledThemeButtonContainer,
-} from './styles'
 
 export const Navigable: React.FC = ({children}) => {
   const {me} = useMe()

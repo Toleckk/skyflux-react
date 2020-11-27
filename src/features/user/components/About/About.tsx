@@ -1,5 +1,5 @@
 import React from 'react'
-import {SecondaryText} from 'typography'
+import {SecondaryText} from '@skyflux/react/typography'
 import {StyledFirstLetter, StyledText} from './styles'
 
 export type AboutProps = {

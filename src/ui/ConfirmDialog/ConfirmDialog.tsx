@@ -1,7 +1,7 @@
 import React from 'react'
-import {Text} from 'typography'
-import {Icon, IconProps, Modal} from '..'
+import {Text} from '@skyflux/react/typography'
 import {StyledButton, StyledContainer} from './styles'
+import {Icon, IconProps, Modal} from '..'
 
 export type ConfirmDialogProps = {
   text: string

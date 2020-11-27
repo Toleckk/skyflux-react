@@ -1,10 +1,10 @@
 import React, {useMemo} from 'react'
-import {useMediaScreens} from 'features/shared/hooks'
-import {Loader} from 'ui'
-import {useInfiniteScroll} from 'utils'
+import {useMediaScreens} from '@skyflux/react/features/shared/hooks'
+import {Loader} from '@skyflux/react/ui'
+import {useInfiniteScroll} from '@skyflux/react/utils'
+import {StyledList, StyledLoaderContainer} from './styles'
 import {UserCard} from '../UserCard'
 import {UserBadgeConnectionFragment} from '../../graphql'
-import {StyledList, StyledLoaderContainer} from './styles'
 
 export type UserListProps = {
   users: UserBadgeConnectionFragment

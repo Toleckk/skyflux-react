@@ -1,8 +1,8 @@
 import React, {useCallback, useRef} from 'react'
 import {useBooleanState} from 'use-boolean-state'
 import {useLatest} from 'react-use'
-import {ConfirmDialog, IconProps} from 'ui'
-import {Promisify, usePromise} from 'utils'
+import {ConfirmDialog, IconProps} from '@skyflux/react/ui'
+import {Promisify, usePromise} from '@skyflux/react/utils'
 
 type PromisifiedFn<T extends (...args: any[]) => any> = (
   ...args: Parameters<T>

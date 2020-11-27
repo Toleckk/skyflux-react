@@ -1,6 +1,6 @@
 import React from 'react'
-import {Icon} from '../Icon'
 import {StyledContainer} from './styles'
+import {Icon} from '../Icon'
 
 export type AvatarProps = {
   src?: string | null

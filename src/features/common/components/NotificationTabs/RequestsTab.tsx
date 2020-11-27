@@ -1,9 +1,9 @@
 import React, {MouseEventHandler} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
-import {H2} from 'typography'
-import {Icon} from 'ui'
-import {useMe} from 'features/shared/hooks'
+import {H2} from '@skyflux/react/typography'
+import {Icon} from '@skyflux/react/ui'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 import {StyledDivider, StyledTab} from './styles'
 
 export type RequestsTabProps = {

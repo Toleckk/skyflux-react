@@ -2,9 +2,9 @@ import React from 'react'
 import useBooleanState from 'use-boolean-state'
 import Lightbox from 'react-image-lightbox'
 import {Box} from 'reflexbox/styled-components'
-import {Avatar, Icon} from 'ui'
-import {User_user} from '../../graphql'
+import {Avatar, Icon} from '@skyflux/react/ui'
 import {StyledAbsoluteLens} from './styles'
+import {User_user} from '../../graphql'
 
 export type UserAvatarProps = {
   user: User_user

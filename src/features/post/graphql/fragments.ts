@@ -1,5 +1,5 @@
 import {gql} from '@apollo/client'
-import {COMMENT_FRAGMENT} from 'features/shared/graphql'
+import {COMMENT_FRAGMENT} from '@skyflux/react/features/shared/graphql'
 
 export const DELETED_COMMENT_FRAGMENT = gql`
   fragment DeletedCommentFragment on DeletedComment {

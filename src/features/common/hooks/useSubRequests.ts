@@ -1,7 +1,7 @@
 import {useCallback, useEffect} from 'react'
 import {ApolloQueryResult, useQuery} from '@apollo/client'
-import {handleMore} from 'utils'
-import {useMe} from 'features/shared/hooks'
+import {handleMore} from '@skyflux/react/utils'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 import {
   SUB_REQUESTS,
   SubRequests,

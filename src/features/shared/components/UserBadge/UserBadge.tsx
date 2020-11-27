@@ -1,9 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Avatar} from 'ui'
-import {UserBadgeFragment} from '../../graphql'
+import {Avatar} from '@skyflux/react/ui'
 import {StyledNickname} from './styles'
+import {UserBadgeFragment} from '../../graphql'
 
 export type UserBadgeProps = {
   user: UserBadgeFragment

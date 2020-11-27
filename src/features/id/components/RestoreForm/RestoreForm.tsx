@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Input} from 'ui'
+import {Input} from '@skyflux/react/ui'
 import {FieldDescription, SubmitButton} from '..'
 import {useRestoreForm} from '../../hooks'
 

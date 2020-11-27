@@ -1,8 +1,8 @@
 import React from 'react'
 import {Translation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {H2} from 'typography'
-import {Icon} from 'ui'
+import {H2} from '@skyflux/react/typography'
+import {Icon} from '@skyflux/react/ui'
 import {StyledDivider, StyledTab} from './styles'
 
 export type EventsTabProps = {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Loader} from 'ui'
+import {Loader} from '@skyflux/react/ui'
 import {useEvents} from '../../hooks'
 import {EventList} from '..'
 

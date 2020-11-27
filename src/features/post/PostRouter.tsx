@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route} from 'react-router'
-import {useModal} from 'features/shared/hooks'
+import {useModal} from '@skyflux/react/features/shared/hooks'
 import {Display, PostModal} from './pages'
 
 export const PostRouter: React.FC = () => {

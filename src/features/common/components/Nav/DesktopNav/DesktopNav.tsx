@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react'
 import useBooleanState from 'use-boolean-state'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {useOnClickOutside} from 'utils'
-import {useMe, useModal} from 'features/shared/hooks'
-import {AuthForm, NotificationTabs} from '../..'
+import {useOnClickOutside} from '@skyflux/react/utils'
+import {useMe, useModal} from '@skyflux/react/features/shared/hooks'
 import {Authorized} from './Authorized'
 import {Guest} from './Guest'
+import {AuthForm, NotificationTabs} from '../..'
 
 export const DesktopNav: React.FC = () => {
   const {me} = useMe()

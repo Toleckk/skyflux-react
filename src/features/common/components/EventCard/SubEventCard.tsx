@@ -1,11 +1,11 @@
 import React from 'react'
 import {Translation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Text} from 'typography'
-import {Date} from 'ui'
-import {UserBadge} from 'features/shared/components/UserBadge'
-import {EventFragment, SubEventBodyFragment} from '../../graphql'
+import {Text} from '@skyflux/react/typography'
+import {Date} from '@skyflux/react/ui'
+import {UserBadge} from '@skyflux/react/features/shared/components/UserBadge'
 import {StyledSubEventContainer} from './styles'
+import {EventFragment, SubEventBodyFragment} from '../../graphql'
 
 export type SubEventCardProps = {
   event: EventFragment & {subj: SubEventBodyFragment}

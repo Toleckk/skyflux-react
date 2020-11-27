@@ -1,8 +1,7 @@
 import React, {forwardRef, memo, useMemo, useState} from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {v4} from 'uuid'
-import {useFormEnter} from 'utils'
-import {Icon, Loader} from '..'
+import {useFormEnter} from '@skyflux/react/utils'
 import {
   StyledAside,
   StyledError,
@@ -10,6 +9,7 @@ import {
   StyledInput,
   StyledLegend,
 } from './styles'
+import {Icon, Loader} from '..'
 
 export type InputProps = (JSX.IntrinsicElements['input'] &
   JSX.IntrinsicElements['textarea']) & {

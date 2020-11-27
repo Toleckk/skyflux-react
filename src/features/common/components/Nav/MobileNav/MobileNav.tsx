@@ -1,11 +1,11 @@
 import React from 'react'
 import useBooleanState from 'use-boolean-state'
-import {Modal} from 'ui'
-import {useMe, useModal} from 'features/shared/hooks'
-import {AuthForm, MobileMenu, NotificationTabs} from '../..'
+import {Modal} from '@skyflux/react/ui'
+import {useMe, useModal} from '@skyflux/react/features/shared/hooks'
 import {Authorized} from './Authorized'
 import {Guest} from './Guest'
 import {StyledAuthFormContainer} from './styles'
+import {AuthForm, MobileMenu, NotificationTabs} from '../..'
 
 export const MOBILE_NAV_HEIGHT = '3rem'
 

@@ -4,12 +4,12 @@ import {Translation} from 'react-i18next'
 import {useParams} from 'react-router'
 import {useNetwork} from 'react-use'
 import {useInView} from 'react-intersection-observer'
-import {Divider, Loader} from 'ui'
-import {useMe, useMyTitle} from 'features/shared/hooks'
-import {PostForm} from 'features/shared/components'
+import {Divider, Loader} from '@skyflux/react/ui'
+import {useMe, useMyTitle} from '@skyflux/react/features/shared/hooks'
+import {PostForm} from '@skyflux/react/features/shared/components'
+import {StyledHeader, StyledStaticDivider} from './styles'
 import {useUser} from '../../hooks'
 import {PostsDisplay, PrivateScreen, UserInfo, UserRow} from '../../components'
-import {StyledHeader, StyledStaticDivider} from './styles'
 
 export const Wall = memo(() => {
   const {nickname} = useParams() as {nickname: string}

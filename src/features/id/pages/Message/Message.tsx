@@ -1,9 +1,9 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {useMyTitle} from 'features/shared/hooks'
-import {H1, Text} from 'typography'
-import {Divider} from 'ui'
+import {useMyTitle} from '@skyflux/react/features/shared/hooks'
+import {H1, Text} from '@skyflux/react/typography'
+import {Divider} from '@skyflux/react/ui'
 import {PageDescription} from '../../components'
 
 export const Message: React.FC = () => {

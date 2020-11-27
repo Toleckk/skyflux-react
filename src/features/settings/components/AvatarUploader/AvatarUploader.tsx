@@ -8,7 +8,7 @@ import React, {
 import {useDropzone} from 'react-dropzone'
 import {Box} from 'reflexbox/styled-components'
 import useMergedRef from '@react-hook/merged-ref'
-import {Avatar, Icon} from 'ui'
+import {Avatar, Icon} from '@skyflux/react/ui'
 import {
   StyledContainer,
   StyledDeleteButton,

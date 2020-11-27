@@ -1,7 +1,7 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {MOBILE_NAV_HEIGHT} from '../MobileNav'
 import {StyledItem} from './StyledItem'
+import {MOBILE_NAV_HEIGHT} from '../MobileNav'
 
 export const StyledList: React.FC = ({children}) => (
   <Flex

@@ -1,11 +1,11 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Text} from 'typography'
-import {Divider, Input} from 'ui'
+import {Text} from '@skyflux/react/typography'
+import {Divider, Input} from '@skyflux/react/ui'
+import {StyledResponsibleGrid} from './styles'
 import {SubmitButton} from '../SubmitButton'
 import {useRegisterForm} from '../../hooks'
-import {StyledResponsibleGrid} from './styles'
 
 export const RegisterForm: React.FC = () => {
   const {t} = useTranslation('id')

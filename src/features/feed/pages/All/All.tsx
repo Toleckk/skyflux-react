@@ -1,12 +1,16 @@
 import React, {memo} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Trans, useTranslation} from 'react-i18next'
-import {PostForm, PostList, UserList} from 'features/shared/components'
-import {useMyTitle} from 'features/shared/hooks'
-import {H1, Text} from 'typography'
-import {Divider, Link, Loader} from 'ui'
-import {useFeed, useSuggestions} from '../../hooks'
+import {
+  PostForm,
+  PostList,
+  UserList,
+} from '@skyflux/react/features/shared/components'
+import {useMyTitle} from '@skyflux/react/features/shared/hooks'
+import {H1, Text} from '@skyflux/react/typography'
+import {Divider, Link, Loader} from '@skyflux/react/ui'
 import {StyledContainer} from './styles'
+import {useFeed, useSuggestions} from '../../hooks'
 
 export const All = memo(() => {
   const {t} = useTranslation('feed')

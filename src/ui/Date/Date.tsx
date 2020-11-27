@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react'
-import {Tip} from 'typography'
+import {Tip} from '@skyflux/react/typography'
 
 export type DateProps = {
   date: string | Date

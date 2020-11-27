@@ -3,7 +3,7 @@ import {FetchResult, useMutation} from '@apollo/client'
 import {
   AppliedConfirmDialogProps,
   useConfirmDialog,
-} from 'features/shared/hooks'
+} from '@skyflux/react/features/shared/hooks'
 import {
   MAKE_ACCOUNT_PRIVATE,
   MAKE_ACCOUNT_PUBLIC,

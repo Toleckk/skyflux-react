@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {useParams} from 'react-router'
-import {useMyTitle} from 'features/shared/hooks'
+import {useMyTitle} from '@skyflux/react/features/shared/hooks'
 import {Post} from '../../components'
 
 export const Display: React.FC = () => {

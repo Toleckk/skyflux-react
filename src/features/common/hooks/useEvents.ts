@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 import {useQuery} from '@apollo/client'
 import {useAsync} from '@react-hook/async'
-import {handleMore} from 'utils'
-import {useLoader, usePersist} from 'features/shared/hooks'
+import {handleMore} from '@skyflux/react/utils'
+import {useLoader, usePersist} from '@skyflux/react/features/shared/hooks'
 import {EVENT_UPDATED, EVENTS, Events_events} from '../graphql'
 
 export type UseEventsResult = {

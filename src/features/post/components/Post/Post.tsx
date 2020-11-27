@@ -1,8 +1,8 @@
 import React, {Suspense} from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Divider, Loader} from 'ui'
-import {CommentList, PostCard} from 'features/shared/components'
+import {Divider, Loader} from '@skyflux/react/ui'
+import {CommentList, PostCard} from '@skyflux/react/features/shared/components'
 import {CommentForm} from '..'
 import {useDeleteComment, usePost} from '../../hooks'
 

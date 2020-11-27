@@ -2,10 +2,10 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useMemo} from 'react'
 import * as yup from 'yup'
-import {login, password} from 'validation'
-import {CustomFormHookResult, mergeErrors} from 'utils'
-import {CreateSessionVariables} from '../graphql'
+import {login, password} from '@skyflux/react/validation'
+import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
 import {useLogin} from './useLogin'
+import {CreateSessionVariables} from '../graphql'
 
 export type UseAuthFormResult = CustomFormHookResult<CreateSessionVariables>
 

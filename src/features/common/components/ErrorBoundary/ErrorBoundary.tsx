@@ -1,15 +1,10 @@
 import React, {ErrorInfo, ReactNode} from 'react'
-import PropTypes from 'prop-types'
 import {Translation} from 'react-i18next'
 import {ThemeContext} from 'styled-components'
 import {Flex} from 'reflexbox/styled-components'
-import {H1} from 'typography'
+import {H1} from '@skyflux/react/typography'
 
 export class ErrorBoundary extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-
   static contextType = ThemeContext
 
   state = {

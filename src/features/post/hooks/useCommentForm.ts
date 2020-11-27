@@ -3,8 +3,8 @@ import {useMutation} from '@apollo/client'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import {text} from 'validation'
-import {CustomFormHookResult, mergeErrors} from 'utils'
+import {text} from '@skyflux/react/validation'
+import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
 import {CREATE_COMMENT, CreateCommentVariables} from '../graphql'
 
 const schema = yup.object().shape({text: text.required()})

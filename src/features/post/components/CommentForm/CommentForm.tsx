@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
-import {TEXT_MAX_LENGTH} from 'validation'
-import {Icon, Input} from 'ui'
+import {TEXT_MAX_LENGTH} from '@skyflux/react/validation'
+import {Icon, Input} from '@skyflux/react/ui'
 import {useCommentForm} from '../../hooks'
 
 export type CommentFormProps = {

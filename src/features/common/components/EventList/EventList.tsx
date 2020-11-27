@@ -1,10 +1,10 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {useInfiniteScroll} from 'utils'
-import {ListItem, Loader} from 'ui'
+import {useInfiniteScroll} from '@skyflux/react/utils'
+import {ListItem, Loader} from '@skyflux/react/ui'
+import {StyledList} from './styles'
 import {EventCard} from '../EventCard'
 import {EventConnectionFragment} from '../../graphql'
-import {StyledList} from './styles'
 
 export type EventListProps = {
   events: EventConnectionFragment

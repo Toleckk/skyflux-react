@@ -1,14 +1,14 @@
 import React, {Suspense} from 'react'
-import {Loader} from 'ui'
+import {Loader} from '@skyflux/react/ui'
+import {CommentEventCard} from './CommentEventCard'
+import {SubEventCard} from './SubEventCard'
+import {LikeEventCard} from './LikeEventCard'
 import {
   CommentEventBodyFragment,
   EventFragment,
   LikeEventBodyFragment,
   SubEventBodyFragment,
 } from '../../graphql'
-import {CommentEventCard} from './CommentEventCard'
-import {SubEventCard} from './SubEventCard'
-import {LikeEventCard} from './LikeEventCard'
 
 export type EventCardProps = {
   event: EventFragment

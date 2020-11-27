@@ -2,16 +2,16 @@ import React, {Suspense} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
 import {Translation} from 'react-i18next'
-import {H2} from 'typography'
-import {Avatar, Icon, Loader} from 'ui'
-import {useMe, useModal} from 'features/shared/hooks'
-import {SwitchThemeButton} from '../../components'
-import {useLogout} from '../../hooks'
+import {H2} from '@skyflux/react/typography'
+import {Avatar, Icon, Loader} from '@skyflux/react/ui'
+import {useMe, useModal} from '@skyflux/react/features/shared/hooks'
 import {
   StyledBigNickname,
   StyledRelativeContainer,
   StyledThemeButtonContainer,
 } from './styles'
+import {SwitchThemeButton} from '../../components'
+import {useLogout} from '../../hooks'
 
 export type MobileMenuProps = {
   onItemClick?: () => unknown

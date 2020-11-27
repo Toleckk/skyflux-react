@@ -1,5 +1,5 @@
 import React from 'react'
-import {Icon} from 'ui'
+import {Icon} from '@skyflux/react/ui'
 import {StyledContainer} from './styles'
 
 export const PrivateScreen: React.FC = () => (

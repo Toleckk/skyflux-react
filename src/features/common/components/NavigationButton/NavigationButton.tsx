@@ -1,6 +1,6 @@
 import React from 'react'
 import {useLocation} from 'react-router'
-import {IconProps} from 'ui'
+import {IconProps} from '@skyflux/react/ui'
 import {StyledIcon, StyledLink} from './styles'
 
 export type NavigationButtonProps = React.PropsWithoutRef<

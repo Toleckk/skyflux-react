@@ -1,5 +1,5 @@
 import React from 'react'
-import {Loader} from 'ui'
+import {Loader} from '@skyflux/react/ui'
 import {SubRequestList} from '../../components'
 import {useSubRequests} from '../../hooks'
 

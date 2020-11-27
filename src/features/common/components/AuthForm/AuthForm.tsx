@@ -2,8 +2,8 @@ import React, {Suspense} from 'react'
 import {Translation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Link as RouterLink} from 'react-router-dom'
-import {Button, Input, Link, Loader} from 'ui'
-import {useAuthForm} from 'features/shared/hooks'
+import {Button, Input, Link, Loader} from '@skyflux/react/ui'
+import {useAuthForm} from '@skyflux/react/features/shared/hooks'
 
 export const AuthForm: React.FC = () => {
   const {register, submit, errors} = useAuthForm()

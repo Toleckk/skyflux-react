@@ -3,14 +3,14 @@ import {useForm} from 'react-hook-form'
 import {useMutation} from '@apollo/client'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import {avatar, description} from 'validation'
-import {CustomFormHookResult, mergeErrors} from 'utils'
+import {avatar, description} from '@skyflux/react/validation'
+import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
+import {useUploadAvatar, UseUploadAvatarResult} from './useUploadAvatar'
 import {
   MyProfile_me,
   UPDATE_PROFILE_INFO,
   UpdateProfileInfoVariables,
 } from '../graphql'
-import {useUploadAvatar, UseUploadAvatarResult} from './useUploadAvatar'
 
 export type A = CustomFormHookResult<UpdateProfileInfoVariables>
 

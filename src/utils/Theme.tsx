@@ -1,8 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import {areObjectsSameShape} from 'deep-shape-equals'
 import {ThemeProvider} from 'styled-components'
-import {Theme as ThemeObjectType} from 'themes'
-import {dark} from '../themes'
+import {Theme as ThemeObjectType, dark} from '@skyflux/react/themes'
 
 export type TTheme = ThemeObjectType & {
   setTheme: React.Dispatch<React.SetStateAction<ThemeObjectType>>

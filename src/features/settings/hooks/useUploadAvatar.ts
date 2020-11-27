@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react'
 import {useAsyncFn} from 'react-use'
-import {CloudinaryResponse, uploadFileToCloudinary} from 'utils'
+import {CloudinaryResponse, uploadFileToCloudinary} from '@skyflux/react/utils'
 
 export type UseUploadAvatarResult = {
   loading: boolean

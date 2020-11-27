@@ -1,12 +1,12 @@
 import React, {Suspense} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {Translation} from 'react-i18next'
-import {Text} from 'typography'
-import {Date, Link, Loader} from 'ui'
-import {UserBadge} from 'features/shared/components'
-import {useModal} from 'features/shared/hooks'
-import {EventFragment, LikeEventBodyFragment} from '../../graphql'
+import {Text} from '@skyflux/react/typography'
+import {Date, Link, Loader} from '@skyflux/react/ui'
+import {UserBadge} from '@skyflux/react/features/shared/components'
+import {useModal} from '@skyflux/react/features/shared/hooks'
 import {StyledEllipsisContainer, StyledSubEventContainer} from './styles'
+import {EventFragment, LikeEventBodyFragment} from '../../graphql'
 
 export type LikeEventCardProps = {
   event: EventFragment & {subj: LikeEventBodyFragment}

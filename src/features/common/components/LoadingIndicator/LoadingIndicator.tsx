@@ -1,6 +1,6 @@
 import React from 'react'
-import {Loader} from 'ui'
-import {useLoader} from 'features/shared/hooks'
+import {Loader} from '@skyflux/react/ui'
+import {useLoader} from '@skyflux/react/features/shared/hooks'
 import {StyledContainer, StyledLoaderContainer} from './styles'
 
 export const LoadingIndicator: React.FC = () => {

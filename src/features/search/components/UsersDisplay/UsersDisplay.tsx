@@ -1,10 +1,10 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {H1} from 'typography'
-import {Link} from 'ui'
-import {UserList} from 'features/shared/components'
-import {UserBadgeConnectionFragment} from 'features/shared/graphql'
+import {H1} from '@skyflux/react/typography'
+import {Link} from '@skyflux/react/ui'
+import {UserList} from '@skyflux/react/features/shared/components'
+import {UserBadgeConnectionFragment} from '@skyflux/react/features/shared/graphql'
 
 export type UsersDisplayProps = {
   users: UserBadgeConnectionFragment

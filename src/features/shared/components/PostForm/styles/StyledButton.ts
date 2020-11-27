@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Button} from 'ui'
+import {Button} from '@skyflux/react/ui'
 
 export const StyledButton = styled(Button)`
   position: absolute;

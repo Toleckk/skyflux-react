@@ -25,15 +25,19 @@
         "patterns": [
           "reflexbox/*",
           "!reflexbox/styled-components",
-          "**/../user/**",
           "**/../common/**",
-          "**/../shared/**",
           "**/../feed/**",
           "**/../id/**",
           "**/../post/**",
           "**/../search/**",
           "**/../settings/**",
-          "**/../ui"
+          "**/../shared/**",
+          "**/../user/**",
+          "**/../ui",
+          "**/../typography",
+          "**/../validation",
+          "**/../themes",
+          "**/../utils"
         ]
       }
     ],
@@ -45,13 +49,12 @@
           "reflexbox/styled-components",
           "@testing-library/jest-dom",
           "react-datepicker/dist/react-datepicker.css",
-          "models/*",
           "@apollo/client/link/context",
           "@apollo/client/utilities",
           "@apollo/client/link/ws",
-          "**/features/*",
-          "**/common/*",
-          "**/shared/*",
+          "@skyflux/react/features/*",
+          "@skyflux/react/features/common/*",
+          "@skyflux/react/features/shared/*",
           "react-image-lightbox/style.css",
           "react-toastify/dist/ReactToastify.min.css"
         ]
@@ -62,7 +65,23 @@
     "import/no-duplicates": "error",
     "import/newline-after-import": "error",
     "import/no-default-export": "error",
-    "import/order": "error"
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "sibling",
+          "parent",
+          "index",
+          "object"
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "import/internal-regex": "^@skyflux/react"
   },
   "plugins": [
     "import",

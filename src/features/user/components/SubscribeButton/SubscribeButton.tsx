@@ -1,6 +1,6 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
-import {Button} from 'ui'
+import {Button} from '@skyflux/react/ui'
 import {useToggleSubscribe} from '../../hooks'
 import {User_user} from '../../graphql'
 

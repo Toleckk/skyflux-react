@@ -2,7 +2,7 @@ import {gql} from '@apollo/client'
 import {
   COMMENT_CONNECTION_FRAGMENT,
   POST_FRAGMENT,
-} from 'features/shared/graphql'
+} from '@skyflux/react/features/shared/graphql'
 
 export const POST = gql`
     query Post($_id: ID!, $afterComment: ID, $firstComments: Int!) {

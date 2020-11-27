@@ -1,10 +1,10 @@
 import React from 'react'
 import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {H1} from 'typography'
-import {Link} from 'ui'
-import {PostList} from 'features/shared/components'
-import {PostConnectionFragment} from 'features/shared/graphql'
+import {H1} from '@skyflux/react/typography'
+import {Link} from '@skyflux/react/ui'
+import {PostList} from '@skyflux/react/features/shared/components'
+import {PostConnectionFragment} from '@skyflux/react/features/shared/graphql'
 
 export type PostsDisplayProps = {
   posts: PostConnectionFragment

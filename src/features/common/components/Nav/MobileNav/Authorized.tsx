@@ -1,8 +1,8 @@
 import React from 'react'
-import {Avatar} from 'ui'
-import {useMe} from 'features/shared/hooks'
-import {NavigationButton} from '../../../components'
+import {Avatar} from '@skyflux/react/ui'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 import {StyledList} from './styles'
+import {NavigationButton} from '../../../components'
 
 export type AuthorizedProps = {
   onMenuClick?: () => unknown

@@ -1,16 +1,16 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Text} from 'typography'
-import {Date, Icon} from 'ui'
-import {useMe} from 'features/shared/hooks'
-import {User_user} from '../../graphql'
-import {About, BigNickname, Stat, UserAvatar} from '..'
+import {Text} from '@skyflux/react/typography'
+import {Date, Icon} from '@skyflux/react/ui'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 import {
   StyledAvatarContainer,
   StyledRelativeContainer,
   StyledSubscribeButton,
 } from './styles'
+import {User_user} from '../../graphql'
+import {About, BigNickname, Stat, UserAvatar} from '..'
 
 export type UserInfoProps = {
   user: User_user

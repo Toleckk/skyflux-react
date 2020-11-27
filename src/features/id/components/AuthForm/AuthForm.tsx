@@ -1,8 +1,8 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Input} from 'ui'
-import {useAuthForm} from 'features/shared/hooks'
+import {Input} from '@skyflux/react/ui'
+import {useAuthForm} from '@skyflux/react/features/shared/hooks'
 import {SubmitButton} from '../SubmitButton'
 
 export const AuthForm: React.FC = () => {

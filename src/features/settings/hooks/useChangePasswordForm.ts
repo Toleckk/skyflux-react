@@ -2,9 +2,9 @@ import {useMemo} from 'react'
 import {useMutation} from '@apollo/client'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {CustomFormHookResult, mergeErrors} from 'utils'
 import * as yup from 'yup'
-import {password} from 'validation'
+import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
+import {password} from '@skyflux/react/validation'
 import {UPDATE_PASSWORD, UpdatePasswordVariables} from '../graphql'
 
 export type UseChangePasswordFormResult = CustomFormHookResult<UpdatePasswordVariables>

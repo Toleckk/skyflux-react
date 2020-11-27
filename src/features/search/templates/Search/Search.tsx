@@ -3,9 +3,9 @@ import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {useHistory, useLocation} from 'react-router'
 import {parse, stringify} from 'query-string'
-import {useMyTitle} from 'features/shared/hooks'
-import {H1} from 'typography'
-import {useDebouncedEffect} from 'utils'
+import {useMyTitle} from '@skyflux/react/features/shared/hooks'
+import {H1} from '@skyflux/react/typography'
+import {useDebouncedEffect} from '@skyflux/react/utils'
 import {SearchInput, SearchLoader} from '../../components'
 
 export type SearchProps = {

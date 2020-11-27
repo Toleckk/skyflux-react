@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {StyledItem} from './StyledItem'
 
 export const StyledList: React.FC = ({children}) => (
@@ -9,7 +8,3 @@ export const StyledList: React.FC = ({children}) => (
     ))}
   </ul>
 )
-
-StyledList.propTypes = {
-  children: PropTypes.node,
-}

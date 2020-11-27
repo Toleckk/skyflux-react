@@ -1,5 +1,5 @@
 import React from 'react'
-import {CommentCard} from 'features/shared/components/CommentCard'
+import {CommentCard} from '@skyflux/react/features/shared/components/CommentCard'
 import {CommentEventBodyFragment, EventFragment} from '../../graphql'
 
 export type CommentEventCardProps = {

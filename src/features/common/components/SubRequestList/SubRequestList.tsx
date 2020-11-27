@@ -1,9 +1,9 @@
 import React from 'react'
-import {Loader} from 'ui'
-import {useInfiniteScroll} from 'utils'
+import {Loader} from '@skyflux/react/ui'
+import {useInfiniteScroll} from '@skyflux/react/utils'
+import {StyledList, StyledLoaderContainer} from './styles'
 import {SubRequestCard} from '../SubRequestCard'
 import {SubRequestConnectionFragment} from '../../graphql'
-import {StyledList, StyledLoaderContainer} from './styles'
 
 export type SubRequestListProps = {
   subs: SubRequestConnectionFragment

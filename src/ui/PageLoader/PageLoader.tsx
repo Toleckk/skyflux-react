@@ -1,6 +1,6 @@
 import React from 'react'
-import {Loader} from '../Loader'
 import {StyledContainer} from './styles'
+import {Loader} from '../Loader'
 
 export const PageLoader: React.FC = () => (
   <StyledContainer>

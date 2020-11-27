@@ -1,6 +1,6 @@
 import {useCallback, useEffect} from 'react'
 import {ApolloQueryResult, useQuery} from '@apollo/client'
-import {handleMore} from 'utils'
+import {handleMore} from '@skyflux/react/utils'
 import {
   COMMENT_UPDATED,
   LIKE_UPDATED,

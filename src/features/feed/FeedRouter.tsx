@@ -1,6 +1,6 @@
 import React, {memo} from 'react'
-import {PrivateRoute} from 'utils'
 import {Switch} from 'react-router'
+import {PrivateRoute} from '@skyflux/react/utils'
 import {All} from './pages'
 
 export const FeedRouter: React.FC = memo(() => {

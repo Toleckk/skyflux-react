@@ -1,6 +1,6 @@
 import React, {forwardRef, Suspense} from 'react'
 import {Flex} from 'reflexbox/styled-components'
-import {ListItem, Loader} from 'ui'
+import {ListItem, Loader} from '@skyflux/react/ui'
 import {PublicationCard} from '../PublicationCard'
 
 export type PublicationListProps = {

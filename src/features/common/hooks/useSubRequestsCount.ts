@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {useQuery} from '@apollo/client'
-import {useMe} from 'features/shared/hooks'
+import {useMe} from '@skyflux/react/features/shared/hooks'
 import {SUB_REQUESTS_COUNT, SUBS_UPDATED} from '../graphql'
 
 export type UseSubRequestsCountResult = {

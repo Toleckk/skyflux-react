@@ -1,7 +1,7 @@
 import React from 'react'
-import {Avatar} from 'ui'
-import {NavigationButton} from '../../../components'
+import {Avatar} from '@skyflux/react/ui'
 import {StyledList} from './styles'
+import {NavigationButton} from '../../../components'
 
 export type GuestProps = {
   onAuthClick?: () => unknown

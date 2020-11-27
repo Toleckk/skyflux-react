@@ -1,5 +1,5 @@
 import React, {ComponentPropsWithoutRef} from 'react'
-import {Icon} from 'ui'
+import {Icon} from '@skyflux/react/ui'
 import {
   StyledIconContainer,
   StyledInput,

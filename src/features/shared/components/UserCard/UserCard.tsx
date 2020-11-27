@@ -1,9 +1,9 @@
 import React, {useMemo} from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {Link} from 'react-router-dom'
-import {Avatar} from 'ui'
-import {UserBadgeFragment} from '../../graphql'
+import {Avatar} from '@skyflux/react/ui'
 import {StyledContainer, StyledNickname} from './styles'
+import {UserBadgeFragment} from '../../graphql'
 
 export type UserCardProps = {
   user: UserBadgeFragment

@@ -1,5 +1,5 @@
 import styled, {keyframes} from 'styled-components'
-import {Icon} from 'ui'
+import {Icon} from '@skyflux/react/ui'
 
 const animation = keyframes`
   50% {

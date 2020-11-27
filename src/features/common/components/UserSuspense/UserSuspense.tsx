@@ -1,9 +1,9 @@
 import React from 'react'
 import {useQuery} from '@apollo/client'
 import {useNetwork} from 'react-use'
-import {PageLoader} from 'ui'
-import {ME} from 'features/shared/graphql'
-import {usePersist} from 'features/shared/hooks'
+import {PageLoader} from '@skyflux/react/ui'
+import {ME} from '@skyflux/react/features/shared/graphql'
+import {usePersist} from '@skyflux/react/features/shared/hooks'
 
 export const UserSuspense: React.FC = ({children}) => {
   usePersist(ME)

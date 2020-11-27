@@ -1,6 +1,6 @@
 import React, {memo} from 'react'
 import {useTranslation} from 'react-i18next'
-import {PostList} from 'features/shared/components'
+import {PostList} from '@skyflux/react/features/shared/components'
 import {User_user_posts} from '../../graphql'
 import {useDeletePost} from '../../hooks'
 

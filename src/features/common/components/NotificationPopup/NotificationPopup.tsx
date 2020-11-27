@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {toast, ToastContainer} from 'react-toastify'
 import {useLatest} from 'react-use'
 import {useSubscription} from '@apollo/client'
-import {useMediaScreens, useModal} from 'features/shared/hooks'
+import {useMediaScreens, useModal} from '@skyflux/react/features/shared/hooks'
 import {EVENT_UPDATED} from '../../graphql'
 import {EventCard} from '..'
 

@@ -3,8 +3,8 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useMemo} from 'react'
 import * as yup from 'yup'
-import {login} from 'validation'
-import {CustomFormHookResult, mergeErrors} from 'utils'
+import {login} from '@skyflux/react/validation'
+import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
 import {CREATE_RESET_REQUEST, CreateResetRequestVariables} from '../graphql'
 
 export type UseRestoreFormResult = CustomFormHookResult<CreateResetRequestVariables>

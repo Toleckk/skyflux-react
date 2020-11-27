@@ -1,11 +1,11 @@
 import React from 'react'
 import {Controller} from 'react-hook-form'
 import {useBooleanState} from 'use-boolean-state'
-import {TEXT_MAX_LENGTH} from 'validation'
-import {Icon} from 'ui'
+import {TEXT_MAX_LENGTH} from '@skyflux/react/validation'
+import {Icon} from '@skyflux/react/ui'
+import {StyledButton, StyledContainer} from './styles'
 import {PostInput} from '../index'
 import {usePostForm} from '../../hooks'
-import {StyledButton, StyledContainer} from './styles'
 
 export type PostFormProps = {
   placeholder: string

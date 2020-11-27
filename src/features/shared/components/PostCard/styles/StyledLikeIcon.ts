@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Icon} from 'ui'
+import {Icon} from '@skyflux/react/ui'
 
 export type StyledLikeIconProps = {
   $isActive?: boolean

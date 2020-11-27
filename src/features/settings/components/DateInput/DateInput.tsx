@@ -1,6 +1,6 @@
 import React from 'react'
 import DatePicker, {ReactDatePickerProps} from 'react-datepicker'
-import {Input, InputProps} from 'ui'
+import {Input, InputProps} from '@skyflux/react/ui'
 import {StyledContainer} from './styles'
 
 export type DateInputProps = {

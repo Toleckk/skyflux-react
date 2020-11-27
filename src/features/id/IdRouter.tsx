@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch} from 'react-router-dom'
-import {PublicRoute} from 'utils'
+import {PublicRoute} from '@skyflux/react/utils'
 import {Auth, Message, Register, Reset, Restore} from './pages'
 import {Landing} from './templates'
 

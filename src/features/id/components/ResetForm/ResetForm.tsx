@@ -2,7 +2,7 @@ import React from 'react'
 import {useParams} from 'react-router'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {Input} from 'ui'
+import {Input} from '@skyflux/react/ui'
 import {SubmitButton} from '../SubmitButton'
 import {useResetForm} from '../../hooks'
 

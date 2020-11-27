@@ -1,5 +1,5 @@
 import {gql} from '@apollo/client'
-import {POST_FRAGMENT} from 'features/shared/graphql'
+import {POST_FRAGMENT} from '@skyflux/react/features/shared/graphql'
 
 export const FEED_UPDATED = gql`
   subscription FeedUpdated {

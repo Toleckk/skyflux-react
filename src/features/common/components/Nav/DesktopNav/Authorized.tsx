@@ -1,9 +1,9 @@
 import React from 'react'
-import {Avatar} from 'ui'
-import {useMe, useModal} from 'features/shared/hooks'
+import {Avatar} from '@skyflux/react/ui'
+import {useMe, useModal} from '@skyflux/react/features/shared/hooks'
+import {StyledList} from './styles'
 import {NavigationButton} from '../../../components'
 import {useLogout} from '../../../hooks'
-import {StyledList} from './styles'
 
 export const Authorized: React.FC = () => {
   const {me} = useMe()

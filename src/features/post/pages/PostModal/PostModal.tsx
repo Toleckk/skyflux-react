@@ -1,7 +1,7 @@
 import React from 'react'
-import {Modal} from 'ui'
-import {Post} from '../../components'
+import {Modal} from '@skyflux/react/ui'
 import {StyledContainer} from './styles'
+import {Post} from '../../components'
 
 export type PostModalProps = {
   _id?: string | null

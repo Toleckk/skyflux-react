@@ -1,11 +1,11 @@
 import React, {Suspense, useState} from 'react'
 import SwipeableViews from 'react-swipeable-views'
-import {Loader} from 'ui'
-import {useSubRequestsCount} from '../../hooks'
-import {EventsDisplay, SubRequestsDisplay} from '..'
+import {Loader} from '@skyflux/react/ui'
 import {StyledTabList, StyledTabs} from './styles'
 import {EventsTab} from './EventsTab'
 import {RequestsTab} from './RequestsTab'
+import {EventsDisplay, SubRequestsDisplay} from '..'
+import {useSubRequestsCount} from '../../hooks'
 
 export const NotificationTabs: React.FC = () => {
   const {count} = useSubRequestsCount()

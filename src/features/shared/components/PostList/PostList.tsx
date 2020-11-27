@@ -1,9 +1,9 @@
 import React, {Suspense} from 'react'
 import {useTranslation} from 'react-i18next'
 import {Flex} from 'reflexbox/styled-components'
-import {H1} from 'typography'
-import {ListItem, Loader} from 'ui'
-import {useInfiniteScroll} from 'utils'
+import {H1} from '@skyflux/react/typography'
+import {ListItem, Loader} from '@skyflux/react/ui'
+import {useInfiniteScroll} from '@skyflux/react/utils'
 import {PostCard} from '../PostCard'
 import {PostConnectionFragment, PostFragment} from '../../graphql'
 

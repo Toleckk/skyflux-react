@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Text} from 'typography'
-import {Icon} from 'ui'
+import {Text} from '@skyflux/react/typography'
+import {Icon} from '@skyflux/react/ui'
+import {StyledLikeIcon} from './styles'
 import {useMe, useModal, useToggleLike} from '../../hooks'
 import {PublicationCard} from '../PublicationCard'
 import {PostFragment} from '../../graphql'
-import {StyledLikeIcon} from './styles'
 
 export type PostCardProps = {
   post: PostFragment

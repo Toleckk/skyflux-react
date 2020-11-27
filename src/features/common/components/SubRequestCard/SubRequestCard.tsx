@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {Icon} from 'ui'
-import {UserCard} from 'features/shared/components'
+import {Icon} from '@skyflux/react/ui'
+import {UserCard} from '@skyflux/react/features/shared/components'
 import {SubRequestFragment} from '../../graphql'
 import {useSubRequestActions} from '../../hooks'
 

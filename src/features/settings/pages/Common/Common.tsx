@@ -1,9 +1,10 @@
 import React from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'react-i18next'
-import {useMyTitle} from 'features/shared/hooks'
-import {H1} from 'typography'
-import {Divider, Loader} from 'ui'
+import {useMyTitle} from '@skyflux/react/features/shared/hooks'
+import {H1} from '@skyflux/react/typography'
+import {Divider, Loader} from '@skyflux/react/ui'
+import {StyledItem} from './styles'
 import {
   ChangeNicknameForm,
   ChangePasswordForm,
@@ -11,7 +12,6 @@ import {
   ProfileDataForm,
 } from '../../components'
 import {useMyProfile} from '../../hooks'
-import {StyledItem} from './styles'
 
 export const Common: React.FC = () => {
   const {t} = useTranslation('settings')

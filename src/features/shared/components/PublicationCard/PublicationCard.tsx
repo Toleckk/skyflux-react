@@ -1,10 +1,10 @@
 import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
-import {SecondaryText} from 'typography'
-import {Date, Icon} from 'ui'
+import {SecondaryText} from '@skyflux/react/typography'
+import {Date, Icon} from '@skyflux/react/ui'
+import {StyledContainer} from './styles'
 import {CommentFragment, PostFragment} from '../../graphql'
 import {UserBadge} from '../UserBadge'
-import {StyledContainer} from './styles'
 
 export type PublicationCardProps = {
   publication: CommentFragment | PostFragment

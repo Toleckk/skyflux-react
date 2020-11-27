@@ -2,12 +2,12 @@ import React from 'react'
 import {Box, Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Controller} from 'react-hook-form'
-import {Icon, Input} from 'ui'
-import {ABOUT_MAX_LENGTH, FROM_MAX_LENGTH} from 'validation'
+import {Icon, Input} from '@skyflux/react/ui'
+import {ABOUT_MAX_LENGTH, FROM_MAX_LENGTH} from '@skyflux/react/validation'
+import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
 import {AvatarUploader, DateInput} from '../../components'
 import {useProfileDataForm} from '../../hooks'
 import {MyProfile_me} from '../../graphql'
-import {StyledInputsContainer, StyledResponsibleContainer} from './styles'
 
 export type ProfileDataFormProps = {
   user: MyProfile_me

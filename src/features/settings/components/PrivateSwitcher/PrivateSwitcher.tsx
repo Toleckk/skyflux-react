@@ -1,11 +1,11 @@
 import React from 'react'
 import {Box} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
-import {H2} from 'typography'
-import {Toggle} from 'ui'
+import {H2} from '@skyflux/react/typography'
+import {Toggle} from '@skyflux/react/ui'
+import {StyledResponsibleContainer} from './styles'
 import {MyProfile_me} from '../../graphql'
 import {useTogglePrivate} from '../../hooks'
-import {StyledResponsibleContainer} from './styles'
 
 export type PrivateSwitcherProps = {
   user: MyProfile_me
