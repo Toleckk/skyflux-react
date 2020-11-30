@@ -13,7 +13,6 @@ export const StyledContainer = styled.div`
 
   overflow: hidden;
 
-  border: 2px solid ${props => props.theme.primary};
   box-shadow: 0 0 1rem ${props => props.theme.primary};
 
   width: 100%;
