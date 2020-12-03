@@ -7,6 +7,7 @@ import {
 import {getMainDefinition, relayStylePagination} from '@apollo/client/utilities'
 import {WebSocketLink} from '@apollo/client/link/ws'
 import {setContext} from '@apollo/client/link/context'
+import {authPromise, firebase} from '@skyflux/react/configs/firebase'
 
 const wsLink = new WebSocketLink({
   uri: (process.env.REACT_APP_API_URL as string).replace(/^http/, 'ws'),
@@ -39,8 +40,9 @@ const splitLink = split(
   httpLink,
 )
 
-const authLink = setContext((_, {headers}) => {
-  const token = localStorage.getItem('token')
+const authLink = setContext(async (_, {headers}) => {
+  await authPromise
+  const token = await firebase.auth().currentUser?.getIdToken(true)
 
   return {
     headers: {

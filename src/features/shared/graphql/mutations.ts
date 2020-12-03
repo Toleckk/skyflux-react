@@ -21,12 +21,6 @@ export const CREATE_POST = gql`
   }
 `
 
-export const CREATE_SESSION = gql`
-  mutation CreateSession($login: String!, $password: String!) {
-    createSession(credentials: {login: $login, password: $password})
-  }
-`
-
 export const DELETE_LIKE = gql`
   mutation DeleteLike($postId: ID!) {
     deleteLike(post_id: $postId) {

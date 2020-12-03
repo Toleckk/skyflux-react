@@ -56,7 +56,8 @@
           "@skyflux/react/features/common/*",
           "@skyflux/react/features/shared/*",
           "react-image-lightbox/style.css",
-          "react-toastify/dist/ReactToastify.min.css"
+          "react-toastify/dist/ReactToastify.min.css",
+          "firebase/*"
         ]
       }
     ],

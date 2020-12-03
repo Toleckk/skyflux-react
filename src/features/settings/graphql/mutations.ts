@@ -27,14 +27,6 @@ export const UPDATE_NICKNAME = gql`
   }
 `
 
-export const UPDATE_PASSWORD = gql`
-  mutation UpdatePassword($oldPassword: String!, $newPassword: String!) {
-    updatePassword(
-      credentials: {oldPassword: $oldPassword, newPassword: $newPassword}
-    )
-  }
-`
-
 export const UPDATE_PROFILE_INFO = gql`
   mutation UpdateProfileInfo($avatar: String, $description: DescriptionInput!) {
     updateProfileInfo(user: {avatar: $avatar, description: $description}) {

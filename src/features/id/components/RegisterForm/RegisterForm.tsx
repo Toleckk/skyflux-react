@@ -1,24 +1,22 @@
 import React from 'react'
-import {Flex} from 'reflexbox/styled-components'
 import {useTranslation} from 'react-i18next'
 import {Text} from '@skyflux/react/typography'
-import {Divider, Input} from '@skyflux/react/ui'
-import {StyledResponsibleGrid} from './styles'
+import {Divider, Input, Loader} from '@skyflux/react/ui'
+import {
+  StyledAbsolute,
+  StyledRelativeForm,
+  StyledResponsibleGrid,
+} from './styles'
 import {SubmitButton} from '../SubmitButton'
 import {useRegisterForm} from '../../hooks'
 
 export const RegisterForm: React.FC = () => {
   const {t} = useTranslation('id')
 
-  const {submit, register, errors} = useRegisterForm()
+  const {submit, register, errors, submitting} = useRegisterForm()
 
   return (
-    <Flex
-      as="form"
-      flexDirection="column"
-      alignItems="center"
-      onSubmit={submit}
-    >
+    <StyledRelativeForm onSubmit={submit}>
       <Divider />
       <StyledResponsibleGrid>
         <Text as="label" htmlFor="email">
@@ -28,7 +26,7 @@ export const RegisterForm: React.FC = () => {
           id="email"
           name="email"
           label={t('Email')}
-          error={t(errors.email as string)}
+          error={t(errors.email)}
           ref={register}
         />
       </StyledResponsibleGrid>
@@ -42,12 +40,17 @@ export const RegisterForm: React.FC = () => {
           name="password"
           label={t('Password')}
           type="password"
-          error={t(errors.password as string)}
+          error={t(errors.password)}
           ref={register}
         />
       </StyledResponsibleGrid>
       <Divider />
       <SubmitButton>{t('Next')}</SubmitButton>
-    </Flex>
+      {submitting && (
+        <StyledAbsolute>
+          <Loader />
+        </StyledAbsolute>
+      )}
+    </StyledRelativeForm>
   )
 }

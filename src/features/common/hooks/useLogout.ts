@@ -1,30 +1,24 @@
-import {useCallback} from 'react'
-import {MutationFunction, useApolloClient, useMutation} from '@apollo/client'
-import {DELETE_CURRENT_SESSION, DeleteCurrentSession} from '../graphql'
+import {useApolloClient} from '@apollo/client'
+import {useAuth} from 'reactfire'
+import {useAsync} from '@react-hook/async'
 
 export type UseLogoutResult = {
-  logout: () => ReturnType<MutationFunction<DeleteCurrentSession, never>>
+  logout: () => Promise<void>
   loading: boolean
 }
 
 export const useLogout = (): UseLogoutResult => {
   const client = useApolloClient()
 
-  const onCompleted = useCallback(() => {
-    localStorage.removeItem('token')
-    client.resetConnection()
-    client.cache.reset()
-    client.resetPersist()
-  }, [client])
+  const auth = useAuth()
 
-  const [deleteCurrentSession, {loading}] = useMutation(
-    DELETE_CURRENT_SESSION,
-    {onCompleted},
+  const [{status}, logout] = useAsync(() =>
+    auth.signOut().then(() => {
+      client.resetConnection()
+      client.cache.reset()
+      client.resetPersist()
+    }),
   )
 
-  const logout = useCallback(() => deleteCurrentSession(), [
-    deleteCurrentSession,
-  ])
-
-  return {logout, loading}
+  return {logout, loading: status === 'loading'}
 }

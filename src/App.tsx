@@ -2,7 +2,8 @@ import React, {Suspense} from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {Redirect, Route, Switch} from 'react-router'
 import {ApolloProvider} from '@apollo/client'
-import {client} from '@skyflux/react/configs'
+import {FirebaseAppProvider} from 'reactfire'
+import {client, firebase} from '@skyflux/react/configs'
 import {PageLoader} from '@skyflux/react/ui'
 import {PrivateRoute, Theme} from '@skyflux/react/utils'
 import {IdRouter} from '@skyflux/react/features/id'
@@ -21,30 +22,32 @@ import {
 export const App: React.FC = () => (
   <Theme>
     <Suspense fallback={<PageLoader />}>
-      <ApolloProvider client={client}>
-        <ErrorBoundary>
-          <UserSuspense>
-            <LoadingIndicator />
-            <BrowserRouter>
-              <Switch>
-                <PrivateRoute path="/" exact>
-                  <Redirect to="/feed" />
-                </PrivateRoute>
-                <Route path="/id">
-                  <IdRouter />
-                </Route>
-                <Navigable>
-                  <FeedRouter />
-                  <PostRouter />
-                  <SearchRouter />
-                  <SettingsRouter />
-                  <UserRouter />
-                </Navigable>
-              </Switch>
-            </BrowserRouter>
-          </UserSuspense>
-        </ErrorBoundary>
-      </ApolloProvider>
+      <FirebaseAppProvider firebaseApp={firebase}>
+        <ApolloProvider client={client}>
+          <ErrorBoundary>
+            <UserSuspense>
+              <LoadingIndicator />
+              <BrowserRouter>
+                <Switch>
+                  <PrivateRoute path="/" exact>
+                    <Redirect to="/feed" />
+                  </PrivateRoute>
+                  <Route path="/id">
+                    <IdRouter />
+                  </Route>
+                  <Navigable>
+                    <FeedRouter />
+                    <PostRouter />
+                    <SearchRouter />
+                    <SettingsRouter />
+                    <UserRouter />
+                  </Navigable>
+                </Switch>
+              </BrowserRouter>
+            </UserSuspense>
+          </ErrorBoundary>
+        </ApolloProvider>
+      </FirebaseAppProvider>
     </Suspense>
   </Theme>
 )

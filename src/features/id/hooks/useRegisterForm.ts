@@ -1,12 +1,17 @@
-import {useMemo} from 'react'
-import {useMutation} from '@apollo/client'
+import {useMemo, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import {useHistory} from 'react-router'
+import {useAuth} from 'reactfire'
+import {useAsync} from '@react-hook/async'
 import {email, password} from '@skyflux/react/validation'
 import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
-import {CREATE_USER, CreateUserVariables} from '../graphql'
+import {useMe} from '@skyflux/react/features/shared/hooks'
+
+export type CreateUserVariables = {
+  email: string
+  password: string
+}
 
 export type UseRegisterFormResult = CustomFormHookResult<CreateUserVariables>
 
@@ -16,25 +21,40 @@ const schema = yup.object().shape({
 })
 
 export const useRegisterForm = (): UseRegisterFormResult => {
-  const history = useHistory()
-  const [signUp, {error, loading}] = useMutation(CREATE_USER, {
-    onCompleted: data => data?.createUser?._id && history.push('/id/auth'),
-  })
+  const auth = useAuth()
+  const {refetch, loading} = useMe()
 
   const {handleSubmit, errors, ...rest} = useForm<CreateUserVariables>({
     resolver: yupResolver(schema),
     mode: 'onBlur',
   })
 
-  const submit = useMemo(() => handleSubmit(variables => signUp({variables})), [
-    handleSubmit,
-    signUp,
-  ])
+  const [firebaseError, setFirebaseError] = useState<
+    Partial<CreateUserVariables> | undefined
+  >(undefined)
+
+  const [{status}, signUp] = useAsync(data =>
+    auth
+      .createUserWithEmailAndPassword(data.email, data.password)
+      .then(data => data.user && refetch())
+      .catch(error => {
+        const field = errorsKeys[error.code]
+        if (field) setFirebaseError({[field]: error.message})
+      }),
+  )
+
+  const submit = useMemo(() => handleSubmit(signUp), [handleSubmit, signUp])
 
   return {
     submit,
-    submitting: loading,
-    errors: mergeErrors(error, errors),
+    submitting: status === 'loading' || loading,
+    errors: mergeErrors(firebaseError, errors),
     ...rest,
   }
+}
+
+const errorsKeys: Record<string, keyof CreateUserVariables> = {
+  'auth/email-already-in-use': 'email',
+  'auth/invalid-email': 'email',
+  'auth/weak-password': 'password',
 }

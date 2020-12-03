@@ -1,10 +1,12 @@
 import {useCallback} from 'react'
-import {useQuery} from '@apollo/client'
-import {ME, Me_me} from '../graphql'
+import {ApolloQueryResult, useQuery} from '@apollo/client'
+import {Me, ME, Me_me} from '../graphql'
 
 export type UseMeResult = {
   me?: Me_me | null
   isMe: IsMe
+  refetch: () => Promise<ApolloQueryResult<Me>>
+  loading: boolean
 }
 
 export type IsMe = (
@@ -12,7 +14,9 @@ export type IsMe = (
 ) => boolean
 
 export const useMe = (): UseMeResult => {
-  const {data} = useQuery(ME)
+  const {data, refetch, loading} = useQuery(ME, {
+    notifyOnNetworkStatusChange: true,
+  })
 
   const me = data?.me
 
@@ -30,5 +34,5 @@ export const useMe = (): UseMeResult => {
     [me],
   )
 
-  return {me, isMe}
+  return {me, isMe, refetch, loading}
 }

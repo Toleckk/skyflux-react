@@ -23,7 +23,6 @@ import {DeletedEventFragment} from './types/DeletedEventFragment'
 import {MaybeEventFragment} from './types/MaybeEventFragment'
 import {AcceptSub, AcceptSubVariables} from './types/AcceptSub'
 import {DeclineSub, DeclineSubVariables} from './types/DeclineSub'
-import {DeleteCurrentSession} from './types/DeleteCurrentSession'
 import {EventUpdated} from './types/EventUpdated'
 import {SubsUpdated, SubsUpdatedVariables} from './types/SubsUpdated'
 import {SubRequestsCount} from './types/SubRequestsCount'
@@ -44,7 +43,6 @@ export * from './types/DeletedEventFragment'
 export * from './types/MaybeEventFragment'
 export * from './types/AcceptSub'
 export * from './types/DeclineSub'
-export * from './types/DeleteCurrentSession'
 export * from './types/EventUpdated'
 export * from './types/SubsUpdated'
 export * from './types/SubRequestsCount'
@@ -78,8 +76,6 @@ export const ACCEPT_SUB: TypedDocumentNode<AcceptSub, AcceptSubVariables> =
   M.ACCEPT_SUB
 export const DECLINE_SUB: TypedDocumentNode<DeclineSub, DeclineSubVariables> =
   M.DECLINE_SUB
-export const DELETE_CURRENT_SESSION: TypedDocumentNode<DeleteCurrentSession> =
-  M.DELETE_CURRENT_SESSION
 export const EVENT_UPDATED: TypedDocumentNode<EventUpdated> = S.EVENT_UPDATED
 export const SUBS_UPDATED: TypedDocumentNode<
   SubsUpdated,

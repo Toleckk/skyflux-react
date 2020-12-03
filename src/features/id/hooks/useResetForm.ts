@@ -1,15 +1,20 @@
-import {useMemo} from 'react'
+import {useMemo, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
-import {useMutation} from '@apollo/client'
 import {yupResolver} from '@hookform/resolvers/yup'
+import {useAuth} from 'reactfire'
+import {useAsync} from '@react-hook/async'
+import {FirebaseError} from 'firebase'
 import {password} from '@skyflux/react/validation'
 import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
-import {RESET_PASSWORD, ResetPasswordVariables} from '../graphql'
 
-export type UseResetFormResult = CustomFormHookResult<
-  ResetPasswordVariables & {confirm: string}
->
+export type ResetPasswordVariables = {
+  token: string
+  password: string
+  confirm: string
+}
+
+export type UseResetFormResult = CustomFormHookResult<ResetPasswordVariables>
 
 const schema = yup.object().shape({
   password: password.required(),
@@ -20,24 +25,36 @@ const schema = yup.object().shape({
 })
 
 export const useResetForm = (): UseResetFormResult => {
-  const [reset, {error, loading}] = useMutation(RESET_PASSWORD)
+  const auth = useAuth()
 
-  const {handleSubmit, errors, ...rest} = useForm<
-    ResetPasswordVariables & {confirm: string}
-  >({
+  const [firebaseError, setFirebaseError] = useState<
+    Partial<FirebaseError> | undefined
+  >(undefined)
+
+  const [{status}, reset] = useAsync(data =>
+    auth
+      .confirmPasswordReset(data.token, data.password)
+      .catch(({code, message}) => {
+        const field = errorsKeys[code]
+        if (field) setFirebaseError({[field]: message})
+      }),
+  )
+
+  const {handleSubmit, errors, ...rest} = useForm<ResetPasswordVariables>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const submit = useMemo(() => handleSubmit(variables => reset({variables})), [
-    handleSubmit,
-    reset,
-  ])
+  const submit = useMemo(() => handleSubmit(reset), [handleSubmit, reset])
 
   return {
     submit,
-    submitting: loading,
-    errors: mergeErrors(error, errors),
+    submitting: status === 'loading',
+    errors: mergeErrors(firebaseError, errors),
     ...rest,
   }
+}
+
+const errorsKeys: Record<string, keyof ResetPasswordVariables> = {
+  'auth/weak-password': 'password',
 }

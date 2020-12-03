@@ -4,10 +4,9 @@ import {useMemo} from 'react'
 import * as yup from 'yup'
 import {login, password} from '@skyflux/react/validation'
 import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
-import {useLogin} from './useLogin'
-import {CreateSessionVariables} from '../graphql'
+import {useLogin, LoginVariables} from './useLogin'
 
-export type UseAuthFormResult = CustomFormHookResult<CreateSessionVariables>
+export type UseAuthFormResult = CustomFormHookResult<LoginVariables>
 
 const schema = yup
   .object()
@@ -16,15 +15,12 @@ const schema = yup
 export const useAuthForm = (): UseAuthFormResult => {
   const {login, error, loading} = useLogin()
 
-  const {handleSubmit, errors, ...rest} = useForm<CreateSessionVariables>({
+  const {handleSubmit, errors, ...rest} = useForm<LoginVariables>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const submit = useMemo(() => handleSubmit(variables => login({variables})), [
-    handleSubmit,
-    login,
-  ])
+  const submit = useMemo(() => handleSubmit(login), [handleSubmit, login])
 
   return {
     submit,

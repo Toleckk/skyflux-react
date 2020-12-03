@@ -16,9 +16,3 @@ export const DECLINE_SUB = gql`
     }
   }
 `
-
-export const DELETE_CURRENT_SESSION = gql`
-  mutation DeleteCurrentSession {
-    deleteCurrentSession
-  }
-`

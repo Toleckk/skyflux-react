@@ -42,6 +42,7 @@ export const useUser = (nickname: string): UseUserResult => {
         variables: {id},
         updateQuery: ({user}, {subscriptionData: {data}}) => {
           if (
+            user?.private &&
             !!data?.userUpdated.mySub?.accepted !== !!user?.posts.edges.length
           )
             refetch()
@@ -59,16 +60,18 @@ export const useUser = (nickname: string): UseUserResult => {
 
   useEffect(
     () =>
-      subscribeToMore({
-        document: POSTS_UPDATED,
-        variables: {ownerId: id},
-        updateQuery: ({user}, {subscriptionData: {data}}) => ({
-          user: user && {
-            ...user,
-            posts: handleMore(user.posts, data.postsUpdated),
-          },
-        }),
-      }),
+      !id
+        ? undefined
+        : subscribeToMore({
+            document: POSTS_UPDATED,
+            variables: {ownerId: id},
+            updateQuery: ({user}, {subscriptionData: {data}}) => ({
+              user: user && {
+                ...user,
+                posts: handleMore(user.posts, data.postsUpdated),
+              },
+            }),
+          }),
     [subscribeToMore, id],
   )
 

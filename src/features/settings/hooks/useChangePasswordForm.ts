@@ -1,38 +1,47 @@
 import {useMemo} from 'react'
-import {useMutation} from '@apollo/client'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import {useAuth} from 'reactfire'
+import {useAsync} from '@react-hook/async'
 import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
 import {password} from '@skyflux/react/validation'
-import {UPDATE_PASSWORD, UpdatePasswordVariables} from '../graphql'
+
+export type UpdatePasswordVariables = {
+  newPassword: string
+}
 
 export type UseChangePasswordFormResult = CustomFormHookResult<UpdatePasswordVariables>
 
-const schema = yup.object().shape({
-  oldPassword: password.required(),
-  newPassword: password
-    .notOneOf([yup.ref('oldPassword'), "Passwords can't be equal"])
-    .required(),
-})
+const schema = yup.object().shape({newPassword: password.required()})
 
 export const useChangePasswordForm = (): UseChangePasswordFormResult => {
-  const [update, {error, loading}] = useMutation(UPDATE_PASSWORD)
+  const auth = useAuth()
 
-  const {handleSubmit, errors, ...rest} = useForm<UpdatePasswordVariables>({
+  const {
+    handleSubmit,
+    errors,
+    reset,
+    ...rest
+  } = useForm<UpdatePasswordVariables>({
     resolver: yupResolver(schema),
     mode: 'onBlur',
   })
 
-  const submit = useMemo(() => handleSubmit(variables => update({variables})), [
-    handleSubmit,
-    update,
-  ])
+  const [{status}, update] = useAsync(async (data: UpdatePasswordVariables) =>
+    auth.currentUser
+      ?.updatePassword(data.newPassword)
+      .then(() => reset())
+      .catch(console.error),
+  )
+
+  const submit = useMemo(() => handleSubmit(update), [handleSubmit, update])
 
   return {
     submit,
-    submitting: loading,
-    errors: mergeErrors(error, errors),
+    submitting: status === 'loading',
+    errors: mergeErrors(errors),
+    reset,
     ...rest,
   }
 }

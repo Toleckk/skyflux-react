@@ -10,7 +10,6 @@ import * as M from './mutations'
 import {MakeAccountPrivate} from './types/MakeAccountPrivate'
 import {MakeAccountPublic} from './types/MakeAccountPublic'
 import {UpdateNickname, UpdateNicknameVariables} from './types/UpdateNickname'
-import {UpdatePassword, UpdatePasswordVariables} from './types/UpdatePassword'
 import {
   UpdateProfileInfo,
   UpdateProfileInfoVariables,
@@ -24,7 +23,6 @@ import {MyProfile} from './types/MyProfile'
 export * from './types/MakeAccountPrivate'
 export * from './types/MakeAccountPublic'
 export * from './types/UpdateNickname'
-export * from './types/UpdatePassword'
 export * from './types/UpdateProfileInfo'
 export * from './types/DoesNicknameExist'
 export * from './types/MyProfile'
@@ -37,10 +35,6 @@ export const UPDATE_NICKNAME: TypedDocumentNode<
   UpdateNickname,
   UpdateNicknameVariables
 > = M.UPDATE_NICKNAME
-export const UPDATE_PASSWORD: TypedDocumentNode<
-  UpdatePassword,
-  UpdatePasswordVariables
-> = M.UPDATE_PASSWORD
 export const UPDATE_PROFILE_INFO: TypedDocumentNode<
   UpdateProfileInfo,
   UpdateProfileInfoVariables
