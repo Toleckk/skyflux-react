@@ -1,12 +1,14 @@
-import {useMemo, useState} from 'react'
+import {useMemo} from 'react'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useAuth} from 'reactfire'
-import {useAsync} from '@react-hook/async'
-import {FirebaseError} from 'firebase'
 import {password} from '@skyflux/react/validation'
-import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
+import {
+  CustomFormHookResult,
+  mergeErrors,
+  useFirebaseMutation,
+} from '@skyflux/react/utils'
 
 export type ResetPasswordVariables = {
   token: string
@@ -27,17 +29,11 @@ const schema = yup.object().shape({
 export const useResetForm = (): UseResetFormResult => {
   const auth = useAuth()
 
-  const [firebaseError, setFirebaseError] = useState<
-    Partial<FirebaseError> | undefined
-  >(undefined)
-
-  const [{status}, reset] = useAsync(data =>
-    auth
-      .confirmPasswordReset(data.token, data.password)
-      .catch(({code, message}) => {
-        const field = errorsKeys[code]
-        if (field) setFirebaseError({[field]: message})
-      }),
+  const {loading, execute, firebaseError} = useFirebaseMutation(
+    data => auth.confirmPasswordReset(data.token, data.password),
+    {
+      'auth/weak-password': 'password',
+    },
   )
 
   const {handleSubmit, errors, ...rest} = useForm<ResetPasswordVariables>({
@@ -45,16 +41,12 @@ export const useResetForm = (): UseResetFormResult => {
     resolver: yupResolver(schema),
   })
 
-  const submit = useMemo(() => handleSubmit(reset), [handleSubmit, reset])
+  const submit = useMemo(() => handleSubmit(execute), [handleSubmit, execute])
 
   return {
     submit,
-    submitting: status === 'loading',
+    submitting: loading,
     errors: mergeErrors(firebaseError, errors),
     ...rest,
   }
-}
-
-const errorsKeys: Record<string, keyof ResetPasswordVariables> = {
-  'auth/weak-password': 'password',
 }

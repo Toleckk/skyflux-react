@@ -2,18 +2,28 @@ import {useMemo} from 'react'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import Firebase from 'firebase'
 import {useAuth} from 'reactfire'
-import {useAsync} from '@react-hook/async'
-import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
+import {
+  CustomFormHookResult,
+  mergeErrors,
+  useFirebaseMutation,
+} from '@skyflux/react/utils'
 import {password} from '@skyflux/react/validation'
 
-export type UpdatePasswordVariables = {
+export type ChangePasswordVariables = {
+  oldPassword: string
   newPassword: string
 }
 
-export type UseChangePasswordFormResult = CustomFormHookResult<UpdatePasswordVariables>
+export type UseChangePasswordFormResult = CustomFormHookResult<ChangePasswordVariables>
 
-const schema = yup.object().shape({newPassword: password.required()})
+const schema = yup.object().shape({
+  oldPassword: password.required(),
+  newPassword: password
+    .notOneOf([yup.ref('oldPassword'), "Passwords can't be equal"])
+    .required(),
+})
 
 export const useChangePasswordForm = (): UseChangePasswordFormResult => {
   const auth = useAuth()
@@ -23,24 +33,36 @@ export const useChangePasswordForm = (): UseChangePasswordFormResult => {
     errors,
     reset,
     ...rest
-  } = useForm<UpdatePasswordVariables>({
+  } = useForm<ChangePasswordVariables>({
     resolver: yupResolver(schema),
     mode: 'onBlur',
   })
 
-  const [{status}, update] = useAsync(async (data: UpdatePasswordVariables) =>
-    auth.currentUser
-      ?.updatePassword(data.newPassword)
-      .then(() => reset())
-      .catch(console.error),
+  const {loading, execute, firebaseError} = useFirebaseMutation(
+    async (data: ChangePasswordVariables) => {
+      if (!auth.currentUser) return
+
+      await auth.currentUser.reauthenticateWithCredential(
+        Firebase.auth.EmailAuthProvider.credential(
+          auth.currentUser.email as string,
+          data.oldPassword,
+        ),
+      )
+      await auth.currentUser.updatePassword(data.newPassword)
+      reset()
+    },
+    {
+      'auth/wrong-password': 'oldPassword',
+      'auth/weak-password': 'newPassword',
+    },
   )
 
-  const submit = useMemo(() => handleSubmit(update), [handleSubmit, update])
+  const submit = useMemo(() => handleSubmit(execute), [handleSubmit, execute])
 
   return {
     submit,
-    submitting: status === 'loading',
-    errors: mergeErrors(errors),
+    submitting: loading,
+    errors: mergeErrors(firebaseError, errors),
     reset,
     ...rest,
   }

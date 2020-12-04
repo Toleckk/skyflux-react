@@ -1,11 +1,14 @@
-import {useMemo, useState} from 'react'
+import {useMemo} from 'react'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {useAuth} from 'reactfire'
-import {useAsync} from '@react-hook/async'
 import {email, password} from '@skyflux/react/validation'
-import {CustomFormHookResult, mergeErrors} from '@skyflux/react/utils'
+import {
+  CustomFormHookResult,
+  mergeErrors,
+  useFirebaseMutation,
+} from '@skyflux/react/utils'
 import {useMe} from '@skyflux/react/features/shared/hooks'
 
 export type CreateUserVariables = {
@@ -29,32 +32,28 @@ export const useRegisterForm = (): UseRegisterFormResult => {
     mode: 'onBlur',
   })
 
-  const [firebaseError, setFirebaseError] = useState<
-    Partial<CreateUserVariables> | undefined
-  >(undefined)
-
-  const [{status}, signUp] = useAsync(data =>
-    auth
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .then(data => data.user && refetch())
-      .catch(error => {
-        const field = errorsKeys[error.code]
-        if (field) setFirebaseError({[field]: error.message})
-      }),
+  const {
+    execute: signUp,
+    loading: submitting,
+    firebaseError,
+  } = useFirebaseMutation(
+    ({email, password}: CreateUserVariables) =>
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then(data => data.user && refetch()),
+    {
+      'auth/email-already-in-use': 'email',
+      'auth/invalid-email': 'email',
+      'auth/weak-password': 'password',
+    },
   )
 
   const submit = useMemo(() => handleSubmit(signUp), [handleSubmit, signUp])
 
   return {
     submit,
-    submitting: status === 'loading' || loading,
+    submitting: submitting || loading,
     errors: mergeErrors(firebaseError, errors),
     ...rest,
   }
-}
-
-const errorsKeys: Record<string, keyof CreateUserVariables> = {
-  'auth/email-already-in-use': 'email',
-  'auth/invalid-email': 'email',
-  'auth/weak-password': 'password',
 }

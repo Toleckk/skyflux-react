@@ -1,6 +1,6 @@
 import {useApolloClient} from '@apollo/client'
 import {useAuth} from 'reactfire'
-import {useAsync} from '@react-hook/async'
+import {useFirebaseMutation} from '@skyflux/react/utils'
 
 export type UseLogoutResult = {
   logout: () => Promise<void>
@@ -12,7 +12,7 @@ export const useLogout = (): UseLogoutResult => {
 
   const auth = useAuth()
 
-  const [{status}, logout] = useAsync(() =>
+  const {execute, loading} = useFirebaseMutation(() =>
     auth.signOut().then(() => {
       client.resetConnection()
       client.cache.reset()
@@ -20,5 +20,5 @@ export const useLogout = (): UseLogoutResult => {
     }),
   )
 
-  return {logout, loading: status === 'loading'}
+  return {logout: execute, loading}
 }

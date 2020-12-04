@@ -1,7 +1,6 @@
 import {useApolloClient} from '@apollo/client'
 import {useAuth} from 'reactfire'
-import {useAsync} from '@react-hook/async'
-import {useState} from 'react'
+import {useFirebaseMutation} from '@skyflux/react/utils'
 
 export type LoginVariables = {
   login: string
@@ -17,32 +16,21 @@ export type UseLoginResult = {
 export const useLogin = (): UseLoginResult => {
   const auth = useAuth()
 
-  const [error, setError] = useState<Partial<LoginVariables> | undefined>(
-    undefined,
-  )
-
   const client = useApolloClient()
 
-  const [{status}, login] = useAsync(data =>
-    auth
-      .signInWithEmailAndPassword(data.login, data.password)
-      .then(() => {
+  const {execute: login, loading, firebaseError: error} = useFirebaseMutation(
+    data =>
+      auth.signInWithEmailAndPassword(data.login, data.password).then(() => {
         client.resetConnection()
         client.cache.reset()
         client.resetPersist()
-      })
-      .catch(({code, message}) => {
-        const field = errorsKeys[code]
-
-        if (field) setError({[field]: message})
       }),
+    {
+      'auth/wrong-password': 'password',
+      'auth/user-not-found': 'login',
+      'auth/invalid-email': 'login',
+    },
   )
 
-  return {login, loading: status === 'loading', error}
-}
-
-const errorsKeys: Record<string, 'password' | 'login'> = {
-  'auth/wrong-password': 'password',
-  'auth/user-not-found': 'login',
-  'auth/invalid-email': 'login',
+  return {login, loading, error}
 }
