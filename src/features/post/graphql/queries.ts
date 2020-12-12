@@ -5,14 +5,14 @@ import {
 } from '@skyflux/react/features/shared/graphql'
 
 export const POST = gql`
-    query Post($_id: ID!, $afterComment: ID, $firstComments: Int!) {
-        post(_id: $_id) {
-            ...PostFragment
-            comments(first: $firstComments, after: $afterComment) {
-                ...CommentConnectionFragment
-            }
-        }
-        ${COMMENT_CONNECTION_FRAGMENT}
-        ${POST_FRAGMENT}
+  query Post($_id: ID!, $afterComment: ID, $firstComments: Int!) {
+    post(_id: $_id) {
+      ...PostFragment
+      comments(first: $firstComments, after: $afterComment) {
+        ...CommentConnectionFragment
+      }
     }
+  }
+  ${COMMENT_CONNECTION_FRAGMENT}
+  ${POST_FRAGMENT}
 `
