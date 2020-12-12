@@ -14,8 +14,8 @@ const wsLink = new WebSocketLink({
   options: {
     reconnect: true,
     lazy: true,
-    connectionParams: () => {
-      const token = localStorage.getItem('token')
+    connectionParams: async () => {
+      const token = await firebase.auth().currentUser?.getIdToken(true)
 
       return {
         authorization: token ? `Bearer ${token}` : '',
