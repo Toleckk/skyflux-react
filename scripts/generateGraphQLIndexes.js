@@ -1,11 +1,9 @@
 const fs = require('fs').promises
-const {exec} = require('child_process')
 
 const path = __dirname + '/../src/features'
 
 async function main() {
   const features = await fs.readdir(path)
-  const paths = []
 
   for (const feature of features) {
     const featurePath = path + '/' + feature + '/graphql'
@@ -28,15 +26,9 @@ async function main() {
       vars: m[2] !== 'fragment' && !!m[4].trim(),
     }))
 
-    if (!documents.length) continue
-    paths.push(featurePath + '/index.ts')
-
-    const generated = generate(documents)
-
-    await fs.writeFile(featurePath + '/index.ts', generated)
+    if (documents.length)
+      await fs.writeFile(featurePath + '/index.ts', generate(documents))
   }
-
-  exec(`yarn prettier ${paths.flat().join(' ')} --write`)
 }
 
 const generate = documents =>

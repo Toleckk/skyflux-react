@@ -9,16 +9,10 @@
   ],
   "rules": {
     "react/prop-types": 0,
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
+    "linebreak-style": ["error", "unix"],
     "@typescript-eslint/no-explicit-any": 0,
     "eol-last": "error",
-    "jsx-quotes": [
-      1,
-      "prefer-double"
-    ],
+    "jsx-quotes": [1, "prefer-double"],
     "no-restricted-imports": [
       "error",
       {
@@ -84,9 +78,5 @@
   "settings": {
     "import/internal-regex": "^@skyflux/react"
   },
-  "plugins": [
-    "import",
-    "prettier",
-    "react"
-  ]
+  "plugins": ["import", "prettier", "react"]
 }
