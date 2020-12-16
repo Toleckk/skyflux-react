@@ -34,25 +34,15 @@ export * from './types/CreatePost'
 export * from './types/DeleteLike'
 export * from './types/Me'
 
-export const USER_BADGE_FRAGMENT: TypedDocumentNode<UserBadgeFragment> =
-  F.USER_BADGE_FRAGMENT
-export const COMMENT_FRAGMENT: TypedDocumentNode<CommentFragment> =
-  F.COMMENT_FRAGMENT
-export const COMMENT_CONNECTION_FRAGMENT: TypedDocumentNode<CommentConnectionFragment> =
-  F.COMMENT_CONNECTION_FRAGMENT
-export const POST_BADGE_FRAGMENT: TypedDocumentNode<PostBadgeFragment> =
-  F.POST_BADGE_FRAGMENT
-export const COMMENT_WITH_POST_FRAGMENT: TypedDocumentNode<CommentWithPostFragment> =
-  F.COMMENT_WITH_POST_FRAGMENT
+export const USER_BADGE_FRAGMENT: TypedDocumentNode<UserBadgeFragment> = F.USER_BADGE_FRAGMENT
+export const COMMENT_FRAGMENT: TypedDocumentNode<CommentFragment> = F.COMMENT_FRAGMENT
+export const COMMENT_CONNECTION_FRAGMENT: TypedDocumentNode<CommentConnectionFragment> = F.COMMENT_CONNECTION_FRAGMENT
+export const POST_BADGE_FRAGMENT: TypedDocumentNode<PostBadgeFragment> = F.POST_BADGE_FRAGMENT
+export const COMMENT_WITH_POST_FRAGMENT: TypedDocumentNode<CommentWithPostFragment> = F.COMMENT_WITH_POST_FRAGMENT
 export const POST_FRAGMENT: TypedDocumentNode<PostFragment> = F.POST_FRAGMENT
-export const POST_CONNECTION_FRAGMENT: TypedDocumentNode<PostConnectionFragment> =
-  F.POST_CONNECTION_FRAGMENT
-export const USER_BADGE_CONNECTION_FRAGMENT: TypedDocumentNode<UserBadgeConnectionFragment> =
-  F.USER_BADGE_CONNECTION_FRAGMENT
-export const CREATE_LIKE: TypedDocumentNode<CreateLike, CreateLikeVariables> =
-  M.CREATE_LIKE
-export const CREATE_POST: TypedDocumentNode<CreatePost, CreatePostVariables> =
-  M.CREATE_POST
-export const DELETE_LIKE: TypedDocumentNode<DeleteLike, DeleteLikeVariables> =
-  M.DELETE_LIKE
+export const POST_CONNECTION_FRAGMENT: TypedDocumentNode<PostConnectionFragment> = F.POST_CONNECTION_FRAGMENT
+export const USER_BADGE_CONNECTION_FRAGMENT: TypedDocumentNode<UserBadgeConnectionFragment> = F.USER_BADGE_CONNECTION_FRAGMENT
+export const CREATE_LIKE: TypedDocumentNode<CreateLike, CreateLikeVariables> = M.CREATE_LIKE
+export const CREATE_POST: TypedDocumentNode<CreatePost, CreatePostVariables> = M.CREATE_POST
+export const DELETE_LIKE: TypedDocumentNode<DeleteLike, DeleteLikeVariables> = M.DELETE_LIKE
 export const ME: TypedDocumentNode<Me> = Q.ME

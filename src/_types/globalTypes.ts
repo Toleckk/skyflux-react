@@ -8,15 +8,15 @@
 //==============================================================
 
 export enum EventType {
-  Comment = 'Comment',
-  Like = 'Like',
-  Sub = 'Sub',
+  Comment = "Comment",
+  Like = "Like",
+  Sub = "Sub",
 }
 
 export interface DescriptionInput {
-  birthday?: string | null
-  about?: string | null
-  from?: string | null
+  birthday?: string | null;
+  about?: string | null;
+  from?: string | null;
 }
 
 //==============================================================

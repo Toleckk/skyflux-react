@@ -10,14 +10,8 @@ import * as M from './mutations'
 import {MakeAccountPrivate} from './types/MakeAccountPrivate'
 import {MakeAccountPublic} from './types/MakeAccountPublic'
 import {UpdateNickname, UpdateNicknameVariables} from './types/UpdateNickname'
-import {
-  UpdateProfileInfo,
-  UpdateProfileInfoVariables,
-} from './types/UpdateProfileInfo'
-import {
-  DoesNicknameExist,
-  DoesNicknameExistVariables,
-} from './types/DoesNicknameExist'
+import {UpdateProfileInfo, UpdateProfileInfoVariables} from './types/UpdateProfileInfo'
+import {DoesNicknameExist, DoesNicknameExistVariables} from './types/DoesNicknameExist'
 import {MyProfile} from './types/MyProfile'
 
 export * from './types/MakeAccountPrivate'
@@ -27,20 +21,9 @@ export * from './types/UpdateProfileInfo'
 export * from './types/DoesNicknameExist'
 export * from './types/MyProfile'
 
-export const MAKE_ACCOUNT_PRIVATE: TypedDocumentNode<MakeAccountPrivate> =
-  M.MAKE_ACCOUNT_PRIVATE
-export const MAKE_ACCOUNT_PUBLIC: TypedDocumentNode<MakeAccountPublic> =
-  M.MAKE_ACCOUNT_PUBLIC
-export const UPDATE_NICKNAME: TypedDocumentNode<
-  UpdateNickname,
-  UpdateNicknameVariables
-> = M.UPDATE_NICKNAME
-export const UPDATE_PROFILE_INFO: TypedDocumentNode<
-  UpdateProfileInfo,
-  UpdateProfileInfoVariables
-> = M.UPDATE_PROFILE_INFO
-export const DOES_NICKNAME_EXIST: TypedDocumentNode<
-  DoesNicknameExist,
-  DoesNicknameExistVariables
-> = Q.DOES_NICKNAME_EXIST
+export const MAKE_ACCOUNT_PRIVATE: TypedDocumentNode<MakeAccountPrivate> = M.MAKE_ACCOUNT_PRIVATE
+export const MAKE_ACCOUNT_PUBLIC: TypedDocumentNode<MakeAccountPublic> = M.MAKE_ACCOUNT_PUBLIC
+export const UPDATE_NICKNAME: TypedDocumentNode<UpdateNickname, UpdateNicknameVariables> = M.UPDATE_NICKNAME
+export const UPDATE_PROFILE_INFO: TypedDocumentNode<UpdateProfileInfo, UpdateProfileInfoVariables> = M.UPDATE_PROFILE_INFO
+export const DOES_NICKNAME_EXIST: TypedDocumentNode<DoesNicknameExist, DoesNicknameExistVariables> = Q.DOES_NICKNAME_EXIST
 export const MY_PROFILE: TypedDocumentNode<MyProfile> = Q.MY_PROFILE
