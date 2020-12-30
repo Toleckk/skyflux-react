@@ -65,7 +65,7 @@
   },
   "scripts": {
     "start": "yarn download && yarn codegen && concurrently \"yarn codegen:watch\" \"react-app-rewired start\"",
-    "build": "yarn download && yarn codegen && prettier \"**/*.*(js|jsx|ts|tsx)\" -w && react-app-rewired build",
+    "build": "yarn download && yarn codegen && react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
@@ -74,7 +74,7 @@
     "codegen": "yarn codegen:apollo && yarn codegen:indexes",
     "codegen:apollo": "apollo client:codegen types --no-addTypename --target=typescript --globalTypesFile=./src/_types/globalTypes.ts --localSchemaFile=./schema.graphql",
     "codegen:indexes": "node scripts/generateGraphQLIndexes",
-    "pretty-quick": "pretty-quick --pattern \"**/*.*(js|jsx|ts|tsx)",
+    "pretty-quick": "pretty-quick --pattern \"**/*.*(js|jsx|ts|tsx)\"",
     "hygen": "hygen"
   },
   "eslintConfig": {

@@ -25,24 +25,10 @@ export * from './types/CommentUpdated'
 export * from './types/LikeUpdated'
 export * from './types/Post'
 
-export const DELETED_COMMENT_FRAGMENT: TypedDocumentNode<DeletedCommentFragment> =
-  F.DELETED_COMMENT_FRAGMENT
-export const MAYBE_COMMENT_FRAGMENT: TypedDocumentNode<MaybeCommentFragment> =
-  F.MAYBE_COMMENT_FRAGMENT
-export const CREATE_COMMENT: TypedDocumentNode<
-  CreateComment,
-  CreateCommentVariables
-> = M.CREATE_COMMENT
-export const DELETE_COMMENT: TypedDocumentNode<
-  DeleteComment,
-  DeleteCommentVariables
-> = M.DELETE_COMMENT
-export const COMMENT_UPDATED: TypedDocumentNode<
-  CommentUpdated,
-  CommentUpdatedVariables
-> = S.COMMENT_UPDATED
-export const LIKE_UPDATED: TypedDocumentNode<
-  LikeUpdated,
-  LikeUpdatedVariables
-> = S.LIKE_UPDATED
+export const DELETED_COMMENT_FRAGMENT: TypedDocumentNode<DeletedCommentFragment> = F.DELETED_COMMENT_FRAGMENT
+export const MAYBE_COMMENT_FRAGMENT: TypedDocumentNode<MaybeCommentFragment> = F.MAYBE_COMMENT_FRAGMENT
+export const CREATE_COMMENT: TypedDocumentNode<CreateComment, CreateCommentVariables> = M.CREATE_COMMENT
+export const DELETE_COMMENT: TypedDocumentNode<DeleteComment, DeleteCommentVariables> = M.DELETE_COMMENT
+export const COMMENT_UPDATED: TypedDocumentNode<CommentUpdated, CommentUpdatedVariables> = S.COMMENT_UPDATED
+export const LIKE_UPDATED: TypedDocumentNode<LikeUpdated, LikeUpdatedVariables> = S.LIKE_UPDATED
 export const POST: TypedDocumentNode<Post, PostVariables> = Q.POST

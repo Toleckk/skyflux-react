@@ -1,6 +1,5 @@
 import Firebase from 'firebase/app'
 import 'firebase/auth'
-import 'firebase/messaging'
 
 export const firebase = Firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,3 +14,6 @@ export const firebase = Firebase.initializeApp({
 export const authPromise = new Promise(resolve =>
   firebase.auth().onAuthStateChanged(resolve),
 )
+
+if (process.env.REACT_APP_FIREBASE_AUTH_EMULATOR_HOST)
+  firebase.auth().useEmulator(process.env.REACT_APP_FIREBASE_AUTH_EMULATOR_HOST)

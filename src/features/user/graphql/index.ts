@@ -30,22 +30,11 @@ export * from './types/UserUpdated'
 export * from './types/User'
 
 export const USER_FRAGMENT: TypedDocumentNode<UserFragment> = F.USER_FRAGMENT
-export const DELETED_POST_FRAGMENT: TypedDocumentNode<DeletedPostFragment> =
-  F.DELETED_POST_FRAGMENT
-export const MAYBE_POST_FRAGMENT: TypedDocumentNode<MaybePostFragment> =
-  F.MAYBE_POST_FRAGMENT
-export const CREATE_SUB: TypedDocumentNode<CreateSub, CreateSubVariables> =
-  M.CREATE_SUB
-export const DELETE_POST: TypedDocumentNode<DeletePost, DeletePostVariables> =
-  M.DELETE_POST
-export const DELETE_SUB: TypedDocumentNode<DeleteSub, DeleteSubVariables> =
-  M.DELETE_SUB
-export const POSTS_UPDATED: TypedDocumentNode<
-  PostsUpdated,
-  PostsUpdatedVariables
-> = S.POSTS_UPDATED
-export const USER_UPDATED: TypedDocumentNode<
-  UserUpdated,
-  UserUpdatedVariables
-> = S.USER_UPDATED
+export const DELETED_POST_FRAGMENT: TypedDocumentNode<DeletedPostFragment> = F.DELETED_POST_FRAGMENT
+export const MAYBE_POST_FRAGMENT: TypedDocumentNode<MaybePostFragment> = F.MAYBE_POST_FRAGMENT
+export const CREATE_SUB: TypedDocumentNode<CreateSub, CreateSubVariables> = M.CREATE_SUB
+export const DELETE_POST: TypedDocumentNode<DeletePost, DeletePostVariables> = M.DELETE_POST
+export const DELETE_SUB: TypedDocumentNode<DeleteSub, DeleteSubVariables> = M.DELETE_SUB
+export const POSTS_UPDATED: TypedDocumentNode<PostsUpdated, PostsUpdatedVariables> = S.POSTS_UPDATED
+export const USER_UPDATED: TypedDocumentNode<UserUpdated, UserUpdatedVariables> = S.USER_UPDATED
 export const USER: TypedDocumentNode<User, UserVariables> = Q.USER
