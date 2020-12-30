@@ -13,6 +13,14 @@ export interface Post_post_user {
   avatar: string | null;
 }
 
+export interface Post_post_comments_edges_node_post_user {
+  _id: string;
+}
+
+export interface Post_post_comments_edges_node_post {
+  user: Post_post_comments_edges_node_post_user;
+}
+
 export interface Post_post_comments_edges_node_user {
   _id: string;
   nickname: string;
@@ -23,6 +31,7 @@ export interface Post_post_comments_edges_node {
   _id: string;
   text: string;
   createdAt: any;
+  post: Post_post_comments_edges_node_post;
   user: Post_post_comments_edges_node_user;
 }
 

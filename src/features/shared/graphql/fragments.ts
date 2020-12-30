@@ -13,6 +13,11 @@ export const COMMENT_FRAGMENT = gql`
     _id
     text
     createdAt
+    post {
+      user {
+        _id
+      }
+    }
     user {
       ...UserBadgeFragment
     }

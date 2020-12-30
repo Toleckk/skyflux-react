@@ -30,12 +30,6 @@ export interface MaybeEventFragment_Event_subj_LikeEventBody {
   like: MaybeEventFragment_Event_subj_LikeEventBody_like;
 }
 
-export interface MaybeEventFragment_Event_subj_CommentEventBody_comment_user {
-  _id: string;
-  nickname: string;
-  avatar: string | null;
-}
-
 export interface MaybeEventFragment_Event_subj_CommentEventBody_comment_post_user {
   _id: string;
   nickname: string;
@@ -43,17 +37,23 @@ export interface MaybeEventFragment_Event_subj_CommentEventBody_comment_post_use
 }
 
 export interface MaybeEventFragment_Event_subj_CommentEventBody_comment_post {
+  user: MaybeEventFragment_Event_subj_CommentEventBody_comment_post_user;
   _id: string;
   text: string;
-  user: MaybeEventFragment_Event_subj_CommentEventBody_comment_post_user;
+}
+
+export interface MaybeEventFragment_Event_subj_CommentEventBody_comment_user {
+  _id: string;
+  nickname: string;
+  avatar: string | null;
 }
 
 export interface MaybeEventFragment_Event_subj_CommentEventBody_comment {
   _id: string;
   text: string;
   createdAt: any;
-  user: MaybeEventFragment_Event_subj_CommentEventBody_comment_user;
   post: MaybeEventFragment_Event_subj_CommentEventBody_comment_post;
+  user: MaybeEventFragment_Event_subj_CommentEventBody_comment_user;
 }
 
 export interface MaybeEventFragment_Event_subj_CommentEventBody {

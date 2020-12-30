@@ -7,6 +7,14 @@
 // GraphQL subscription operation: CommentUpdated
 // ====================================================
 
+export interface CommentUpdated_commentUpdated_Comment_post_user {
+  _id: string;
+}
+
+export interface CommentUpdated_commentUpdated_Comment_post {
+  user: CommentUpdated_commentUpdated_Comment_post_user;
+}
+
 export interface CommentUpdated_commentUpdated_Comment_user {
   _id: string;
   nickname: string;
@@ -17,6 +25,7 @@ export interface CommentUpdated_commentUpdated_Comment {
   _id: string;
   text: string;
   createdAt: any;
+  post: CommentUpdated_commentUpdated_Comment_post;
   user: CommentUpdated_commentUpdated_Comment_user;
 }
 

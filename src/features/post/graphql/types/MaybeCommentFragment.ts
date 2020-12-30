@@ -7,6 +7,14 @@
 // GraphQL fragment: MaybeCommentFragment
 // ====================================================
 
+export interface MaybeCommentFragment_Comment_post_user {
+  _id: string;
+}
+
+export interface MaybeCommentFragment_Comment_post {
+  user: MaybeCommentFragment_Comment_post_user;
+}
+
 export interface MaybeCommentFragment_Comment_user {
   _id: string;
   nickname: string;
@@ -17,6 +25,7 @@ export interface MaybeCommentFragment_Comment {
   _id: string;
   text: string;
   createdAt: any;
+  post: MaybeCommentFragment_Comment_post;
   user: MaybeCommentFragment_Comment_user;
 }
 

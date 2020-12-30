@@ -36,7 +36,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
       onDelete={(isMyComment || isMyPost) && onDelete && deleteComment}
       mini={mini}
     >
-      {'post' in comment && !!comment.post.text && (
+      {'post' in comment && 'text' in comment.post && !!comment.post.text && (
         <div>
           <Flex as={Tip}>
             {t('To post')}&nbsp;

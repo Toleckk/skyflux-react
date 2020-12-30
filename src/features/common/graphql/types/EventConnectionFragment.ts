@@ -30,12 +30,6 @@ export interface EventConnectionFragment_edges_node_subj_LikeEventBody {
   like: EventConnectionFragment_edges_node_subj_LikeEventBody_like;
 }
 
-export interface EventConnectionFragment_edges_node_subj_CommentEventBody_comment_user {
-  _id: string;
-  nickname: string;
-  avatar: string | null;
-}
-
 export interface EventConnectionFragment_edges_node_subj_CommentEventBody_comment_post_user {
   _id: string;
   nickname: string;
@@ -43,17 +37,23 @@ export interface EventConnectionFragment_edges_node_subj_CommentEventBody_commen
 }
 
 export interface EventConnectionFragment_edges_node_subj_CommentEventBody_comment_post {
+  user: EventConnectionFragment_edges_node_subj_CommentEventBody_comment_post_user;
   _id: string;
   text: string;
-  user: EventConnectionFragment_edges_node_subj_CommentEventBody_comment_post_user;
+}
+
+export interface EventConnectionFragment_edges_node_subj_CommentEventBody_comment_user {
+  _id: string;
+  nickname: string;
+  avatar: string | null;
 }
 
 export interface EventConnectionFragment_edges_node_subj_CommentEventBody_comment {
   _id: string;
   text: string;
   createdAt: any;
-  user: EventConnectionFragment_edges_node_subj_CommentEventBody_comment_user;
   post: EventConnectionFragment_edges_node_subj_CommentEventBody_comment_post;
+  user: EventConnectionFragment_edges_node_subj_CommentEventBody_comment_user;
 }
 
 export interface EventConnectionFragment_edges_node_subj_CommentEventBody {

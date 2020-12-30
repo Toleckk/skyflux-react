@@ -30,12 +30,6 @@ export interface EventUpdated_eventUpdated_Event_subj_LikeEventBody {
   like: EventUpdated_eventUpdated_Event_subj_LikeEventBody_like;
 }
 
-export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_user {
-  _id: string;
-  nickname: string;
-  avatar: string | null;
-}
-
 export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_post_user {
   _id: string;
   nickname: string;
@@ -43,17 +37,23 @@ export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_p
 }
 
 export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_post {
+  user: EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_post_user;
   _id: string;
   text: string;
-  user: EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_post_user;
+}
+
+export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_user {
+  _id: string;
+  nickname: string;
+  avatar: string | null;
 }
 
 export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment {
   _id: string;
   text: string;
   createdAt: any;
-  user: EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_user;
   post: EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_post;
+  user: EventUpdated_eventUpdated_Event_subj_CommentEventBody_comment_user;
 }
 
 export interface EventUpdated_eventUpdated_Event_subj_CommentEventBody {
