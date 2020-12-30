@@ -26,7 +26,7 @@ export const useFirebaseMutation = <
     fn(...args).catch((e: FirebaseError) => {
       if (!errors) throw e
       const field = errors[e.code]
-      if (field) setFirebaseError({[field]: errors.message})
+      if (field) setFirebaseError({[field]: e.message})
     }),
   )
 
