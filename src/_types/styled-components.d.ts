@@ -18,5 +18,11 @@ declare module 'styled-components' {
     readonly error2: string
 
     readonly background: string
+
+    setTheme?: {
+      (theme: Theme): void
+
+      (fn: (theme: Theme) => Theme): void
+    }
   }
 }

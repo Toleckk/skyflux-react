@@ -3,13 +3,12 @@ import {useTheme} from 'styled-components'
 import {Box} from 'reflexbox'
 import {dark, light} from 'themes'
 import {Icon} from '@skyflux/react/ui'
-import {TTheme} from '@skyflux/react/utils'
 
 export const SwitchThemeButton: React.FC = () => {
-  const {name, setTheme} = useTheme() as TTheme
+  const {name, setTheme} = useTheme()
 
   const onClick = useCallback(
-    () => setTheme(({name}) => (name === 'dark' ? light : dark)),
+    () => setTheme?.(name => (name === 'dark' ? 'light' : 'dark')),
     [setTheme],
   )
 

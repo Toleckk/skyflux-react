@@ -1,38 +1,29 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import {areObjectsSameShape} from 'deep-shape-equals'
-import {DefaultTheme, ThemeProvider} from 'styled-components'
-import {dark} from '@skyflux/react/themes'
-
-export type TTheme = DefaultTheme & {
-  setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>
-}
+import {ThemeProvider} from 'styled-components'
+import * as Themes from '@skyflux/react/themes'
 
 export const Theme: React.FC = ({children}) => {
   const [theme, setTheme] = useState(getTheme)
 
   useEffect(() => saveTheme(theme), [theme])
 
-  const value: TTheme = useMemo(() => ({...theme, setTheme}), [theme, setTheme])
+  const value = useMemo(() => ({...Themes[theme], setTheme}), [theme, setTheme])
 
   return <ThemeProvider theme={value}>{children}</ThemeProvider>
 }
 
-export const saveTheme = (theme: DefaultTheme): void =>
-  localStorage.setItem(
-    'theme',
-    JSON.stringify(areObjectsSameShape([theme, dark]) ? theme : dark),
-  )
+export const saveTheme = (theme: keyof typeof Themes): void =>
+  localStorage.setItem('theme', theme)
 
-export const getTheme = (): DefaultTheme => {
+export const getTheme = (): keyof typeof Themes => {
   const saved = localStorage.getItem('theme')
 
-  if (!saved) return dark
-
-  try {
-    const theme = JSON.parse(saved)
-
-    return areObjectsSameShape([theme, dark]) ? theme : dark
-  } catch {
-    return dark
+  if (isTheme(saved)) {
+    return saved
   }
+
+  return 'dark'
 }
+
+export const isTheme = (value: unknown): value is keyof typeof Themes =>
+  typeof value === 'string' && Object.keys(Themes).includes(value)
