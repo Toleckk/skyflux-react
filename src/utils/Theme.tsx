@@ -1,10 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import {areObjectsSameShape} from 'deep-shape-equals'
-import {ThemeProvider} from 'styled-components'
-import {Theme as ThemeObjectType, dark} from '@skyflux/react/themes'
+import {DefaultTheme, ThemeProvider} from 'styled-components'
+import {dark} from '@skyflux/react/themes'
 
-export type TTheme = ThemeObjectType & {
-  setTheme: React.Dispatch<React.SetStateAction<ThemeObjectType>>
+export type TTheme = DefaultTheme & {
+  setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>
 }
 
 export const Theme: React.FC = ({children}) => {
@@ -17,13 +17,13 @@ export const Theme: React.FC = ({children}) => {
   return <ThemeProvider theme={value}>{children}</ThemeProvider>
 }
 
-export const saveTheme = (theme: Record<string, unknown>): void =>
+export const saveTheme = (theme: DefaultTheme): void =>
   localStorage.setItem(
     'theme',
     JSON.stringify(areObjectsSameShape([theme, dark]) ? theme : dark),
   )
 
-export const getTheme = (): ThemeObjectType => {
+export const getTheme = (): DefaultTheme => {
   const saved = localStorage.getItem('theme')
 
   if (!saved) return dark

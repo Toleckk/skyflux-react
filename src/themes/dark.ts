@@ -1,6 +1,6 @@
-import {Theme} from './types'
+import {DefaultTheme} from 'styled-components'
 
-export const dark: Theme = {
+export const dark: DefaultTheme = {
   name: 'dark',
 
   primary: '#028484',
