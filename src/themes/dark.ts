@@ -5,11 +5,15 @@ export const dark: Theme = {
 
   primary: '#028484',
   secondary: '#a34351',
-  primaryText: '#babac7',
-  secondaryText: '#cacadc',
-  error: '#c11b1b',
-  errorText: '#ff6060',
-  primaryDark: '#0a151b',
+
+  text1: '#cacadc',
+  text2: '#babac7',
+
+  error1: '#ff6060',
+  error2: '#c11b1b',
+
+  background: '#0a151b',
+
   landingBackground:
     'https://res.cloudinary.com/jumper/image/upload/v1590683915/landing_ahhvvr.jpg',
 }

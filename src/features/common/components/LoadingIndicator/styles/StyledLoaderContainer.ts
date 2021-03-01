@@ -6,6 +6,6 @@ export const StyledLoaderContainer = styled.div`
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid ${props => props.theme.secondary};
-  background: ${props => props.theme.primaryDark}B2;
+  background: ${props => props.theme.background}B2;
   box-shadow: 0 0 1rem ${props => props.theme.secondary};
 `

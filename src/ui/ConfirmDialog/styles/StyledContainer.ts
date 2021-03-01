@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledContainer = styled.div`
   box-shadow: 0 0 1rem ${props => props.theme.secondary};
 
-  background: ${props => props.theme.primaryDark};
+  background: ${props => props.theme.background};
 
   display: flex;
   flex-direction: column;

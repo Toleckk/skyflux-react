@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledAuthFormContainer = styled.div`
-  background: ${props => props.theme.primaryDark};
+  background: ${props => props.theme.background};
 
   padding: 3rem 1rem;
   width: 100%;

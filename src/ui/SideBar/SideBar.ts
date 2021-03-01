@@ -31,7 +31,7 @@ export const SideBar = styled.div<SideBarProps>`
   border-radius: 1rem;
   border: 1px solid transparent;
 
-  background-color: ${props => props.theme.primaryDark};
+  background-color: ${props => props.theme.background};
 
   ${props => props.minHeight && expandable(props.minHeight)}
 

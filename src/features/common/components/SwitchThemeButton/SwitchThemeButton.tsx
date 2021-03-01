@@ -15,7 +15,7 @@ export const SwitchThemeButton: React.FC = () => {
 
   const icon = name === 'light' ? 'dark-theme' : 'light-theme'
 
-  const color = `${name === 'light' ? dark.primaryDark : light.primaryDark}`
+  const color = `${name === 'light' ? dark.background : light.background}`
 
   return (
     <Box as="button" height="2rem" width="2rem" onClick={onClick}>

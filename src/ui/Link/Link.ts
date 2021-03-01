@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import {Link as RouterLink} from 'react-router-dom'
 
 export const Link = styled(RouterLink)`
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.text2};
   position: relative;
 
   max-width: 100%;

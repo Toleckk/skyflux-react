@@ -7,7 +7,7 @@ export type StyledFieldsetProps = {
 
 export const StyledFieldset = styled.fieldset<StyledFieldsetProps>`
   margin: 0;
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.text2};
 
   position: relative;
 
@@ -18,7 +18,7 @@ export const StyledFieldset = styled.fieldset<StyledFieldsetProps>`
 
   border-radius: 4px;
   border: 2px solid
-    ${({error, theme}) => (error ? theme.error : theme.primaryText)}E5;
+    ${({error, theme}) => (error ? theme.error2 : theme.text2)}E5;
 
   transition: all 300ms;
 
@@ -32,5 +32,5 @@ export const StyledFieldset = styled.fieldset<StyledFieldsetProps>`
   }
 
   ${({error, theme}) =>
-    error && `box-shadow: inset ${theme.error}E5 0 0 1.1rem;`}
+    error && `box-shadow: inset ${theme.error2}E5 0 0 1.1rem;`}
 `

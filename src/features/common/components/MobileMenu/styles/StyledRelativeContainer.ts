@@ -9,7 +9,7 @@ export const StyledRelativeContainer = styled.div`
 
   padding-top: 2rem;
 
-  background: ${props => props.theme.primaryDark};
+  background: ${props => props.theme.background};
 
   width: 70vw;
 `

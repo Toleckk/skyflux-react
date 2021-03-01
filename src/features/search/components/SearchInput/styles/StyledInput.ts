@@ -10,10 +10,10 @@ export const StyledInput = styled.input`
 
   padding: 0 4rem 0 1rem;
 
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.text2};
   background: none;
 
-  border: 2px solid ${props => props.theme.primaryText};
+  border: 2px solid ${props => props.theme.text2};
   border-radius: 2rem;
 
   &:focus {

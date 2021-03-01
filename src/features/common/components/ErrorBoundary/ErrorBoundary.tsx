@@ -26,7 +26,7 @@ export class ErrorBoundary extends React.PureComponent {
               alignItems="center"
               justifyContent="center"
               style={{
-                backgroundColor: `${this.context.primaryDark}`,
+                backgroundColor: `${this.context.background}`,
               }}
             >
               <H1>{t('Something went wrong')}</H1>

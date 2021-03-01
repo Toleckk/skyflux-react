@@ -12,7 +12,7 @@ export const StyledRound = styled.div<StyledRoundProps>`
   height: calc(${props => props.height || '3rem'} * 0.8);
   width: calc(${props => props.height || '3rem'} * 0.8);
 
-  background-color: ${props => props.theme.primaryText};
+  background-color: ${props => props.theme.text2};
 
   border-radius: 50%;
 

@@ -5,7 +5,7 @@ export type H1Props = {
 }
 
 export const H1 = styled.h1<H1Props>`
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.text2};
 
   font-size: 1.5rem;
   font-weight: normal;

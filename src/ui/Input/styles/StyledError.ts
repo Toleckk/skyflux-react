@@ -7,6 +7,6 @@ export const StyledError = styled.span`
 
   font-size: 0.75rem;
 
-  color: ${props => props.theme.errorText};
+  color: ${props => props.theme.error1};
   border-left: 4px solid ${props => props.theme.secondary};
 `

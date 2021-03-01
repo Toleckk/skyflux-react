@@ -6,5 +6,5 @@ export const SecondaryText = styled.span`
 
   word-break: break-word;
 
-  color: ${props => props.theme.secondaryText};
+  color: ${props => props.theme.text1};
 `

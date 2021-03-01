@@ -10,7 +10,7 @@ export const Button = styled.button`
   border-radius: 1.5em;
   border: 1.5px solid ${props => props.theme.primary};
 
-  color: ${props => props.theme.secondaryText};
+  color: ${props => props.theme.text1};
   font-size: 1rem;
 
   transition: all 100ms;

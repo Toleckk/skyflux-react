@@ -18,8 +18,8 @@ export const StyledBorder = styled.div<StyledBorderProps>`
 
   border-radius: calc(${props => props.height || '3rem'} * 0.5);
 
-  border: 1px solid ${props => props.theme.primaryText};
-  box-shadow: 0 0 0.5rem ${props => props.theme.primaryText};
+  border: 1px solid ${props => props.theme.text2};
+  box-shadow: 0 0 0.5rem ${props => props.theme.text2};
 
   ${StyledCheckbox}:checked + & {
     border-color: ${props => props.theme.secondary};

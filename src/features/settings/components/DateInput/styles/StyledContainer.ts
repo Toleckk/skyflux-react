@@ -11,6 +11,6 @@ export const StyledContainer = styled.div`
 
   & .react-datepicker__close-icon::after {
     font-size: 15px;
-    background-color: ${props => props.theme.error};
+    background-color: ${props => props.theme.error2};
   }
 `
